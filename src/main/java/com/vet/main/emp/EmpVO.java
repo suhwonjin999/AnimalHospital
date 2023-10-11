@@ -1,4 +1,4 @@
-package com.vet.main.member;
+package com.vet.main.emp;
 
 import java.sql.Date;
 
