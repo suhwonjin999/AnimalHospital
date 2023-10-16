@@ -248,17 +248,23 @@
               </a>
             </li>            
             
+			<li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Extended UI">게시판</div>
+              </a>
+              <ul class="menu-sub">            
             <li class="menu-item">
               <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">공지사항</div>
               </a>
             </li> 
             <li class="menu-item">
               <a href="cards-basic.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">익명게시판</div>
               </a>
+            </li>
+           	 </ul>
             </li> 
           </ul>
         </aside>
