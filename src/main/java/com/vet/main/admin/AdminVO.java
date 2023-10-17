@@ -1,4 +1,4 @@
-package com.vet.main.emp;
+package com.vet.main.admin;
 
 import java.sql.Date;
 
@@ -6,10 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @ToString
-public class EmpVO {
+public class AdminVO {
 
 	//emp
 	private Long empNo;
@@ -33,6 +33,4 @@ public class EmpVO {
 	private String deptName;
 	private Long parentNo;
 	private Long depth;
-	
-	
 }

@@ -19,12 +19,12 @@ public class EmpController {
 	@Autowired
 	EmpService empService = new EmpService();
 	
-	@GetMapping("login2")
+	@GetMapping("login")
 	public void getLogin(@ModelAttribute EmpVO empVO)throws Exception{
 		
 	}
 	
-	@PostMapping("login2")
+	@PostMapping("login")
 	public String getLogin(EmpVO empVO, HttpSession session)throws Exception{
 		empVO = empService.getLogin(empVO);
 		
@@ -33,8 +33,13 @@ public class EmpController {
 			return "redirect:../";
 		}
 		
-		return "./login2";
+		return "./login";
 	}
 	
+	// 마이페이지
 	
+	@GetMapping("mypage")
+	public void getMypage() throws Exception{
+		
+	}
 }
