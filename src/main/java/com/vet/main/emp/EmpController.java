@@ -21,7 +21,7 @@ public class EmpController {
 	
 	@GetMapping("login")
 	public void getLogin(@ModelAttribute EmpVO empVO)throws Exception{
-		
+
 	}
 	
 	@PostMapping("login")

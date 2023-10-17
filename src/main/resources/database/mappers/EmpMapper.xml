@@ -3,4 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.vet.main"></mapper>
+<mapper namespace="com.vet.main.emp.EmpDAO">
+
+	<select id="getEmp" parameterType="com.vet.main.emp.EmpVO" resultType="com.vet.main.emp.EmpVO">
+		SELECT * 
+		FROM EMP E INNER JOIN POSITION P 
+		ON E.POSITIONNO=P.POSITIONNO 
+		INNER JOIN DEPARTMENT D 
+		ON E.DEPTNO=D.DEPTNO
+	</select>
+	
+</mapper>
