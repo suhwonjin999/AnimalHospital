@@ -6,7 +6,9 @@
 <configuration>
 
 	<typeAliases>
+		<typeAlias type="com.vet.main.customer.CustomerVO" alias="CustomerVO"/>
 
+		<typeAlias type="com.vet.main.util.Pager" alias="Pager"/>
 	</typeAliases>
 
 </configuration>

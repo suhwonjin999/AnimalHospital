@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.vet.main.customer.CustomerDAO">
+		<sql id="forPager">
+	  		<choose>
+	  			<when test="kind == 'animalName'">
+	  				animalName
+	  			</when>
+	  			<otherwise>
+	  				name
+	  			</otherwise>
+	  		</choose>
+	  	</sql>
+	  	
+	  	<select id="getCount" parameterType="Pager" resultType="Long">
+	  		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/>
+	  		SELECT COUNT(CUSTOMERNO) FROM CUSTOMER
+	  			WHERE <include refid="forPager"></include>
+	  			Like #{pattern}
+	  	</select>
+		
+		<select id="getList" parameterType="Pager" resultType="CustomerVO">
+			SELECT * FROM CUSTOMER 
+				WHERE
+					<include refid="forPager"></include>
+					LIKE CONCAT('%', #{search}, '%')
+				ORDER BY CUSTOMERNO DESC
+				LIMIT #{startRow}, #{lastRow}
+		</select>
+		
+		<insert id="setAdd" parameterType="CustomerVO">
+			INSERT INTO CUSTOMER(CUSTOMERNO, ANIMALNAME, GENDER, AGE, WEIGHT, KIND, NEUTERING, NAME, PHONE, ADDRESS)
+				VALUES (NULL, #{animalName}, #{gender}, #{age}, #{weight}, #{kind}, #{neutering}, #{name}, #{phone}, #{address}) 
+		</insert>
+	
+	</mapper>
