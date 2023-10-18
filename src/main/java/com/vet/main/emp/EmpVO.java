@@ -19,7 +19,7 @@ public class EmpVO {
 	private String phone;
 	private Date hireDate;
 	private String randomPw;
-	private String filenName;
+	private String fileName;
 	private String originalFileName;
 	private Long positionNo;
 	private String deptNo;

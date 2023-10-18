@@ -1,5 +1,7 @@
 package com.vet.main.emp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -30,5 +32,11 @@ public class EmpService {
 	
 	
 	// 마이페이지
+	
+	
+	// 사원 관리(직원 목록)
+	public List<EmpVO> getEmpList()throws Exception{
+		return empDAO.getEmpList();
+	}
 	
 }

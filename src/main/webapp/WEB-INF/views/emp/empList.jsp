@@ -20,18 +20,46 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page">
+			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-				<div class="content-wrapper">				
+					<br><h3 style="margin-right: 1200px;">직원 목록 페이지</h3>
+				<div class="card shadow mb-4" style="width: 1400px;">				
 					<!-- Content -->
-					<h1>부서관리 페이지</h1>
-					<!-- 내용부분-->
-					<div class="container-xxl flex-grow-1 container-p-y"></div>
-					<!-- / Content -->
-					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
-					<div class="content-backdrop fade"></div>
+					
+					<table class="table tb" style="text-align: center; ">
+						<thead style="height: 70px;">
+							<tr>
+								<th>사원번호</th>
+								<th>이름</th>
+								<th>부서</th>
+								<th>직급</th>
+								<th>이메일</th>
+								<th>연락처</th>
+								<th>입사일</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+					<c:forEach items="${list}" var="vo">
+						<tbody style="height: 35px;">
+							<tr>
+								<td>${vo.empNo}</td>
+								<td>${vo.name}</td>
+								<td>${vo.deptName}</td>
+								<td>${vo.positionName}</td>
+								<td>${vo.email}</td>
+								<td>${vo.phone}</td>
+								<td>${vo.hireDate}</td>
+								<td>${vo.state}</td>
+							</tr>
+						</tbody>
+					</c:forEach>
+					
+					</table>
+					<br>					
+					<a href="/emp/empAdd" class="btn btn-secondary" style="width: 120px; height: 50px; color: white;">신규직원 등록</a>
 				</div>
+				
 				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->

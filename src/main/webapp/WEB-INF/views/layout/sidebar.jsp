@@ -126,12 +126,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="pages-account-settings-account.html" class="menu-link">
+                  <a href="/emp/empList" class="menu-link">
                     <div data-i18n="Account">사원관리</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="pages-account-settings-notifications.html" class="menu-link">
+                  <a href="/admin/list" class="menu-link">
                     <div data-i18n="Notifications">부서관리</div>
                   </a>
                 </li>
