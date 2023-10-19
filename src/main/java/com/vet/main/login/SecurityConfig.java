@@ -48,7 +48,7 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-					.antMatchers("/").permitAll()
+					.antMatchers("/**").hasRole("재직")
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")

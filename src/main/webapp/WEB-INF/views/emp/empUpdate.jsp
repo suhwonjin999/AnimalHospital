@@ -24,8 +24,8 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 			<form action="empUpdate" method="post">
-					<br><h3 style="margin-right: 1200px;">직원 정보 수정</h3>
-				<div class="card shadow mb-4" style="box-sizing: content-box;">										
+					<br><h3>직원 정보 수정</h3>
+				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">												
 					
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">

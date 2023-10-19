@@ -20,74 +20,68 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page">
+			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
+				<form>
 				<!-- Content wrapper -->
-				<div class="content-wrapper">				
-					<!-- Content -->
-					<!-- 내용부분-->
-					<div class="container-xxl flex-grow-1 container-p-y">
-						<div style="width: 1295px; height: 900px;">
-							<h3>마이페이지</h3> <br><br>
-							<div style="width: 300px; float: left;">
-								<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;">
-							</div>
-							<div style="width:900px; height:200px; float: left; margin-top: 10px;">
-								<table style="border-color: black;">
+					<br><h3 style="/* margin-right: 1200px; */">${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
+				<div class="card shadow mb-4" style="width: 1400px;">										
+							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+								<div style="width: 300px; float: left;">
+									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
+								</div>
+							<div style="width: 550px; margin-top: 20px; float: left;">
+								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>부서</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>직급</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
-								</table>
-							
+
+								</table>							
 							</div>
-							<div style="width:800px; margin-left: 50px;">
-								<table style="border-color: black;">
+							<br>
+							<div>
+								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td><input type="text" value=""></td>
+										<td></td>
 									</tr>
-									<tr>
-										<td>주소</td>
-										<td><input type="text" value=""></td>
-									</tr>
+
 								</table>
 							</div>
 						</div>
-					</div>
-					<!-- / Content -->
-					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
-					<div class="content-backdrop fade"></div>
 				</div>
+				
 				<!-- Content wrapper -->
+							<a href="/emp/empUpdate?empNo=${vo.empNo}" class="btn btn-danger">수정</a>
+					</form>
 			</div>
 			<!-- / Layout page -->
 		</div>
-
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>

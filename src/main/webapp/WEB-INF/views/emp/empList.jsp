@@ -23,11 +23,12 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="margin-right: 1300px;">직원 목록</h3>
-				<div class="card shadow mb-4" style="width: 1400px;">				
+				<form>
+					<br><h3>직원 목록</h3>
+				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">				
 					<!-- Content -->
 					
-					<table class="table tb" style="text-align: center; ">
+					<table class="table" style="text-align: center; width:auto; margin: 20px; ">
 						<thead style="height: 70px;">
 							<tr>
 								<th>사원번호</th>
@@ -43,8 +44,8 @@
 					<c:forEach items="${list}" var="vo">
 						<tbody style="height: 35px;">
 							<tr>
-								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.empNo}</a></td>
-								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.name}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td>
 								<td>${vo.deptName}</td>
 								<td>${vo.positionName}</td>
 								<td>${vo.email}</td>
@@ -56,9 +57,10 @@
 					</c:forEach>
 					
 					</table>
-					<br>					
-					<a href="/emp/empAdd" class="btn btn-secondary" style="width: 120px; height: 50px; color: white;">신규직원 등록</a>
+					<br>
 				</div>
+					<a href="/emp/empAdd" class="btn btn-secondary">신규직원 등록</a>
+					</form>
 				
 				<!-- Content wrapper -->
 			</div>

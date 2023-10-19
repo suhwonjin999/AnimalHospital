@@ -43,12 +43,12 @@
 											<form:form modelAttribute="empVO" method="post">
 											  <div class="form-group">
 											  	<form:label path="empNo">사원번호</form:label>
-												<form:input  id="id" path="empNo" cssClass="form-control"/>					
+												<form:input  id="empNo" path="empNo" cssClass="form-control"/>					
 											  	<form:errors path="empNo"></form:errors>
 											  </div>
 											  <div class="form-group">
 											  	<form:label path="password">비밀번호</form:label>
-											    <form:password id="pw" path="password" cssClass="form-control"/>
+											    <form:password id="password" path="password" cssClass="form-control"/>
 											    <form:errors path="password"></form:errors>
 											  </div>
 											  	  				  			  				  				          		
