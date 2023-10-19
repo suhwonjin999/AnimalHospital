@@ -33,9 +33,9 @@
 							
 							<form action="./add" method="POST" enctype="multipart/form-data">
 							
-								<!-- <div class="mb-3">
+								<div class="mb-3">
 								  <input type="file" class="form-control" name="files">
-								</div> -->
+								</div>
 								
 								<div class="col-md-2 mb-3">
 					  				<label for="animalName" class="form-label">이름</label>

@@ -39,7 +39,7 @@
 						    <c:forEach items="${list}" var="vo">
 						    	<tr>
 						    		<td>${vo.customerNo}</td>
-						    		<td>${vo.animalName}</td>
+						    		<td><a href="./detail?customerNo=${vo.customerNo}">${vo.animalName}</a></td>
 						    		<td>${vo.name}</td>
 						    	</tr>
 						    </c:forEach>

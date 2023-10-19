@@ -15,8 +15,8 @@
 	  		</choose>
 	  	</sql>
 	  	
-	  	<select id="getCount" parameterType="Pager" resultType="Long">
-	  		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/>
+	  	<select id="getTotal" parameterType="Pager" resultType="Long">
+	  		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/> <!-- mybatis에서 제공하는 동적 쿼리를 이용하는 방식 _parameter는 parameter로 접근하는 예약어-->
 	  		SELECT COUNT(CUSTOMERNO) FROM CUSTOMER
 	  			WHERE <include refid="forPager"></include>
 	  			Like #{pattern}
@@ -25,15 +25,21 @@
 		<select id="getList" parameterType="Pager" resultType="CustomerVO">
 			SELECT * FROM CUSTOMER 
 				WHERE
-					<include refid="forPager"></include>
-					LIKE CONCAT('%', #{search}, '%')
+				<include refid="forPager"></include>
+				LIKE CONCAT('%', #{search}, '%')
 				ORDER BY CUSTOMERNO DESC
-				LIMIT #{startRow}, #{lastRow}
+				LIMIT #{startRow}, #{perPage}
 		</select>
 		
-		<insert id="setAdd" parameterType="CustomerVO">
+		<insert id="setAdd" parameterType="CustomerVO" useGeneratedKeys="true" keyProperty="customerNo">
 			INSERT INTO CUSTOMER(CUSTOMERNO, ANIMALNAME, GENDER, AGE, WEIGHT, KIND, NEUTERING, NAME, PHONE, ADDRESS)
 				VALUES (NULL, #{animalName}, #{gender}, #{age}, #{weight}, #{kind}, #{neutering}, #{name}, #{phone}, #{address}) 
+		</insert>
+		
+		<!-- 사진첨부 -->
+		<insert id="setFileAdd" parameterType="CustomerFileVO">
+			INSERT INTO CUSTOMERFILE (FILENO, FILENAME, ORIGINALFILENAME, CUSTOMERNO)
+				VALUES (#{fileNo}, #{fileName}, #{originalFileName}, #{customerNo})
 		</insert>
 	
 	</mapper>
