@@ -59,8 +59,37 @@ public class EmpController {
 	// 신규직원 추가 페이지
 	
 	@GetMapping("empAdd")
-	public void setEmpAdd()throws Exception{
+	public String empAdd()throws Exception{
+		return "emp/empAdd";
+	}
+	
+	@PostMapping("empAdd")
+	public String empAdd(EmpVO empVO) throws Exception{
+		int result = empService.empAdd(empVO);
+		return "redirect:./empList";
+	}
+	
+	// 직원 상세
+	@GetMapping("empDetail")
+	public String empDetail (EmpVO empVO, Model model) throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo",empVO);
 		
+		return "emp/empDetail";
+	}
+	
+	// 직원 수정(부서, 직급 수정)
+	@GetMapping("empUpdate")
+	public String empUpdate(EmpVO empVO, Model model) throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/empUpdate";
+	}
+	
+	@PostMapping("empUpdate")
+	public String empUpdate(EmpVO empVO) throws Exception{
+		int result = empService.empUpdate(empVO);
+		return "redirect:./empList";
 	}
 	
 }

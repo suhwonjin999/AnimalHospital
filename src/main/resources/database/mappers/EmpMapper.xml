@@ -6,7 +6,7 @@
 <mapper namespace="com.vet.main.emp.EmpDAO">
 
 	<select id="getEmpList" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
-		SELECT * 
+		SELECT E.*, P.*, D.*  
 		FROM EMP E INNER JOIN POSITION P 
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
@@ -30,10 +30,32 @@
 		<result column="DEPTNO" property="deptNo"/>
 	</resultMap>
 
-<!-- 	<insert id="setEmpAdd">
+	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO EMP 
-		VALUES ()
-	</insert> -->
+		VALUES (NULL, 'qwerqwer', #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 999, '재직', 12, #{birth}, 0)
+	</insert>
 
+  	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
+  		SELECT E.*, P.*, D.* 
+		FROM EMP E INNER JOIN POSITION P 
+		ON E.POSITIONNO=P.POSITIONNO 
+		INNER JOIN DEPARTMENT D 
+		ON E.DEPTNO=D.DEPTNO
+		WHERE E.EMPNO=#{empNo}
+		ORDER BY EMPNO DESC
+  	</select>
+  	
+  	<update id="empUpdate" parameterType="com.vet.main.emp.EmpVO">
+  		UPDATE EMP E JOIN DEPARTMENT D
+  		ON E.DEPTNO = D.DEPTNO
+  		JOIN POSITION P
+  		ON E.POSITIONNO = P.POSITIONNO
+  		SET
+  		E.NAME = #{name},
+  		E.DEPTNO = #{deptNo},
+  		E.POSITIONNO = #{positionNo},
+  		E.STATE = #{state}
+  		WHERE E.EMPNO=#{empNo} 		
+  	</update>
   	
 </mapper>

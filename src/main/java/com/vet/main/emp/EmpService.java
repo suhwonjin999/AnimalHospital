@@ -39,4 +39,27 @@ public class EmpService {
 		return empDAO.getEmpList();
 	}
 	
+	// 신규직원 등록
+	public int empAdd(EmpVO empVO) throws Exception{
+		int result = empDAO.empAdd(empVO);
+		
+		return result;
+	}
+	
+	// 직원 상세
+	public EmpVO empDetail(EmpVO empVO) throws Exception{
+		
+		return empDAO.empDetail(empVO);
+	}
+	
+	// 직원 수정
+	public int empUpdate(EmpVO empVO) throws Exception{
+		int result = empDAO.empUpdate(empVO);
+		
+		return result;
+		
+		
+	}
+	
+	
 }

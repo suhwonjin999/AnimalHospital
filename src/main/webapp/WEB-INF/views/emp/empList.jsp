@@ -23,7 +23,7 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="margin-right: 1200px;">직원 목록 페이지</h3>
+					<br><h3 style="margin-right: 1300px;">직원 목록</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">				
 					<!-- Content -->
 					
@@ -43,8 +43,8 @@
 					<c:forEach items="${list}" var="vo">
 						<tbody style="height: 35px;">
 							<tr>
-								<td>${vo.empNo}</td>
-								<td>${vo.name}</td>
+								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.empNo}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.name}</a></td>
 								<td>${vo.deptName}</td>
 								<td>${vo.positionName}</td>
 								<td>${vo.email}</td>

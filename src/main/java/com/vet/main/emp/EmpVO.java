@@ -24,6 +24,7 @@ public class EmpVO {
 	private Long positionNo;
 	private String deptNo;
 	private String state;
+	private Date birth;
 	
 	
 	//position

@@ -23,41 +23,41 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="margin-right: 1200px;">신규 사원 등록</h3>
+					<br><h3 style="margin-right: 1200px;">신규직원 등록</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">										
 							<div style="width: 300px; float: left; margin-top: 20px; margin-bottom: 20px;">
-								<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;">
+								<!-- <img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;"> -->
 							</div>
-							<div style="width:900px; height:200px; float: left; margin-top: 30px; ">
-								<table style="border-color: black;">
-									
-									<tr>
-										<td>이름</td>
-										<td><input type="text" value=""></td>
-									</tr>
-									<tr>
-										<td>이메일</td>
-										<td><input type="text" value=""></td>
-									</tr>
-									<tr>
-										<td>연락처</td>
-										<td><input type="text" value=""></td>
-									</tr>
-									<tr>
-										<td>입사일</td>
-										<td><input type="date" value=""></td>
-									</tr>
-									<tr>
-										<td>생년월일</td>
-										<td><input type="date" value=""></td>
-									</tr>
-									<tr>
-										<td>주소</td>
-										<td><input type="text" value=""></td>
-									</tr>
-								</table>
-							
-							
+							<div style="width:900px; float: left; margin-bottom: 30px; ">
+								<form action="empAdd" method="post" enctype="multipart/form-data">
+									<table style="border-color: black;">
+										
+										<tr>
+											<td>이름</td>
+											<td><input type="text" class="form-control" name="name" id="name"></td>
+										</tr>
+										<tr>
+											<td>이메일</td>
+											<td><input type="email" class="form-control" name="email" id="email"></td>
+										</tr>
+										<tr>
+											<td>연락처</td>
+											<td><input type="text" class="form-control" name="phone" id="phone"></td>
+										</tr>
+										<!-- <tr>
+											<td>입사일</td>
+											<td><input type="date" class="form-control" name="" id=""></td>
+										</tr> -->
+										<tr>
+											<td>생년월일</td>
+											<td><input type="date" class="form-control" name="birth" id="birth"></td>
+										</tr>
+										
+									</table>
+									<br>
+									<button class="btn btn-secondary">작성완료</button>
+								</form>
+								
 							</div>
 						</div>
 				<!-- Content wrapper -->
