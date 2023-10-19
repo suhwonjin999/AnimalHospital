@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ApprivalFileVO {
+public class ApprovalFileVO {
 	private Long fileNo;
 	private Long apNo;
 	private String fileName;

@@ -2,6 +2,7 @@ package com.vet.main.approval;
 
 
 import java.sql.Date;
+import java.sql.Time;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +18,12 @@ public class ApprovalVO {
 	private String apTitle;
 	private Date apCdate;
 	private Date apUdate;
-	private Date apStartDate;
-	private Date apEndDate;
+	private Date dayoffStartDate;
+	private Date dayoffEndDate;
 	private String apContents;
 	private Long apState;
 	private String apRejection;
-	private Date apConfirmDate;
-	private String apDayoffKind;
+	private String dayoffKind;
+	private Time dayoffStartTime;
+	private Time dayoffEndTime;
 }

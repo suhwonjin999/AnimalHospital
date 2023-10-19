@@ -138,7 +138,7 @@
               </ul>
             </li>
             <li class="menu-item">
-              	<a href="pages-account-settings-notifications.html" class="menu-link">
+              	<a href="/apFormat/list" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 
                 <div data-i18n="Authentications">전자결재관리</div>

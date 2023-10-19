@@ -6,7 +6,10 @@
 <configuration>
 
 	<typeAliases>
-
+		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="com.vet.main.commons.Pager" alias="Pager"/>
+		
+		<typeAlias type="com.vet.main.approval.format.ApFormatVO" alias="ApFormatVO"/>
 	</typeAliases>
 
 </configuration>
