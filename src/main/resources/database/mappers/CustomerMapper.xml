@@ -22,6 +22,7 @@
 	  			Like #{pattern}
 	  	</select>
 		
+		<!-- 고객목록 -->
 		<select id="getList" parameterType="Pager" resultType="CustomerVO">
 			SELECT * FROM CUSTOMER 
 				WHERE
@@ -31,6 +32,7 @@
 				LIMIT #{startRow}, #{perPage}
 		</select>
 		
+		<!-- 고객추가 -->
 		<insert id="setAdd" parameterType="CustomerVO" useGeneratedKeys="true" keyProperty="customerNo">
 			INSERT INTO CUSTOMER(CUSTOMERNO, ANIMALNAME, GENDER, AGE, WEIGHT, KIND, NEUTERING, NAME, PHONE, ADDRESS)
 				VALUES (NULL, #{animalName}, #{gender}, #{age}, #{weight}, #{kind}, #{neutering}, #{name}, #{phone}, #{address}) 
@@ -41,5 +43,41 @@
 			INSERT INTO CUSTOMERFILE (FILENO, FILENAME, ORIGINALFILENAME, CUSTOMERNO)
 				VALUES (#{fileNo}, #{fileName}, #{originalFileName}, #{customerNo})
 		</insert>
+		
+		<!-- 고객상세 -->
+		<select id="getDetail" parameterType="CustomerVO" resultMap="getDetailResult">
+			SELECT C.*, CF.*
+				FROM CUSTOMER C
+					LEFT OUTER JOIN CUSTOMERFILE CF
+					ON C.CUSTOMERNO = CF.CUSTOMERNO
+				WHERE C.CUSTOMERNO = #{customerNo} 
+		</select>
+		
+		<resultMap type="CustomerVO" id="getDetailResult">
+			<id column="CUSTOMERNO" property="customerNo"/>
+			<result column="ANIMALNAME" property="animalName"/>
+			<result column="GENDER" property="gender"/>
+			<result column="AGE" property="age"/>
+			<result column="WEIGHT" property="weight"/>
+			<result column="KIND" property="kind"/>
+			<result column="NEUTERING" property="neutering"/>
+			<result column="NAME" property="name"/>
+			<result column="PHONE" property="phone"/>
+			<result column="ADDRESS" property="address"/>
+			<collection property="fileVO" javaType="java.util.List" ofType="CustomerFileVO">
+				<id column="FILENO" property="fileNo"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORIGINALFILENAME" property="originalFileName"/>
+			</collection>
+		</resultMap>
+		
+		<!-- 고객수정 -->
+		<update id="setUpdate" parameterType="CustomerVO">
+			UPDATE CUSTOMER SET
+				NAME = #{name},
+				PHONE = #{phone},
+				ADDRESS = #{address}
+			WHERE CUSTOMERNO = #{customerNo}
+		</update>
 	
 	</mapper>

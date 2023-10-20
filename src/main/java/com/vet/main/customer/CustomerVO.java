@@ -1,5 +1,7 @@
 package com.vet.main.customer;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +19,7 @@ public class CustomerVO {
 	private String name;
 	private String phone;
 	private String address;
+	
+	public List<CustomerFileVO> fileVO;
 	
 }

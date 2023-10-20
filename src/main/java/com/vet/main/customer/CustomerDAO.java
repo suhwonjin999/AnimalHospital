@@ -18,7 +18,13 @@ public interface CustomerDAO {
 	//고객 등록
 	public int setAdd(CustomerVO customerVO) throws Exception;
 	
-	//사진추가
+	//사진 추가
 	public int setFileAdd(FileVO fileVO) throws Exception;
+	
+	//고객 상세
+	public CustomerVO getDetail(CustomerVO customerVO) throws Exception;
+	
+	//고객 수정
+	public int setUpdate(CustomerVO customerVO) throws Exception;
 
 }

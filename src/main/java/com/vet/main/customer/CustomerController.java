@@ -22,6 +22,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//고객목록
 	@GetMapping("list")
 	public String getList(Pager pager, Model model) throws Exception {
 		List<CustomerVO> ar = customerService.getList(pager);
@@ -31,6 +32,7 @@ public class CustomerController {
 		return "customer/list";
 	}
 	
+	//고객추가
 	@GetMapping("add")
 	public String setAdd() throws Exception {
 		
@@ -40,6 +42,31 @@ public class CustomerController {
 	@PostMapping("add")
 	public String setAdd(CustomerVO customerVO, MultipartFile[] files) throws Exception {
 		int result = customerService.setAdd(customerVO, files);
+		
+		return "redirect:./list";
+	}
+	
+	//고객상세
+	@GetMapping("detail")
+	public String getDetail(CustomerVO customerVO, Model model) throws Exception {
+		customerVO = customerService.getDetail(customerVO);
+		model.addAttribute("vo", customerVO);
+		
+		return "customer/detail";
+	}
+	
+	//고객수정
+	@GetMapping("update")
+	public String setUpdate(CustomerVO customerVO, Model model) throws Exception {
+		customerVO = customerService.getDetail(customerVO);
+		model.addAttribute("vo", customerVO);
+		
+		return "customer/update";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(CustomerVO customerVO) throws Exception {
+		int result = customerService.setUpdate(customerVO);
 		
 		return "redirect:./list";
 	}

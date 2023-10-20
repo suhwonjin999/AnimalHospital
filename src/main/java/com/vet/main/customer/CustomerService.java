@@ -31,6 +31,7 @@ public class CustomerService {
 	@Value("${app.customer}")
 	private String customerName;
 	
+	//고객목록
 	public List<CustomerVO> getList(Pager pager) throws Exception {
 		Long totalCount = customerDAO.getTotal(pager);
 		pager.makeNum(totalCount);
@@ -38,6 +39,7 @@ public class CustomerService {
 		return customerDAO.getList(pager);
 	}
 	
+	//고객추가(이미지포함)
 	public int setAdd(CustomerVO customerVO, MultipartFile[] files) throws Exception {
 		int result = customerDAO.setAdd(customerVO);
 		
@@ -55,5 +57,15 @@ public class CustomerService {
 		}
 		
 		return result;
+	}
+	
+	//고객상세
+	public CustomerVO getDetail(CustomerVO customerVO) throws Exception {
+		return customerDAO.getDetail(customerVO);
+	}
+	
+	//고객수정
+	public int setUpdate(CustomerVO customerVO) throws Exception {
+		return customerDAO.setUpdate(customerVO);
 	}
 }
