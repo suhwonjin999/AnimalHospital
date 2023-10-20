@@ -24,7 +24,7 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<form>
-					<br><h3>직원 목록</h3>
+					<br><h3>사원 목록</h3>
 				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">				
 					<!-- Content -->
 					
