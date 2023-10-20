@@ -22,6 +22,8 @@ public class ApFormatController {
 	private ApFormatService apFormatService;
 	
 	
+	
+	
 	@GetMapping("add")
 	public String setFormatAdd() throws Exception {
 		return "apFormat/add";
@@ -38,11 +40,9 @@ public class ApFormatController {
 	
 	
 	@GetMapping("list")
-	public String getList(ApFormatVO apFormatVO, Model model) throws Exception {
+	public String getFormatList(ApFormatVO apFormatVO, Model model) throws Exception {
 		List<ApFormatVO> ar = apFormatService.getFormatList(apFormatVO);
 		model.addAttribute("list", ar);
-		
-		log.info("getFormatList 실행");
 		
 		return "apFormat/list";
 	}
@@ -53,6 +53,8 @@ public class ApFormatController {
 		apFormatVO = apFormatService.getFormatDetail(apFormatVO);
 		model.addAttribute("apFormatVO", apFormatVO);
 		
+		log.info("=============== detail ========================");
+		
 		return "apFormat/detail";
 	}
 	
@@ -60,17 +62,25 @@ public class ApFormatController {
 	@GetMapping("update")
 	public String setFormatUpdate(ApFormatVO apFormatVO, Model model) throws Exception {
 		apFormatVO = apFormatService.getFormatDetail(apFormatVO);
-		model.addAttribute("vo", apFormatVO);
+		model.addAttribute("apFormatVO", apFormatVO);
 
 		return "apFormat/update";
 	}
 
 	
 	@PostMapping("update")
-	public String setFormatUpdate(ApFormatVO apFormatVO) throws Exception {
+	public String setFormatUpdate(ApFormatVO apFormatVO, HttpSession session) throws Exception {
 		int result = apFormatService.setFormatUpdate(apFormatVO);
 
-		return ("redirect:./detail?apFormatNo=" + apFormatVO.getApFormatNo());
+		return "redirect:./detail?apFormatNo=" + apFormatVO.getApFormatNo();
 	}
 	
+	@PostMapping("delete")
+	public String setFormatDelete(ApFormatVO apFormatVO, HttpSession session) throws Exception {
+		int result = apFormatService.setFormatDelete(apFormatVO);
+		
+		log.info("=============== delete ========================");
+		
+		return "redirect:./list";
+	}
 }

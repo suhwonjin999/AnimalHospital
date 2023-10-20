@@ -21,11 +21,17 @@
 		WHERE APFORMATNO = #{apFormatNo}
 	</select>
 	
-	<update id="setFormatAdd" parameterType="ApFormatVO">
+	<update id="setFormatUpdate" parameterType="ApFormatVO">
 		UPDATE APFORMAT SET
 			APFORMATTITLE = #{apFormatTitle},
 			APFORMATCONTENTS = #{apFormatContents}
-		WHERE APFORMATNO = #{apFormatNO}
+		WHERE APFORMATNO = #{apFormatNo}
 	</update>
+	
+	<delete id="setFormatDelete" parameterType="ApFormatVO">
+		DELETE FROM APFORMAT
+		WHERE APFORMATNO = #{apFormatNo}
+	</delete>
+
 
 </mapper>

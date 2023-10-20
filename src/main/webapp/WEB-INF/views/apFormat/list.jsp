@@ -54,7 +54,7 @@
 				    			
 					    		<div class="row">
 									<div class="demo-inline-spacing">
-										<button type="button" class="btn btn-primary" id="addBtn">작성하기</button>
+										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
 									</div>
 	                            </div>
 	    					</div>

@@ -33,14 +33,16 @@
 	                    <div class="card shadow mb-4">
 	                        <div class="card-body">
 	                            <div class="table-responsive">
-		                            <div class="text-center">
+		                            <div>
 		                            
-		                            	<input type="hidden" value="${apFormatVO.apFormatNo}">
+										<form action="" id="frm">
+		                            		<input type="hidden" id="apFormatNo" name="apFormatNo" value="${apFormatVO.apFormatNo}">
+										</form>
 		                            
                                 		<table class="table">
 		
 									    <tr>
-									        <th>제목</th>
+									        <th class="text-center" style="width: 100px;">제목</th>
 									        <td>${apFormatVO.apFormatTitle}</td>
 									    </tr>
 									    <%-- <tr>
@@ -48,14 +50,14 @@
 									        <td>${apFormatVO.apFormat}</td>
 									    </tr> --%>
 									    <tr>
-									        <th>작성일</th>
+									        <th class="text-center" style="width: 100px;">작성일</th>
 									        <td>${apFormatVO.apFormatDate}</td>
 									    </tr>
 								 
 										</table>
 										
-										<div class="mb-3" >
-										<label for="contents" class="form-label"></label>
+										<div class="mb-3 mt-4 ms-4">
+											<label for="contents" class="form-label"></label>
 											${apFormatVO.apFormatContents}
 										</div>
 										
@@ -63,8 +65,8 @@
 										</div>
 										<div class="row" style="float:right;">
 											<div class="demo-inline-spacing">
-												<button type="button" class="btn btn-primary" id="updateBtn">수정</button>
-												<button type="button" class="btn btn-danger" id="deleteBtn">삭제</button>
+												<button type="button" class="btn btn-primary submitBtn" id="updateBtn" data-url="update">수정</button>
+												<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">삭제</button>
 												<button type="button" class="btn btn-primary" id="listBtn">목록</button>
 											</div>
 			                            </div>
@@ -86,6 +88,8 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+	
+	<script src="/resources/js/approval/formatDetail.js"></script>
 
 </body>
 </html>

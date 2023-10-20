@@ -17,7 +17,6 @@ public class ApFormatService {
 	private ApFormatDAO apFormatDAO;
 	
 	public int setFormatAdd(ApFormatVO apFormatVO) throws Exception{
-		log.info("apFormatNo : {}", apFormatVO.getApFormatNo());
 		int result = apFormatDAO.setFormatAdd(apFormatVO);
 		
 		return result;
@@ -31,7 +30,14 @@ public class ApFormatService {
 		return apFormatDAO.getFormatDetail(apFormatVO);
 	}
 
-	public int setFormatUpdate(ApFormatVO apFormatVO, HttpSession session) {
-		return apFormatDAO.setFormatUpdate(apFormatVO);
+	public int setFormatUpdate(ApFormatVO apFormatVO) throws Exception {
+		int result = apFormatDAO.setFormatUpdate(apFormatVO);
+		return result;
 	}
+	
+	public int setFormatDelete(ApFormatVO apFormatVO) throws Exception {
+		int result = apFormatDAO.setFormatDelete(apFormatVO);
+		return result;
+	}
+	
 }

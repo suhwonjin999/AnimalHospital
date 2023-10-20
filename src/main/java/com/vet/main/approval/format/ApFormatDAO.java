@@ -2,6 +2,8 @@ package com.vet.main.approval.format;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -14,6 +16,8 @@ public interface ApFormatDAO {
 	
 	public ApFormatVO getFormatDetail(ApFormatVO apFormatVO) throws Exception;
 
-	public int setFormatUpdate(ApFormatVO apFormatVO);
-
+	public int setFormatUpdate(ApFormatVO apFormatVO) throws Exception;
+	
+	public int setFormatDelete(ApFormatVO apFormatVO) throws Exception;
+	
 }

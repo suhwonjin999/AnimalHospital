@@ -35,21 +35,24 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
+
 				    		<form action="update" id="updateFrm" method="post">
-				    			
+				    							    			
+					    		<input type="hidden" id="apFormatNo" name="apFormatNo" value="${apFormatVO.apFormatNo}">
+					    		
 				    			<div class="mb-3">
 								  <label for="apFormatTitle" class="form-label">제목</label>
-								  <input type="text" class="form-control" id="apFormatTitle" name="apFormatTitle" placeholder="제목을 입력하세요">
+								  <input type="text" class="form-control" id="apFormatTitle" name="apFormatTitle" value="${apFormatVO.apFormatTitle}">
 								</div>
 
 								<div class="mb-3">
 								  <label for="apFormatContents" class="form-label">내용</label>
-								  <textarea class="form-control" id="apFormatContents" name="apFormatContents" rows="3" placeholder="내용을 입력하세요"></textarea>
+								  <textarea class="form-control" id="apFormatContents" name="apFormatContents" rows="3">${apFormatVO.apFormatContents}</textarea>
 								</div>
 					
 					    		<div class="row">
 									<div class="demo-inline-spacing">
-										<button type="button" class="btn btn-primary" id="updateBtn">작성하기</button>
+										<button type="button" class="btn btn-primary" id="updateBtn">수정</button>
 										<button type="button" class="btn btn-primary" id="cancleBtn">취소</button>
 									</div>
 	                            </div>
@@ -73,6 +76,7 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
+	
 	<!-- summernote -->
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"
 	integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
@@ -94,7 +98,8 @@
 	  lang: 'ko-KR', // default: 'en-US'
 	});
 	</script>
+
+	<script src="/resources/js/approval/formatUpdate.js"></script>
 	
-	<script src="/resources/js/approval/formatAdd.js"></script>
 </body>
 </html>
