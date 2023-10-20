@@ -46,7 +46,7 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-				 .antMatchers("/*").hasAuthority("") 
+				/* .antMatchers("/*").hasAuthority("") */
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")
