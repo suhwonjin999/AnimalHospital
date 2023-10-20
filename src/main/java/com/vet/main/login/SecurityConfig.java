@@ -1,7 +1,5 @@
 package com.vet.main.login;
 
-import javax.servlet.DispatcherType;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +33,7 @@ public class SecurityConfig {
 				.antMatchers("/libs/**")
 				.antMatchers("/scss/**")
 				.antMatchers("/tasks/**")
-				.antMatchers("../WEB-INF/views/**")
+				.antMatchers("../WEB-INF/views/layout/**") 
 				.antMatchers("../resources/images/**")
 				;
 	}
@@ -48,13 +46,13 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-					.antMatchers("/").permitAll()
+				 .antMatchers("/*").hasAuthority("") 
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")
 					.usernameParameter("empNo")    //id 파라미터는 username이지만, 개발자가 다른 파라미터 이름을 사용할 때
 					.defaultSuccessUrl("/")     //인증에 성공할 경우 요청할 URL
-//					.failureUrl("/emp/login")//인증에 실패했을 경우 요청할 URL
+					.failureUrl("/emp/login?error=true&message=LoginFail") //인증에 실패했을 경우 요청할 URL
 					.permitAll()
 					.and()
 				.logout()
@@ -68,6 +66,15 @@ public class SecurityConfig {
 		return httpSecurity.build();
 					
 	}
+	
+	private SecurityLogoutHandler getLogoutHandler() {
+		return new SecurityLogoutHandler();
+	}
+	
+	private SecurityLogoutAdd getLogoutAdd() {
+		return new SecurityLogoutAdd();
+	}
+	
 }
 
 	

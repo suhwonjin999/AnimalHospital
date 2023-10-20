@@ -22,6 +22,8 @@ public class EmpController {
 	@Autowired
 	EmpService empService = new EmpService();
 	
+	// 로그인 페이지
+	
 	@GetMapping("login")
 	public void getLogin(@ModelAttribute EmpVO empVO)throws Exception{
 
@@ -37,6 +39,13 @@ public class EmpController {
 		}
 		
 		return "./login";
+	}
+	
+	// 비밀번호 변경 페이지
+	
+	@GetMapping("pwUpdate")
+	public void pwUpdate(EmpVO empVO) throws Exception{
+		
 	}
 	
 	// 마이페이지

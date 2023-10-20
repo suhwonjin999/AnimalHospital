@@ -22,10 +22,10 @@
 			<!-- Layout container -->
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
+				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
-				<div class="card shadow mb-4" style="box-sizing: content-box;">										
-					
+					<br><h3>${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
+				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">										
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
@@ -78,9 +78,10 @@
 							</div>
 						</div>
 				</div>
-					
+				
 				<!-- Content wrapper -->
 							<a href="/emp/empUpdate?empNo=${vo.empNo}" class="btn btn-danger">수정</a>
+					</form>
 			</div>
 			<!-- / Layout page -->
 		</div>

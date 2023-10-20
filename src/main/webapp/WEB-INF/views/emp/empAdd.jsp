@@ -23,7 +23,7 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="margin-right: 1200px;">신규직원 등록</h3>
+					<br><h3>신규직원 등록</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">										
 							<div style="width: 300px; float: left; margin-top: 20px; margin-bottom: 20px;">
 								<!-- <img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;"> -->

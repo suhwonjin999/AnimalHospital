@@ -24,14 +24,15 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 			<form action="empUpdate" method="post">
-					<br><h3 style="margin-right: 1200px;">직원 정보 수정</h3>
-				<div class="card shadow mb-4" style="box-sizing: content-box;">										
+					<br><h3>사원 정보 수정</h3>
+				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">												
 					
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
+								<input type="hidden" name="empNo" value="${vo.empNo}">
 								<table class="table">
 									<tr>
 										<td>사번</td>
@@ -82,6 +83,7 @@
 										<td>
 											<select name='state'>
 												<option value="재직" selected="selected">${vo.state}</option>
+												<option value="재잭">재직</option>
 												<option value="휴직">휴직</option>
 												<option value="퇴사">퇴사</option>
 											</select>
