@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vet.main.approval.format.ApFormatDAO">
+
+	<insert id="setFormatAdd" parameterType="ApFormatVO">
+		INSERT INTO APFORMAT
+		VALUES (NULL, NOW(), #{apFormatTitle}, #{apFormatContents})
+	</insert>
+	
+	<select id="getFormatList" resultType="ApFormatVO">
+		SELECT APFORMATNO, APFORMATTITLE, APFORMATDATE
+		FROM APFORMAT
+		ORDER BY APFORMATNO ASC
+	</select>
+	
+	<select id="getFormatDetail" parameterType="ApFormatVO" resultType="ApFormatVO">
+		SELECT * FROM APFORMAT
+		WHERE APFORMATNO = #{apFormatNo}
+	</select>
+	
+	<update id="setFormatUpdate" parameterType="ApFormatVO">
+		UPDATE APFORMAT SET
+			APFORMATTITLE = #{apFormatTitle},
+			APFORMATCONTENTS = #{apFormatContents}
+		WHERE APFORMATNO = #{apFormatNo}
+	</update>
+	
+	<delete id="setFormatDelete" parameterType="ApFormatVO">
+		DELETE FROM APFORMAT
+		WHERE APFORMATNO = #{apFormatNo}
+	</delete>
+
+
+</mapper>
