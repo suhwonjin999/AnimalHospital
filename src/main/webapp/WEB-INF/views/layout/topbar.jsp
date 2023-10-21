@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <!-- Navbar -->
 
@@ -77,7 +79,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/emp/mypage">
+                      <a class="dropdown-item" href="/emp/mypage?${emp.empNo}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Page</span>
                       </a>

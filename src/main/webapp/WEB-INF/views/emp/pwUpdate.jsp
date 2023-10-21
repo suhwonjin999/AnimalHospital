@@ -41,21 +41,21 @@
 						              <p class="mb-4">Please sign-in to your account and start the adventure</p>
 										<div>
 											<form:form modelAttribute="empVO" method="post">
-											  <div class="form-group">
-											  	<form:label path="password">임시 비밀번호</form:label>
-												<form:input  id="password" path="password" cssClass="form-control"/>					
-											  	<form:errors path="password"></form:errors>
-											  </div>
+											 <%--  <div class="form-group">
+											  	<form:label path="randomPassword">임시 비밀번호</form:label>
+												<form:input  id="randomPassword" path="randomPassword" cssClass="form-control"/>					
+											  	<form:errors path="randomPassword"></form:errors>
+											  </div> --%>
 											  <div class="form-group">
 											  	<form:label path="password">변경 할 비밀번호</form:label>
 											    <form:password id="password" path="password" cssClass="form-control"/>
 											    <form:errors path="password"></form:errors>
 											  </div>
-											  <div class="form-group">
-											  	<form:label path="password">비밀번호 확인</form:label>
-											    <form:password id="password" path="password" cssClass="form-control"/>
-											    <form:errors path="password"></form:errors>
-											  </div>
+											  <%-- <div class="form-group">
+											  	<form:label path="passwordCheck">비밀번호 확인</form:label>
+											    <form:password id="passwordCheck" path="passwordCheck" cssClass="form-control"/>
+											    <form:errors path="passwordCheck"></form:errors>
+											  </div> --%>
 											  			  			  				  				          													  	  				  			  				  				          		
 											  <button type="submit" class="btn btn-primary" style="margin-top: 30px;">완료</button>
 							        		</form:form>	

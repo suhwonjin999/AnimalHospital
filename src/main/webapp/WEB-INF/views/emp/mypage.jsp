@@ -42,7 +42,7 @@
 									</tr>
 									<tr>
 										<td>부서</td>
-										<td>${emp.deptNo}</td>
+										<td>${vo.deptNo}</td>
 									</tr>
 									<tr>
 										<td>직급</td>

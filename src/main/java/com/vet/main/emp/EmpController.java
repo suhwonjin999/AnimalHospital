@@ -50,25 +50,40 @@ public class EmpController {
 	}
 	
 	
-	// 비밀번호 변경 페이지
-	
+	// 비밀번호 수정페이지
 	@GetMapping("pwUpdate")
-	public void pwUpdate(EmpVO empVO) throws Exception{
-		
+	public String pwUpdate(EmpVO empVO, Model model) throws Exception{
+		empVO = empService.getLogin(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/pwUpdate";
+	}
+	
+	@PostMapping("pwUpdate")
+	public String pwUpdate(EmpVO empVO) throws Exception{
+		int result = empService.pwUpdate(empVO);
+		return "redirect:../";
 	}
 	
 	// 마이페이지
-	
+
 	@GetMapping("mypage")
-	public void getMypage() throws Exception{
-		
+	public String mypage (EmpVO empVO, Model model) throws Exception{
+		empVO = empService.mypage(empVO);
+		model.addAttribute("vo",empVO);
+			
+		return "emp/mypage";
 	}
 	
+	/*
+	 * @GetMapping("mypage") public void getMypage() throws Exception{
+	 * 
+	 * }
+	 */
 	// 직원 목록
 	
 	@GetMapping("empList")
-	public String getEmpList(Model model)throws Exception{
-		List<EmpVO> ar = empService.getEmpList();
+	public String empList(Model model)throws Exception{
+		List<EmpVO> ar = empService.empList();
 		model.addAttribute("list", ar);
 		
 		return "emp/empList";
