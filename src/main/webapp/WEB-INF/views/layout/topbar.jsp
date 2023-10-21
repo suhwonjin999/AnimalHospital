@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
           <!-- Navbar -->
 
           <nav
@@ -43,7 +44,12 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
+                      <c:if test="${not empty emp}">
+                       	 <img src="/resources/images/kong.jpg" alt class="w-px-40 h-auto rounded-circle" />
+                      </c:if>
+                      <c:if test="${empty emp}">
+                         <img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
+                      </c:if>
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -52,7 +58,12 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
+                              <c:if test="${not empty emp}">
+                              	<img src="/resources/images/kong.jpg" alt class="w-px-40 h-auto rounded-circle" />
+                              </c:if>
+                              <c:if test="${empty emp}">
+                              	<img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
+                              </c:if>
                             </div>
                           </div>
                           <div class="flex-grow-1">

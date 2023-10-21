@@ -24,29 +24,29 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
+					<br><h3 style="/* margin-right: 1200px; */">${emp.name}의 마이페이지</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">										
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<img alt="" src="/resources/images/${emp.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
 								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td></td>
+										<td>${emp.empNo}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td></td>
+										<td>${emp.name}</td>
 									</tr>
 									<tr>
 										<td>부서</td>
-										<td></td>
+										<td>${emp.deptNo}</td>
 									</tr>
 									<tr>
 										<td>직급</td>
-										<td></td>
+										<td>${emp.positionNo}</td>
 									</tr>
 
 								</table>							
@@ -56,19 +56,19 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td></td>
+										<td>${emp.hireDate}</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td></td>
+										<td>${emp.email}</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td></td>
+										<td>${emp.phone}</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td></td>
+										<td>${emp.birth}</td>
 									</tr>
 
 								</table>

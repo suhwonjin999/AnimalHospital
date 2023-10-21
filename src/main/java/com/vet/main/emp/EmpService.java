@@ -36,11 +36,7 @@ public class EmpService  {
 		return null;
 	}
 	
-		
-	
-	
-	// 마이페이지
-	
+
 	
 	// 사원 관리(직원 목록)
 	public List<EmpVO> getEmpList()throws Exception{
