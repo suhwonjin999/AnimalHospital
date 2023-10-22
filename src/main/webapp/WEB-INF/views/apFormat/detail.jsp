@@ -45,10 +45,7 @@
 									        <th class="text-center" style="width: 100px;">제목</th>
 									        <td>${apFormatVO.apFormatTitle}</td>
 									    </tr>
-									    <%-- <tr>
-									        <th>작성자</th>
-									        <td>${apFormatVO.apFormat}</td>
-									    </tr> --%>
+
 									    <tr>
 									        <th class="text-center" style="width: 100px;">작성일</th>
 									        <td>${apFormatVO.apFormatDate}</td>

@@ -47,17 +47,17 @@
 								  <textarea class="form-control" id="apFormatContents" name="apFormatContents" rows="3" placeholder="내용을 입력하세요"></textarea>
 								</div>
 					
-					    		<div class="row">
-									<div class="demo-inline-spacing">
-										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
-										<button type="button" class="btn btn-primary" id="cancleBtn">취소</button>
-									</div>
-	                            </div>
 								
 				    		</form>
 			    		</div>
 					
 					</div>
+					    		<div class="row" style="float:right;">
+									<div class="demo-inline-spacing">
+										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
+										<button type="button" class="btn btn-primary" id="cancleBtn">취소</button>
+									</div>
+	                            </div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
 					<div class="content-backdrop fade"></div>
@@ -90,7 +90,7 @@
 	<script>
 	$('#apFormatContents').summernote({
 	  tabsize: 2,
-	  height: 400,
+	  height: 1000,
 	  lang: 'ko-KR', // default: 'en-US'
 	});
 	</script>

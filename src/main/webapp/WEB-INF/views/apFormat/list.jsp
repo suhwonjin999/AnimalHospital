@@ -40,9 +40,9 @@
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-		                                    <c:forEach items="${list}" var="vo">
+		                                    <c:forEach items="${list}" var="vo" varStatus="i">
 		                                        <tr>
-		                                            <td>${vo.apFormatNo}</td>
+		                                            <td>${i.index + 1}</td>
 		                                            <td><a href="/apFormat/detail?apFormatNo=${vo.apFormatNo}">${vo.apFormatTitle}</a></td>
 		                                            <td>${vo.apFormatDate}</td>
 		                                        </tr>  
@@ -52,7 +52,7 @@
 				    			</div>
 				    			
 				    			
-					    		<div class="row">
+					    		<div class="row" style="float:right;">
 									<div class="demo-inline-spacing">
 										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
 									</div>
