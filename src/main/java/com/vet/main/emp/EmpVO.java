@@ -35,5 +35,5 @@ public class EmpVO {
 	private Long parentNo;
 	private Long depth;
 	
-	
+	private String passwordCheck;
 }

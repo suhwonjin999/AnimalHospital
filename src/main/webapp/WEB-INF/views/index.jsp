@@ -23,10 +23,17 @@
 			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-				<div class="content-wrapper">				
+				<div class="content-wrapper">	
 					<!-- Content -->
 					<!-- 내용부분-->
-					<div class="container-xxl flex-grow-1 container-p-y"></div>
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<c:if test="${empty emp}">
+							<a href="/emp/login" class="btn btn-danger" style="">로그인</a>	
+						</c:if>
+						<c:if test="${not empty emp}">
+							<a href="/emp/logout" class="btn btn-danger" style="">로그아웃</a>	
+						</c:if>	
+					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
 					<div class="content-backdrop fade"></div>

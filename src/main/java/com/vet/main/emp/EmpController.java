@@ -30,7 +30,7 @@ public class EmpController {
 	}
 	
 	@PostMapping("login")
-	public String getLogin(EmpVO empVO, HttpSession session)throws Exception{
+	public String getLogin2(EmpVO empVO, HttpSession session)throws Exception{
 		empVO = empService.getLogin(empVO);
 		
 		if(empVO != null) {
@@ -40,6 +40,15 @@ public class EmpController {
 		
 		return "./login";
 	}
+	
+	@GetMapping("logout")
+	public String getLogout(HttpSession session) throws Exception {
+
+		session.invalidate();
+		
+		return "redirect:../";
+	}
+	
 	
 	// 비밀번호 변경 페이지
 	

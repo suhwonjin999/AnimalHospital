@@ -31,7 +31,6 @@
 							<div style="width:900px; float: left; margin-bottom: 30px; ">
 								<form action="empAdd" method="post" enctype="multipart/form-data">
 									<table style="border-color: black;">
-										
 										<tr>
 											<td>이름</td>
 											<td><input type="text" class="form-control" name="name" id="name"></td>
