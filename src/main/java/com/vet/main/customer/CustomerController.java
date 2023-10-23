@@ -65,8 +65,16 @@ public class CustomerController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(CustomerVO customerVO) throws Exception {
-		int result = customerService.setUpdate(customerVO);
+	public String setUpdate(CustomerVO customerVO, MultipartFile[] files) throws Exception {
+		int result = customerService.setUpdate(customerVO, files);
+		
+		return "redirect:./list";
+	}
+	
+	//고객삭제
+	@GetMapping("delete")
+	public String setDelete(CustomerVO customerVO) throws Exception {
+		int result = customerService.setDelete(customerVO);
 		
 		return "redirect:./list";
 	}

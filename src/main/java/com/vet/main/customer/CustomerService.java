@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vet.main.file.FileVO;
 import com.vet.main.util.FileManger;
 import com.vet.main.util.Pager;
 
@@ -65,7 +66,28 @@ public class CustomerService {
 	}
 	
 	//고객수정
-	public int setUpdate(CustomerVO customerVO) throws Exception {
-		return customerDAO.setUpdate(customerVO);
+	public int setUpdate(CustomerVO customerVO, MultipartFile[] files) throws Exception {
+		int result = customerDAO.setUpdate(customerVO);
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			CustomerFileVO fileVO = new CustomerFileVO();
+			String fileName = fileManger.save(this.uploadPath + this.customerName, multipartFile);
+			fileVO.setCustomerNo(customerVO.getCustomerNo());
+			fileVO.setFileName(fileName);
+			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
+			result = customerDAO.setFileAdd(fileVO);
+		}
+		
+		return result;
 	}
+	
+	//고객삭제
+	public int setDelete(CustomerVO customerVO) throws Exception {
+		return customerDAO.setDelete(customerVO);
+	}
+	
 }

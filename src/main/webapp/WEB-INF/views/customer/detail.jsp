@@ -26,8 +26,7 @@
 					<br><h3 style="/* margin-right: 1200px; */">${vo.animalName}의 상세페이지</h3>
 				<div class="card shadow mb-4" style="box-sizing: content-box;">
 
-					<div
-						style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+					<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 						<div style="width: 300px; float: left;">
 							<c:forEach items="${vo.fileVO}" var="f">
 								<img alt="" src="../files/${customer}/${f.fileName}"
@@ -78,14 +77,35 @@
 									<td>주소</td>
 									<td>${vo.address}</td>
 								</tr>
-
 							</table>
+						</div>
+
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="float:right">
+						  삭제
+						</button>
+						<a href="./update?customerNo=${vo.customerNo}" class="btn btn-primary" style="float:right">수정</a>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel">고객정보삭제</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        고객정보를 삭제하시겠습니까?
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						        <a href="./delete?customerNo=${vo.customerNo}" class="btn btn-primary">삭제</a>
+						      </div>
+						    </div>
+						  </div>
 						</div>
 					</div>
 				</div>
-					
-				<!-- Content wrapper -->
-					<a href="./update?customerNo=${vo.customerNo}" class="btn btn-primary">수정</a>
 			</div>
 			<!-- / Layout page -->
 		</div>

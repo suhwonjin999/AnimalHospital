@@ -27,4 +27,7 @@ public interface CustomerDAO {
 	//고객 수정
 	public int setUpdate(CustomerVO customerVO) throws Exception;
 
+	//고객 삭제
+	public int setDelete(CustomerVO customerVO) throws Exception;
+	
 }

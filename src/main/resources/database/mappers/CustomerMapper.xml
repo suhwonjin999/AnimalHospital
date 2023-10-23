@@ -74,10 +74,18 @@
 		<!-- 고객수정 -->
 		<update id="setUpdate" parameterType="CustomerVO">
 			UPDATE CUSTOMER SET
+				AGE = #{age},
+				NEUTERING = #{neutering},
+				WEIGHT = #{weight},
 				NAME = #{name},
 				PHONE = #{phone},
 				ADDRESS = #{address}
 			WHERE CUSTOMERNO = #{customerNo}
 		</update>
-	
+		
+		<!-- 고객삭제 -->
+		<delete id="setDelete" parameterType="CustomerVO">
+			DELETE FROM CUSTOMER WHERE CUSTOMERNO = #{customerNo}
+		</delete>
+		
 	</mapper>
