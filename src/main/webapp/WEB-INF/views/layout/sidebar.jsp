@@ -241,10 +241,27 @@
             </li>
             
             <li class="menu-item">
-              <a href="#" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">전자결재</div>
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-copy"></i>
+                <div data-i18n="Extended UI">전자결재</div>
               </a>
+              <ul class="menu-sub">            
+	            <li class="menu-item">
+	              <a href="/approval/formatList" class="menu-link">
+	                <div data-i18n="Basic">기안서 작성</div>
+	              </a>
+	            </li> 
+	            <li class="menu-item">
+	              <a href="cards-basic.html" class="menu-link">
+	                <div data-i18n="Basic">기안함</div>
+	              </a>
+	            </li>
+	            <li class="menu-item">
+	              <a href="cards-basic.html" class="menu-link">
+	                <div data-i18n="Basic">결재함</div>
+	              </a>
+	            </li>
+           	 </ul>
             </li>
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">CATEGORY</span></li>  -->           
             <li class="menu-item">

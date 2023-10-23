@@ -35,16 +35,36 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
-				    		<form action="add" id="addFrm" method="post">
+				    		<form action="poomAdd" id="addFrm" method="post">
+				    						    			
+				    			<div class="mb-3">
+								  <label for="positionName" class="form-label">부서</label>
+								  <input type="text" class="form-control" id="positionName" name="positionName" value="${user.positionName}" readonly>
+								</div>
+								
+				    			<div class="mb-3">
+								  <label for="deptName" class="form-label">직급</label>
+								  <input type="text" class="form-control" id="deptName" name="deptName" value="${user.deptName}" readonly>
+								</div>
+								
+				    			<div class="mb-3">
+								  <label for="name" class="form-label">성명</label>
+								  <input type="text" class="form-control" id="name" name="name" value="${emp.name}" readonly>
+								</div>
+								
+				    			<div class="mb-3">
+								  <label for="apCDate" class="form-label">기안일자</label>
+								  <input type="text" class="form-control" id="apCDate" name="apCDate" value="${date}" readonly>
+								</div>
 				    			
 				    			<div class="mb-3">
-								  <label for="apFormatTitle" class="form-label">제목</label>
-								  <input type="text" class="form-control" id="apFormatTitle" name="apFormatTitle" placeholder="제목을 입력하세요">
+								  <label for="apTitle" class="form-label">제목</label>
+								  <input type="text" class="form-control" id="apTitle" name="apTitle" placeholder="제목을 입력하세요">
 								</div>
 
 								<div class="mb-3">
-								  <label for="apFormatContents" class="form-label">내용</label>
-								  <textarea class="form-control" id="apFormatContents" name="apFormatContents" rows="3" placeholder="내용을 입력하세요"></textarea>
+								  <label for="apContents" class="form-label">내용</label>
+								  <textarea class="form-control" id="apContents" name="apContents" rows="3" placeholder="내용을 입력하세요"></textarea>
 								</div>
 					
 					    		<div class="row">
@@ -95,6 +115,6 @@
 	});
 	</script>
 	
-	<script src="/resources/js/approval/formatAdd.js"></script>
+	<!-- <script src="/resources/js/approval/formatAdd.js"></script> -->
 </body>
 </html>

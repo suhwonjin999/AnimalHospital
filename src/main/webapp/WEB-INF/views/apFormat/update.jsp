@@ -94,7 +94,7 @@
 	<script>
 	$('#apFormatContents').summernote({
 	  tabsize: 2,
-	  height: 1000,
+	  height: 1100,
 	  lang: 'ko-KR', // default: 'en-US'
 	});
 	</script>

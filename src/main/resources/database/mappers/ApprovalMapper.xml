@@ -4,6 +4,39 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.vet.main.approval.ApprovalDAO">
-
+	<insert id="setApPoomAdd" parameterType="ApprovalVO">
+		INSERT INTO APPROVAL
+		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND)
+		VALUES
+		(NULL, #{empNo}, #{apFormatNo}, #{apTitle}, NOW(), #{apContents}, 1, '', '품의서')
+	</insert>
+  	
+  	<select id="getApUser" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
+  		SELECT E.*, P.*, D.* 
+		FROM EMP E INNER JOIN POSITION P 
+		ON E.POSITIONNO=P.POSITIONNO 
+		INNER JOIN DEPARTMENT D 
+		ON E.DEPTNO=D.DEPTNO
+		WHERE E.EMPNO=#{empNo}
+  	</select>
+  	
+	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
+		<id column="EMPNO" property="empNo"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="HIREDATE" property="hireDate"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORIGINALFILENAME" property="originalFileName"/>
+		<result column="STATE" property="state"/>
+		<result column="POSITIONNO" property="positionNo"/>
+		<result column="DEPTNO" property="deptNo"/>
+	</resultMap>
+  	
+  	
+  	
 
 </mapper>

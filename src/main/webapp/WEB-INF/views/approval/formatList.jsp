@@ -23,16 +23,31 @@
 			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-				<div class="content-wrapper">	
+				<div class="content-wrapper">				
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<c:if test="${empty emp}">
-							<a href="/emp/login" class="btn btn-danger" style="">로그인</a>	
-						</c:if>
-						<c:if test="${not empty emp}">
-							<a href="/emp/logout" class="btn btn-danger" style="">로그아웃</a>	
-						</c:if>
+						<!-- DataTales Example -->
+	                    <div class="card shadow mb-4">
+	                        <div class="card-body">
+	                            <div class="table-responsive">
+	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>양식 종류</th>
+	                                            <th>설명</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">품의서</a></td>
+	                                            <td>품의서 작성페이지입니다.</td>
+	                                        </tr>  
+	                                    </tbody>
+	                                </table>  
+				    			</div>
+	    					</div>
+	    				</div>
 					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
@@ -48,6 +63,7 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+	
 
 </body>
 </html>
