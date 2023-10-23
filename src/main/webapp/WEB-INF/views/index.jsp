@@ -33,6 +33,7 @@
 						<c:if test="${not empty emp}">
 							<a href="/emp/logout" class="btn btn-danger" style="">로그아웃</a>	
 						</c:if>	
+						<a href="/emp/pwUpdate?empNo=${emp.empNo}" class="btn btn-danger" style="">비밀번호 변경</a>	
 					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

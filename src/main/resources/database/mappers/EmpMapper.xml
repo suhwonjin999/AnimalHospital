@@ -70,12 +70,22 @@
   		WHERE E.EMPNO=#{empNo} 		
   	</update>
   	
-  	<!-- <update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
+  	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP 
   		SET
   		PASSWORD = #{password},
-  		RANDOMPW = 1,	
-  		WHERE EMPNO=#{empNo}	
-  	</update> -->
+  		RANDOMPW = 1	
+  		WHERE EMPNO = #{empNo}
+  	</update>
   	
+  	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
+  		UPDATE EMP
+  		SET
+  		PASSWORD = #{password},
+  		EMAIL = #{email},
+  		PHONE = #{phone},
+  		ORIGINALFILENAME = #{originalFileName},
+  		FILENAME = #{fileName}
+  		WHERE EMPNO=#{empNo} 		
+  	</update>
 </mapper>

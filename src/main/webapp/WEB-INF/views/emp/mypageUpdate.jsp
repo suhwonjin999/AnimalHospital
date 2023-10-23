@@ -20,26 +20,35 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
-				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${emp.name}의 마이페이지</h3>
-				<div class="card shadow mb-4" style="width: 1400px;">										
-							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+			<form action="mypageUpdate" method="post" enctype="multipart/form-data">
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					<div class="card shadow mb-4">
+			
+						<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+									<img alt="" src="/resources/images/${emp.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<%-- <input type="file" name="originalFileName" value="${emp.originalFileName}"> --%>
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
+								<input type="hidden" name="empNo" value="${vo.empNo}">
+								<input type="hidden" name="password" value="${vo.password}">
+								<input type="hidden" name="fileName" value="${vo.fileName}">
+								<input type="hidden" name="fileName" value="${vo.fileName}">
 								<table class="table">
 
 									<tr>
 										<td>사번</td>
-										<td>${emp.empNo}</td>
+										<td>${vo.empNo}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${emp.name}</td>
+										<td>${vo.name}</td>
 									</tr>
 									<tr>
 										<td>부서</td>
@@ -61,11 +70,11 @@
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>${emp.email}</td>
+										<td><input type="email" name="email" value="${vo.email}"></td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td>${emp.phone}</td>
+										<td><input type="text" name="phone" value="${vo.phone}"></td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
@@ -75,14 +84,17 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<button class="btn btn-danger">수정완료</button>
+					<!-- / Content -->
+					</div>
 				</div>
+				</form>
 				<!-- Content wrapper -->
-							<a href="/emp/mypageUpdate?empNo=${vo.empNo}" class="btn btn-danger">수정</a>
-							<a href="/emp/pwUpdate?empNo=${vo.empNo}" class="btn btn-danger">비밀번호 변경</a>
-					</form>
 			</div>
 			<!-- / Layout page -->
 		</div>
+
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>

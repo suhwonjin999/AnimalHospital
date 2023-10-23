@@ -79,7 +79,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/emp/mypage?${emp.empNo}">
+                      <a class="dropdown-item" href="/emp/mypage?empNo=${emp.empNo}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Page</span>
                       </a>

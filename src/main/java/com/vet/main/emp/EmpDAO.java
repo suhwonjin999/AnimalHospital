@@ -11,6 +11,8 @@ public interface EmpDAO {
 	
 	public EmpVO mypage(EmpVO empVO)throws Exception;
 	
+	public int mypageUpdate(EmpVO empVO)throws Exception;
+	
 	public List<EmpVO> empList()throws Exception;
 	
 	public int empAdd(EmpVO empVO) throws Exception;

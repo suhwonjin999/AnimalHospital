@@ -49,11 +49,26 @@ public class EmpController {
 		return "redirect:../";
 	}
 	
+	// 마이페이지 수정
+	@GetMapping("mypageUpdate")
+	public String mypageUpdate(EmpVO empVO, Model model)throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/mypageUpdate";
+	}
+	
+	@PostMapping("mypageUpdate")
+	public String mypageUpdate(EmpVO empVO)throws Exception{
+		int result = empService.mypageUpdate(empVO);
+		
+//		return"redirect:emp/mypage?empNo="+empVO.getEmpNo();
+		return "redirect:../";
+	}
 	
 	// 비밀번호 수정페이지
 	@GetMapping("pwUpdate")
 	public String pwUpdate(EmpVO empVO, Model model) throws Exception{
-		empVO = empService.getLogin(empVO);
+		empVO = empService.empDetail(empVO);
 		model.addAttribute("vo", empVO);
 		return "emp/pwUpdate";
 	}
@@ -65,20 +80,15 @@ public class EmpController {
 	}
 	
 	// 마이페이지
-
+	
 	@GetMapping("mypage")
 	public String mypage (EmpVO empVO, Model model) throws Exception{
 		empVO = empService.mypage(empVO);
 		model.addAttribute("vo",empVO);
-			
+		
 		return "emp/mypage";
 	}
-	
-	/*
-	 * @GetMapping("mypage") public void getMypage() throws Exception{
-	 * 
-	 * }
-	 */
+
 	// 직원 목록
 	
 	@GetMapping("empList")

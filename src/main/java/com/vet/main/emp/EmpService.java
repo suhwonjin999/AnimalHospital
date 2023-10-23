@@ -18,6 +18,12 @@ public class EmpService  {
 	@Autowired
 	private EmpDAO empDAO;
 	
+	public int mypageUpdate(EmpVO empVO)throws Exception{
+		int result = empDAO.mypageUpdate(empVO);
+		
+		return result;
+	}
+	
 	// 비밀번호 변경
 	public int pwUpdate(EmpVO empVO)throws Exception{
 		int result = empDAO.pwUpdate(empVO);
@@ -28,7 +34,6 @@ public class EmpService  {
 	
 	// 마이페이지
 	public EmpVO mypage(EmpVO empVO) throws Exception{
-		
 		return empDAO.mypage(empVO);
 	}
 
