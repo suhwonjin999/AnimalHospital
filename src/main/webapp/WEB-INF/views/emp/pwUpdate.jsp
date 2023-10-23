@@ -20,7 +20,7 @@
 	    		
 	    		<%-- <c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import> --%>
 	    		
-		    		<div class="container-fluid">
+		    		<div class="container-fluid" style="margin-top: 50px;">
 		    				<!-- Content -->
 
 						    <div class="container-xxl">
@@ -40,75 +40,29 @@
 						              <h4 class="mb-2">비밀번호를 변경해주세요.🔐</h4>
 						              <p class="mb-4">Please sign-in to your account and start the adventure</p>
 										<div>
-											<form:form modelAttribute="empVO" method="post">
-											  <div class="form-group">
-											  	<form:label path="password">임시 비밀번호</form:label>
-												<form:input  id="password" path="password" cssClass="form-control"/>					
-											  	<form:errors path="password"></form:errors>
-											  </div>
-											  <div class="form-group">
-											  	<form:label path="password">변경 할 비밀번호</form:label>
-											    <form:password id="password" path="password" cssClass="form-control"/>
-											    <form:errors path="password"></form:errors>
-											  </div>
-											  <div class="form-group">
-											  	<form:label path="password">비밀번호 확인</form:label>
-											    <form:password id="password" path="password" cssClass="form-control"/>
-											    <form:errors path="password"></form:errors>
-											  </div>
-											  			  			  				  				          													  	  				  			  				  				          		
+											<form action="pwUpdate" method="post">
+											<input type="hidden" name="empNo" value="${emp.empNo}">
+											<input type="hidden" name="randomPw" value="${emp.randomPw}">
+											 	<table>
+													<tr>
+														<td>변경 전 비밀번호</td>
+													 	<td><input type="password" name="originalPassword"></td>
+												 	</tr>
+												 	<tr>
+														<td>변경 할 비밀번호</td>
+													 	<td><input type="password" name="password"></td>
+												 	</tr>
+												 	<tr>
+														<td>비밀번호 확인</td>
+													 	<td><input type="password" name="passwordCheck"></td>
+												 	</tr>
+											 	</table>
+
+											  <br><br>			  			  				  				          													  	  				  			  				  				          		
 											  <button type="submit" class="btn btn-primary" style="margin-top: 30px;">완료</button>
-							        		</form:form>	
+							        		</form>
 										</div>
-						              <!-- <form id="formAuthentication" modelAttribute="com.vet.main.emp.EmpVO" class="mb-3" action="/" method="POST">
-						                <div class="mb-3">
-						                  <label for="email" class="form-label">Email or Username</label>
-						                  <input
-						                    type="text"
-						                    class="form-control"
-						                    id="email"
-						                    name="email-username"
-						                    placeholder="Enter your email or username"
-						                    autofocus
-						                  />
-						                </div>
-						                <div class="mb-3 form-password-toggle">
-						                  <div class="d-flex justify-content-between">
-						                    <label class="form-label" for="password">Password</label>
-						                    <a href="auth-forgot-password-basic.html">
-						                      <small>Forgot Password?</small>
-						                    </a>
-						                  </div>
-						                  <div class="input-group input-group-merge">
-						                    <input
-						                      type="password"
-						                      id="password"
-						                      class="form-control"
-						                      name="password"
-						                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-						                      aria-describedby="password"
-						                    />
-						                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-						                  </div>
-						                </div>
-						                <div class="mb-3">
-						                  <div class="form-check">
-						                    <input class="form-check-input" type="checkbox" id="remember-me" />
-						                    <label class="form-check-label" for="remember-me"> Remember Me </label>
-						                  </div>
-						                </div>
-						                <div class="mb-3">
-						                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
-						                  <a></a>
-						                </div>
-						              </form> -->
 						
-						              <p class="text-center">
-						                <span>New on our platform?</span>
-						                <a href="auth-register-basic.html">
-						                  <span>Create an account</span>
-						                </a>
-						              </p>
 						            </div>
 						          </div>
 						          <!-- /Register -->
@@ -120,7 +74,7 @@
 		    		</div>   		
 	    		
 	    		</div>	    		
-	    		<%-- <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
+
 	    	</div>
 	    </div>  
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>

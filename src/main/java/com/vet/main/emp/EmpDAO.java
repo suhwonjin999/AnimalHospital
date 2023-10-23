@@ -9,7 +9,11 @@ public interface EmpDAO {
 
 	public EmpVO getEmp (EmpVO empVO)throws Exception; 
 	
-	public List<EmpVO> getEmpList()throws Exception;
+	public EmpVO mypage(EmpVO empVO)throws Exception;
+	
+	public int mypageUpdate(EmpVO empVO)throws Exception;
+	
+	public List<EmpVO> empList()throws Exception;
 	
 	public int empAdd(EmpVO empVO) throws Exception;
 	
@@ -17,4 +21,5 @@ public interface EmpDAO {
 	
 	public int empUpdate(EmpVO empVO)throws Exception;
 	
+	public int pwUpdate(EmpVO empVO)throws Exception;
 }

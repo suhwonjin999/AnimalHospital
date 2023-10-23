@@ -49,26 +49,51 @@ public class EmpController {
 		return "redirect:../";
 	}
 	
+	// 마이페이지 수정
+	@GetMapping("mypageUpdate")
+	public String mypageUpdate(EmpVO empVO, Model model)throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/mypageUpdate";
+	}
 	
-	// 비밀번호 변경 페이지
-	
-	@GetMapping("pwUpdate")
-	public void pwUpdate(EmpVO empVO) throws Exception{
+	@PostMapping("mypageUpdate")
+	public String mypageUpdate(EmpVO empVO)throws Exception{
+		int result = empService.mypageUpdate(empVO);
 		
+//		return"redirect:emp/mypage?empNo="+empVO.getEmpNo();
+		return "redirect:../";
+	}
+	
+	// 비밀번호 수정페이지
+	@GetMapping("pwUpdate")
+	public String pwUpdate(EmpVO empVO, Model model) throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/pwUpdate";
+	}
+	
+	@PostMapping("pwUpdate")
+	public String pwUpdate(EmpVO empVO) throws Exception{
+		int result = empService.pwUpdate(empVO);
+		return "redirect:../";
 	}
 	
 	// 마이페이지
 	
 	@GetMapping("mypage")
-	public void getMypage() throws Exception{
+	public String mypage (EmpVO empVO, Model model) throws Exception{
+		empVO = empService.mypage(empVO);
+		model.addAttribute("vo",empVO);
 		
+		return "emp/mypage";
 	}
-	
+
 	// 직원 목록
 	
 	@GetMapping("empList")
-	public String getEmpList(Model model)throws Exception{
-		List<EmpVO> ar = empService.getEmpList();
+	public String empList(Model model)throws Exception{
+		List<EmpVO> ar = empService.empList();
 		model.addAttribute("list", ar);
 		
 		return "emp/empList";

@@ -41,8 +41,8 @@
 								<th>상태</th>
 							</tr>
 						</thead>
-					<c:forEach items="${list}" var="vo">
 						<tbody style="height: 35px;">
+					<c:forEach items="${list}" var="vo">
 							<tr>
 								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
 								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td>
@@ -53,8 +53,8 @@
 								<td>${vo.hireDate}</td>
 								<td>${vo.state}</td>
 							</tr>
-						</tbody>
 					</c:forEach>
+						</tbody>
 					
 					</table>
 					<br>

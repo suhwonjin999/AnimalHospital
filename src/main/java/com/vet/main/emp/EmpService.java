@@ -18,8 +18,24 @@ public class EmpService  {
 	@Autowired
 	private EmpDAO empDAO;
 	
+	public int mypageUpdate(EmpVO empVO)throws Exception{
+		int result = empDAO.mypageUpdate(empVO);
+		
+		return result;
+	}
+	
+	// 비밀번호 변경
+	public int pwUpdate(EmpVO empVO)throws Exception{
+		int result = empDAO.pwUpdate(empVO);
+		
+		return result;
+	}
 
-
+	
+	// 마이페이지
+	public EmpVO mypage(EmpVO empVO) throws Exception{
+		return empDAO.mypage(empVO);
+	}
 
 	// 로그인 
 	public EmpVO getLogin(EmpVO empVO)throws Exception{
@@ -39,8 +55,8 @@ public class EmpService  {
 
 	
 	// 사원 관리(직원 목록)
-	public List<EmpVO> getEmpList()throws Exception{
-		return empDAO.getEmpList();
+	public List<EmpVO> empList()throws Exception{
+		return empDAO.empList();
 	}
 	
 	// 신규직원 등록
