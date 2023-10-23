@@ -65,6 +65,14 @@
 							<div>
 								<table class="table">
 									<tr>
+										<td>비밀번호</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>비밀번호 확인</td>
+										<td></td>
+									</tr>
+									<tr>
 										<td>입사일</td>
 										<td>${emp.hireDate}</td>
 									</tr>
