@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 // ***-context.xml과 같은 역할
 @Configuration
 public class FileMappingConfig implements WebMvcConfigurer {
@@ -26,7 +25,7 @@ public class FileMappingConfig implements WebMvcConfigurer {
 		// 요청 URL
 		registry.addResourceHandler(urlPath)
 		// Local file 위치(file://D://GDJ68/upload)
-				.addResourceLocations(filePath);
+				.addResourceLocations(filePath);	
 	}
 	
 }
