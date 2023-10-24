@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +24,23 @@ public class EmpController {
 	@Autowired
 	EmpService empService = new EmpService();
 	
+	@GetMapping("")
+	public void getInfo()throws Exception{
+		
+	}
+	
 	// 로그인 페이지
 	
 	@GetMapping("login")
-	public void getLogin(@ModelAttribute EmpVO empVO)throws Exception{
-
+	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
+		SecurityContext context = SecurityContextHolder.getContext();
+		String check = context.getAuthentication().getPrincipal().toString();
+		
+		if(!check.equals("anonymousUser")) {
+			return "redirect:/";
+		}
+		
+		return "emp/login";
 	}
 	
 	@PostMapping("login")

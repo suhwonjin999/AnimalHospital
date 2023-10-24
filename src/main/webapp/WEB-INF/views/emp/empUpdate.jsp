@@ -64,16 +64,16 @@
 										<td>
 											<select name='positionNo'>
 												<option value="${vo.positionNo}" selected="selected">${vo.positionName}</option>
-												<option value="1">원장</option>
-												<option value="2">과장</option>
-												<option value="3">팀장</option>
-												<option value="4">수의사</option>
-												<option value="5">사무장</option>
-												<option value="6">대리</option>
-												<option value="7">사원</option>
-												<option value="8">간호실장</option>
-												<option value="9">수의테크니션</option>
-												<option value="11">대표원장</option>
+												<option value="2">대표원장</option>
+												<option value="3">원장</option>
+												<option value="4">과장</option>
+												<option value="5">팀장</option>
+												<option value="6">수의사</option>
+												<option value="7">사무장</option>
+												<option value="8">대리</option>
+												<option value="9">사원</option>
+												<option value="10">간호실장</option>
+												<option value="11">수의테크니션</option>
 												<option value="12">가발령</option>
 											</select>
 										</td>

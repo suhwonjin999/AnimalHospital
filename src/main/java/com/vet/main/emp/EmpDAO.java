@@ -1,6 +1,7 @@
 package com.vet.main.emp;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -22,4 +23,6 @@ public interface EmpDAO {
 	public int empUpdate(EmpVO empVO)throws Exception;
 	
 	public int pwUpdate(EmpVO empVO)throws Exception;
+	
+	//public int empRole(Map<String, Object> map)throws Exception; //회원가입시 권한 부여하는 것
 }

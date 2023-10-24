@@ -13,11 +13,28 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class EmpService  {
+public class EmpService implements UserDetailsService{
 
 	@Autowired
 	private EmpDAO empDAO;
 	
+	
+	@Override
+	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
+		
+		EmpVO empVO = new EmpVO();
+		empVO.setEmpNo(empNo);
+		try {
+			empVO = empDAO.getEmp(empVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			empVO=null;
+		}
+		
+		return empVO;
+	}
+
+	//마이페이지 수정
 	public int mypageUpdate(EmpVO empVO)throws Exception{
 		int result = empDAO.mypageUpdate(empVO);
 		

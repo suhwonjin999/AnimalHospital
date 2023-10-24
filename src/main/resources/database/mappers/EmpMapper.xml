@@ -24,7 +24,8 @@
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		ORDER BY EMPNO DESC
+		WHERE P.POSITIONNO!=1
+		ORDER BY E.EMPNO DESC
 	</select>
 	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
@@ -41,11 +42,20 @@
 		<result column="STATE" property="state"/>
 		<result column="POSITIONNO" property="positionNo"/>
 		<result column="DEPTNO" property="deptNo"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="ENABLED" property="enabled"/>
+		
+		<!-- <collection property="roleVOs" javaType="List" ofType="RoleVO">
+			<id column="POSITIONNO" property="positionNo"/>
+			<result column="POSITIONNAME" property="positionName"/>
+			<result column="ROLE" property="role"/>		
+		</collection> -->
 	</resultMap>
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO EMP 
-		VALUES (NULL, 'qwerqwer', #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 11, 999, '재직', #{birth}, 0)
+		VALUES (NULL, 'qwerqwer', #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, 1)
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
