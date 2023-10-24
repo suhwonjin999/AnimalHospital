@@ -37,7 +37,7 @@ public class EmpController {
 		String check = context.getAuthentication().getPrincipal().toString();
 		
 		if(!check.equals("anonymousUser")) {
-			return "redirect:/";
+			return "redirect:../";
 		}
 		
 		return "emp/login";

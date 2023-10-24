@@ -53,9 +53,9 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-				 .antMatchers("/").permitAll()
-				 .antMatchers("/emp/*").hasAnyRole("ADMIN","USER")
-				 .anyRequest().authenticated()
+					.antMatchers("/*").permitAll()
+				/* .antMatchers("/*").hasAnyRole("ADMIN","USER") */
+				/* .anyRequest().authenticated() */
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")

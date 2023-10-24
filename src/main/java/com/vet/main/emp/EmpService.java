@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +20,12 @@ public class EmpService implements UserDetailsService{
 	@Autowired
 	private EmpDAO empDAO;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
-		
+		log.info("=========로그인 시도 중==========");
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpNo(empNo);
 		try {
@@ -77,7 +81,9 @@ public class EmpService implements UserDetailsService{
 	}
 	
 	// 신규직원 등록
+	@Transactional(rollbackFor = Exception.class)
 	public int empAdd(EmpVO empVO) throws Exception{
+		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
 		int result = empDAO.empAdd(empVO);
 		
 		return result;
