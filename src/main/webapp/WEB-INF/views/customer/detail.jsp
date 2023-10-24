@@ -33,6 +33,22 @@
 								style="width: 200px; height: 200px; margin: 30px;">
 							</c:forEach>
 						</div>
+						
+						
+						<%-- <div style="width: 300px; float: left;">
+						<c:if test="${!empty vo.fileName}">
+							<c:forEach items="${vo.fileVO}" var="f">
+								<img alt="" src="../files/${customer}/${f.fileName}"
+								style="width: 200px; height: 200px; margin: 30px;">
+							</c:forEach>
+							</c:if>
+							<c:if test="${empty vo.fileName}">
+								<img alt="" src="/resources/images/mandoo.jpg"
+								style="width: 200px; height: 200px; margin: 30px;">
+							</c:if>
+						</div> --%>
+						
+						
 						<div style="width: 550px; margin-top: 20px; float: left;">
 							<table class="table">
 								<tr>

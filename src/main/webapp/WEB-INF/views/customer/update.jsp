@@ -34,10 +34,10 @@
 							<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">	
 								<div style="width: 550px; margin-top: 20px; float: left;">
 									<table class="table">
-										<!-- <tr>
+										<tr>
 											<td>사진</td>
 										  	<td><input type="file" class="form-control" name="files"></td>
-										</tr> -->
+										</tr>
 										<tr>
 											<td>이름</td>
 											<td>${vo.animalName}</td>
@@ -52,9 +52,8 @@
 										</tr>
 										<tr>
 											<td>중성화</td>
-											<%-- <td>${vo.neutering}</td> --%>
 											<td>
-												<select name='neutering'>
+												<select class="form-select" aria-label="Default select example" name='neutering'>
 													<option value="${vo.neutering}" selected="selected">${vo.neutering}</option>
 													<option value="yes">yes</option>
 													<option value="no">no</option>
