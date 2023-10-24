@@ -169,7 +169,7 @@
            <!--  <li class="menu-header small text-uppercase"><span class="menu-header-text">CATEGORY</span></li>   -->          
             <!-- Cards -->
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="/customer/list" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">고객관리</div>
               </a>
