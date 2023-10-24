@@ -75,7 +75,7 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
-	<script src="/resources/js/approval/formatList.js"></script>
+	<script src="/resources/js/approval/format/formatList.js"></script>
 
 </body>
 </html>

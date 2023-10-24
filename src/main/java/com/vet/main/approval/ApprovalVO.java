@@ -21,7 +21,7 @@ public class ApprovalVO {
 	private Date dayoffStartDate;
 	private Date dayoffEndDate;
 	private String apContents;
-	private Long apState;
+	private String apState;
 	private String apRejection;
 	private String dayoffKind;
 	private Time dayoffStartTime;
@@ -30,4 +30,5 @@ public class ApprovalVO {
 	
 	private String positionName;
 	private String deptName;
+	private String name;
 }

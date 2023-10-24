@@ -252,7 +252,7 @@
 	              </a>
 	            </li> 
 	            <li class="menu-item">
-	              <a href="cards-basic.html" class="menu-link">
+	              <a href="/approval/draftList?empNo=${emp.empNo}" class="menu-link">
 	                <div data-i18n="Basic">기안함</div>
 	              </a>
 	            </li>

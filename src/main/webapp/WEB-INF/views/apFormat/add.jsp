@@ -13,6 +13,17 @@
 	  integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">	  
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
 	integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
+	
+	<!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+	
+	<!-- include summernote css/js-->
+	<link href="summernote.css">
+	<script src="summernote.js"></script>
 
 	<c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 	<meta charset="UTF-8">
@@ -91,11 +102,14 @@
 	$('#apFormatContents').summernote({
 	  tabsize: 2,
 	  height: 1000,
+	  codemirror: { // codemirror options
+		    theme: 'monokai'
+		  },
 	  lang: 'ko-KR', // default: 'en-US'
 
 	});
 	</script>
 	
-	<script src="/resources/js/approval/formatAdd.js"></script>
+	<script src="/resources/js/approval/format/formatAdd.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>양식 선택 리스트</title>
+<title>기안함</title>
 
 </head>
 <body>
@@ -34,15 +34,27 @@
 	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
 	                                    <thead>
 	                                        <tr>
-	                                            <th>양식 종류</th>
-	                                            <th>설명</th>
+	                                            <th>번호</th>
+	                                            <th>종류</th>
+	                                            <th>제목</th>
+	                                            <th>작성자</th>
+	                                            <th>부서</th>
+	                                            <th>기안일</th>
+	                                            <th>상태</th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">품의서</a></td>
-	                                            <td>품의서 작성페이지입니다.</td>
-	                                        </tr>  
+	                                    	<c:forEach items="${list}" var="ap" varStatus="i">
+		                                        <tr>
+		                                        	<td>${i.index + 1}</td>
+		                                        	<td>${ap.apKind}</td>
+		                                            <td><a href="#">${ap.apTitle}</a></td>
+		                                            <td>${ap.name}</td>
+		                                            <td>${ap.deptName}</td>
+		                                            <td>${ap.apCDate}</td>
+		                                            <td>${ap.apState}</td>
+		                                        </tr>
+	                                        </c:forEach>
 	                                    </tbody>
 	                                </table>  
 				    			</div>

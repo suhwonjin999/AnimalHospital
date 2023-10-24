@@ -1,5 +1,7 @@
 package com.vet.main.approval;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.vet.main.emp.EmpVO;
@@ -12,6 +14,9 @@ public interface ApprovalDAO {
 
 	// 품의서 작성폼
 	public int setApPoomAdd(ApprovalVO approvalVO) throws Exception;
+	
+	// 기안함 리스트
+	public List<ApprovalVO> getDraftList(EmpVO empVO) throws Exception;
 	
 	
 }

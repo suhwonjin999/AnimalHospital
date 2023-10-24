@@ -9,8 +9,7 @@ let updateFrm = document.getElementById("updateFrm");					// 수정폼
 let updateBtn = document.getElementById("updateBtn");					// 수정 버튼
 let cancleBtn = document.getElementById("cancleBtn");					// 목록 버튼
 
-
-
+let markupStr = apFormatContents.summernote('code');
 
 updateBtn.addEventListener("click", function(){
 	
@@ -25,7 +24,8 @@ updateBtn.addEventListener("click", function(){
         apFormatContents.focus();
         return;
     }
-
+    
+	
     updateFrm.submit();
     
 });

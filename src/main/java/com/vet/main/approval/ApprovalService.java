@@ -1,5 +1,7 @@
 package com.vet.main.approval;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class ApprovalService {
 	public int setApPoomAdd(ApprovalVO approvalVO) throws Exception {
 		int result = approvalDAO.setApPoomAdd(approvalVO);
 		return result;
+	}
+	
+	// 기안함 리스트
+	public List<ApprovalVO> getDraftList(EmpVO empVO) throws Exception {
+		return approvalDAO.getDraftList(empVO);
 	}
 
 }
