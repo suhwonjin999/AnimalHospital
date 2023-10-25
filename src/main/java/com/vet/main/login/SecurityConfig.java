@@ -26,7 +26,6 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder encoder() {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		System.out.println("PasswordEncoder Bean Created: " + passwordEncoder);
 	    return passwordEncoder;
 
 	}
@@ -49,7 +48,7 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)throws Exception{
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity)throws Exception{
 		httpSecurity
 					.cors()
 					.and()
@@ -57,7 +56,7 @@ public class SecurityConfig {
 					.disable()
 				.authorizeRequests()
 					.antMatchers("/*").permitAll() 
-				/* .antMatchers("/emp/*").hasAnyRole("ADMIN","USER") */
+				 .antMatchers("/emp/*").hasAnyRole("ADMIN","USER") 
 				/* .anyRequest().authenticated() */
 					.and()
 				.formLogin()
