@@ -108,6 +108,8 @@
 	  lang: 'ko-KR', // default: 'en-US'
 
 	});
+	
+	$("#apFormatContents").summernote('code'); 
 	</script>
 	
 	<script src="/resources/js/approval/format/formatAdd.js"></script>

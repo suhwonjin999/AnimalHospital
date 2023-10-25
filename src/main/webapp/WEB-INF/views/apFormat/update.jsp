@@ -112,6 +112,11 @@
 	  lang: 'ko-KR', // default: 'en-US'
 
 	});
+	
+
+	$("#apFormatContents").summernote('code');   
+	   
+
 	</script>
 	
 
