@@ -6,7 +6,7 @@
 <mapper namespace="com.vet.main.emp.EmpDAO">
 
 	<select id="getEmp" parameterType="com.vet.main.emp.EmpVO" resultType="com.vet.main.emp.EmpVO">
-		SELECT * FROM EMP WHERE EMPNO=#{empNo} AND PASSWORD =#{password}
+		SELECT * FROM EMP WHERE EMPNO=#{empNo}
 	</select>
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">

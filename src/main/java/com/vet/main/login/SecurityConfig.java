@@ -55,14 +55,13 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-					.antMatchers("/*").permitAll() 
-				 .antMatchers("/emp/*").hasAnyRole("ADMIN","USER") 
+					.antMatchers("/").permitAll() 
+				 .antMatchers("/emp/empUpdate").hasAnyRole("ADMIN","USER") 
 				/* .anyRequest().authenticated() */
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")
-					.usernameParameter("empNo")    //id 파라미터는 username이지만, 개발자가 다른 파라미터 이름을 사용할 때
-					.passwordParameter("password")
+					.usernameParameter("empNo")    //username대신 사용하는 parameter명
 					.successHandler(successHandler)//인증에 성공할 경우 요청할 URL
 					.failureUrl("/emp/login?error=true&message=LoginFail") //인증에 실패했을 경우 요청할 URL
 					.permitAll()
