@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.vet.main.medicine.MedicineDAO">
+		<sql id="forPager">
+	  		<choose>
+	  			<when test="kind == 'name'">
+	  				name
+	  			</when>
+	  			<otherwise>
+	  				name
+	  			</otherwise>
+	  		</choose>
+	  	</sql>
+	  	
+	  	<select id="getTotal" parameterType="Pager" resultType="Long">
+	  		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/> <!-- mybatis에서 제공하는 동적 쿼리를 이용하는 방식 _parameter는 parameter로 접근하는 예약어-->
+	  		SELECT COUNT(MEDICINENO) FROM MEDICINE
+	  			WHERE <include refid="forPager"></include>
+	  			Like #{pattern}
+	  	</select>
+		
+		<select id="getList" resultType="MedicineVO" parameterType="MedicineVO">
+			SELECT * FROM MEDICINE
+				WHERE
+				<include refid="forPager"></include>
+				LIKE CONCAT('%', #{search}, '%')
+				ORDER BY MEDICINENO DESC
+				LIMIT #{startRow}, #{perPage}
+		</select>
+		
+		<insert id="setAdd" parameterType="MedicineVO">
+			INSERT INTO MEDICINE (MEDICINENO, NAME, STOCK, MEDICINEDATE, EXPIRATIONDATE)
+				VALUES (NULL, #{name}, #{stock}, now(), INTERVAL 1 YEAR)
+		</insert>
+	</mapper>

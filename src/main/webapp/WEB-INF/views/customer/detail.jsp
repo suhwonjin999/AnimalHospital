@@ -27,27 +27,20 @@
 				<div class="card shadow mb-4" style="box-sizing: content-box;">
 
 					<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+						<c:if test="${!empty vo.fileVO}">
 						<div style="width: 300px; float: left;">
 							<c:forEach items="${vo.fileVO}" var="f">
 								<img alt="" src="../files/${customer}/${f.fileName}"
 								style="width: 200px; height: 200px; margin: 30px;">
 							</c:forEach>
 						</div>
-						
-						
-						<%-- <div style="width: 300px; float: left;">
-						<c:if test="${!empty vo.fileName}">
-							<c:forEach items="${vo.fileVO}" var="f">
-								<img alt="" src="../files/${customer}/${f.fileName}"
+						</c:if>
+						<c:if test="${empty vo.fileVO}">
+						<div style="width: 300px; float: left;">
+								<img alt="" src="/resources/images/default.jpeg"
 								style="width: 200px; height: 200px; margin: 30px;">
-							</c:forEach>
-							</c:if>
-							<c:if test="${empty vo.fileName}">
-								<img alt="" src="/resources/images/mandoo.jpg"
-								style="width: 200px; height: 200px; margin: 30px;">
-							</c:if>
-						</div> --%>
-						
+						</div>
+						</c:if>
 						
 						<div style="width: 550px; margin-top: 20px; float: left;">
 							<table class="table">

@@ -265,7 +265,7 @@
             </li>
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">CATEGORY</span></li>  -->           
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="/medicine/list" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">약품관리</div>
               </a>
