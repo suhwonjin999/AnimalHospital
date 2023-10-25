@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vet.main.reservation.treatment.TreatmentDAO">
+	<select id="getScheduleList" resultType="TreatmentVO">
+			SELECT T.TREATMENTDATE , T.TREATMENTTIME, T.TREATMENTDATET, C.ANIMALNAME, E.NAME 
+	  		  FROM TREATMENT T 
+					INNER JOIN CUSTOMER C
+	  						ON T.CUSTOMERNO=C.CUSTOMERNO
+	  				INNER JOIN EMP E 
+	  						ON T.EMPNO=E.EMPNO				
+	</select>
+	
+	<!-- <insert id="setTreatmentAdd" parameterType="TreatmentVO">
+		INSERT INTO TREATMENT VALUES(NULL, NULL, NULL, #{customerNo}, #{empNo}, #{treatmentDatet})		
+	</insert>-->
+
+</mapper>
