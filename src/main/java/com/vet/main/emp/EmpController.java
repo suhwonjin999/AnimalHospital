@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,10 @@ public class EmpController {
 	@Autowired
 	EmpService empService = new EmpService();
 	
-	@GetMapping("")
-	public void getInfo()throws Exception{
+	public void getEmp(@AuthenticationPrincipal EmpVO empVO) {
 		
+		String empNo = empVO.getEmpNo();
+		String password = empVO.getPassword();
 	}
 	
 	// 로그인 페이지

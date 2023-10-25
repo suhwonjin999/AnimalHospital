@@ -10,6 +10,8 @@ public interface EmpDAO {
 
 	public EmpVO getEmp (EmpVO empVO)throws Exception; 
 	
+	public EmpVO getLogin(String empNo)throws Exception;
+	
 	public EmpVO mypage(EmpVO empVO)throws Exception;
 	
 	public int mypageUpdate(EmpVO empVO)throws Exception;

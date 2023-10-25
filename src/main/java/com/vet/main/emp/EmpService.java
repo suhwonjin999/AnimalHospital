@@ -84,7 +84,10 @@ public class EmpService implements UserDetailsService{
 	@Transactional(rollbackFor = Exception.class)
 	public int empAdd(EmpVO empVO) throws Exception{
 		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
-		int result = empDAO.empAdd(empVO);
+		empVO.setEnabled(true);
+		int result = 0;
+		
+		result = empDAO.empAdd(empVO);
 		
 		return result;
 	}

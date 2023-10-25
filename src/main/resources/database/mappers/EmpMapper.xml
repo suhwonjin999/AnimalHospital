@@ -9,6 +9,39 @@
 		SELECT * FROM EMP WHERE EMPNO=#{empNo}
 	</select>
 
+	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
+		SELECT 
+		FROM EMP E LEFT JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		WHERE E.EMPNO=#{empNo}
+	</select>
+
+	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
+		<id column="EMPNO" property="empNo"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="HIREDATE" property="hireDate"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORIGINALFILENAME" property="originalFileName"/>
+		<result column="STATE" property="state"/>
+		<result column="POSITIONNO" property="positionNo"/>
+		<result column="DEPTNO" property="deptNo"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="ENABLED" property="enabled"/>
+		
+		<collection property="roleVOs" javaType="List" ofType="com.vet.main.emp.RoleVO">
+			<id column="POSITIONNO" property="positionNo"/>
+			<result column="POSITIONNAME" property="positionName"/>
+			<result column="ROLE" property="role"/>		
+		</collection>
+	</resultMap>
+	
+
 	<select id="mypage" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
   		SELECT E.*, P.*, D.* 
 		FROM EMP E INNER JOIN POSITION P 
@@ -55,7 +88,7 @@
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO EMP 
-		VALUES (NULL, 'qwerqwer', #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, 1)
+		VALUES (NULL, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, #{enabled})
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
