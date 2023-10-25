@@ -18,7 +18,7 @@ import com.vet.main.emp.EmpService;
 public class SecurityConfig {
 	
 	@Autowired
-	private SuccessHandler handler;
+	private LoginSuccessHandler successHandler;
 	
 	@Autowired
 	private EmpService empService;
@@ -53,16 +53,16 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-					.antMatchers("/*").permitAll()
-				/* .antMatchers("/*").hasAnyRole("ADMIN","USER") */
+				/* .antMatchers("/*").permitAll() */
+					.antMatchers("/").hasAnyRole("ADMIN","USER")
 				/* .anyRequest().authenticated() */
 					.and()
 				.formLogin()
 					.loginPage("/emp/login")
 					.usernameParameter("empNo")    //id 파라미터는 username이지만, 개발자가 다른 파라미터 이름을 사용할 때
 					.passwordParameter("password")
-					.defaultSuccessUrl("/")     //인증에 성공할 경우 요청할 URL
-//					.failureUrl("/emp/login?error=true&message=LoginFail") //인증에 실패했을 경우 요청할 URL
+					.successHandler(successHandler)//인증에 성공할 경우 요청할 URL
+					.failureUrl("/emp/login?error=true&message=LoginFail") //인증에 실패했을 경우 요청할 URL
 					.permitAll()
 					.and()
 				.logout()
