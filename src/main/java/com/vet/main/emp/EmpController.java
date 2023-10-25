@@ -3,6 +3,7 @@ package com.vet.main.emp;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,37 +27,57 @@ public class EmpController {
 	@Autowired
 	EmpService empService = new EmpService();
 	
-	public void getEmp(@AuthenticationPrincipal EmpVO empVO) {
+	@GetMapping("info")
+	public void getInfo(HttpSession session)throws Exception{
+		//1. DB에서 사용자 정보를 조회해서 JSP로 보내는 방법
 		
-		String empNo = empVO.getEmpNo();
-		String password = empVO.getPassword();
 	}
+	
+//	public void getLogin3(@AuthenticationPrincipal EmpVO empVO) {
+//		
+//		String empNo = empVO.getEmpNo();
+//		String password = empVO.getPassword();
+//	}
 	
 	// 로그인 페이지
 	
 	@GetMapping("login")
 	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
 		SecurityContext context = SecurityContextHolder.getContext();
+		
 		String check = context.getAuthentication().getPrincipal().toString();
 		
-		if(!check.equals("anonymousUser")) {
-			return "redirect:../";
-		}
+		log.info("======= Context : {} =========", context.getAuthentication().getPrincipal().toString());
 		
+		if(!check.equals("anonymousUser")) {
+			return "redirect:/";
+		}
 		return "emp/login";
 	}
 	
-	@PostMapping("login")
-	public String getLogin2(EmpVO empVO, HttpSession session)throws Exception{
-		empVO = empService.getLogin(empVO);
-		
-		if(empVO != null) {
-			session.setAttribute("emp", empVO);
-			return "redirect:../";
-		}
-		
-		return "./login";
-	}
+//	@GetMapping("login")
+//	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
+//		SecurityContext context = SecurityContextHolder.getContext();
+//		String check = context.getAuthentication().getPrincipal().toString();
+//		
+//		if(!check.equals("anonymousUser")) {
+//			return "redirect:../";
+//		}
+//		
+//		return "emp/login";
+//	}
+//	
+//	@PostMapping("login")
+//	public String getLogin2(EmpVO empVO, HttpSession session)throws Exception{
+//		empVO = empService.getLogin(empVO);
+//		
+//		if(empVO != null) {
+//			session.setAttribute("emp", empVO);
+//			return "redirect:../";
+//		}
+//		
+//		return "./login";
+//	}
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception {
@@ -118,12 +140,12 @@ public class EmpController {
 	// 신규직원 추가 페이지
 	
 	@GetMapping("empAdd")
-	public String empAdd()throws Exception{
-		return "emp/empAdd";
+	public void empAdd(@ModelAttribute EmpVO empVO)throws Exception{
+
 	}
 	
 	@PostMapping("empAdd")
-	public String empAdd(EmpVO empVO) throws Exception{
+	public String empAdd(@Valid EmpVO empVO, BindingResult bindingResult) throws Exception{
 		int result = empService.empAdd(empVO);
 		return "redirect:./empList";
 	}

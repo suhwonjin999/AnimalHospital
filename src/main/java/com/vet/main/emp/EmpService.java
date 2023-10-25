@@ -1,6 +1,8 @@
 package com.vet.main.emp;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class EmpService implements UserDetailsService{
 
@@ -22,14 +26,13 @@ public class EmpService implements UserDetailsService{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public void registerUser(EmpVO empVO) {
-	    String hashedPassword = passwordEncoder.encode(empVO.getPassword());
-	    String empNo = empVO.getEmpNo();
-	    empVO.setPassword(hashedPassword);
-	    empVO.setEmpNo(empNo);
-	    empDAO.save(empVO);
-	}
-	
+//	public void registerUser(EmpVO empVO) {
+//	    String hashedPassword = passwordEncoder.encode(empVO.getPassword());
+//	    String empNo = empVO.getEmpNo();
+//	    empVO.setPassword(hashedPassword);
+//	    empVO.setEmpNo(empNo);
+//	    empDAO.save(empVO);
+//	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
@@ -44,6 +47,7 @@ public class EmpService implements UserDetailsService{
 		}
 		
 		return empVO;
+
 	}
 
 	//마이페이지 수정
@@ -66,20 +70,20 @@ public class EmpService implements UserDetailsService{
 		return empDAO.mypage(empVO);
 	}
 
-	// 로그인 
-	public EmpVO getLogin(EmpVO empVO)throws Exception{
-		EmpVO loginVO = empDAO.getEmp(empVO);
-		
-		if(loginVO == null) {
-			return loginVO;
-		}
-		
-		if(loginVO.getPassword().equals(empVO.getPassword())) {
-			return loginVO;
-		}
-		
-		return null;
-	}
+//	// 로그인 
+//	public EmpVO getLogin(EmpVO empVO)throws Exception{
+//		EmpVO loginVO = empDAO.getEmp(empVO);
+//		
+//		if(loginVO == null) {
+//			return loginVO;
+//		}
+//		
+//		if(loginVO.getPassword().equals(empVO.getPassword())) {
+//			return loginVO;
+//		}
+//		
+//		return null;
+//	}
 	
 
 	
@@ -92,10 +96,11 @@ public class EmpService implements UserDetailsService{
 	@Transactional(rollbackFor = Exception.class)
 	public int empAdd(EmpVO empVO) throws Exception{
 		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
-		empVO.setEnabled(true);
-		int result = 0;
-		
-		result = empDAO.empAdd(empVO);
+		int result = empDAO.empAdd(empVO);
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("positionNo", 12);
+//		map.put("empNo", empVO.getEmpNo());
+//		result = empDAO.empRole(map);
 		
 		return result;
 	}

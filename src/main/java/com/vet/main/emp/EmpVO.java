@@ -51,11 +51,11 @@ public class EmpVO implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		
-		for(RoleVO roleVO:this.getRoleVOs()) {
-			System.out.println(roleVO.getPositionName());
-			authorities.add(new SimpleGrantedAuthority(roleVO.getRole()));
-		}
+		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//		for(RoleVO roleVO:this.getRoleVOs()) {
+//			System.out.println(roleVO.getPositionName());
+//			authorities.add(new SimpleGrantedAuthority(roleVO.getRole()));
+//		}
 		
 		return authorities;
 	}
