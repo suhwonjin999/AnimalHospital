@@ -182,12 +182,12 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                  <a href="/treatment/schedule" class="menu-link">
                     <div data-i18n="Perfect Scrollbar">진료예약</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="extended-ui-text-divider.html" class="menu-link">
+                  <a href="/surgery/schedule" class="menu-link">
                     <div data-i18n="Text Divider">수술예약</div>
                   </a>
                 </li>

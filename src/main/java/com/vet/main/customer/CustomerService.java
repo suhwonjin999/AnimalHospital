@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.file.FileVO;
-import com.vet.main.util.FileManger;
-import com.vet.main.util.Pager;
+import com.vet.main.commons.FileManager;
+import com.vet.main.commons.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +21,7 @@ public class CustomerService {
 	private CustomerDAO customerDAO;
 	
 	@Autowired
-	private FileManger fileManger;
+	private FileManager fileManger;
 	
 	//spEl
 	//properties 값을 java 사용

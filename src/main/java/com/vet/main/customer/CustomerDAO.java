@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.vet.main.file.FileVO;
-import com.vet.main.util.Pager;
+import com.vet.main.commons.Pager;
 
 @Mapper
 public interface CustomerDAO {
