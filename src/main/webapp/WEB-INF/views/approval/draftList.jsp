@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기안함</title>
 
 </head>
 <body>
@@ -34,29 +34,30 @@
 	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
 	                                    <thead>
 	                                        <tr>
-	                                            <th>NO</th>
+	                                            <th>번호</th>
+	                                            <th>종류</th>
 	                                            <th>제목</th>
-	                                            <th>작성일자</th>
+	                                            <th>작성자</th>
+	                                            <th>부서</th>
+	                                            <th>기안일</th>
+	                                            <th>상태</th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-		                                    <c:forEach items="${list}" var="vo" varStatus="i">
+	                                    	<c:forEach items="${list}" var="ap" varStatus="i">
 		                                        <tr>
-		                                            <td>${i.index + 1}</td>
-		                                            <td><a href="/apFormat/detail?apFormatNo=${vo.apFormatNo}">${vo.apFormatTitle}</a></td>
-		                                            <td>${vo.apFormatDate}</td>
-		                                        </tr>  
-		                                    </c:forEach>
+		                                        	<td>${i.index + 1}</td>
+		                                        	<td>${ap.apKind}</td>
+		                                            <td><a href="#">${ap.apTitle}</a></td>
+		                                            <td>${ap.name}</td>
+		                                            <td>${ap.deptName}</td>
+		                                            <td>${ap.apCDate}</td>
+		                                            <td>${ap.apState}</td>
+		                                        </tr>
+	                                        </c:forEach>
 	                                    </tbody>
 	                                </table>  
 				    			</div>
-				    			
-				    			
-					    		<div class="row" style="float:right;">
-									<div class="demo-inline-spacing">
-										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
-									</div>
-	                            </div>
 	    					</div>
 	    				</div>
 					</div>
@@ -75,7 +76,6 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
-	<script src="/resources/js/approval/format/formatList.js"></script>
 
 </body>
 </html>

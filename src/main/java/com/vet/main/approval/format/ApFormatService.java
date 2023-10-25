@@ -16,9 +16,8 @@ public class ApFormatService {
 	@Autowired
 	private ApFormatDAO apFormatDAO;
 	
-	public int setFormatAdd(ApFormatVO apFormatVO) throws Exception{
+	public int setFormatAdd(ApFormatVO apFormatVO) throws Exception {
 		int result = apFormatDAO.setFormatAdd(apFormatVO);
-		
 		return result;
 	}
 
