@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>양식 선택 리스트</title>
 
 </head>
 <body>
@@ -27,50 +27,28 @@
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h1>Format Detail Page</h1>
-						
 						<!-- DataTales Example -->
 	                    <div class="card shadow mb-4">
 	                        <div class="card-body">
 	                            <div class="table-responsive">
-		                            <div>
-		                            
-										<form action="" id="frm">
-		                            		<input type="hidden" id="apFormatNo" name="apFormatNo" value="${apFormatVO.apFormatNo}">
-										</form>
-		                            
-                                		<table class="table">
-		
-									    <tr>
-									        <th class="text-center" style="width: 100px;">제목</th>
-									        <td>${apFormatVO.apFormatTitle}</td>
-									    </tr>
-
-									    <tr>
-									        <th class="text-center" style="width: 100px;">작성일</th>
-									        <td>${apFormatVO.apFormatDate}</td>
-									    </tr>
-								 
-										</table>
-										
-										<div class="mb-3 mt-4 ms-4">
-											<label for="contents" class="form-label"></label>
-											${apFormatVO.apFormatContents}
-										</div>
-										
-									
-										</div>
-										<div class="row" style="float:right;">
-											<div class="demo-inline-spacing">
-												<button type="button" class="btn btn-primary submitBtn" id="updateBtn" data-url="update">수정</button>
-												<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">삭제</button>
-												<button type="button" class="btn btn-primary" id="listBtn">목록</button>
-											</div>
-			                            </div>
-					    			</div>
-		    					</div>
-		    				</div>
-						</div>
+	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+	                                    <thead>
+	                                        <tr>
+	                                            <th>양식 종류</th>
+	                                            <th>설명</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">품의서</a></td>
+	                                            <td>품의서 작성페이지입니다.</td>
+	                                        </tr>  
+	                                    </tbody>
+	                                </table>  
+				    			</div>
+	    					</div>
+	    				</div>
+					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
 					<div class="content-backdrop fade"></div>
@@ -86,7 +64,6 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
-	<script src="/resources/js/approval/format/formatDetail.js"></script>
 
 </body>
 </html>
