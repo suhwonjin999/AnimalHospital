@@ -32,7 +32,7 @@ public class EmpVO implements UserDetails{
 	private String deptNo;
 	private String state;
 	private Date birth;
-	
+	private String username;
 	
 	//position
 	private String positionName;
@@ -51,11 +51,10 @@ public class EmpVO implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//		for(RoleVO roleVO:this.getRoleVOs()) {
-//			System.out.println(roleVO.getPositionName());
-//			authorities.add(new SimpleGrantedAuthority(roleVO.getRole()));
-//		}
+
+		for(RoleVO roleVO: roleVOs) {
+			authorities.add(new SimpleGrantedAuthority(roleVO.getRole()));
+		}
 		
 		return authorities;
 	}
@@ -63,7 +62,7 @@ public class EmpVO implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return String.valueOf(empNo);
+		return username;
 	}
 	
 	@Override
@@ -96,6 +95,6 @@ public class EmpVO implements UserDetails{
 		// 계정 잠김 여부
 		// true     : 계정 잠기지 않음
 		// false    : 계정 잠김, 로그인 안됨
-		return enabled;
+		return true;
 	}
 }

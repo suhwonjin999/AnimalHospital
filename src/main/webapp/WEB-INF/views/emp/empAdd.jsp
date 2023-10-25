@@ -40,6 +40,10 @@
 											<td><input type="email" class="form-control" name="email" id="email"></td>
 										</tr>
 										<tr>
+											<td>아이디</td>
+											<td><input type="username" class="form-control" name="username" id="username"></td>
+										</tr>
+										<tr>
 											<td>비밀번호</td>
 											<td><input type="password" class="form-control" name="password" id="password"></td>
 										</tr>

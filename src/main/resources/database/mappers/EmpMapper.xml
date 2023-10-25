@@ -14,9 +14,9 @@
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
 		SELECT E.*,P.*
-		FROM EMP E LEFT JOIN POSITION P
+		FROM EMP E INNER JOIN POSITION P
 		ON E.POSITIONNO = P.POSITIONNO
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
 	</select>
 
 	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
@@ -35,7 +35,7 @@
 		<result column="DEPTNO" property="deptNo"/>
 		<result column="BIRTH" property="birth"/>
 		<result column="RANDOMPW" property="randomPw"/>
-		<result column="ENABLED" property="enabled"/>
+		<result column="USERNAME" property="username"/>
 		
 		<collection property="roleVOs" javaType="List" ofType="com.vet.main.emp.RoleVO">
 			<id column="POSITIONNO" property="positionNo"/>
@@ -91,7 +91,7 @@
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO EMP 
-		VALUES (NULL, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, 1)
+		VALUES (NULL, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, #{username}, 1)
 	</insert>
 
 <!-- 	<insert id="empRole" parameterType="java.util.Map">

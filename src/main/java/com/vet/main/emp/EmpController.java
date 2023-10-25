@@ -43,15 +43,8 @@ public class EmpController {
 	
 	@GetMapping("login")
 	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
-		SecurityContext context = SecurityContextHolder.getContext();
+		//SecurityContext context = SecurityContextHolder.getContext();
 		
-		String check = context.getAuthentication().getPrincipal().toString();
-		
-		log.info("======= Context : {} =========", context.getAuthentication().getPrincipal().toString());
-		
-		if(!check.equals("anonymousUser")) {
-			return "redirect:/";
-		}
 		return "emp/login";
 	}
 	

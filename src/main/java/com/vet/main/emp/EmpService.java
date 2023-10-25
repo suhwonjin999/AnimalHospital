@@ -26,21 +26,13 @@ public class EmpService implements UserDetailsService{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	public void registerUser(EmpVO empVO) {
-//	    String hashedPassword = passwordEncoder.encode(empVO.getPassword());
-//	    String empNo = empVO.getEmpNo();
-//	    empVO.setPassword(hashedPassword);
-//	    empVO.setEmpNo(empNo);
-//	    empDAO.save(empVO);
-//	}
-	
 	@Override
-	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("=========로그인 시도 중==========");
 		EmpVO empVO = new EmpVO();
-		empVO.setEmpNo(empNo);
+		empVO.setUsername(username);
 		try {
-			empVO = empDAO.getEmp(empVO);
+			empVO = empDAO.getLogin(username);
 		} catch (Exception e) {
 			e.printStackTrace();
 			empVO=null;

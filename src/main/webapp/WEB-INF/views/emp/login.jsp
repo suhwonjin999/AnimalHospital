@@ -40,22 +40,22 @@
 						              <h4 class="mb-2">Welcome to Animal Hospital! 👋</h4>
 						              <p class="mb-4">Please sign-in to your account and start the adventure</p>
 										<div>
-											<form action="/emp/login" method="post">
+											<%-- <form action="/emp/login" method="post">
 												<span>사원번호</span>
-												<input type="text" name="empNo">
+												<input type="text" name="username">
 												
 												<span>비밀번호</span>
 												<input type="password" name="password">
 											
 												<button type="submit" class="btn btn-primary" style="margin-top: 30px;">로그인</button>
 											
-											</form>
+											</form> --%>
 										
-											<%-- <form:form modelAttribute="empVO" method="post">
+											<form:form modelAttribute="empVO" method="post">
 											  <div class="form-group">
-											  	<form:label path="empNo">사원번호</form:label>
-												<form:input  id="empNo" path="empNo" cssClass="form-control"/>					
-											  	<form:errors path="empNo"></form:errors>
+											  	<form:label path="username">아이디</form:label>
+												<form:input  id="username" path="username" cssClass="form-control"/>					
+											  	<form:errors path="username"></form:errors>
 											  </div>
 											  <div class="form-group">
 											  	<form:label path="password">비밀번호</form:label>
@@ -64,7 +64,7 @@
 											  </div>
 											  	  				  			  				  				          		
 											  <button type="submit" class="btn btn-primary" style="margin-top: 30px;">로그인</button>
-							        		</form:form> --%>	
+							        		</form:form>	
 										</div>
 						              <!-- <form id="formAuthentication" modelAttribute="com.vet.main.emp.EmpVO" class="mb-3" action="/" method="POST">
 						                <div class="mb-3">
