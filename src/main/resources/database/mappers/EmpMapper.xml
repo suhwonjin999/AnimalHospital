@@ -5,8 +5,11 @@
 
 <mapper namespace="com.vet.main.emp.EmpDAO">
 
-	<select id="getEmp" parameterType="com.vet.main.emp.EmpVO" resultType="com.vet.main.emp.EmpVO">
-		SELECT * FROM EMP WHERE EMPNO=#{empNo}
+	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
+		SELECT 
+		FROM EMP E LEFT JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		WHERE E.EMPNO=#{empNo}
 	</select>
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
@@ -88,7 +91,7 @@
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO EMP 
-		VALUES (NULL, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, #{enabled})
+		VALUES (NULL, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0, 1)
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">

@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +21,15 @@ public class EmpService implements UserDetailsService{
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	public void registerUser(EmpVO empVO) {
+	    String hashedPassword = passwordEncoder.encode(empVO.getPassword());
+	    String empNo = empVO.getEmpNo();
+	    empVO.setPassword(hashedPassword);
+	    empVO.setEmpNo(empNo);
+	    empDAO.save(empVO);
+	}
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {

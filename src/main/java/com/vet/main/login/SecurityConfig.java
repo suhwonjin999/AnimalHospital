@@ -25,7 +25,10 @@ public class SecurityConfig {
 	
 	@Bean
 	public PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		System.out.println("PasswordEncoder Bean Created: " + passwordEncoder);
+	    return passwordEncoder;
+
 	}
 	
 	@Bean
@@ -53,8 +56,8 @@ public class SecurityConfig {
 					.csrf()
 					.disable()
 				.authorizeRequests()
-				/* .antMatchers("/*").permitAll() */
-					.antMatchers("/").hasAnyRole("ADMIN","USER")
+					.antMatchers("/*").permitAll() 
+				/* .antMatchers("/emp/*").hasAnyRole("ADMIN","USER") */
 				/* .anyRequest().authenticated() */
 					.and()
 				.formLogin()
