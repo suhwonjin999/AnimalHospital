@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -21,33 +22,35 @@
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page" style="align-items:center;">
+			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${vo.name}의 마이페이지</h3>
+					<br><h3 style="/* margin-right: 1200px; */">${user.name}의 마이페이지</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">										
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
+								
 								<table class="table">
 
 									<tr>
 										<td>사번</td>
-										<td>${vo.empNo}</td>
+										<td>${user.empNo}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${vo.name}</td>
+										<td>${user.name}</td>
 									</tr>
 									<tr>
 										<td>부서</td>
-										<td>${vo.deptName}</td>
+										<td>${user.deptName}</td>
 									</tr>
 									<tr>
 										<td>직급</td>
-										<td>${vo.positionName}</td>
+										<td>${user.positionName}</td>
 									</tr>
 
 								</table>							
@@ -57,19 +60,19 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td>${vo.hireDate}</td>
+										<td>${user.hireDate}</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>${vo.email}</td>
+										<td>${user.email}</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td>${vo.phone}</td>
+										<td>${user.phone}</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>${vo.birth}</td>
+										<td>${user.birth}</td>
 									</tr>
 
 								</table>
@@ -77,8 +80,8 @@
 						</div>
 				</div>
 				<!-- Content wrapper -->
-							<a href="/emp/mypageUpdate?empNo=${vo.empNo}" class="btn btn-danger">수정</a>
-							<a href="/emp/pwUpdate?empNo=${vo.empNo}" class="btn btn-danger">비밀번호 변경</a>
+							<a href="/emp/mypageUpdate?empNo=${user.empNo}" class="btn btn-danger">수정</a>
+							<a href="/emp/pwUpdate?empNo=${user.empNo}" class="btn btn-danger">비밀번호 변경</a>
 					</form>
 			</div>
 			<!-- / Layout page -->

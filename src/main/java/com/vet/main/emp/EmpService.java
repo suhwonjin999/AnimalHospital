@@ -51,6 +51,7 @@ public class EmpService implements UserDetailsService{
 	
 	// 비밀번호 변경
 	public int pwUpdate(EmpVO empVO)throws Exception{
+		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
 		int result = empDAO.pwUpdate(empVO);
 		
 		return result;
@@ -91,7 +92,7 @@ public class EmpService implements UserDetailsService{
 		int result = empDAO.empAdd(empVO);
 		Map<String, Object> map = new HashMap<>();
 		map.put("roleNum", 2);
-		map.put("empNo", empVO.getEmpNo());
+		map.put("username", empVO.getUsername());
 		result = empDAO.empRole(map);
 		
 		return result;

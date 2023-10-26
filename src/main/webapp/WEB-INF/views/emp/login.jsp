@@ -53,8 +53,8 @@
 										
 											<form:form modelAttribute="empVO" action="/emp/login" method="POST">
 											  <div class="form-group">
-											  	<form:label path="empNo">아이디</form:label>
-												<form:input  id="empNo" path="empNo" cssClass="form-control"/>					
+											  	<form:label path="username">사원번호</form:label>
+												<form:input  id="username" path="username" cssClass="form-control"/>					
 											 
 											  </div>
 											  <div class="form-group">

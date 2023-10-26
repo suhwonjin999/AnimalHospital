@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -27,13 +28,11 @@
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<c:if test="${empty emp}">
-							<a href="/emp/login" class="btn btn-danger" style="">로그인</a>	
-						</c:if>
-						<c:if test="${not empty emp}">
+					<sec:authentication property="Principal" var="user"/>	
+						<sec:authorize access="isAuthenticated()">
 							<a href="/emp/logout" class="btn btn-danger" style="">로그아웃</a>	
-						</c:if>	
-						<a href="/emp/pwUpdate?username=${emp.username}" class="btn btn-danger" style="">비밀번호 변경</a>	
+							<a href="/emp/pwUpdate?username=${user.username}" class="btn btn-danger" style="">비밀번호 변경</a>	
+						</sec:authorize>
 					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

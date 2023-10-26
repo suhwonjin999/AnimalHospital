@@ -7,24 +7,25 @@
 
 	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
 		SELECT E.*,MR.*,R.*
-		FROM MEMBER E INNER JOIN MEMBER_ROLE MR
-		ON E.EMPNO = MR.EMPNO
+		FROM EMP E INNER JOIN EMP_ROLE MR
+		ON E.USERNAME = MR.USERNAME
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
 	</select>
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
 		SELECT E.*,MR.*,R.*
-		FROM MEMBER E INNER JOIN MEMBER_ROLE MR
-		ON E.EMPNO = MR.EMPNO
+		FROM EMP E INNER JOIN EMP_ROLE MR
+		ON E.USERNAME = MR.USERNAME
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
 	</select>
 
 	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
-		<id column="EMPNO" property="empNo"/>
+		<id column="USERNAME" property="username"/>
+		<result column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -49,16 +50,16 @@
 
 	<select id="mypage" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
   		SELECT E.*, P.*, D.* 
-		FROM MEMBER E INNER JOIN POSITION P 
+		FROM EMP E INNER JOIN POSITION P 
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
   	</select>
 
 	<select id="empList" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
 		SELECT E.*, P.*, D.*  
-		FROM MEMBER E INNER JOIN POSITION P 
+		FROM EMP E INNER JOIN POSITION P 
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
@@ -66,7 +67,8 @@
 	</select>
 	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
-		<id column="EMPNO" property="empNo"/>
+		<id column="USERNAME" property="username"/>
+		<result column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -83,27 +85,31 @@
 		<result column="RANDOMPW" property="randomPw"/>
 	</resultMap>
 
+
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
-		INSERT INTO MEMBER 
-		VALUES (#{empNo}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+	<selectKey keyProperty="empNo" resultType="string" order="BEFORE">
+	        select NEXTVAL(emp_seq) from dual
+	</selectKey>
+		INSERT INTO EMP 
+		VALUES (#{username}, #{empNo}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
 	</insert>
 
 	<insert id="empRole" parameterType="java.util.Map">
-		INSERT INTO MEMBER_ROLE
-		VALUES(#{empNo}, #{roleNum})
+		INSERT INTO EMP_ROLE
+		VALUES(#{username}, #{roleNum})
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
   		SELECT E.*, P.*, D.* 
-		FROM MEMBER E INNER JOIN POSITION P 
+		FROM EMP E INNER JOIN POSITION P 
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
   	</select>
   	
   	<update id="empUpdate" parameterType="com.vet.main.emp.EmpVO">
-  		UPDATE MEMBER E JOIN DEPARTMENT D
+  		UPDATE EMP E JOIN DEPARTMENT D
   		ON E.DEPTNO = D.DEPTNO
   		JOIN POSITION P
   		ON E.POSITIONNO = P.POSITIONNO
@@ -112,25 +118,25 @@
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
   		E.STATE = #{state}
-  		WHERE E.EMPNO=#{empNo}	
+  		WHERE E.USERNAME=#{username}	
   	</update>
   	
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
-  		UPDATE MEMBER 
+  		UPDATE EMP 
   		SET
   		PASSWORD = #{password},
   		RANDOMPW = 1	
-  		WHERE EMPNO=#{empNo}
+  		WHERE USERNAME=#{username}
   	</update>
   	
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
-  		UPDATE MEMBER
+  		UPDATE EMP
   		SET
   		PASSWORD = #{password},
   		EMAIL = #{email},
   		PHONE = #{phone},
   		ORIGINALFILENAME = #{originalFileName},
   		FILENAME = #{fileName}
-  		WHERE EMPNO=#{empNo}		
+  		WHERE USERNAME=#{username}		
   	</update>
 </mapper>

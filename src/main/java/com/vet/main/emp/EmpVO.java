@@ -19,7 +19,7 @@ import lombok.ToString;
 public class EmpVO implements UserDetails{
 
 	//emp
-	private String empNo;
+	private String username;
 	private String password;
 	private String name;
 	private String email;
@@ -32,6 +32,7 @@ public class EmpVO implements UserDetails{
 	private String deptNo;
 	private String state;
 	private Date birth;
+	private String empNo;
 	
 	//position
 	private String positionName;
