@@ -30,5 +30,21 @@ public class MedicineService {
 		
 		return result;
 	}
-
+	
+	//약품상세
+	public MedicineVO getDetail(MedicineVO medicineVO) throws Exception {
+		return medicineDAO.getDetail(medicineVO);
+	}
+	
+	//약품수정 
+	public int setUpdate(MedicineVO medicineVO) throws Exception {
+		int result = medicineDAO.setUpdate(medicineVO);
+		
+		return result;
+	}
+	
+	//약품삭제
+	public int setDelete(MedicineVO medicineVO) throws Exception {
+		return medicineDAO.setDelete(medicineVO);
+	}
 }

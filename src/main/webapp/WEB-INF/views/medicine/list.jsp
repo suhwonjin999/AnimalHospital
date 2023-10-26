@@ -31,7 +31,7 @@
 						<thead style="height: 70px;">
 							<tr>
 								<th>약품번호</th>
-						        <th>이름</th>
+						        <th>약품명</th>
 						        <th>재고</th>
 						        <th>입고일</th>
 						        <th>유통기한</th>
@@ -98,9 +98,7 @@
     					<div>
     						<a href="./add" class="btn btn-primary" style="width: 120px; height: 40px; color: white;">약품등록</a>
     					</div>
-					</div>
-					
-					
+					</div>	
 				</div>
 				
 				<!-- Content wrapper -->

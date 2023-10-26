@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>약품추가페이지</title>
+<title>약품수정페이지</title>
 
 </head>
 <body>
@@ -23,41 +23,43 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">약품추가</h3>
+					<br><h3 style="/* margin-right: 1200px; */">약품수정</h3>
 				<div class="card shadow mb-4" style="box-sizing: content-box;">
 				
 					<section class="container mt-5">
-						<form action="./add" method="POST">
-
-					<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">	
-						<div style="width: 550px; margin-top: 20px; float: left;">
-							<table class="table">
-								<tr>
-									<td>약품명</td>
-									<td><input type="text" name="name" class="form-control" id="name" placeholder="약품이름을 입력하세요."></td>
-								</tr>
-								<tr>
-									<td>재고</td>
-									<td><input type="text" name="stock" class="form-control" id="stock"></td>
-								</tr>
-								<!-- <tr>	
-									<td>입고일</td>
-									<td><input type="date" name="medicineDate" class="form-control" id="medicineDate"></td>
-								</tr> -->
-								<tr>
-									<td>유통기한</td>
-									<td><input type="date" name="expirationDate" class="form-control" id="expirationDate"></td>
-								</tr>
-								
-							</table>
-							<button type="submit" class="btn btn-primary" style="float:right">약품등록</button>
-						</div>
-					</div>
-					
-					</form>
+						<form action="./update" method="POST">
+						
+							<input type="hidden" name="medicineNo" value="${vo.medicineNo}">
+	
+							<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">	
+								<div style="width: 550px; margin-top: 20px; float: left;">
+									<table class="table">
+										
+										<tr>
+											<td>약품명</td>
+											<td>${vo.name}</td>
+										</tr>
+										
+										<tr>
+											<td>재고</td>
+											<td><input type="text" name="stock" class="form-control" id="stock" value="${vo.stock}"></td>
+										</tr>
+										<tr>	
+											<td>입고일</td>
+											<td><input type="date" name="medicineDate" class="form-control" id="medicineDate" value="${vo.medicineDate}"></td>
+										</tr>
+										<tr>
+											<td>유통기한</td>
+											<td><input type="date" name="expirationDate" class="form-control" id="expirationDate" value="${vo.expirationDate}"></td>
+										</tr>
+										
+									</table>
+									<button class="btn btn-primary" style="float:right">수정</button>
+								</div>
+							</div>
+						</form>
 					</section>
 				</div>
-				
 			</div>
 			<!-- / Layout page -->
 		</div>
@@ -66,6 +68,6 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-
+    
 </body>
 </html>

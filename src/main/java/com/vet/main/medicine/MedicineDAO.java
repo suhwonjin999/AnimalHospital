@@ -16,4 +16,13 @@ public interface MedicineDAO {
 	
 	//약품 추가
 	public int setAdd(MedicineVO medicineVO) throws Exception;
+	
+	//약품 상세
+	public MedicineVO getDetail(MedicineVO medicineVO) throws Exception;
+	
+	//약품 수정
+	public int setUpdate(MedicineVO medicineVO) throws Exception;
+	
+	//약품 삭제
+	public int setDelete(MedicineVO medicineVO) throws Exception;
 }

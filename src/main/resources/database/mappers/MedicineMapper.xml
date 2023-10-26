@@ -22,6 +22,7 @@
 	  			Like #{pattern}
 	  	</select>
 		
+		<!-- 약품목록 -->
 		<select id="getList" resultType="MedicineVO" parameterType="MedicineVO">
 			SELECT * FROM MEDICINE
 				WHERE
@@ -31,8 +32,28 @@
 				LIMIT #{startRow}, #{perPage}
 		</select>
 		
+		<!-- 약품추가 -->
 		<insert id="setAdd" parameterType="MedicineVO">
 			INSERT INTO MEDICINE (MEDICINENO, NAME, STOCK, MEDICINEDATE, EXPIRATIONDATE)
-				VALUES (NULL, #{name}, #{stock}, now(), INTERVAL 1 YEAR)
+				VALUES (NULL, #{name}, #{stock}, now(), #{expirationDate})
 		</insert>
+		
+		<!-- 약품상세 -->
+		<select id="getDetail" parameterType="MedicineVO">
+			SELECT * FROM MEDICINE WHERE MEDICINENO = #{medicineNo}
+		</select>
+		
+		<!-- 약품수정 -->
+		<update id="setUpdate" parameterType="MedicineVO">
+			UPDATE MEDICINE SET 
+				STOCK = #{stock},
+				MEDICINEDATE = #{medicineDate},
+				EXPIRATIONDATE = #{expirationDate}
+			WHERE MEDICINENO = #{medicineNo}
+		</update>
+		
+		<!-- 약품삭제 -->
+		<delete id="setDelete" parameterType="MedicineVO">
+			DELETE FROM MEDICINE WHERE MEDICINENO = #{medicineNo}
+		</delete>
 	</mapper>

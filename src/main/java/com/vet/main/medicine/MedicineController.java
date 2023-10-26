@@ -44,4 +44,37 @@ public class MedicineController {
 		
 		return "redirect:./list";
 	}
+	
+	//약품상세
+	@GetMapping("detail")
+	public String getDetail(MedicineVO medicineVO, Model model) throws Exception {
+		medicineVO = medicineService.getDetail(medicineVO);
+		model.addAttribute("vo", medicineVO);
+		
+		return "medicine/detail";
+	}
+	
+	//약품수정
+	@GetMapping("update")
+	public String setUpdate(MedicineVO medicineVO, Model model) throws Exception {
+		medicineVO = medicineService.getDetail(medicineVO);
+		model.addAttribute("vo", medicineVO);
+		
+		return "medicine/update";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(MedicineVO medicineVO) throws Exception {
+		int result = medicineService.setUpdate(medicineVO);
+		
+		return "redirect:./list";
+	}
+	
+	//약품삭제
+	@GetMapping("delete")
+	public String setDelete(MedicineVO medicineVO) throws Exception {
+		int result = medicineService.setDelete(medicineVO);
+		
+		return "redirect:./list";
+	}
 }
