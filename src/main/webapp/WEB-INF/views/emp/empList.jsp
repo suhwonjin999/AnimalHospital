@@ -46,8 +46,8 @@
 							<tr>
 								<%-- <td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
 								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td> --%>
-								<td><a href="./empDetail?username=${vo.username}" style="color: #697a8d;">${vo.username}</a></td>
-								<td><a href="./empDetail?username=${vo.username}" style="color: #697a8d;">${vo.name}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td>
 								<td>${vo.deptName}</td>
 								<td>${vo.positionName}</td>
 								<td>${vo.email}</td>

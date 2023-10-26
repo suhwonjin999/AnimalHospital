@@ -20,7 +20,6 @@ public class EmpVO implements UserDetails{
 
 	//emp
 	private String empNo;
-	private String username;
 	private String password;
 	private String name;
 	private String email;
@@ -62,7 +61,7 @@ public class EmpVO implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return username;
+		return empNo;
 	}
 	
 	@Override

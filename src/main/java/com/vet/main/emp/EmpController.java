@@ -27,8 +27,8 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-//	@GetMapping("info")
-//	public void getInfo(HttpSession session)throws Exception{
+//	@GetMapping("mypage")
+//	public void getMypage()throws Exception{
 //		//1. DB에서 사용자 정보를 조회해서 JSP로 보내는 방법
 //		
 //	}

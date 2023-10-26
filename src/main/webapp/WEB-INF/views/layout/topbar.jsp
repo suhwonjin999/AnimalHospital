@@ -46,10 +46,10 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <c:if test="${not empty emp}">
+                      <c:if test="${not empty empVO}">
                        	 <img src="/resources/images/kong.jpg" alt class="w-px-40 h-auto rounded-circle" />
                       </c:if>
-                      <c:if test="${empty emp}">
+                      <c:if test="${empty empVO}">
                          <img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
                       </c:if>
                     </div>
@@ -60,10 +60,10 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <c:if test="${not empty emp}">
+                              <c:if test="${not empty empVO}">
                               	<img src="/resources/images/kong.jpg" alt class="w-px-40 h-auto rounded-circle" />
                               </c:if>
-                              <c:if test="${empty emp}">
+                              <c:if test="${empty empVO}">
                               	<img src="/resources/images/default.jpeg" alt class="w-px-40 h-auto rounded-circle" />
                               </c:if>
                             </div>
@@ -79,7 +79,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/emp/mypage?empNo=${emp.empNo}">
+                      <a class="dropdown-item" href="/emp/mypage?empNo=${empVO.empNo}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Page</span>
                       </a>

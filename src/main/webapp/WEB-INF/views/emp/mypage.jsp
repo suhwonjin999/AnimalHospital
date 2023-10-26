@@ -24,7 +24,7 @@
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${emp.name}의 마이페이지</h3>
+					<br><h3 style="/* margin-right: 1200px; */">${vo.name}의 마이페이지</h3>
 				<div class="card shadow mb-4" style="width: 1400px;">										
 							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
 								<div style="width: 300px; float: left;">
@@ -35,11 +35,11 @@
 
 									<tr>
 										<td>사번</td>
-										<td>${emp.username}</td>
+										<td>${vo.empNo}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${emp.name}</td>
+										<td>${vo.name}</td>
 									</tr>
 									<tr>
 										<td>부서</td>
@@ -57,19 +57,19 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td>${emp.hireDate}</td>
+										<td>${vo.hireDate}</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>${emp.email}</td>
+										<td>${vo.email}</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td>${emp.phone}</td>
+										<td>${vo.phone}</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>${emp.birth}</td>
+										<td>${vo.birth}</td>
 									</tr>
 
 								</table>

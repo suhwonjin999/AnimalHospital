@@ -27,12 +27,12 @@ public class EmpService implements UserDetailsService{
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
 		log.info("=========로그인 시도 중==========");
 		EmpVO empVO = new EmpVO();
-		empVO.setUsername(username);
+		empVO.setEmpNo(empNo);
 		try {
-			empVO = empDAO.getLogin(username);
+			empVO = empDAO.getLogin(empNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			empVO=null;
@@ -91,7 +91,7 @@ public class EmpService implements UserDetailsService{
 		int result = empDAO.empAdd(empVO);
 		Map<String, Object> map = new HashMap<>();
 		map.put("roleNum", 2);
-		map.put("username", empVO.getUsername());
+		map.put("empNo", empVO.getEmpNo());
 		result = empDAO.empRole(map);
 		
 		return result;

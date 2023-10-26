@@ -8,23 +8,23 @@
 	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
 		SELECT E.*,MR.*,R.*
 		FROM MEMBER E INNER JOIN MEMBER_ROLE MR
-		ON E.USERNAME = MR.USERNAME
+		ON E.EMPNO = MR.EMPNO
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
-		WHERE E.USERNAME=#{username}
+		WHERE E.EMPNO=#{empNo}
 	</select>
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
 		SELECT E.*,MR.*,R.*
 		FROM MEMBER E INNER JOIN MEMBER_ROLE MR
-		ON E.USERNAME = MR.USERNAME
+		ON E.EMPNO = MR.EMPNO
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
-		WHERE E.USERNAME=#{username}
+		WHERE E.EMPNO=#{empNo}
 	</select>
 
 	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
-		<id column="USERNAME" property="username"/>
+		<id column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -39,7 +39,6 @@
 		<result column="DEPTNO" property="deptNo"/>
 		<result column="BIRTH" property="birth"/>
 		<result column="RANDOMPW" property="randomPw"/>
-		<!-- <result column="USERNAME" property="username"/> -->
 		
 		<collection property="roleVOs" javaType="List" ofType="com.vet.main.emp.RoleVO">
 			<id column="ROLENUM" property="roleNum"/>
@@ -54,7 +53,7 @@
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		WHERE E.USERNAME=#{username}
+		WHERE E.EMPNO=#{empNo}
   	</select>
 
 	<select id="empList" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
@@ -67,7 +66,7 @@
 	</select>
 	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
-		<id column="USERNAME" property="username"/>
+		<id column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -82,23 +81,16 @@
 		<result column="DEPTNO" property="deptNo"/>
 		<result column="BIRTH" property="birth"/>
 		<result column="RANDOMPW" property="randomPw"/>
-		<!-- <result column="ENABLED" property="enabled"/> -->
-		
-		<!-- <collection property="roleVOs" javaType="List" ofType="RoleVO">
-			<id column="POSITIONNO" property="positionNo"/>
-			<result column="POSITIONNAME" property="positionName"/>
-			<result column="ROLE" property="role"/>		
-		</collection> -->
 	</resultMap>
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
 		INSERT INTO MEMBER 
-		VALUES (#{username}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+		VALUES (#{empNo}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
 	</insert>
 
 	<insert id="empRole" parameterType="java.util.Map">
 		INSERT INTO MEMBER_ROLE
-		VALUES(#{username}, #{roleNum})
+		VALUES(#{empNo}, #{roleNum})
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
@@ -107,7 +99,7 @@
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		WHERE E.USERNAME=#{username}
+		WHERE E.EMPNO=#{empNo}
   	</select>
   	
   	<update id="empUpdate" parameterType="com.vet.main.emp.EmpVO">
@@ -120,7 +112,7 @@
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
   		E.STATE = #{state}
-  		WHERE E.USERNAME=#{username}	
+  		WHERE E.EMPNO=#{empNo}	
   	</update>
   	
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
@@ -128,7 +120,7 @@
   		SET
   		PASSWORD = #{password},
   		RANDOMPW = 1	
-  		WHERE USERNAME=#{username}
+  		WHERE EMPNO=#{empNo}
   	</update>
   	
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
@@ -139,6 +131,6 @@
   		PHONE = #{phone},
   		ORIGINALFILENAME = #{originalFileName},
   		FILENAME = #{fileName}
-  		WHERE USERNAME=#{username}		
+  		WHERE EMPNO=#{empNo}		
   	</update>
 </mapper>

@@ -41,7 +41,7 @@
 										</tr>
 										<tr>
 											<td>아이디</td>
-											<td><input type="username" class="form-control" name="username" id="username"></td>
+											<td><input type="text" class="form-control" name="empNo" id="empNo"></td>
 										</tr>
 										<tr>
 											<td>비밀번호</td>

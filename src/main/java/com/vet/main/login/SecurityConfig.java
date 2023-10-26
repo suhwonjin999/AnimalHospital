@@ -60,6 +60,7 @@ public class SecurityConfig {
 				.and()
 			.formLogin()
 				.loginPage("/emp/login")
+				.usernameParameter("empNo")
 				.defaultSuccessUrl("/")
 				.failureUrl("/emp/login")
 				.permitAll()
