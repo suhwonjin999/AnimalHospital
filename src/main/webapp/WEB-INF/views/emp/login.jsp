@@ -51,19 +51,19 @@
 											
 											</form> --%>
 										
-											<form:form modelAttribute="empVO" method="post">
+											<form:form modelAttribute="empVO" action="/emp/login" method="POST">
 											  <div class="form-group">
 											  	<form:label path="username">아이디</form:label>
 												<form:input  id="username" path="username" cssClass="form-control"/>					
-											  	<form:errors path="username"></form:errors>
+											 
 											  </div>
 											  <div class="form-group">
 											  	<form:label path="password">비밀번호</form:label>
 											    <form:password id="password" path="password" cssClass="form-control"/>
-											    <form:errors path="password"></form:errors>
+											  
 											  </div>
-											  	  				  			  				  				          		
-											  <button type="submit" class="btn btn-primary" style="margin-top: 30px;">로그인</button>
+											  <form:button>로그인</form:button>  				  			  				  				          		
+											  <!-- <button type="submit" class="btn btn-primary" style="margin-top: 30px;">로그인</button> -->
 							        		</form:form>	
 										</div>
 						              <!-- <form id="formAuthentication" modelAttribute="com.vet.main.emp.EmpVO" class="mb-3" action="/" method="POST">

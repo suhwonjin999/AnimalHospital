@@ -19,16 +19,19 @@ import com.vet.main.emp.EmpService;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	@Autowired
-	private LoginSuccessHandler successHandler;
+//	@Autowired
+//	private LoginSuccessHandler successHandler;
 	
 	//암호를 인코딩하거나 인코딩된 암호와 사용자가 입력한 암호가 같은지 확인할때 사용
-	@Bean
-	public PasswordEncoder encoder() {
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	    return passwordEncoder;
-
-	}
+//	@Bean
+//	public PasswordEncoder encoder() {
+//		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//	    return passwordEncoder;
+//
+//	}
+	@Autowired
+	private EmpService empService;
+	
 	
 	@Bean
 	WebSecurityCustomizer webSecurityCustomizer() {

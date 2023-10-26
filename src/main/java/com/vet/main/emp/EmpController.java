@@ -25,13 +25,13 @@ import lombok.extern.slf4j.Slf4j;
 public class EmpController {
 
 	@Autowired
-	EmpService empService = new EmpService();
+	private EmpService empService;
 	
-	@GetMapping("info")
-	public void getInfo(HttpSession session)throws Exception{
-		//1. DB에서 사용자 정보를 조회해서 JSP로 보내는 방법
-		
-	}
+//	@GetMapping("info")
+//	public void getInfo(HttpSession session)throws Exception{
+//		//1. DB에서 사용자 정보를 조회해서 JSP로 보내는 방법
+//		
+//	}
 	
 //	public void getLogin3(@AuthenticationPrincipal EmpVO empVO) {
 //		
@@ -44,7 +44,7 @@ public class EmpController {
 	@GetMapping("login")
 	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
 		//SecurityContext context = SecurityContextHolder.getContext();
-		
+
 		return "emp/login";
 	}
 	

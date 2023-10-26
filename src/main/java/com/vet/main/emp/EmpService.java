@@ -24,7 +24,7 @@ public class EmpService implements UserDetailsService{
 	private EmpDAO empDAO;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -89,10 +89,10 @@ public class EmpService implements UserDetailsService{
 	public int empAdd(EmpVO empVO) throws Exception{
 		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
 		int result = empDAO.empAdd(empVO);
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("positionNo", 12);
-//		map.put("empNo", empVO.getEmpNo());
-//		result = empDAO.empRole(map);
+		Map<String, Object> map = new HashMap<>();
+		map.put("roleNum", 2);
+		map.put("username", empVO.getUsername());
+		result = empDAO.empRole(map);
 		
 		return result;
 	}

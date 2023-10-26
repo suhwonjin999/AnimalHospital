@@ -20,6 +20,7 @@ public class EmpVO implements UserDetails{
 
 	//emp
 	private String empNo;
+	private String username;
 	private String password;
 	private String name;
 	private String email;
@@ -32,7 +33,6 @@ public class EmpVO implements UserDetails{
 	private String deptNo;
 	private String state;
 	private Date birth;
-	private String username;
 	
 	//position
 	private String positionName;
@@ -53,7 +53,7 @@ public class EmpVO implements UserDetails{
 		List<GrantedAuthority> authorities = new ArrayList<>();
 
 		for(RoleVO roleVO: roleVOs) {
-			authorities.add(new SimpleGrantedAuthority(roleVO.getRole()));
+			authorities.add(new SimpleGrantedAuthority(roleVO.getRoleName()));
 		}
 		
 		return authorities;
