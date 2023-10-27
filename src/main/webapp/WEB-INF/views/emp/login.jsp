@@ -31,7 +31,7 @@
 						            <div class="card-body">
 						              <!-- Logo -->
 						              <div class="app-brand justify-content-center">
-						                <a href="/" class="app-brand-link gap-2">
+						                <a href="#" class="app-brand-link gap-2">
 						                  <img alt="" src="/resources/images/jisun3.png" style="width: 40px;" height="40px;">
 						                  <span class="app-brand-text demo text-body fw-bolder">Animal Hospital</span>
 						                </a>
