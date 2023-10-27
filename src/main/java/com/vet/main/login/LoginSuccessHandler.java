@@ -32,11 +32,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
                     } else {
                         response.sendRedirect("/");
                     }
-                    return; 
+                    return ; 
                 }
             }
         }
+		response.sendRedirect("/");
     }
-	
 	
 }

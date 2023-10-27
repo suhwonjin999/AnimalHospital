@@ -63,22 +63,6 @@ public class EmpService implements UserDetailsService{
 		return empDAO.mypage(empVO);
 	}
 
-//	// 로그인 
-//	public EmpVO getLogin(EmpVO empVO)throws Exception{
-//		EmpVO loginVO = empDAO.getEmp(empVO);
-//		
-//		if(loginVO == null) {
-//			return loginVO;
-//		}
-//		
-//		if(loginVO.getPassword().equals(empVO.getPassword())) {
-//			return loginVO;
-//		}
-//		
-//		return null;
-//	}
-	
-
 	
 	// 사원 관리(직원 목록)
 	public List<EmpVO> empList()throws Exception{

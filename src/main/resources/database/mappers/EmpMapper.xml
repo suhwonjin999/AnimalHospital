@@ -139,11 +139,8 @@
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP
   		SET
-  		PASSWORD = #{password},
   		EMAIL = #{email},
   		PHONE = #{phone},
-  		ORIGINALFILENAME = #{originalFileName},
-  		FILENAME = #{fileName}
   		WHERE USERNAME=#{username}		
   	</update>
 </mapper>

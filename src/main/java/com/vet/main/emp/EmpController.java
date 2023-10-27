@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,18 +26,6 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-//	@GetMapping("mypage")
-//	public void getMypage()throws Exception{
-//		//1. DB에서 사용자 정보를 조회해서 JSP로 보내는 방법
-//		
-//	}
-	
-//	public void getLogin3(@AuthenticationPrincipal EmpVO empVO) {
-//		
-//		String empNo = empVO.getEmpNo();
-//		String password = empVO.getPassword();
-//	}
-	
 	// 로그인 페이지
 	
 	@GetMapping("login")
@@ -44,30 +34,6 @@ public class EmpController {
 
 		return "emp/login";
 	}
-	
-//	@GetMapping("login")
-//	public String getLogin(@ModelAttribute EmpVO empVO)throws Exception{
-//		SecurityContext context = SecurityContextHolder.getContext();
-//		String check = context.getAuthentication().getPrincipal().toString();
-//		
-//		if(!check.equals("anonymousUser")) {
-//			return "redirect:../";
-//		}
-//		
-//		return "emp/login";
-//	}
-//	
-//	@PostMapping("login")
-//	public String getLogin2(EmpVO empVO, HttpSession session)throws Exception{
-//		empVO = empService.getLogin(empVO);
-//		
-//		if(empVO != null) {
-//			session.setAttribute("emp", empVO);
-//			return "redirect:../";
-//		}
-//		
-//		return "./login";
-//	}
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception {
@@ -79,17 +45,25 @@ public class EmpController {
 	
 	// 마이페이지 수정
 	@GetMapping("mypageUpdate")
-	public String mypageUpdate(EmpVO empVO, Model model)throws Exception{
-		empVO = empService.empDetail(empVO);
-		model.addAttribute("vo", empVO);
-		return "emp/mypageUpdate";
+	public void mypageUpdate(@AuthenticationPrincipal EmpVO empVO, Model model)throws Exception{
+//		empVO = empService.empDetail(empVO);
+//		model.addAttribute("vo", empVO);
+//		return "emp/mypageUpdate";
+		
+		EmpInfo empInfo = new EmpInfo();
+		empInfo.setEmail(empVO.getEmail());
+		empInfo.setPhone(empVO.getPhone());
+		
+		model.addAttribute("empInfo", empInfo);
+		
 	}
 	
 	@PostMapping("mypageUpdate")
-	public String mypageUpdate(EmpVO empVO)throws Exception{
-		int result = empService.mypageUpdate(empVO);
-		
-//		return"redirect:emp/mypage?empNo="+empVO.getEmpNo();
+	public String mypageUpdate(@Valid EmpInfo empInfo, BindingResult bindingResult)throws Exception{
+
+		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		EmpVO empVO = (EmpVO)obj;
+		log.info("empInfo: {}",empInfo);
 		return "redirect:../";
 	}
 	

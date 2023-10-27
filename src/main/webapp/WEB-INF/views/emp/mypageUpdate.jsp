@@ -4,6 +4,7 @@
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -24,7 +25,7 @@
 			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-			<form action="mypageUpdate" method="post" enctype="multipart/form-data">
+				
 			<sec:authentication property="Principal" var="vo"/>
 				<div class="content-wrapper">
 					<!-- Content -->
@@ -62,6 +63,7 @@
 							</div>
 							<br>
 							<div>
+							<form:form modelAttribute="empInfo" method="post" enctype="multipart/form-data">
 								<table class="table">
 									<tr>
 										<td>입사일</td>
@@ -69,11 +71,19 @@
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td><input type="email" id="email" name="email" value="${vo.email}"></td>
+										<td>
+											<div class="form-group">											
+												<form:input id="email" path="email" name="email" cssClass="form-control"/>										
+											</div>
+										</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td><input type="text" id="phone" name="phone" value="${vo.phone}"></td>
+										<td>
+											<div class="form-group">				
+												<form:input id="phone" path="phone" name="phone" cssClass="form-control"/>				
+											</div>
+										</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
@@ -81,14 +91,16 @@
 									</tr>
 
 								</table>
+								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
+								</form:form>
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-danger" id="btn_update">수정완료</button>
+					<!-- <button type="submit" class="btn btn-danger" id="btn_update">수정완료</button> -->
 					<!-- / Content -->
 					</div>
 				</div>
-				</form>
+				
 				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->
