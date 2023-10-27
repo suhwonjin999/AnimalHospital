@@ -32,11 +32,10 @@
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
-								<input type="hidden" name="username" value="${vo.empNo}">
 								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td>${vo.empNo}</td>
+										<td>${vo.username}</td>
 									</tr>
 									<tr>
 										<td>이름</td>

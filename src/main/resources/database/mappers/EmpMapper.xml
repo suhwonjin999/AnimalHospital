@@ -15,11 +15,15 @@
 	</select>
 
 	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
-		SELECT E.*,MR.*,R.*
+		SELECT E.*,MR.*,R.*,P.POSITIONNAME,D.DEPTNAME
 		FROM EMP E INNER JOIN EMP_ROLE MR
 		ON E.USERNAME = MR.USERNAME
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
+		INNER JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		INNER JOIN DEPARTMENT D
+		ON E.DEPTNO = D.DEPTNO
 		WHERE E.USERNAME=#{username}
 	</select>
 
@@ -40,11 +44,13 @@
 		<result column="DEPTNO" property="deptNo"/>
 		<result column="BIRTH" property="birth"/>
 		<result column="RANDOMPW" property="randomPw"/>
-		
+		<result column="POSITIONNAME" property="positionName"/>
+		<result column="DEPTNAME" property="deptName"/>
 		<collection property="roleVOs" javaType="List" ofType="com.vet.main.emp.RoleVO">
 			<id column="ROLENUM" property="roleNum"/>
 			<result column="ROLENAME" property="roleName"/>	
 		</collection>
+		
 	</resultMap>
 	
 
@@ -64,6 +70,7 @@
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
 		WHERE P.POSITIONNO!=1
+		ORDER BY E.USERNAME DESC
 	</select>
 	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">

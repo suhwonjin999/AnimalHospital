@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,12 +22,13 @@ public class EmpVO implements UserDetails{
 
 	//emp
 	private String username;
+//	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}", message = "확인이 필요합니다.")
 	private String password;
 	private String name;
 	private String email;
 	private String phone;
 	private Date hireDate;
-	private String randomPw;
+	private int randomPw;
 	private String fileName;
 	private String originalFileName;
 	private Long positionNo;

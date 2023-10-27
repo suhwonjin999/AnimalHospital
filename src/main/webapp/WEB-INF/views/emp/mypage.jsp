@@ -80,8 +80,8 @@
 						</div>
 				</div>
 				<!-- Content wrapper -->
-							<a href="/emp/mypageUpdate?empNo=${user.empNo}" class="btn btn-danger">수정</a>
-							<a href="/emp/pwUpdate?empNo=${user.empNo}" class="btn btn-danger">비밀번호 변경</a>
+							<a href="/emp/mypageUpdate?username=${user.username}" class="btn btn-danger">수정</a>
+							<a href="/emp/pwUpdate?username=${user.username}" class="btn btn-danger">비밀번호 변경</a>
 					</form>
 			</div>
 			<!-- / Layout page -->
