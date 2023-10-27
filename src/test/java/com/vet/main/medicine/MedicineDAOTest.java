@@ -18,7 +18,6 @@ class MedicineDAOTest {
 			MedicineVO medicineVO = new MedicineVO();
 			medicineVO.setName("medicine"+i);
 			medicineVO.setStock(20L);
-			medicineVO.setExpirationDate(null);
 			int result = medicineDAO.setAdd(medicineVO);
 			if(i%10 == 0) {
 				Thread.sleep(500);
