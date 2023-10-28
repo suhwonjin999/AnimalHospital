@@ -40,11 +40,11 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
-				    		<form action="poomAdd" id="addFrm" method="post">
+				    		<form action="poomAdd" id="addFrm" method="post" enctype="multipart/form-data">
 				    		
 				    			<div class="mb-3">
-								  <label for="empNo" class="form-label">사번</label>
-								  <input type="hidden" class="form-control" id="empNo" name="empNo" value="${emp.empNo}">
+								  <label for="empNo" class="form-label"></label>
+								  <input type="hidden" class="form-control" id="empNo" name="empNo" value="${user.empNo}">
 								</div>
 				    						    			
 				    			<div class="mb-3">
@@ -76,6 +76,19 @@
 								  <label for="apContents" class="form-label">내용</label>
 								  <textarea class="form-control" id="apContents" name="apContents" rows="3" placeholder="내용을 입력하세요"></textarea>
 								</div>
+								
+			                    <!-- Upload file *************************************** -->
+			                    <div class="mb-1" style="margin:0 auto; width:fit-content;">
+			                        <button type="button" class="btn btn-primary" id="add">File 추가</button>
+			                    </div>
+			        
+			                    <!-- 파일첨부 추가되는 영역 -->
+			                    <div id="fileList" class="my-5">
+			                        <div class="input-group mb-3">
+			                            <input type="file" name="photos" class="form-control">
+			                        </div>
+			        
+			                    </div>
 					
 					    		<div class="row">
 									<div class="demo-inline-spacing">
@@ -128,6 +141,6 @@
 	});
 	</script>
 	
-	<script src="/resources/js/approval/apAdd.js"></script>
+	<script src="/js/approval/apAdd.js"></script>
 </body>
 </html>

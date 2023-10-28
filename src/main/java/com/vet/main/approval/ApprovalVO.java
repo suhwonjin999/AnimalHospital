@@ -3,6 +3,9 @@ package com.vet.main.approval;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
+
+import com.vet.main.emp.EmpVO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +34,7 @@ public class ApprovalVO {
 	private String positionName;
 	private String deptName;
 	private String name;
+	
+	private List<EmpVO> getApUserList;
+	private List<ApprovalFileVO> fileList;
 }

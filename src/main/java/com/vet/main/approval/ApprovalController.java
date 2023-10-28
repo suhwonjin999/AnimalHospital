@@ -13,10 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
+import com.vet.main.commons.Pager;
 import com.vet.main.emp.EmpVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,14 +50,15 @@ public class ApprovalController {
 	}
 	
 	@PostMapping("poomAdd")
-	public String setApPoomAdd(ApprovalVO approvalVO) throws Exception {
+	public String setApPoomAdd(ApprovalVO approvalVO, MultipartFile[] files) throws Exception {
 		
 		log.info("==================== Poom Insert ======================");
 		log.info("====== Poom : {} ======", approvalVO);
+		log.info("files : {}", files[0].getOriginalFilename());
 		
-		int result = approvalService.setApPoomAdd(approvalVO);
+		int result = approvalService.setApPoomAdd(approvalVO, files);
 		
-		return "redirect:./draftList";
+		return "redirect:./draftList/" + approvalVO.getEmpNo();
 	}
 	
 	
@@ -65,14 +69,32 @@ public class ApprovalController {
 	}
 	
 	// 기안함 리스트
-	@GetMapping("draftList")
-	public String getDraftList(EmpVO empVO, Model model) throws Exception {
-		List<ApprovalVO> ar = approvalService.getDraftList(empVO);
+	@GetMapping("draftList/{empNo}")
+	public String getDraftList(@PathVariable String empNo, Pager pager, Model model) throws Exception {
+		List<ApprovalVO> ar = approvalService.getDraftList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
-		log.info("=========== getDraft : {} ===========", ar);
+		log.info("=========== getDraftList : {} ===========", ar);
 		
 		return "approval/draftList";
+	}
+	
+	@GetMapping("detail")
+	public String getApDetail(ApprovalVO approvalVO, Model model) throws Exception {
+
+		approvalVO = approvalService.getApDetail(approvalVO);
+		log.info("=============== detail 정보 : {} ================", approvalVO);
+		
+		if(approvalVO.getApKind().equals("품의서")) {
+			
+			
+			model.addAttribute("approvalVO", approvalVO);
+			
+			return "approval/poomDetail";			
+		}
+		
+		return "approval/poomDetail";	
 	}
 	
 }

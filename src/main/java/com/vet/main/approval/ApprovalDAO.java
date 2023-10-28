@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.vet.main.commons.Pager;
 import com.vet.main.emp.EmpVO;
+import com.vet.main.file.FileVO;
 
 @Mapper
 public interface ApprovalDAO {
@@ -16,7 +18,15 @@ public interface ApprovalDAO {
 	public int setApPoomAdd(ApprovalVO approvalVO) throws Exception;
 	
 	// 기안함 리스트
-	public List<ApprovalVO> getDraftList(EmpVO empVO) throws Exception;
+	public List<ApprovalVO> getDraftList(Pager pager) throws Exception;
 	
+	public Long getTotal(Pager pager) throws Exception;
+	
+	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception;
+	
+	// file
+	public int setApFileAdd(FileVO fileVO) throws Exception;
+	
+
 	
 }
