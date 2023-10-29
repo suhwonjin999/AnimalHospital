@@ -67,7 +67,7 @@ public class EmpVO implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return empNo;
+		return username;
 	}
 	
 	@Override

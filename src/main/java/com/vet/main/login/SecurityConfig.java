@@ -51,6 +51,7 @@ public class SecurityConfig {
 			.authorizeHttpRequests()
 				.antMatchers("/resources/images/*").permitAll()
 				.antMatchers("/**").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/emp/empUpdate").hasRole("ADMIN")
 				.and()
 			.formLogin()
 				.loginPage("/emp/login")
@@ -63,9 +64,17 @@ public class SecurityConfig {
 				.logoutSuccessUrl("/emp/login")
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")
-				.permitAll();
-
-		
+				.permitAll()
+				.and()
+				.rememberMe()
+					.tokenValiditySeconds(60)
+					.key("rememberKey")
+					.userDetailsService(empService)
+					.authenticationSuccessHandler(successHandler)
+					.and()
+					
+				.sessionManagement();
+				
 		return httpSecurity.build();
 					
 	}

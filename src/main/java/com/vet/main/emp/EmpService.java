@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class EmpService implements UserDetailsService{
 
@@ -48,11 +47,11 @@ public class EmpService implements UserDetailsService{
 	}
 	
 	//마이페이지 수정
-	public int mypageUpdate(EmpInfo empInfo)throws Exception{
-//		empInfo.setEmail(empInfo.getEmail());
-//		empInfo.setPhone(empInfo.getPhone());
+	public int mypageUpdate(EmpVO empVO)throws Exception{
+		empVO.setEmail(empVO.getEmail());
+		empVO.setPhone(empVO.getPhone());
 		
-		int result = empDAO.mypageUpdate(empInfo);
+		int result = empDAO.mypageUpdate(empVO);
 		
 		return result;
 	}
@@ -74,7 +73,7 @@ public class EmpService implements UserDetailsService{
 	// 신규직원 등록
 	@Transactional(rollbackFor = Exception.class)
 	public int empAdd(EmpVO empVO) throws Exception{
-		empVO.setPassword(passwordEncoder.encode(empVO.getPassword()));
+		empVO.setPassword(passwordEncoder.encode("animal"));
 		int result = empDAO.empAdd(empVO);
 		Map<String, Object> map = new HashMap<>();
 		map.put("roleNum", 2);
@@ -92,6 +91,11 @@ public class EmpService implements UserDetailsService{
 	
 	// 직원 수정
 	public int empUpdate(EmpVO empVO) throws Exception{
+		empVO.setName(empVO.getName());
+		empVO.setDeptNo(empVO.getDeptNo());
+		empVO.setPositionNo(empVO.getPositionNo());
+		empVO.setState(empVO.getState());
+		
 		int result = empDAO.empUpdate(empVO);
 		
 		return result;

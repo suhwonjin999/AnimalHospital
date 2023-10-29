@@ -139,7 +139,7 @@
   		UPDATE EMP
   		SET
   		EMAIL = #{email},
-  		PHONE = #{phone},
+  		PHONE = #{phone}
   		WHERE USERNAME=#{username}		
   	</update>
 </mapper>

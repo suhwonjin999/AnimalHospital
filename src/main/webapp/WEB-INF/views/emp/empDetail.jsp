@@ -88,7 +88,7 @@
 				</div>
 				
 				<!-- Content wrapper -->
-							<a href="/emp/empUpdate?empNo=${vo.empNo}" class="btn btn-danger">수정</a>
+							<a href="/emp/empUpdate?username=${vo.username}" class="btn btn-danger">수정</a>
 					</form>
 			</div>
 			<!-- / Layout page -->

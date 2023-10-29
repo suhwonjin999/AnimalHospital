@@ -31,9 +31,10 @@
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-					<div class="card shadow mb-4">
+					<div class="card shadow mb-4" style="align-items: center;">
 			
-						<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+						<div style="width:900px; margin-bottom: 30px;">
+							<form action="mypageUpdate" method="post">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
@@ -41,7 +42,6 @@
 								<input type="hidden" name="username" value="${vo.username}">
 								<input type="hidden" name="fileName" value="${vo.fileName}">
 								<table class="table">
-									
 									<tr>
 										<td>사번</td>
 										<td>${vo.username}</td>
@@ -68,13 +68,12 @@
 										<td>입사일</td>
 										<td>${vo.hireDate}</td>
 									</tr>
-							<form:form modelAttribute="empInfo" method="post" action="../" enctype="multipart/form-data">
 									<tr>
 										<td>이메일</td>
 										<td>
 											<div class="form-group">
 
-												<form:input path="email" cssClass="form-control" id="email" />
+												<input type="email" name="email" id="email" value="${vo.email}"/>
 
 											</div>
 										</td>
@@ -84,13 +83,12 @@
 										<td>
 											<div class="form-group">
 
-												<form:input path="phone" cssClass="form-control" id="phone" />
+												<input type="text" name="phone" id="phone" value="${vo.phone}"/>
 
 											</div>
 										</td>
 									</tr>
-								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
-								</form:form>
+								
 									<tr>
 										<td>생년월일</td>
 										<td>${vo.birth}</td>
@@ -98,6 +96,8 @@
 
 								</table>
 							</div>
+								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
+								</form>
 						</div>
 					</div>
 					<!-- <button type="submit" class="btn btn-danger" id="btn_update">수정완료</button> -->

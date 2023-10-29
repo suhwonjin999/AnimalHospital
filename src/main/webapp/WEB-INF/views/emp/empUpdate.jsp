@@ -29,10 +29,9 @@
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
-					<form>
+					<form action="empUpdate" method="post" enctype="multipart/form-data">
 							<h3>사원 정보 수정</h3>
 					<div class="card shadow mb-4"  style="align-items: center;">										
-					
 							<div>
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">

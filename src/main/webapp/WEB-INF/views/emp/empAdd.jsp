@@ -36,6 +36,7 @@
 							</div>
 							<div style="width:900px; float: left; margin-bottom: 30px; ">
 								<form action="empAdd" method="post" enctype="multipart/form-data">
+								<input type="hidden" class="form-control" name="password" id="password">
 									<table style="border-color: black;">
 										<tr>
 											<td>이름</td>
@@ -45,14 +46,11 @@
 											<td>이메일</td>
 											<td><input type="email" class="form-control" name="email" id="email"></td>
 										</tr>
-										<!-- <tr>
-											<td>아이디</td>
-											<td><input type="text" class="form-control" name="username" id="username"></td>
-										</tr> -->
-										<tr>
+
+<!-- 										<tr>
 											<td>비밀번호</td>
 											<td><input type="password" class="form-control" name="password" id="password"></td>
-										</tr>
+										</tr> -->
 										<tr>
 											<td>연락처</td>
 											<td><input type="text" class="form-control" name="phone" id="phone"></td>

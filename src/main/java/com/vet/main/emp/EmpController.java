@@ -55,7 +55,7 @@ public class EmpController {
 	@PostMapping("pwUpdate")
 	public String pwUpdate(EmpVO empVO) throws Exception{
 		int result = empService.pwUpdate(empVO);
-		return "redirect:../";
+		return "emp/login";
 	}
 	
 	// 마이페이지
@@ -70,26 +70,22 @@ public class EmpController {
 
 	// 마이페이지 수정
 	@GetMapping("mypageUpdate")
-	public void mypageUpdate(@AuthenticationPrincipal EmpVO empVO, Model model)throws Exception{
-//		empVO = empService.empDetail(empVO);
-//		model.addAttribute("vo", empVO);
-//		return "emp/mypageUpdate";
-		
-		EmpInfo empInfo = new EmpInfo();
-		empInfo.setEmail(empVO.getEmail());
-		empInfo.setPhone(empVO.getPhone());
-		
-		model.addAttribute("empInfo", empInfo);
+	public String mypageUpdate(EmpVO empVO, Model model)throws Exception{
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", empVO);
+		return "emp/mypageUpdate";
 		
 	}
 	
 	@PostMapping("mypageUpdate")
-	public String mypageUpdate(@Valid EmpInfo empInfo, BindingResult bindingResult)throws Exception{
-
-		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		EmpVO empVO = (EmpVO)obj;
-		log.info("empInfo: {}",empInfo);
+	public String mypageUpdate(EmpVO empVO)throws Exception{
+		int result = empService.mypageUpdate(empVO);
 		return "redirect:../";
+		
+//		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		EmpVO empVO = (EmpVO)obj;
+//		log.info("empVO: {}",empVO);
+//		return "redirect:../";
 	}
 	
 //	@GetMapping("mypageUpdate")
