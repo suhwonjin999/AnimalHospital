@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,30 +44,6 @@ public class EmpController {
 		return "redirect:../";
 	}
 	
-	// 마이페이지 수정
-	@GetMapping("mypageUpdate")
-	public void mypageUpdate(@AuthenticationPrincipal EmpVO empVO, Model model)throws Exception{
-//		empVO = empService.empDetail(empVO);
-//		model.addAttribute("vo", empVO);
-//		return "emp/mypageUpdate";
-		
-		EmpInfo empInfo = new EmpInfo();
-		empInfo.setEmail(empVO.getEmail());
-		empInfo.setPhone(empVO.getPhone());
-		
-		model.addAttribute("empInfo", empInfo);
-		
-	}
-	
-	@PostMapping("mypageUpdate")
-	public String mypageUpdate(@Valid EmpInfo empInfo, BindingResult bindingResult)throws Exception{
-
-		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		EmpVO empVO = (EmpVO)obj;
-		log.info("empInfo: {}",empInfo);
-		return "redirect:../";
-	}
-	
 	// 비밀번호 수정페이지
 	@GetMapping("pwUpdate")
 	public String pwUpdate(EmpVO empVO, Model model) throws Exception{
@@ -91,6 +68,49 @@ public class EmpController {
 		return "emp/mypage";
 	}
 
+	// 마이페이지 수정
+	@GetMapping("mypageUpdate")
+	public void mypageUpdate(@AuthenticationPrincipal EmpVO empVO, Model model)throws Exception{
+//		empVO = empService.empDetail(empVO);
+//		model.addAttribute("vo", empVO);
+//		return "emp/mypageUpdate";
+		
+		EmpInfo empInfo = new EmpInfo();
+		empInfo.setEmail(empVO.getEmail());
+		empInfo.setPhone(empVO.getPhone());
+		
+		model.addAttribute("empInfo", empInfo);
+		
+	}
+	
+	@PostMapping("mypageUpdate")
+	public String mypageUpdate(@Valid EmpInfo empInfo, BindingResult bindingResult)throws Exception{
+
+		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		EmpVO empVO = (EmpVO)obj;
+		log.info("empInfo: {}",empInfo);
+		return "redirect:../";
+	}
+	
+//	@GetMapping("mypageUpdate")
+//	public ModelAndView mypageUpdate(EmpVO empVO)throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		empVO = empService.mypage(empVO);
+//		
+//		mv.addObject("empVO", empVO);
+//		mv.setViewName("emp/mypageUpdate");
+//		
+//		return mv;
+//		
+//	}
+//
+//	@PostMapping("mypageUpdate")
+//	public int mypageUpdate(ModelAndView mv, EmpVO empVO)throws Exception{
+//		int result = empService.mypageUpdate(empVO);
+//		
+//		return result;
+//	}
+	
 	// 직원 목록
 	
 	@GetMapping("empList")

@@ -80,7 +80,6 @@
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
-		<result column="ADDRESS" property="address"/>
 		<result column="HIREDATE" property="hireDate"/>
 		<result column="RANDOMPW" property="randomPw"/>
 		<result column="FILENAME" property="fileName"/>

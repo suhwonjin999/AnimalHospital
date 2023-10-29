@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,7 +42,6 @@ public class EmpVO implements UserDetails{
 	
 	//position
 	private String positionName;
-	private String role;
 	
 	//department
 	private String deptName;

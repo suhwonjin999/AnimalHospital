@@ -20,14 +20,20 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-			<form action="empUpdate" method="post">
-					<br><h3>사원 정보 수정</h3>
-				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">												
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
 					
-							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+					<form>
+							<h3>사원 정보 수정</h3>
+					<div class="card shadow mb-4"  style="align-items: center;">										
+					
+							<div>
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
@@ -63,17 +69,27 @@
 										<td>
 											<select name='positionNo'>
 												<option value="${vo.positionNo}" selected="selected">${vo.positionName}</option>
-												<option value="2">대표원장</option>
-												<option value="3">원장</option>
-												<option value="4">과장</option>
-												<option value="5">팀장</option>
-												<option value="6">수의사</option>
-												<option value="7">사무장</option>
-												<option value="8">대리</option>
-												<option value="9">사원</option>
-												<option value="10">간호실장</option>
-												<option value="11">수의테크니션</option>
-												<option value="12">가발령</option>
+												<c:if test="${deptNo == 100}">
+													<option value="2">대표원장</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 200}">
+													<option value="7">사무장</option>
+													<option value="8">대리</option>
+													<option value="9">사원</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 300}">
+													<option value="3">원장</option>
+													<option value="4">과장</option>
+													<option value="5">팀장</option>
+													<option value="6">수의사</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 700}">
+													<option value="10">간호실장</option>
+													<option value="11">수의테크니션</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 999}">
+													<option value="12">가발령</option>
+												</c:if>
 											</select>
 										</td>
 									</tr>
@@ -122,6 +138,8 @@
 		</div>
 		<!-- Overlay -->
 	</div>
+</div>
+</div>
 		<div class="layout-overlay layout-menu-toggle"></div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>

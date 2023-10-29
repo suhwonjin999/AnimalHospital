@@ -21,18 +21,25 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
-				<form>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">${user.name}의 마이페이지</h3>
-				<div class="card shadow mb-4" style="width: 1400px;">										
-							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					
+					<form>
+					<h3>${user.name}의 마이페이지</h3>
+													
+					<div class="card shadow mb-4" style="align-items: center; width: 68%; float: left;">
+							<div>
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
-							<div style="width: 550px; margin-top: 20px; float: left;">
+							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
 								
 								<table class="table">
 
@@ -77,11 +84,15 @@
 
 								</table>
 							</div>
+							<br>
+							<a href="/emp/mypageUpdate?username=${user.username}" class="btn btn-danger">수정</a>
+							<a href="/emp/pwUpdate?username=${user.username}" class="btn btn-danger">비밀번호 변경</a>
 						</div>
 				</div>
 				<!-- Content wrapper -->
-							<a href="/emp/mypageUpdate?username=${user.username}" class="btn btn-danger">수정</a>
-							<a href="/emp/pwUpdate?username=${user.username}" class="btn btn-danger">비밀번호 변경</a>
+				<div class="card shadow mb-4" style="width:30%; height: 500px; float: right;">	
+					<h3>도장관리</h3>
+				</div>			
 					</form>
 			</div>
 			<!-- / Layout page -->
@@ -89,6 +100,8 @@
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
+	</div>
+</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 

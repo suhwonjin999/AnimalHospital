@@ -63,36 +63,40 @@
 							</div>
 							<br>
 							<div>
-							<form:form modelAttribute="empInfo" method="post" enctype="multipart/form-data">
 								<table class="table">
 									<tr>
 										<td>입사일</td>
 										<td>${vo.hireDate}</td>
 									</tr>
+							<form:form modelAttribute="empInfo" method="post" action="../" enctype="multipart/form-data">
 									<tr>
 										<td>이메일</td>
 										<td>
-											<div class="form-group">											
-												<form:input id="email" path="email" name="email" cssClass="form-control"/>										
+											<div class="form-group">
+
+												<form:input path="email" cssClass="form-control" id="email" />
+
 											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
 										<td>
-											<div class="form-group">				
-												<form:input id="phone" path="phone" name="phone" cssClass="form-control"/>				
+											<div class="form-group">
+
+												<form:input path="phone" cssClass="form-control" id="phone" />
+
 											</div>
 										</td>
 									</tr>
+								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
+								</form:form>
 									<tr>
 										<td>생년월일</td>
 										<td>${vo.birth}</td>
 									</tr>
 
 								</table>
-								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
-								</form:form>
 							</div>
 						</div>
 					</div>

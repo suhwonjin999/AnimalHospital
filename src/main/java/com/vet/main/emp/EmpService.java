@@ -42,9 +42,17 @@ public class EmpService implements UserDetailsService{
 
 	}
 
+	// 마이페이지
+	public EmpVO mypage(EmpVO empVO) throws Exception{
+		return empDAO.mypage(empVO);
+	}
+	
 	//마이페이지 수정
-	public int mypageUpdate(EmpVO empVO)throws Exception{
-		int result = empDAO.mypageUpdate(empVO);
+	public int mypageUpdate(EmpInfo empInfo)throws Exception{
+//		empInfo.setEmail(empInfo.getEmail());
+//		empInfo.setPhone(empInfo.getPhone());
+		
+		int result = empDAO.mypageUpdate(empInfo);
 		
 		return result;
 	}
@@ -55,12 +63,6 @@ public class EmpService implements UserDetailsService{
 		int result = empDAO.pwUpdate(empVO);
 		
 		return result;
-	}
-
-	
-	// 마이페이지
-	public EmpVO mypage(EmpVO empVO) throws Exception{
-		return empDAO.mypage(empVO);
 	}
 
 	

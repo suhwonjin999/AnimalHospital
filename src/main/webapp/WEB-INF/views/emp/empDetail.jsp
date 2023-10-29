@@ -16,17 +16,25 @@
 </head>
 <body>
 	<!-- Layout wrapper -->
-	<div class="layout-wrapper layout-content-navbar">
+<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
-				<form>
 				<!-- Content wrapper -->
-					<br><h3>${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
-				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">										
-							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					
+					<form>
+				<!-- Content wrapper -->
+					<h3>${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
+					<div class="card shadow mb-4" style="align-items: center;">
+								
+							<div>
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
@@ -88,6 +96,8 @@
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
+	</div>
+</div>	
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 
