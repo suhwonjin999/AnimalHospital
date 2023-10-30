@@ -29,7 +29,6 @@
 
 	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
 		<id column="USERNAME" property="username"/>
-		<result column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -75,7 +74,6 @@
 	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
 		<id column="USERNAME" property="username"/>
-		<result column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
@@ -93,11 +91,11 @@
 
 
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
-	<selectKey keyProperty="empNo" resultType="string" order="BEFORE">
+	<selectKey keyProperty="username" resultType="string" order="BEFORE">
 	        select NEXTVAL(emp_seq) from dual
 	</selectKey>
 		INSERT INTO EMP 
-		VALUES (#{username}, #{empNo}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+		VALUES (#{username}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
 	</insert>
 
 	<insert id="empRole" parameterType="java.util.Map">

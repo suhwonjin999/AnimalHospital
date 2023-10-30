@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -71,7 +74,7 @@ public class EmpController {
 	// 마이페이지 수정
 	@GetMapping("mypageUpdate")
 	public String mypageUpdate(EmpVO empVO, Model model)throws Exception{
-		empVO = empService.empDetail(empVO);
+		empVO = empService.mypage(empVO);
 		model.addAttribute("vo", empVO);
 		return "emp/mypageUpdate";
 		
@@ -152,5 +155,25 @@ public class EmpController {
 		int result = empService.empUpdate(empVO);
 		return "redirect:./empList";
 	}
+	
+	//메일 발송
+	
+	@PostMapping("emp/empAdd/CheckMail") // ajax와 url을 매핑
+	@ResponseBody // ajax 이후 값 리턴
+	public String SendMail(String mail, EmpVO empVO) {
+		JavaMailSender javaMailSender = null;
+		SimpleMailMessage message = new SimpleMailMessage();
+		String url = "http://localhost:82/emp/login";
+		
+		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+		message.setSubject("안녕하세요, 동물병원입니다.");
+		message.setText("바로가기 주소 : " + url);
+		javaMailSender.send(message);
+		
+		log.info("message : {}", message);
+		
+	return url;
+	}
+	
 	
 }

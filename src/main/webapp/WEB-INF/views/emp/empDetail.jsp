@@ -42,7 +42,7 @@
 								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td>${vo.empNo}</td>
+										<td>${vo.username}</td>
 									</tr>
 									<tr>
 										<td>이름</td>

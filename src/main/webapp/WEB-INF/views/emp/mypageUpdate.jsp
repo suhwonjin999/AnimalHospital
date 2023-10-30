@@ -41,6 +41,12 @@
 							<div style="width: 550px; margin-top: 20px; float: left;">
 								<input type="hidden" name="username" value="${vo.username}">
 								<input type="hidden" name="fileName" value="${vo.fileName}">
+								<input type="hidden" name="name" value="${vo.name}">
+								<input type="hidden" name="deptName" value="${vo.deptName}">
+								<input type="hidden" name="positionName" value="${vo.positionName}">
+								<input type="hidden" name="hireDate" value="${vo.hireDate}">
+								<input type="hidden" name="birth" value="${vo.birth}">
+								
 								<table class="table">
 									<tr>
 										<td>사번</td>
@@ -96,7 +102,7 @@
 
 								</table>
 							</div>
-								<button type="submit" class="btn btn-danger" id="btn_update">수정완료</button>
+								<button class="btn btn-danger">수정완료</button>
 								</form>
 						</div>
 					</div>

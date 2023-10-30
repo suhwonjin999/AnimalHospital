@@ -33,6 +33,11 @@
 							<h3>사원 정보 수정</h3>
 					<div class="card shadow mb-4"  style="align-items: center;">										
 							<div>
+							<input type="hidden" name="username" value="${vo.username}">
+							<input type="hidden" name="hireDate" value="${vo.hireDate}">
+							<input type="hidden" name="email" value="${vo.email}">
+							<input type="hidden" name="phone" value="${vo.phone}">
+							<input type="hidden" name="birth" value="${vo.birth}">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
@@ -40,7 +45,9 @@
 								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td>${vo.username}</td>
+										<td>
+											${vo.username}
+										</td>
 									</tr>
 									<tr>
 										<td>이름</td>
@@ -110,19 +117,27 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td>${vo.hireDate}</td>
+										<td>
+											${vo.hireDate}
+										</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>${vo.email}</td>
+										<td>
+											${vo.email}
+										</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td>${vo.phone}</td>
+										<td>
+											${vo.phone}
+										</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>${vo.birth}</td>
+										<td>
+											${vo.birth}
+										</td>
 									</tr>
 
 								</table>

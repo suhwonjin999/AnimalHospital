@@ -42,7 +42,7 @@
 						              <p class="mb-4">Please change your password!</p>
 										<div>
 											<form action="pwUpdate" method="post">
-											<input type="hidden" name="empNo" value="${user.empNo}">
+											<input type="hidden" name="username" value="${user.username}">
 											<input type="hidden" name="randomPw" value="${user.randomPw}">
 											 	<table>
 													<tr>

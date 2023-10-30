@@ -45,7 +45,7 @@
 
 									<tr>
 										<td>사번</td>
-										<td>${user.empNo}</td>
+										<td>${user.username}</td>
 									</tr>
 									<tr>
 										<td>이름</td>

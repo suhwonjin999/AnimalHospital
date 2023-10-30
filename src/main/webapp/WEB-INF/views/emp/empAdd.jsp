@@ -12,7 +12,7 @@
 </head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -36,6 +36,8 @@
 							</div>
 							<div style="width:900px; float: left; margin-bottom: 30px; ">
 								<form action="empAdd" method="post" enctype="multipart/form-data">
+								<input type="hidden" class="form-control" name="username" id="username">
+								<input type="hidden" class="form-control" name="empNo" id="empNo">
 								<input type="hidden" class="form-control" name="password" id="password">
 									<table style="border-color: black;">
 										<tr>
@@ -44,21 +46,14 @@
 										</tr>
 										<tr>
 											<td>이메일</td>
-											<td><input type="email" class="form-control" name="email" id="email"></td>
+											<td><input type="email" class="form-control mail" name="email" id="email"></td>
 										</tr>
 
-<!-- 										<tr>
-											<td>비밀번호</td>
-											<td><input type="password" class="form-control" name="password" id="password"></td>
-										</tr> -->
 										<tr>
 											<td>연락처</td>
 											<td><input type="text" class="form-control" name="phone" id="phone"></td>
 										</tr>
-										<!-- <tr>
-											<td>입사일</td>
-											<td><input type="date" class="form-control" name="" id=""></td>
-										</tr> -->
+
 										<tr>
 											<td>생년월일</td>
 											<td><input type="date" class="form-control" name="birth" id="birth"></td>
@@ -66,7 +61,7 @@
 										
 									</table>
 									<br>
-									<button class="btn btn-secondary">작성완료</button>
+									<button class="btn btn-secondary sendMail">작성완료</button>
 								</form>
 								
 							</div>
@@ -82,6 +77,31 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+
+	<script type="text/javascript">
+	
+	$(".sendMail").click(function(){ // 메일 입력 유효성 검사
+		let mail = $(".mail").val(); // 이메일 입력값
+		
+		if(mail == ""){
+			alret("메일주소가 입력되지 않았습니다.");
+		}else{
+			mail;
+			
+			$.ajax({
+				type : 'post'',
+				url : 'emp/empAdd/CheckMail',
+				data : {
+					mail:mail
+				},
+				dataType : 'json',
+			});
+			alret("메일이 전송되었습니다.")
+		}
+		
+	})
+	
+	</script>
 
 </body>
 </html>
