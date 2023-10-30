@@ -5,32 +5,32 @@
 
 <mapper namespace="com.vet.main.emp.EmpDAO">
 
-	<select id="getEmp" parameterType="com.vet.main.emp.EmpVO" resultType="com.vet.main.emp.EmpVO">
-		SELECT * FROM EMP WHERE EMPNO=#{empNo}
+	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
+		SELECT E.*,MR.*,R.*
+		FROM EMP E INNER JOIN EMP_ROLE MR
+		ON E.USERNAME = MR.USERNAME
+		INNER JOIN ROLE R 
+		ON MR.ROLENUM = R.ROLENUM
+		WHERE E.USERNAME=#{username}
 	</select>
 
-	<select id="mypage" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
-  		SELECT E.*, P.*, D.* 
-		FROM EMP E INNER JOIN POSITION P 
-		ON E.POSITIONNO=P.POSITIONNO 
-		INNER JOIN DEPARTMENT D 
-		ON E.DEPTNO=D.DEPTNO
-		WHERE E.EMPNO=#{empNo}
-  	</select>
-
-	<select id="empList" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
-		SELECT E.*, P.*, D.*  
-		FROM EMP E INNER JOIN POSITION P 
-		ON E.POSITIONNO=P.POSITIONNO 
-		INNER JOIN DEPARTMENT D 
-		ON E.DEPTNO=D.DEPTNO
-		ORDER BY EMPNO DESC
+	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
+		SELECT E.*,MR.*,R.*,P.POSITIONNAME,D.DEPTNAME
+		FROM EMP E INNER JOIN EMP_ROLE MR
+		ON E.USERNAME = MR.USERNAME
+		INNER JOIN ROLE R 
+		ON MR.ROLENUM = R.ROLENUM
+		INNER JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		INNER JOIN DEPARTMENT D
+		ON E.DEPTNO = D.DEPTNO
+		WHERE E.USERNAME=#{username}
 	</select>
-	
-	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
-		<id column="EMPNO" property="empNo"/>
+
+	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
+		<id column="USERNAME" property="username"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="NAME" property="name"/>
+		<result column="EMPNAME" property="empName"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="ADDRESS" property="address"/>
@@ -41,11 +41,66 @@
 		<result column="STATE" property="state"/>
 		<result column="POSITIONNO" property="positionNo"/>
 		<result column="DEPTNO" property="deptNo"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="POSITIONNAME" property="positionName"/>
+		<result column="DEPTNAME" property="deptName"/>
+		<collection property="roleVOs" javaType="List" ofType="com.vet.main.emp.RoleVO">
+			<id column="ROLENUM" property="roleNum"/>
+			<result column="ROLENAME" property="roleName"/>	
+		</collection>
+		
+	</resultMap>
+	
+
+	<select id="mypage" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
+  		SELECT E.*, P.*, D.* 
+		FROM EMP E INNER JOIN POSITION P 
+		ON E.POSITIONNO=P.POSITIONNO 
+		INNER JOIN DEPARTMENT D 
+		ON E.DEPTNO=D.DEPTNO
+		WHERE E.USERNAME=#{username}
+  	</select>
+
+	<select id="empList" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
+		SELECT E.*, P.*, D.*  
+		FROM EMP E INNER JOIN POSITION P 
+		ON E.POSITIONNO=P.POSITIONNO 
+		INNER JOIN DEPARTMENT D 
+		ON E.DEPTNO=D.DEPTNO
+		WHERE P.POSITIONNO!=1
+		ORDER BY E.USERNAME DESC
+	</select>
+	
+	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
+		<id column="USERNAME" property="username"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="EMPNAME" property="empName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="HIREDATE" property="hireDate"/>
+		<result column="RANDOMPW" property="randomPw"/>
+		<result column="FILENAME" property="fileName"/>
+		<result column="ORIGINALFILENAME" property="originalFileName"/>
+		<result column="STATE" property="state"/>
+		<result column="POSITIONNO" property="positionNo"/>
+		<result column="DEPTNO" property="deptNo"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="RANDOMPW" property="randomPw"/>
 	</resultMap>
 
+
 	<insert id="empAdd" parameterType="com.vet.main.emp.EmpVO">
+	<selectKey keyProperty="username" resultType="string" order="BEFORE">
+	        select NEXTVAL(emp_seq) from dual
+	</selectKey>
 		INSERT INTO EMP 
-		VALUES (NULL, 'qwerqwer', #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 11, 999, '재직', #{birth}, 0)
+		VALUES (#{username}, #{password}, #{empName}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+	</insert>
+
+	<insert id="empRole" parameterType="java.util.Map">
+		INSERT INTO EMP_ROLE
+		VALUES(#{username}, #{roleNum})
 	</insert>
 
   	<select id="empDetail" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
@@ -54,7 +109,7 @@
 		ON E.POSITIONNO=P.POSITIONNO 
 		INNER JOIN DEPARTMENT D 
 		ON E.DEPTNO=D.DEPTNO
-		WHERE E.EMPNO=#{empNo}
+		WHERE E.USERNAME=#{username}
   	</select>
   	
   	<update id="empUpdate" parameterType="com.vet.main.emp.EmpVO">
@@ -63,11 +118,11 @@
   		JOIN POSITION P
   		ON E.POSITIONNO = P.POSITIONNO
   		SET
-  		E.NAME = #{name},
+  		E.EMPNAME = #{empName},
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
   		E.STATE = #{state}
-  		WHERE E.EMPNO=#{empNo} 		
+  		WHERE E.USERNAME=#{username}	
   	</update>
   	
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
@@ -75,17 +130,14 @@
   		SET
   		PASSWORD = #{password},
   		RANDOMPW = 1	
-  		WHERE EMPNO = #{empNo}
+  		WHERE USERNAME=#{username}
   	</update>
   	
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP
   		SET
-  		PASSWORD = #{password},
   		EMAIL = #{email},
-  		PHONE = #{phone},
-  		ORIGINALFILENAME = #{originalFileName},
-  		FILENAME = #{fileName}
-  		WHERE EMPNO=#{empNo} 		
+  		PHONE = #{phone}
+  		WHERE USERNAME=#{username}		
   	</update>
 </mapper>

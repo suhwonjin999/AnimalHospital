@@ -20,28 +20,39 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-			<form action="empUpdate" method="post">
-					<br><h3>사원 정보 수정</h3>
-				<div class="card shadow mb-4" style="width: 1400px; margin: auto;">												
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
 					
-							<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+					<form action="empUpdate" method="post" enctype="multipart/form-data">
+							<h3>사원 정보 수정</h3>
+					<div class="card shadow mb-4"  style="align-items: center;">										
+							<div>
+							<input type="hidden" name="username" value="${vo.username}">
+							<input type="hidden" name="hireDate" value="${vo.hireDate}">
+							<input type="hidden" name="email" value="${vo.email}">
+							<input type="hidden" name="phone" value="${vo.phone}">
+							<input type="hidden" name="birth" value="${vo.birth}">
 								<div style="width: 300px; float: left;">
 									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
-								<input type="hidden" name="empNo" value="${vo.empNo}">
 								<table class="table">
 									<tr>
 										<td>사번</td>
-										<td>${vo.empNo}</td>
+										<td>
+											${vo.username}
+										</td>
 									</tr>
 									<tr>
 										<td>이름</td>
 										<td>
-											<input type="text" name="name" value="${vo.name}">
+											<input type="text" name="empName" value="${vo.empName}">
 										</td>
 									</tr>
 									<tr>
@@ -64,17 +75,27 @@
 										<td>
 											<select name='positionNo'>
 												<option value="${vo.positionNo}" selected="selected">${vo.positionName}</option>
-												<option value="1">원장</option>
-												<option value="2">과장</option>
-												<option value="3">팀장</option>
-												<option value="4">수의사</option>
-												<option value="5">사무장</option>
-												<option value="6">대리</option>
-												<option value="7">사원</option>
-												<option value="8">간호실장</option>
-												<option value="9">수의테크니션</option>
-												<option value="11">대표원장</option>
-												<option value="12">가발령</option>
+												<c:if test="${deptNo == 100}">
+													<option value="2">대표원장</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 200}">
+													<option value="7">사무장</option>
+													<option value="8">대리</option>
+													<option value="9">사원</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 300}">
+													<option value="3">원장</option>
+													<option value="4">과장</option>
+													<option value="5">팀장</option>
+													<option value="6">수의사</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 700}">
+													<option value="10">간호실장</option>
+													<option value="11">수의테크니션</option>
+												</c:if>
+												<c:if test="${vo.deptNo == 999}">
+													<option value="12">가발령</option>
+												</c:if>
 											</select>
 										</td>
 									</tr>
@@ -96,19 +117,27 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td>${vo.hireDate}</td>
+										<td>
+											${vo.hireDate}
+										</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td>${vo.email}</td>
+										<td>
+											${vo.email}
+										</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td>${vo.phone}</td>
+										<td>
+											${vo.phone}
+										</td>
 									</tr>
 									<tr>
 										<td>생년월일</td>
-										<td>${vo.birth}</td>
+										<td>
+											${vo.birth}
+										</td>
 									</tr>
 
 								</table>
@@ -123,6 +152,8 @@
 		</div>
 		<!-- Overlay -->
 	</div>
+</div>
+</div>
 		<div class="layout-overlay layout-menu-toggle"></div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>

@@ -1,6 +1,7 @@
-package com.vet.main.admin;
+package com.vet.main.dept;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,28 +10,23 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class AdminVO {
+public class DeptVO {
 
-	//emp
-	private Long empNo;
+	private String username;
 	private String password;
-	private String name;
+	private String empName;
 	private String email;
 	private String phone;
-	private Date hireDate;
-	private String randomPw;
-	private String filenName;
-	private String originalFileName;
 	private Long positionNo;
 	private String deptNo;
+	private Date hireDate;
 	private String state;
-	
-	
-	//position
+	private Date birth;
 	private String positionName;
-	
-	//department
 	private String deptName;
 	private Long parentNo;
 	private Long depth;
+	
+	private List<DeptVO> children;
+	
 }

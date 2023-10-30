@@ -16,15 +16,23 @@
 </head>
 <body>
 	<!-- Layout wrapper -->
+		<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">고객정보추가</h3>
-				<div class="card shadow mb-4" style="box-sizing: content-box;">
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					
+					<h3>고객정보추가</h3>
+					<div class="card shadow mb-4">			
+					<!-- Content -->
 				
 					<section class="container mt-5">
 						<form action="./add" method="POST" enctype="multipart/form-data">
@@ -142,10 +150,15 @@
 					</form>
 					</section>
 				</div>
-				
+					<!-- / Content -->
+
+					<div class="content-backdrop fade"></div>
+				</div>
+				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->
 		</div>
+	</div>
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>

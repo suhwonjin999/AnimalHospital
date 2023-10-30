@@ -16,6 +16,76 @@
 </head>
 <body>
 	<!-- Layout wrapper -->
+		<!-- Layout wrapper -->
+	<div class="layout-wrapper layout-content-navbar">
+		<div class="layout-container">
+			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
+			<!-- Layout container -->
+			<div class="layout-page">
+				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
+				<!-- Content wrapper -->
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					
+					<form>
+					<h3>사원 목록</h3>
+					<div class="card shadow mb-4">
+								
+							<!-- Content -->
+							
+							<table class="table" style="text-align: center; width:auto; margin: 20px; ">
+								<thead style="height: 70px;">
+									<tr>
+										<th>사원번호</th>
+										<th>이름</th>
+										<th>부서</th>
+										<th>직급</th>
+										<th>이메일</th>
+										<th>연락처</th>
+										<th>입사일</th>
+										<th>상태</th>
+									</tr>
+								</thead>
+								<tbody style="height: 35px;">
+							<c:forEach items="${list}" var="vo">
+									<tr>
+										<td><a href="./empDetail?username=${vo.username}" style="color: #697a8d;">${vo.username}</a></td>
+										<td><a href="./empDetail?username=${vo.username}" style="color: #697a8d;">${vo.empName}</a></td>
+										<td>${vo.deptName}</td>
+										<td>${vo.positionName}</td>
+										<td>${vo.email}</td>
+										<td>${vo.phone}</td>
+										<td>${vo.hireDate}</td>
+										<td>${vo.state}</td>
+									</tr>
+							</c:forEach>
+								</tbody>
+							
+							</table>
+							<br>
+						</div>
+						<a href="/emp/empAdd" class="btn btn-secondary">신규직원 등록</a>
+						</form>
+					</div>
+					<!-- / Content -->
+<%-- 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
+					<div class="content-backdrop fade"></div>
+				</div>
+				<!-- Content wrapper -->
+			</div>
+			<!-- / Layout page -->
+		</div>
+	</div>
+		<!-- Overlay -->
+		<div class="layout-overlay layout-menu-toggle"></div>
+	<!-- / Layout wrapper -->
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+	
+	
+	<%-- <!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
@@ -46,6 +116,8 @@
 							<tr>
 								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
 								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.empNo}</a></td>
+								<td><a href="./empDetail?empNo=${vo.empNo}" style="color: #697a8d;">${vo.name}</a></td>
 								<td>${vo.deptName}</td>
 								<td>${vo.positionName}</td>
 								<td>${vo.email}</td>
@@ -71,7 +143,7 @@
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
 	<!-- / Layout wrapper -->
-	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import> --%>
 
 </body>
 </html>

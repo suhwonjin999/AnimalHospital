@@ -131,7 +131,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="/admin/list" class="menu-link">
+                  <a href="/dept/deptList" class="menu-link">
                     <div data-i18n="Notifications">부서관리</div>
                   </a>
                 </li>
