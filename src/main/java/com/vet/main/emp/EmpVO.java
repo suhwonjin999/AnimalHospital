@@ -12,6 +12,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.vet.main.customer.CustomerFileVO;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -52,6 +54,9 @@ public class EmpVO implements UserDetails{
 	
 	private Boolean enabled;
 	private List<RoleVO> roleVOs;
+	
+	//file
+	public List<EmpVO> fileVO;
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

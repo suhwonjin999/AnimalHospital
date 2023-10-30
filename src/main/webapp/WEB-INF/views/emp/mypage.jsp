@@ -37,7 +37,12 @@
 					<div class="card shadow mb-4" style="align-items: center; width: 68%; float: left;">
 							<div>
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+									<c:if test="${vo.originalFileName == null }">
+										<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+									</c:if>
+									<c:if test="${vo.originalFileName != null }">		
+										<img alt="" src="../files/emp/${vo.fileName}" style="width: 200px; height: 200px; margin: 30px;">
+									</c:if>
 								</div>
 							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
 								

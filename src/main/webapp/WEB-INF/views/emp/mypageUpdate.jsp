@@ -34,13 +34,18 @@
 					<div class="card shadow mb-4" style="align-items: center;">
 			
 						<div style="width:900px; margin-bottom: 30px;">
-							<form action="mypageUpdate" method="post">
+							<form action="mypageUpdate" method="post" enctype="multipart/form-data">
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<c:if test="${vo.originalFileName == null }">
+										<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+									</c:if>
+									<c:if test="${vo.originalFileName != null }">
+										<img alt="" src="../files/emp/${vo.fileName}" style="width: 200px; height: 200px; margin: 30px;">
+									</c:if>
+									<input type="file" class="form-control" name="files">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
 								<input type="hidden" name="username" value="${vo.username}">
-								<input type="hidden" name="fileName" value="${vo.fileName}">
 								<input type="hidden" name="empName" value="${vo.empName}">
 								<input type="hidden" name="deptName" value="${vo.deptName}">
 								<input type="hidden" name="positionName" value="${vo.positionName}">

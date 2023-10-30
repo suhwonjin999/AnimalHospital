@@ -4,13 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.vet.main.commons.FileManager;
+import com.vet.main.customer.CustomerFileVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +29,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmpService implements UserDetailsService{
 
+	@Value("${app.upload}")
+	private String uploadPath;
+	
+	@Value("${app.emp}")
+	private String username;
+	
+	@Autowired
+	private FileManager fileManger;
+	
 	@Autowired
 	private EmpDAO empDAO;
 	
@@ -47,11 +66,26 @@ public class EmpService implements UserDetailsService{
 	}
 	
 	//마이페이지 수정
-	public int mypageUpdate(EmpVO empVO)throws Exception{
-		empVO.setEmail(empVO.getEmail());
-		empVO.setPhone(empVO.getPhone());
+	public int mypageUpdate(EmpVO empVO, MultipartFile[] files)throws Exception{
 		
 		int result = empDAO.mypageUpdate(empVO);
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManger.save(this.uploadPath+this.username, multipartFile);
+			empVO.setEmail(empVO.getEmail());
+			empVO.setPhone(empVO.getPhone());
+			empVO.setFileName(fileName);
+			empVO.setOriginalFileName(multipartFile.getOriginalFilename());
+			
+			log.info("경로 : {}",uploadPath);
+			result = empDAO.mypageUpdate(empVO);
+			
+			
+		}
 		
 		return result;
 	}
@@ -100,7 +134,7 @@ public class EmpService implements UserDetailsService{
 		
 		return result;
 		
-		
 	}
+	
 	
 }

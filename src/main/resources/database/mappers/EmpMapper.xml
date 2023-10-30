@@ -95,7 +95,7 @@
 	        select NEXTVAL(emp_seq) from dual
 	</selectKey>
 		INSERT INTO EMP 
-		VALUES (#{username}, #{password}, #{empName}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+		VALUES (#{username}, #{password}, #{empName}, #{email}, #{phone}, NOW(), NULL, NULL, 12, 999, '재직', #{birth}, 0)
 	</insert>
 
 	<insert id="empRole" parameterType="java.util.Map">
@@ -121,7 +121,7 @@
   		E.EMPNAME = #{empName},
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
-  		E.STATE = #{state}
+  		E.STATE = #{state},
   		WHERE E.USERNAME=#{username}	
   	</update>
   	
@@ -137,7 +137,9 @@
   		UPDATE EMP
   		SET
   		EMAIL = #{email},
-  		PHONE = #{phone}
+  		PHONE = #{phone},
+  		ORIGINALFILENAME = #{originalFileName},
+  		FILENAME = #{fileName}
   		WHERE USERNAME=#{username}		
   	</update>
 </mapper>

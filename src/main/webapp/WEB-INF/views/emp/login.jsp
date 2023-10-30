@@ -62,9 +62,9 @@
 
 						
 						              <p class="text-center">
-						                <span>New on our platform?</span>
-						                <a href="auth-register-basic.html">
-						                  <span>Create an account</span>
+						                <span>비밀번호를 잊어버리셨나요?</span>
+						                <a href="./findPw">
+						                  <span>비밀번호 찾기</span>
 						                </a>
 						              </p>
 						            </div>
