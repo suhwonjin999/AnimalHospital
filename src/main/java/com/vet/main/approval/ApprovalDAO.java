@@ -17,6 +17,18 @@ public interface ApprovalDAO {
 	// 품의서 작성폼
 	public int setApPoomAdd(ApprovalVO approvalVO) throws Exception;
 	
+	// 휴가신청서 작성폼
+	public int setApDayoffAdd(ApprovalVO approvalVO) throws Exception;
+	
+	// 휴직신청서 작성폼
+	public int setApVacationAdd(ApprovalVO approvalVO) throws Exception;
+	
+	// 퇴직신청서 작성폼
+	public int setApRetireAdd(ApprovalVO approvalVO) throws Exception;
+	
+	// 지출결의서 작성폼
+	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception;
+	
 	// 기안함 리스트
 	public List<ApprovalVO> getDraftList(Pager pager) throws Exception;
 	

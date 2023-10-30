@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -40,8 +42,24 @@
 	                                    </thead>
 	                                    <tbody>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">품의서</a></td>
+	                                            <td><a href="/approval/poomAdd">품의서</a></td>
 	                                            <td>품의서 작성페이지입니다.</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">지출결의서</a></td>
+	                                            <td>지출결의서 작성페이지입니다.</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴가신청서</a></td>
+	                                            <td>휴가신청서 작성페이지입니다.</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴직신청서</a></td>
+	                                            <td>휴직신청서 작성페이지입니다.</td>
+	                                        </tr>  
+	                                        <tr>
+	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">퇴직신청서</a></td>
+	                                            <td>퇴직신청서 작성페이지입니다.</td>
 	                                        </tr>  
 	                                    </tbody>
 	                                </table>  

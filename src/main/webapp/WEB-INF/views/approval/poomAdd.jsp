@@ -8,6 +8,13 @@
 	data-theme="theme-default" data-assets-path="/assets/"
 	data-template="vertical-menu-template-free">
 <head>
+
+	<!-- include summernote -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+	  integrity="sha256-7ZWbZUAi97rkirk4DcEp4GWDPkWpRMcNaEyXGsNXjLg=" crossorigin="anonymous">	  
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
+	integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
+	
 	<!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
@@ -40,7 +47,8 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
-				    		<form action="poomAdd" id="addFrm" method="post" enctype="multipart/form-data">
+				    		<!-- <form action="poomAdd" id="addFrm" method="post" enctype="multipart/form-data"> -->
+				    		<form action="poomAdd" id="addFrm" method="post">
 				    		
 				    			<div class="mb-3">
 								  <label for="empNo" class="form-label"></label>
@@ -59,7 +67,7 @@
 								
 				    			<div class="mb-3">
 								  <label for="name" class="form-label">성명</label>
-								  <input type="text" class="form-control" id="name" name="name" value="${emp.name}" readonly>
+								  <input type="text" class="form-control" id="name" name="name" value="${user.name}" readonly>
 								</div>
 								
 				    			<div class="mb-3">
@@ -78,11 +86,11 @@
 								</div>
 								
 			                    <!-- Upload file *************************************** -->
-			                    <div class="mb-1" style="margin:0 auto; width:fit-content;">
+<!-- 			                    <div class="mb-1" style="margin:0 auto; width:fit-content;">
 			                        <button type="button" class="btn btn-primary" id="add">File 추가</button>
 			                    </div>
 			        
-			                    <!-- 파일첨부 추가되는 영역 -->
+			                    파일첨부 추가되는 영역
 			                    <div id="fileList" class="my-5">
 			                        <div class="input-group mb-3">
 			                            <input type="file" name="photos" class="form-control">
@@ -95,7 +103,7 @@
 										<button type="button" class="btn btn-primary" id="addBtn">작성</button>
 										<button type="button" class="btn btn-primary" id="cancleBtn">취소</button>
 									</div>
-	                            </div>
+	                            </div> -->
 								
 				    		</form>
 			    		</div>
@@ -128,10 +136,10 @@
 	integrity="sha256-y2bkXLA0VKwUx5hwbBKnaboRThcu7YOFyuYarJbCnoQ=" crossorigin="anonymous"></script>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	 integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	
 	<script>
-	$('#apFormatContents').summernote({
+	$('#apContents').summernote({
 	  tabsize: 2,
 	  height: 500,
 	  codemirror: { // codemirror options
@@ -139,6 +147,8 @@
 		  },
 	  lang: 'ko-KR', // default: 'en-US'
 	});
+	
+	$("#apContents").summernote('code'); 
 	</script>
 	
 	<script src="/js/approval/apAdd.js"></script>

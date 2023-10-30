@@ -39,24 +39,48 @@ public class ApprovalService {
 	}
 		
 	// 품의서 작성폼
-	public int setApPoomAdd(ApprovalVO approvalVO, MultipartFile[] files) throws Exception {
+	public int setApPoomAdd(ApprovalVO approvalVO) throws Exception {
 		int result = approvalDAO.setApPoomAdd(approvalVO);
 		
-		for(MultipartFile multipartFile : files) {
-			
-			if(multipartFile.isEmpty()) {
-				continue;
-			}
-			
-			ApprovalFileVO fileVO = new ApprovalFileVO();
-			String fileName = fileManager.save(this.uploadPath + this.apKind, multipartFile);
-			fileVO.setApNo(approvalVO.getApNo());
-			fileVO.setFileName(fileName);
-			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
-			
-			result = approvalDAO.setApFileAdd(fileVO);
-		}
+//		for(MultipartFile multipartFile : files) {
+//			
+//			if(multipartFile.isEmpty()) {
+//				continue;
+//			}
+//			
+//			ApprovalFileVO fileVO = new ApprovalFileVO();
+//			String fileName = fileManager.save(this.uploadPath + this.apKind, multipartFile);
+//			fileVO.setApNo(approvalVO.getApNo());
+//			fileVO.setFileName(fileName);
+//			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
+//			
+//			result = approvalDAO.setApFileAdd(fileVO);
+//		}
 		
+		return result;
+	}
+	
+	// 휴가신청서 작성폼
+	public int setApDayoffAdd(ApprovalVO approvalVO) throws Exception {
+		int result = approvalDAO.setApDayoffAdd(approvalVO);
+		return result;
+	}
+	
+	// 휴직신청서 작성폼
+	public int setApVacationAdd(ApprovalVO approvalVO) throws Exception {
+		int result = approvalDAO.setApVacationAdd(approvalVO);
+		return result;
+	}
+	
+	// 퇴직신청서 작성폼
+	public int setApRetireAdd(ApprovalVO approvalVO) throws Exception {
+		int result = approvalDAO.setApRetireAdd(approvalVO);
+		return result;
+	}
+	
+	// 지출결의서 작성폼
+	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception {
+		int result = approvalDAO.setApExpenseAdd(approvalVO);
 		return result;
 	}
 	

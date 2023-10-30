@@ -33,8 +33,8 @@ public class ApprovalController {
 	private ApprovalService approvalService;
 	
 		
-	@GetMapping("poomAdd")
-	public String setApPoomAdd(ApprovalVO approvalVO, Model model, EmpVO empVO) throws Exception {
+	@GetMapping("apAdd/{apKind}")
+	public String setApPoomAdd(@PathVariable String apKind, ApprovalVO approvalVO, Model model, EmpVO empVO) throws Exception {
 		empVO = approvalService.getApUser(empVO);
 		
 		log.info("====== empVO : {} ======", empVO);
@@ -46,17 +46,25 @@ public class ApprovalController {
 		model.addAttribute("user", empVO);
 		model.addAttribute("date", date);
 		
-		return "approval/poomAdd";
+		if(apKind.equals("poomAdd")) {
+			
+			log.info("================= apKind : {} ====================", apKind);
+			log.info("================= empVO : {} ====================", empVO);
+			
+			return "approval/poomAdd";
+		}
+		
+		return null;
 	}
 	
 	@PostMapping("poomAdd")
-	public String setApPoomAdd(ApprovalVO approvalVO, MultipartFile[] files) throws Exception {
+	public String setApPoomAdd(ApprovalVO approvalVO) throws Exception {
 		
 		log.info("==================== Poom Insert ======================");
 		log.info("====== Poom : {} ======", approvalVO);
-		log.info("files : {}", files[0].getOriginalFilename());
+//		log.info("files : {}", files[0].getOriginalFilename());
 		
-		int result = approvalService.setApPoomAdd(approvalVO, files);
+		int result = approvalService.setApPoomAdd(approvalVO);
 		
 		return "redirect:./draftList/" + approvalVO.getEmpNo();
 	}
@@ -84,17 +92,17 @@ public class ApprovalController {
 	public String getApDetail(ApprovalVO approvalVO, Model model) throws Exception {
 
 		approvalVO = approvalService.getApDetail(approvalVO);
+		
 		log.info("=============== detail 정보 : {} ================", approvalVO);
 		
 		if(approvalVO.getApKind().equals("품의서")) {
-			
 			
 			model.addAttribute("approvalVO", approvalVO);
 			
 			return "approval/poomDetail";			
 		}
 		
-		return "approval/poomDetail";	
+		return null;	
 	}
 	
 }

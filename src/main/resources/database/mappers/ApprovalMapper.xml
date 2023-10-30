@@ -18,12 +18,49 @@
 			</otherwise>
 		</choose>
 	</sql>
-	
+
+	<!-- 품의서 작성 -->
 	<insert id="setApPoomAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
 		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{empNo}, 11, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{empNo}, 20, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{name}, #{positionName}, #{deptName})
+	</insert>
+	
+	<!-- 휴가신청서 작성 -->
+	<insert id="setApDayoffAdd" parameterType="ApprovalVO">
+		INSERT INTO APPROVAL
+		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, DAYOFFSTARTDATE, DAYOFFENDDATE,
+		APCONTENTS, APSTATE, APREJECTION, DAYOFFKIND, DAYOFFSTARTTIME, DAYOFFENDTIME,
+		APKIND, NAME, POSITIONNAME, DEPTNAME)
+		VALUES
+		(NULL, #{empNo}, 24, #{apTitle}, NOW(), #{dayoffStartDate}, #{dayoffEndDate},
+		#{apContents}, '결재대기중', '', #{dayoffKind}, #{dayoffStartTime}, #{dayoffEndTime}
+		'휴가신청서', #{name}, #{positionName}, #{deptName})
+	</insert>
+	
+	<!-- 휴직신청서 작성 -->
+	<insert id="setApVacationAdd" parameterType="ApprovalVO">
+		INSERT INTO APPROVAL
+		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		VALUES
+		(NULL, #{empNo}, 22, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '휴직신청서', #{name}, #{positionName}, #{deptName})
+	</insert>
+	
+	<!-- 퇴직신청서 작성 -->
+	<insert id="setApRetireAdd" parameterType="ApprovalVO">
+		INSERT INTO APPROVAL
+		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		VALUES
+		(NULL, #{empNo}, 23, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '퇴직신청서', #{name}, #{positionName}, #{deptName})
+	</insert>
+	
+	<!-- 지출결의서 작성 -->
+	<insert id="setApExpenseAdd" parameterType="ApprovalVO">
+		INSERT INTO APPROVAL
+		(APNO, EMPNO, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		VALUES
+		(NULL, #{empNo}, 21, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '지출결의서', #{name}, #{positionName}, #{deptName})
 	</insert>
   	
   	<select id="getApUser" parameterType="com.vet.main.emp.EmpVO" resultMap="getUserResult">
@@ -96,19 +133,23 @@
 			<result column="NAME" property="name"/>
 			<result column="POSITIONNAME" property="positionName"/>
 			<result column="DEPTNAME" property="deptName"/>
-		<collection property="fileList" javaType="List" ofType="ApprovalFileVO">
+<!-- 		<collection property="fileList" javaType="List" ofType="ApprovalFileVO">
 			<id column="FILENO" property="fileNo"/>
 				<result column="FILENAME" property="fileName"/>
 				<result column="ORIGINALFILENAME" property="originalFileName"/>
-		</collection>
+		</collection> -->
 	</resultMap>
 	
 	
 	<select id="getApDetail" parameterType="ApprovalVO" resultMap="getApDetailResult">
-		SELECT A.*, AF.*
+		<!-- SELECT A.*, AF.*
 		FROM APPROVAL A
 		INNER JOIN APFILE AF
-		WHERE A.APNO = #{apNo}
+		WHERE A.APNO = #{apNo} -->
+		
+		SELECT *
+		FROM APPROVAL
+		WHERE APNO = #{apNo}
 	</select>
 	
 	<delete id="setApDelete" parameterType="ApprovalVO">
