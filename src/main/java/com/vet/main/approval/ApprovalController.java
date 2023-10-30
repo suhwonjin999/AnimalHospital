@@ -66,7 +66,7 @@ public class ApprovalController {
 		
 		int result = approvalService.setApPoomAdd(approvalVO);
 		
-		return "redirect:./draftList/" + approvalVO.getEmpNo();
+		return "redirect:./draftList/" + approvalVO.getUserName();
 	}
 	
 	
@@ -77,8 +77,8 @@ public class ApprovalController {
 	}
 	
 	// 기안함 리스트
-	@GetMapping("draftList/{empNo}")
-	public String getDraftList(@PathVariable String empNo, Pager pager, Model model) throws Exception {
+	@GetMapping("draftList/{userName}")
+	public String getDraftList(@PathVariable String userName, Pager pager, Model model) throws Exception {
 		List<ApprovalVO> ar = approvalService.getDraftList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);

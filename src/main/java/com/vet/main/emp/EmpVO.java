@@ -12,7 +12,7 @@ import lombok.ToString;
 public class EmpVO {
 
 	//emp
-	private Long empNo;
+	private String userName;
 	private String password;
 	private String name;
 	private String email;
