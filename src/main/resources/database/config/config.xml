@@ -11,6 +11,7 @@
 		<typeAlias type="com.vet.main.commons.Pager" alias="Pager"/>
 		
 		<typeAlias type="com.vet.main.approval.format.ApFormatVO" alias="ApFormatVO"/>
+		<typeAlias type="com.vet.main.notice.NoticeVO" alias="NoticeVO"/>
 	</typeAliases>
 
 </configuration>
