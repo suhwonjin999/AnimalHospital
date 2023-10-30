@@ -12,7 +12,7 @@
 </head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -20,33 +20,40 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3>신규직원 등록</h3>
-				<div class="card shadow mb-4" style="width: 1400px;">										
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+
+							<br><h3>사원 목록</h3>
+					<div class="card shadow mb-4">									
 							<div style="width: 300px; float: left; margin-top: 20px; margin-bottom: 20px;">
 								<!-- <img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;"> -->
 							</div>
 							<div style="width:900px; float: left; margin-bottom: 30px; ">
 								<form action="empAdd" method="post" enctype="multipart/form-data">
+								<input type="hidden" class="form-control" name="username" id="username">
+								<input type="hidden" class="form-control" name="empNo" id="empNo">
+								<input type="hidden" class="form-control" name="password" id="password">
 									<table style="border-color: black;">
 										<tr>
 											<td>이름</td>
-											<td><input type="text" class="form-control" name="name" id="name"></td>
+											<td><input type="text" class="form-control" name="empName" id="empName"></td>
 										</tr>
 										<tr>
 											<td>이메일</td>
-											<td><input type="email" class="form-control" name="email" id="email"></td>
+											<td><input type="email" class="form-control mail" name="email" id="email"></td>
 										</tr>
+
 										<tr>
 											<td>연락처</td>
 											<td><input type="text" class="form-control" name="phone" id="phone"></td>
 										</tr>
-										<!-- <tr>
-											<td>입사일</td>
-											<td><input type="date" class="form-control" name="" id=""></td>
-										</tr> -->
+
 										<tr>
 											<td>생년월일</td>
 											<td><input type="date" class="form-control" name="birth" id="birth"></td>
@@ -54,7 +61,7 @@
 										
 									</table>
 									<br>
-									<button class="btn btn-secondary">작성완료</button>
+									<button class="btn btn-secondary sendMail">작성완료</button>
 								</form>
 								
 							</div>
@@ -63,12 +70,38 @@
 			</div>
 			<!-- / Layout page -->
 		</div>
-
+	</div>
+</div>
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+
+	<script type="text/javascript">
+	
+	$(".sendMail").click(function(){ // 메일 입력 유효성 검사
+		let mail = $(".mail").val(); // 이메일 입력값
+		
+		if(mail == ""){
+			alret("메일주소가 입력되지 않았습니다.");
+		}else{
+			mail;
+			
+			$.ajax({
+				type : 'post'',
+				url : '/CheckMail',
+				data : {
+					mail:mail
+				},
+				dataType : 'json',
+			});
+			alret("메일이 전송되었습니다.")
+		}
+		
+	})
+	
+	</script>
 
 </body>
 </html>

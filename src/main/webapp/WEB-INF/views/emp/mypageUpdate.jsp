@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -23,32 +25,36 @@
 			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-			<form action="mypageUpdate" method="post" enctype="multipart/form-data">
+				
+			<sec:authentication property="Principal" var="vo"/>
 				<div class="content-wrapper">
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-					<div class="card shadow mb-4">
+					<div class="card shadow mb-4" style="align-items: center;">
 			
-						<div style="width:900px; float: left; margin-bottom: 30px; margin-left: 250px;">
+						<div style="width:900px; margin-bottom: 30px;">
+							<form action="mypageUpdate" method="post">
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/${emp.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
-									<%-- <input type="file" name="originalFileName" value="${emp.originalFileName}"> --%>
+									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; float: left;">
-								<input type="hidden" name="empNo" value="${vo.empNo}">
-								<input type="hidden" name="password" value="${vo.password}">
+								<input type="hidden" name="username" value="${vo.username}">
 								<input type="hidden" name="fileName" value="${vo.fileName}">
-								<input type="hidden" name="fileName" value="${vo.fileName}">
+								<input type="hidden" name="empName" value="${vo.empName}">
+								<input type="hidden" name="deptName" value="${vo.deptName}">
+								<input type="hidden" name="positionName" value="${vo.positionName}">
+								<input type="hidden" name="hireDate" value="${vo.hireDate}">
+								<input type="hidden" name="birth" value="${vo.birth}">
+								
 								<table class="table">
-
 									<tr>
 										<td>사번</td>
-										<td>${vo.empNo}</td>
+										<td>${vo.username}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${vo.name}</td>
+										<td>${vo.empName}</td>
 									</tr>
 									<tr>
 										<td>부서</td>
@@ -66,30 +72,45 @@
 								<table class="table">
 									<tr>
 										<td>입사일</td>
-										<td>${emp.hireDate}</td>
+										<td>${vo.hireDate}</td>
 									</tr>
 									<tr>
 										<td>이메일</td>
-										<td><input type="email" name="email" value="${vo.email}"></td>
+										<td>
+											<div class="form-group">
+
+												<input type="email" name="email" id="email" value="${vo.email}"/>
+
+											</div>
+										</td>
 									</tr>
 									<tr>
 										<td>연락처</td>
-										<td><input type="text" name="phone" value="${vo.phone}"></td>
+										<td>
+											<div class="form-group">
+
+												<input type="text" name="phone" id="phone" value="${vo.phone}"/>
+
+											</div>
+										</td>
 									</tr>
+								
 									<tr>
 										<td>생년월일</td>
-										<td>${emp.birth}</td>
+										<td>${vo.birth}</td>
 									</tr>
 
 								</table>
 							</div>
+								<button class="btn btn-danger">수정완료</button>
+								</form>
 						</div>
 					</div>
-					<button class="btn btn-danger">수정완료</button>
+					<!-- <button type="submit" class="btn btn-danger" id="btn_update">수정완료</button> -->
 					<!-- / Content -->
 					</div>
 				</div>
-				</form>
+				
 				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->
@@ -100,6 +121,41 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+
+<script type="text/javascript">
+
+/* let index = {
+		init: function(){
+			$("#btn_update").on("click",()=>{
+				this.update();
+			});
+		},
+		
+		update: function(){
+			let data = {
+					email: $("#email").val(),
+					phone: $("#phone").val()
+			};
+			
+			$.ajax({
+				//회원정보 수정 요청
+				type: "PUT",
+				url: "/emp/mypage/mypageUpdate",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType:"json"
+				//응답 정상일 때 
+			}).done(function(resp){
+				alert("회원정보 수정이 완료되었습니다.");
+				location.href="/"
+			}).fail(function(error){
+				alert(JSON.stringify(error));
+			});
+		}
+
+} */
+
+</script>
 
 </body>
 </html>
