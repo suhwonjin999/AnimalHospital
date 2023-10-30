@@ -52,7 +52,7 @@
 				    		
 				    			<div class="mb-3">
 								  <label for="empNo" class="form-label"></label>
-								  <input type="hidden" class="form-control" id="empNo" name="empNo" value="${user.empNo}">
+								  <input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">
 								</div>
 				    						    			
 				    			<div class="mb-3">

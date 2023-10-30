@@ -46,19 +46,19 @@
 	                                            <td>품의서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">지출결의서</a></td>
+	                                            <td><a href="/approval/poomAdd?userName=${emp.userName}">지출결의서</a></td>
 	                                            <td>지출결의서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴가신청서</a></td>
+	                                            <td><a href="/approval/poomAdd?userName=${emp.userName}">휴가신청서</a></td>
 	                                            <td>휴가신청서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴직신청서</a></td>
+	                                            <td><a href="/approval/poomAdd?userName=${emp.userName}">휴직신청서</a></td>
 	                                            <td>휴직신청서 작성페이지입니다.</td>
 	                                        </tr>  
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">퇴직신청서</a></td>
+	                                            <td><a href="/approval/poomAdd?userName=${emp.userName}">퇴직신청서</a></td>
 	                                            <td>퇴직신청서 작성페이지입니다.</td>
 	                                        </tr>  
 	                                    </tbody>
