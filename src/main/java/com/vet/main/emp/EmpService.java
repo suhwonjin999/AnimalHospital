@@ -91,7 +91,7 @@ public class EmpService implements UserDetailsService{
 	
 	// 직원 수정
 	public int empUpdate(EmpVO empVO) throws Exception{
-		empVO.setName(empVO.getName());
+		empVO.setEmpName(empVO.getEmpName());
 		empVO.setDeptNo(empVO.getDeptNo());
 		empVO.setPositionNo(empVO.getPositionNo());
 		empVO.setState(empVO.getState());

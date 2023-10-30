@@ -41,7 +41,7 @@
 							<div style="width: 550px; margin-top: 20px; float: left;">
 								<input type="hidden" name="username" value="${vo.username}">
 								<input type="hidden" name="fileName" value="${vo.fileName}">
-								<input type="hidden" name="name" value="${vo.name}">
+								<input type="hidden" name="empName" value="${vo.empName}">
 								<input type="hidden" name="deptName" value="${vo.deptName}">
 								<input type="hidden" name="positionName" value="${vo.positionName}">
 								<input type="hidden" name="hireDate" value="${vo.hireDate}">
@@ -54,7 +54,7 @@
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${vo.name}</td>
+										<td>${vo.empName}</td>
 									</tr>
 									<tr>
 										<td>부서</td>

@@ -13,9 +13,8 @@ import lombok.ToString;
 public class DeptVO {
 
 	private String username;
-	private String empNo;
 	private String password;
-	private String name;
+	private String empName;
 	private String email;
 	private String phone;
 	private Long positionNo;

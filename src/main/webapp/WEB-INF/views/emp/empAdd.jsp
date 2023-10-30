@@ -42,7 +42,7 @@
 									<table style="border-color: black;">
 										<tr>
 											<td>이름</td>
-											<td><input type="text" class="form-control" name="name" id="name"></td>
+											<td><input type="text" class="form-control" name="empName" id="empName"></td>
 										</tr>
 										<tr>
 											<td>이메일</td>
@@ -90,7 +90,7 @@
 			
 			$.ajax({
 				type : 'post'',
-				url : 'emp/empAdd/CheckMail',
+				url : '/CheckMail',
 				data : {
 					mail:mail
 				},

@@ -75,7 +75,7 @@
                     </li>
                     <li>
                     <sec:authentication property="Principal" var="user"/>
-                      <a class="dropdown-item" href="/emp/mypage?username=${user.empNo}">
+                      <a class="dropdown-item" href="/emp/mypage?username=${user.username}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Page</span>
                       </a>

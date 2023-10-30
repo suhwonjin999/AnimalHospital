@@ -32,7 +32,7 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 					<form>
-					<h3>${user.name}의 마이페이지</h3>
+					<h3>${user.empName}의 마이페이지</h3>
 													
 					<div class="card shadow mb-4" style="align-items: center; width: 68%; float: left;">
 							<div>
@@ -49,7 +49,7 @@
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${user.name}</td>
+										<td>${user.empName}</td>
 									</tr>
 									<tr>
 										<td>부서</td>

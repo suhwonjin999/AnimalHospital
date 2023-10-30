@@ -31,7 +31,7 @@
 					
 					<form>
 				<!-- Content wrapper -->
-					<h3>${vo.name}&nbsp;${vo.positionName}의 상세페이지</h3>
+					<h3>${vo.empName}&nbsp;${vo.positionName}의 상세페이지</h3>
 					<div class="card shadow mb-4" style="align-items: center;">
 								
 							<div>
@@ -46,7 +46,7 @@
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td>${vo.name}</td>
+										<td>${vo.empName}</td>
 									</tr>
 									<tr>
 										<td>부서</td>

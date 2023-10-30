@@ -33,9 +33,8 @@
 
 <resultMap type="com.vet.main.dept.DeptVO" id="getDetailResult">
 		<id column="USERNAME" property="username"/>
-		<result column="EMPNO" property="empNo"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="NAME" property="name"/>
+		<result column="EMPNAME" property="empName"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="HIREDATE" property="hireDate"/>

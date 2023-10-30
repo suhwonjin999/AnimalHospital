@@ -30,7 +30,7 @@
 	<resultMap type="com.vet.main.emp.EmpVO" id="getLoginResult">
 		<id column="USERNAME" property="username"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="NAME" property="name"/>
+		<result column="EMPNAME" property="empName"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="ADDRESS" property="address"/>
@@ -75,7 +75,7 @@
 	<resultMap type="com.vet.main.emp.EmpVO" id="getDetailResult">
 		<id column="USERNAME" property="username"/>
 		<result column="PASSWORD" property="password"/>
-		<result column="NAME" property="name"/>
+		<result column="EMPNAME" property="empName"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="HIREDATE" property="hireDate"/>
@@ -95,7 +95,7 @@
 	        select NEXTVAL(emp_seq) from dual
 	</selectKey>
 		INSERT INTO EMP 
-		VALUES (#{username}, #{password}, #{name}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
+		VALUES (#{username}, #{password}, #{empName}, #{email}, #{phone}, NOW(), 'default.jpeg', 'default.jpeg', 12, 999, '재직', #{birth}, 0)
 	</insert>
 
 	<insert id="empRole" parameterType="java.util.Map">
@@ -118,7 +118,7 @@
   		JOIN POSITION P
   		ON E.POSITIONNO = P.POSITIONNO
   		SET
-  		E.NAME = #{name},
+  		E.EMPNAME = #{empName},
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
   		E.STATE = #{state}

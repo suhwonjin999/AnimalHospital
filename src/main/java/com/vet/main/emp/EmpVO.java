@@ -25,7 +25,7 @@ public class EmpVO implements UserDetails{
 	private String username;
 //	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}", message = "확인이 필요합니다.")
 	private String password;
-	private String name;
+	private String empName;
 	@Email
 	private String email;
 	private String phone;

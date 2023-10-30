@@ -52,7 +52,7 @@
 									<tr>
 										<td>이름</td>
 										<td>
-											<input type="text" name="name" value="${vo.name}">
+											<input type="text" name="empName" value="${vo.empName}">
 										</td>
 									</tr>
 									<tr>
