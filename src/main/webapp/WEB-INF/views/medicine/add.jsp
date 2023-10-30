@@ -23,43 +23,44 @@
 			<div class="layout-page" style="align-items:center;">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="/* margin-right: 1200px; */">약품추가</h3>
-				<div class="card shadow mb-4" style="box-sizing: content-box;">
-				
-					<section class="container mt-5">
-						<form action="./add" method="POST">
-
-					<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">	
-						<div style="width: 550px; margin-top: 20px; float: left;">
-							<table class="table">
-								<tr>
-									<td>약품명</td>
-									<td><input type="text" name="name" class="form-control" id="name" placeholder="약품이름을 입력하세요."></td>
-								</tr>
-								<tr>
-									<td>재고</td>
-									<td><input type="text" name="stock" class="form-control" id="stock"></td>
-								</tr>
-								<!-- <tr>	
-									<td>입고일</td>
-									<td><input type="date" name="medicineDate" class="form-control" id="medicineDate"></td>
-								</tr> -->
-								<tr>
-									<td>유통기한</td>
-									<td><input type="date" name="expirationDate" class="form-control" id="expirationDate"></td>
-								</tr>
-								
-							</table>
-							<button type="submit" class="btn btn-primary" style="float:right">약품등록</button>
-						</div>
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<h3>약품추가</h3>
+						<div class="card shadow mb-4" style="align-items: center;">
+							<form action="./add" method="POST">
+								<div>	
+									<div style="width: 550px; margin-top: 20px; float: left;">
+										<table class="table">
+											<tr>
+												<td>약품명</td>
+												<td><input type="text" name="name" class="form-control" id="name" placeholder="약품이름을 입력하세요."></td>
+											</tr>
+											<tr>
+												<td>재고</td>
+												<td><input type="text" name="stock" class="form-control" id="stock"></td>
+											</tr>
+											<!-- <tr>	
+												<td>입고일</td>
+												<td><input type="date" name="medicineDate" class="form-control" id="medicineDate"></td>
+											</tr> -->
+											<tr>
+												<td>유통기한</td>
+												<td><input type="date" name="expirationDate" class="form-control" id="expirationDate"></td>
+											</tr>
+											
+										</table>
+										<button type="submit" class="btn btn-primary" style="float:right">약품등록</button>
+									</div>
+								</div>
+							</form>
+						</div>	
 					</div>
-					
-					</form>
-					</section>
+					<!-- Content wrapper -->
 				</div>
-				
+				<!-- / Layout page -->
 			</div>
-			<!-- / Layout page -->
 		</div>
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>

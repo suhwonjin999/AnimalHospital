@@ -11,7 +11,7 @@
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>약품수정페이지</title>
+<title>진료차트추가페이지</title>
 
 </head>
 <body>
@@ -27,42 +27,21 @@
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h3>약품수정</h3>
-							<div class="card shadow mb-4" style="align-items: center;">
-								<form action="./update" method="POST">
-									<input type="hidden" name="medicineNo" value="${vo.medicineNo}">
-			
-									<div>	
-										<div style="width: 550px; margin-top: 20px; float: left;">
-											<table class="table">
-												<tr>
-													<td>약품명</td>
-													<td>${vo.name}</td>
-												</tr>
-												
-												<tr>
-													<td>재고</td>
-													<td><input type="text" name="stock" class="form-control" id="stock" value="${vo.stock}"></td>
-												</tr>
-												<tr>	
-													<td>입고일</td>
-													<td><input type="date" name="medicineDate" class="form-control" id="medicineDate" value="${vo.medicineDate}"></td>
-												</tr>
-												<tr>
-													<td>유통기한</td>
-													<td><input type="date" name="expirationDate" class="form-control" id="expirationDate" value="${vo.expirationDate}"></td>
-												</tr>
-												
-											</table>
-											<button class="btn btn-primary" style="float:right">수정</button>
+						<div class="card shadow mb-4" style="align-items: center;">
+							<form action="./add" method="POST">
+								<div>
+									<div style="width: 700px; margin-top: 20px;">
+										<div>
+											
 										</div>
 									</div>
-								</form>
-							</div>
+								</div>
+							</form>
+						</div>	
 					</div>
-					<!-- Content wrapper -->
+				<!-- Content wrapper -->
 				</div>
-				<!-- / Layout page -->
+			<!-- / Layout page -->
 			</div>
 		</div>
 		<!-- Overlay -->
@@ -70,6 +49,6 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-    
+
 </body>
 </html>
