@@ -20,11 +20,17 @@
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
-			<div class="layout-page" style="align-items:center;">
+			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-					<br><h3 style="margin-right: 1300px;">고객 목록</h3>
-				<div class="card shadow mb-4" style="width: 1400px;">				
+
+				<div class="content-wrapper">
+					<!-- Content -->
+					<!-- 내용부분-->
+					<div class="container-xxl flex-grow-1 container-p-y">
+					
+					<h3>고객 목록</h3>
+					<div class="card shadow mb-4">			
 					<!-- Content -->
 					
 					<table class="table tb" style="text-align: center; ">
@@ -144,12 +150,15 @@
 					
 					
 				</div>
-				
+					<!-- / Content -->
+<%-- 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
+					<div class="content-backdrop fade"></div>
+				</div>
 				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->
 		</div>
-
+	</div>
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
 	</div>

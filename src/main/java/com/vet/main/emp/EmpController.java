@@ -83,7 +83,7 @@ public class EmpController {
 	@PostMapping("mypageUpdate")
 	public String mypageUpdate(EmpVO empVO)throws Exception{
 		int result = empService.mypageUpdate(empVO);
-		return "redirect:../";
+		return "redirect:./login";
 		
 //		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //		EmpVO empVO = (EmpVO)obj;

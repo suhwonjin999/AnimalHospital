@@ -50,8 +50,8 @@ public class SecurityConfig {
 			.disable()
 			.authorizeHttpRequests()
 				.antMatchers("/resources/images/*").permitAll()
-				.antMatchers("/**").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/emp/empUpdate").hasRole("ADMIN")
+				/* .antMatchers("/**").permitAll() */
+				 .antMatchers("/**").hasAnyRole("ADMIN", "USER") 
 				.and()
 			.formLogin()
 				.loginPage("/emp/login")
