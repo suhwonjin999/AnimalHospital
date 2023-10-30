@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class ApprovalVO {
 	private Long apNo;
-	private String empNo;
+	private String userName;
 	private Long apFormatNo;
 	private String apTitle;
 	private Date apCDate;

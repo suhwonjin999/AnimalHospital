@@ -1,4 +1,4 @@
-let empNo = document.getElementById("empNo").value;				// 사번
+let userName = document.getElementById("userName").value;				// 사번
 
 let apTitle = document.getElementById("apTitle");			// 전자결재 양식 제목
 let apContents = document.getElementById("apContents");		// 전자결재 양식 내용
@@ -30,5 +30,5 @@ addBtn.addEventListener("click", function(){
 
 // 취소 버튼
 cancleBtn.addEventListener("click", function(){
-	location.href = "/approval/draftList?empNo=" + empNo;
+	location.href = "/approval/draftList?userName=" + userName;
 })
