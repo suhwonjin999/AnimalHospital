@@ -28,14 +28,15 @@ public class TreatmentChartController {
 	public String getList(Pager pager, Model model) throws Exception {
 		List<TreatmentChartVO> ar = treatmentChartService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return "treatmentchart/list";
 	}
 	
 	//진료차트추가
 	@GetMapping("add")
-	public String setAdd(Model model) throws Exception {
-		CustomerVO customerVO = new CustomerVO();
+	public String setAdd(CustomerVO customerVO, Model model) throws Exception {
+//		CustomerVO customerVO = new CustomerVO();
 		customerVO = customerService.getDetail(customerVO);
 		model.addAttribute("vo", customerVO);
 		return "treatmentchart/add";

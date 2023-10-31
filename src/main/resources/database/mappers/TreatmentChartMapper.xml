@@ -10,7 +10,7 @@
 	  	</select>
 		
 		<!-- 진료차트목록 -->
-		<select id="getList" parameterType="TreatmentChartVO" resultType="TreatmentChartVO">
+		<select id="getList" parameterType="Pager" resultType="TreatmentChartVO">
 			SELECT * FROM TREATMENTCHART
 				ORDER BY CHARTNO DESC
 				LIMIT #{startRow}, #{perPage}
@@ -18,8 +18,8 @@
 		
 		<!-- 진료차트추가 -->
 		<insert id="setAdd" parameterType="TreatmentChartVO">
-			INSERT INTO TREATMENTCHART (CHARTNO, TITLE, CONTENTS, DISEASE, DATE)
-				VALUES (NULL, #{title}, #{contents}, #{disease}, now())
+			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME)
+				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{userName})
 		</insert>
 		
 	</mapper>

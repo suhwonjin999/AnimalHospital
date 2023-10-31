@@ -35,21 +35,23 @@
 							<thead style="height: 70px;">
 								<tr>
 									<th>No</th>
-							        <th>제목</th>
+							        <th>병명</th>
 							        <th>수술예약번호</th>
 							        <th>진료날짜</th>
 								</tr>
 							</thead>
-						<c:forEach items="${list}" var="vo">
-							<tbody style="height: 35px;">
-								<tr>
-									<td>${vo.chartNo}</td>
-							    	<td>${vo.title}</td>
-							    	<td>${vo.surgeryNo}</td>
-							    	<td>${vo.date}</td>
-								</tr>
-							</tbody>
-						</c:forEach>
+							
+							<c:forEach items="${list}" var="vo">
+								<tbody style="height: 35px;">
+									<tr>
+										<td>${vo.chartNo}</td>
+										<td>${vo.disease}</td>
+										<td></td>
+										<td>${vo.date}</td>
+									</tr>
+								</tbody>
+							</c:forEach>
+							
 						</table>
 						
 						<br>
@@ -98,7 +100,7 @@
 								</nav>
 	    					</div>
 	    					<div>
-	    						<a href="./add" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
+								<a href="./add?customerNo=${param.customerNo}" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
 	    					</div>
 						</div>	
 					</div>
