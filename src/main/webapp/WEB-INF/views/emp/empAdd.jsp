@@ -8,6 +8,7 @@
 	data-theme="theme-default" data-assets-path="/assets/"
 	data-template="vertical-menu-template-free">
 <head>
+
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">

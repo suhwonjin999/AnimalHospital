@@ -21,11 +21,17 @@ public class NoticeController {
 	 
 	// 공지사항 목록
 	@GetMapping("noticelist")
-	public String board(Model model) throws Exception {
+	public String noticeList(Model model) throws Exception {
 		List<NoticeVO> ar = noticeService.getNoticeList();
 		model.addAttribute("list", ar);
 		
 		return "board/noticeList";
+	}
+	
+	// 공지사항글 추가 페이지
+	@GetMapping("noticeAdd")
+	public void noticeAdd(Model model) throws Exception{
+		
 	}
 	
 	

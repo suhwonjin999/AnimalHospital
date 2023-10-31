@@ -10,7 +10,7 @@
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>공지사항 상세페이지</title>
 </head>
 
 <body>
@@ -52,17 +52,18 @@
 								<tbody style="height: 35px;">
 							<c:forEach items="${list}" var="vo">
 									<tr>
-										<td><a href="./noticeDetail?noticeNo=${vo.noticeNo}" style="color: #697a8d;">${vo.noticeNo}</a></td>
-										<td>${vo.empName}</td>
-										<td><a href="./noticeDetail?title=${vo.title}">${vo.title}</a></td>
+										<td><a href="./boardDetail?noticeNo=${vo.noticeNo}" style="color: #697a8d;">${vo.noticeNo}</a></td>
+										<td>${vo.username}</td>
+										<td><a href="./boardDetail?title=${vo.title}" style="color: #697a8d;">${vo.title}</a></td>
 										<td>${vo.hit}</td>
 									</tr>
 							</c:forEach>
 								</tbody>
+							
 							</table>
 							<br>
 						</div>
-						<a href="/board/noticeAdd" class="btn btn-secondary">작성</a>
+						<a href="/board/boardAdd" class="btn btn-secondary">작성</a>
 						</form>
 					</div>
 					<!-- / Content -->
