@@ -5,29 +5,51 @@
 
 <mapper namespace="com.vet.main.notice.NoticeDAO">
 
-	<sql id="forPager">
+<!-- 	<sql id="searchSql">
 		<choose>
-			<when test="kind==1">
-				title
+			<when test="kind=='title'">
+				AND TITLE LIKE '%'||#{search}||'%'
 			</when>
-			<when test="kind==2">
-				noticeContents
+			<when test="kind==contents">
+				AND CONTENTS LIKE '%'||#{search}||'%'
 			</when>
 			<otherwise>
-				empNo
+				AND EMPNO LIKE '%'||#{search}||'%'
 			</otherwise>
 		</choose>
-	</sql>
+	</sql> -->
 	
 		
-	<select id="getNoticeList" parameterType="Pager" resultType="NoticeVO">
-		SELECT * FROM NOTICE
+	<select id="getNoticeList" parameterType="NoticeVO" resultMap="getDetailResult">
+		SELECT N.*, E.NAME FROM NOTICE N
+		INNER JOIN EMP E
+		ON E.EMPNO = N.EMPNO 
+		ORDER BY NOTICENO DESC
+		
+<!-- 		SELECT * FROM NOTICE
 		WHERE 
-		<include refid="forPager"></include>
+		<include refid="searchSql"></include>
 		LIKE CONCAT('%', #{search}, '%')
 		ORDER BY NOTICENO DESC
-		LIMIT #{startRow}, #{lastRow}
+		LIMIT #{startRow}, #{lastRow} -->
 	</select>
+	
+	 	<resultMap type="NoticeVO" id="getDetailResult">
+  		<id column="NOTICENO" property="noticeNo"/>
+  		<result column="EMPNO" property="empNo"/>
+  		<result column="TITLE" property="title"/>
+  		<result column="CREATDATE" property="createDate"/>
+  		<result column="CONTENTS" property="contents"/>
+  		<result column="HIT" property="hit"/>
+  		<result column="MODIFYDATE" property="modifyDate"/>
+  		<result column="IMPORTANT" property="important"/>
+  		<result column="NAME" property="name"/>
+  		
+<!-- 		<collection property="empVOs" javaType="List" ofType="EmpVO">
+  			<id column="EMPNO" property="empNo"/>
+  			<result column="NAME" property="name"/>
+  		</collection> -->
+  	</resultMap>
 	
 	
 

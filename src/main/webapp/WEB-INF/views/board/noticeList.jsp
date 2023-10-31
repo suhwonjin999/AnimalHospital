@@ -41,20 +41,16 @@
 								<th>조회수</th>
 							</tr>
 						</thead>
-<%-- 					<c:forEach items="${list}" var="vo">
+ 					<c:forEach items="${list}" var="vo">
 						<tbody style="height: 35px;">
 							<tr>
-								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.empNo}</a></td>
-								<td><a href="./empDetail?empNo=${vo.empNo}">${vo.name}</a></td>
-								<td>${vo.deptName}</td>
-								<td>${vo.positionName}</td>
-								<td>${vo.email}</td>
-								<td>${vo.phone}</td>
-								<td>${vo.hireDate}</td>
-								<td>${vo.state}</td>
+								<td><a href="./boardDetail?noticeNo=${vo.noticeNo}">${vo.noticeNo}</a></td>
+								<td>${vo.name}</td>
+								<td><a href="./boardDetail?title=${vo.title}">${vo.title}</a></td>
+								<td>${vo.hit}</td>
 							</tr>
 						</tbody>
-					</c:forEach> --%>
+					</c:forEach>
 					
 					</table>
 					<br>					
