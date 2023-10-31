@@ -21,6 +21,7 @@
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="java.lang.String" alias="String" />
 		
+		<typeAlias type="com.vet.main.notice.NoticeVO" alias="NoticeVO"/>
 	</typeAliases>
 
 </configuration>
