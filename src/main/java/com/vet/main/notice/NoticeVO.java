@@ -32,6 +32,9 @@ public class NoticeVO extends BoardVO {
 	
 	// 작성자
 	private String empName ;
+	
+	// 직급
+	private String positionName;
 
 	
 }

@@ -43,7 +43,7 @@
   		<result column="HIT" property="hit"/>
   		<result column="MODIFYDATE" property="modifyDate"/>
   		<result column="IMPORTANT" property="important"/>
-<!--   		<result column="NAME" property="name"/> 	-->
+  		<result column="EMPNAME" property="empName"/> 	
   		
 <!-- 		<collection property="empVOs" javaType="List" ofType="EmpVO">
   			<id column="EMPNO" property="empNo"/>

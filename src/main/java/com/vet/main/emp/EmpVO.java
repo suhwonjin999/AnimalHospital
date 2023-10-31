@@ -21,8 +21,8 @@ import lombok.ToString;
 @ToString
 public class EmpVO implements UserDetails{
 
-	// emp 테이블
-	// private Long empNo을 String username 으로 변경됨
+//  emp 테이블
+//  private Long empNo을 String username 으로 변경됨
 	private String username;
 //	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}", message = "확인이 필요합니다.")
 	private String password;
