@@ -45,7 +45,7 @@
 						<tbody style="height: 35px;">
 							<tr>
 								<td><a href="./boardDetail?noticeNo=${vo.noticeNo}">${vo.noticeNo}</a></td>
-								<td>${vo.name}</td>
+								<td>${vo.username}</td>
 								<td><a href="./boardDetail?title=${vo.title}">${vo.title}</a></td>
 								<td>${vo.hit}</td>
 							</tr>

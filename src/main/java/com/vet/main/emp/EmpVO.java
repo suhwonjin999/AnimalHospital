@@ -11,20 +11,21 @@ import lombok.ToString;
 @ToString
 public class EmpVO {
 
-	//emp
-	private Long empNo;
+	//emp (회원테이블)
+	//사원번호 Long empNo을 String username 으로 변경
+	private String username;
 	private String password;
-	private String name;
+	private String empName;
 	private String email;
 	private String phone;
 	private Date hireDate;
-	private String randomPw;
 	private String fileName;
 	private String originalFileName;
 	private Long positionNo;
 	private String deptNo;
 	private String state;
 	private Date birth;
+	private String randomPw;
 	
 	
 	//position
