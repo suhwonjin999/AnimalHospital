@@ -31,7 +31,7 @@ public class NoticeVO extends BoardVO {
 	private List<NoticeFileVO> fileVOs;
 	
 	// 작성자
-	private String name;
+	private String empName ;
 
 	
 }

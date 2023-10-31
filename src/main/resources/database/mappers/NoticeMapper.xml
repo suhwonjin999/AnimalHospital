@@ -21,9 +21,9 @@
 	
 		
 	<select id="getNoticeList" parameterType="NoticeVO" resultMap="getDetailResult">
-		SELECT N.*, E.NAME FROM NOTICE N
+		SELECT N.*, E.EMPNAME FROM NOTICE N
 		INNER JOIN EMP E
-		ON E.EMPNO = N.EMPNO 
+		ON E.USERNAME = N.USERNAME 
 		ORDER BY NOTICENO DESC
 		
 <!-- 		SELECT * FROM NOTICE
@@ -36,14 +36,14 @@
 	
 	 	<resultMap type="NoticeVO" id="getDetailResult">
   		<id column="NOTICENO" property="noticeNo"/>
-  		<result column="EMPNO" property="empNo"/>
+  		<result column="USERNAME" property="username"/>
   		<result column="TITLE" property="title"/>
   		<result column="CREATDATE" property="createDate"/>
   		<result column="CONTENTS" property="contents"/>
   		<result column="HIT" property="hit"/>
   		<result column="MODIFYDATE" property="modifyDate"/>
   		<result column="IMPORTANT" property="important"/>
-  		<result column="NAME" property="name"/>
+<!--   		<result column="NAME" property="name"/> 	-->
   		
 <!-- 		<collection property="empVOs" javaType="List" ofType="EmpVO">
   			<id column="EMPNO" property="empNo"/>

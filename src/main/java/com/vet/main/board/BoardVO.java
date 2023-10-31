@@ -11,8 +11,8 @@ import lombok.ToString;
 @ToString
 public class BoardVO {
 	
-	// 작성자
-	private Long empNo;
+	// 사원번호
+	private String username;
 	// 제목
 	private String title;
 	// 작성일
