@@ -18,5 +18,10 @@ public class NoticeService {
 		return noticeDAO.getNoticeList();
 	}
 	
+	// 공지사항글 추가 페이지
+	public int setNoticeAdd(NoticeVO noticeVO) throws Exception{
+		int result = noticeDAO.setNoticeAdd(noticeVO);
+		return result;
+	}
 
 }
