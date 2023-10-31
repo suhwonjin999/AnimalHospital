@@ -22,10 +22,10 @@ public class EmpVO {
 	private String fileName;
 	private String originalFileName;
 	private Long positionNo;
-	private String deptNo;
+	private Long deptNo;
 	private String state;
 	private Date birth;
-	private String randomPw;
+	private Long randomPw;
 	
 	
 	//position
