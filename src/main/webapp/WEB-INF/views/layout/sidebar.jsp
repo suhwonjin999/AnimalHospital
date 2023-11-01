@@ -254,7 +254,7 @@
 	              </a>
 	            </li> 
 	            <li class="menu-item">
-	              <a href="/approval/draftList?username=${emp.username}" class="menu-link">
+	              <a href="/approval/draftList/${emp.username}" class="menu-link">
 	                <div data-i18n="Basic">기안함</div>
 	              </a>
 	            </li>

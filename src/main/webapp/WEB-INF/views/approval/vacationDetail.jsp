@@ -43,13 +43,13 @@
 									<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 602px; height: 131px;" class="">
 										<tbody>
 											<tr style="">
-												<td rowspan="3" style="border-top: none; border-bottom: none; border-left: none; border-image: initial; border-right: 1px solid black; padding: 0px 7px; height: 131px; width: 280px;">
+												<td rowspan="3" style="border-top: none; border-bottom: none; border-left: none; border-image: initial; border-right: 1px solid black; padding: 0px 7px; height: 131px; width: 264px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<b>
-															<span style="font-size:28.0pt;font-family:나눔스퀘어_ac ExtraBold">품 
-																<span style="spacerun:yes">&nbsp;</span>의 
-																<span style="spacerun:yes">&nbsp;</span>서
-															</span>
+															<span style="font-size:22.0pt;font-family:맑은 고딕; font-family:맑은 고딕;font-family:맑은 고딕;bidi-font-family: 맑은 고딕">휴 직 신 청 서</span>
+														</b>
+														<b>
+															<span style="font-size:22.0pt;font-family:나눔스퀘어_ac ExtraBold"></span>
 														</b>
 													</p>
 												</td>
