@@ -63,7 +63,7 @@
 						
 						              <p class="text-center">
 						                <span>비밀번호를 잊어버리셨나요?</span>
-						                <a href="./findPw">
+						                <a href="./empAdd">
 						                  <span>비밀번호 찾기</span>
 						                </a>
 						              </p>

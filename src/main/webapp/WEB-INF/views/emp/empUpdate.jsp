@@ -9,10 +9,10 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-</head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -40,14 +40,15 @@
 							<input type="hidden" name="birth" value="${vo.birth}">
 								<div style="width: 300px; float: left;">
 									<c:if test="${vo.originalFileName == null }">
-										<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+										<img alt="" src="/resources/images/default.jpeg" style="width: 250px; height: 250px; margin: 30px;">
 									</c:if>
-									<c:if test="${vo.originalFileName != null }">
-										<img alt="" src="../files/emp/${vo.fileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<c:if test="${vo.originalFileName != null }">		
+										<img alt="" src="../files/emp/${vo.fileName}" style="width: 250px; height: 250px; margin: 30px;">
 									</c:if>
 								</div>
-							<div style="width: 550px; margin-top: 20px; float: left;">
-								<table class="table">
+							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
+								
+								<table class="table" style="">
 									<tr>
 										<td>사번</td>
 										<td>
@@ -57,13 +58,13 @@
 									<tr>
 										<td>이름</td>
 										<td>
-											<input type="text" name="empName" value="${vo.empName}">
+											<input type="text" class="form-control" name="empName" value="${vo.empName}" style="height: 35px;">
 										</td>
 									</tr>
 									<tr>
 										<td>부서</td>
 										<td>
-											<select name='deptNo'>
+											<select class="form-control" name='deptNo' id="deptNo" style="height: 35px;">
 												<option value="${vo.deptNo}" selected="selected">${vo.deptName}</option>
 												<option value="200">인사행정부</option>
 												<option value="400">내과</option>
@@ -78,36 +79,36 @@
 									<tr>
 										<td>직급</td>
 										<td>
-											<select name='positionNo'>
+											<select class="form-control" name='positionNo' id="positionNo" style="height: 35px;">
 												<option value="${vo.positionNo}" selected="selected">${vo.positionName}</option>
-												<c:if test="${deptNo == 100}">
+												<%-- <c:if test="${deptNo == 100}"> --%>
 													<option value="2">대표원장</option>
-												</c:if>
-												<c:if test="${vo.deptNo == 200}">
+												<%-- </c:if>
+												<c:if test="${vo.deptNo == 200}"> --%>
 													<option value="7">사무장</option>
 													<option value="8">대리</option>
 													<option value="9">사원</option>
-												</c:if>
-												<c:if test="${vo.deptNo == 300}">
+												<%-- </c:if>
+												<c:if test="${vo.deptNo == 300}"> --%>
 													<option value="3">원장</option>
 													<option value="4">과장</option>
 													<option value="5">팀장</option>
 													<option value="6">수의사</option>
-												</c:if>
-												<c:if test="${vo.deptNo == 700}">
+												<%-- </c:if>
+												<c:if test="${vo.deptNo == 700}"> --%>
 													<option value="10">간호실장</option>
 													<option value="11">수의테크니션</option>
-												</c:if>
-												<c:if test="${vo.deptNo == 999}">
+												<%-- </c:if>
+												<c:if test="${vo.deptNo == 999}"> --%>
 													<option value="12">가발령</option>
-												</c:if>
+												<%-- </c:if> --%>
 											</select>
 										</td>
 									</tr>
 									<tr>
 										<td>상태</td>
 										<td>
-											<select name='state'>
+											<select class="form-control" name='state' id="state" style="height: 35px;">
 												<option value="재직" selected="selected">${vo.state}</option>
 												<option value="재잭">재직</option>
 												<option value="휴직">휴직</option>
@@ -144,7 +145,10 @@
 											${vo.birth}
 										</td>
 									</tr>
-
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
 								</table>
 							</div>
 						</div>
@@ -162,6 +166,13 @@
 		<div class="layout-overlay layout-menu-toggle"></div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-
+<script type="text/javascript">
+	$(function(){
+		$('#deptNo').change(function(){
+			let temp = $(this).val();
+			$('#positionNo').attr();
+		}).change();
+	})
+</script>
 </body>
 </html>

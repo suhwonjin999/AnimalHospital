@@ -9,7 +9,7 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-</head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -37,7 +37,6 @@
 							<div style="width:900px; float: left; margin-bottom: 30px; ">
 								<form action="empAdd" method="post" enctype="multipart/form-data">
 								<input type="hidden" class="form-control" name="username" id="username">
-								<input type="hidden" class="form-control" name="empNo" id="empNo">
 								<input type="hidden" class="form-control" name="password" id="password">
 									<table style="border-color: black;">
 										<tr>

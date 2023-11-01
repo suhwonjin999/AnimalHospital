@@ -11,7 +11,7 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-</head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -37,14 +37,14 @@
 							<form action="mypageUpdate" method="post" enctype="multipart/form-data">
 								<div style="width: 300px; float: left;">
 									<c:if test="${vo.originalFileName == null }">
-										<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
+										<img alt="" src="/resources/images/default.jpeg" style="width: 250px; height: 250px; margin: 30px;">
 									</c:if>
-									<c:if test="${vo.originalFileName != null }">
-										<img alt="" src="../files/emp/${vo.fileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<c:if test="${vo.originalFileName != null }">		
+										<img alt="" src="../files/emp/${vo.fileName}" style="width: 250px; height: 250px; margin: 30px;">
 									</c:if>
 									<input type="file" class="form-control" name="files">
 								</div>
-							<div style="width: 550px; margin-top: 20px; float: left;">
+							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
 								<input type="hidden" name="username" value="${vo.username}">
 								<input type="hidden" name="empName" value="${vo.empName}">
 								<input type="hidden" name="deptName" value="${vo.deptName}">
@@ -52,7 +52,7 @@
 								<input type="hidden" name="hireDate" value="${vo.hireDate}">
 								<input type="hidden" name="birth" value="${vo.birth}">
 								
-								<table class="table">
+								<table class="table" style="margin-top: 40px;">
 									<tr>
 										<td>사번</td>
 										<td>${vo.username}</td>
@@ -84,7 +84,7 @@
 										<td>
 											<div class="form-group">
 
-												<input type="email" name="email" id="email" value="${vo.email}"/>
+												<input type="email" class="form-control"  name="email" id="email" value="${vo.email}"/>
 
 											</div>
 										</td>
@@ -94,7 +94,7 @@
 										<td>
 											<div class="form-group">
 
-												<input type="text" name="phone" id="phone" value="${vo.phone}"/>
+												<input type="text" class="form-control"  name="phone" id="phone" value="${vo.phone}"/>
 
 											</div>
 										</td>

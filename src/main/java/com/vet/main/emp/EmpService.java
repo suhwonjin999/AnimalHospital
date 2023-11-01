@@ -4,13 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,9 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
-import com.vet.main.customer.CustomerFileVO;
+import com.vet.main.commons.Pager;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -45,12 +41,12 @@ public class EmpService implements UserDetailsService{
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("=========로그인 시도 중==========");
 		EmpVO empVO = new EmpVO();
-		empVO.setEmpNo(empNo);
+		empVO.setUsername(username);
 		try {
-			empVO = empDAO.getLogin(empNo);
+			empVO = empDAO.getLogin(username);
 		} catch (Exception e) {
 			e.printStackTrace();
 			empVO=null;
@@ -100,8 +96,11 @@ public class EmpService implements UserDetailsService{
 
 	
 	// 사원 관리(직원 목록)
-	public List<EmpVO> empList()throws Exception{
-		return empDAO.empList();
+	public List<EmpVO> empList(Pager pager)throws Exception{
+		Long totalCount = empDAO.getTotal(pager);
+		pager.makeNum(totalCount);
+		pager.makeStartRow();
+		return empDAO.empList(pager);
 	}
 	
 	// 신규직원 등록
