@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vet.main.commons.Pager;
@@ -31,14 +33,14 @@ public class DeptController {
 		return "dept/deptList";
 	} 
 	
-	@GetMapping("deptList/deptAdd")
-	public String deptAdd1(DeptVO deptVO)throws Exception{
-		return "dept/deptAdd";
-	}
+//	@GetMapping("deptList/deptAdd")
+//	public String deptAdd1(DeptVO deptVO)throws Exception{
+//		return "dept/deptAdd";
+//	}
 	
-	@PostMapping("deptList/deptAdd")
 	@ResponseBody
-	public String deptAdd(DeptVO deptVO)throws Exception{
+	@RequestMapping(value = "/deptList/deptAdd", method = RequestMethod.POST)
+	public String deptAdd( DeptVO deptVO)throws Exception{
 		int result = deptService.deptAdd(deptVO);
 		return "redirect: ./deptList";
 	}
