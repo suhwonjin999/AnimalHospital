@@ -29,7 +29,7 @@
 
 	<c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 	<meta charset="UTF-8">
-	<title>품의서 작성</title>
+	<title>지출내역서 작성</title>
 
 </head>
 
@@ -51,7 +51,7 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
-				    		<form action="poomAdd" id="addFrm" method="post">
+				    		<form action="expenseAdd" id="addFrm" method="post">
 				    		
 				    			<div class="mb-3">
 								  <label for="username" class="form-label"></label>
@@ -83,10 +83,32 @@
 								  <input type="text" class="form-control" id="apTitle" name="apTitle" placeholder="제목을 입력하세요">
 								</div>
 
-								<div class="mb-3">
-								  <label for="apContents" class="form-label">내용</label>
-								  <textarea class="form-control" id="apContents" name="apContents" rows="3" placeholder="내용을 입력하세요"></textarea>
-								</div>
+			
+			                    <div class="mb-1" style="margin:0 auto; width:fit-content;">
+			                        <button type="button" class="btn btn-primary" id="expensePlusBtn">내역 추가</button>
+			                    </div>
+			        
+			                    <!-- 지출결의서 폼이 추가되는 곳 -->
+			                    <div id="expenseList" class="my-5">
+									<div class="row g-3 mb-2" id="expense1">
+									  <div class="col-4">
+									    <input type="text" class="form-control" id="expenseName" name="expenseName" placeholder="항목">
+									  </div>
+									  <div class="col-2">
+									    <input type="text" class="form-control" id="expenseAmount" name="expenseAmount" placeholder="수량">
+									  </div>
+									  <div class="col-2">
+									    <input type="text" class="form-control" id="expensePrice" name="expensePrice" placeholder="금액">
+									  </div>
+									  <div class="col-3">
+									    <input type="text" class="form-control" id="expenseBigo" name="expenseBigo" placeholder="비고">
+									  </div>
+									  <div class="col-1">
+									  	<button type="button" id="expenseMinusBtn" name="expenseMinusBtn" class="btn btn-primary df align-bottom"> X </button>
+									  </div>
+									</div>
+			        
+			                    </div>
 								
 					    		<div class="row">
 									<div class="demo-inline-spacing">
@@ -131,7 +153,7 @@
 	<script>
 	$('#apContents').summernote({
 	  tabsize: 2,
-	  height: 500,
+	  height: 300,
 	  codemirror: { // codemirror options
 		    theme: 'monokai'
 		  },
@@ -141,6 +163,6 @@
 	$("#apContents").summernote('code'); 
 	</script>
 	
-	<script src="/js/approval/apPoomAdd.js"></script>
+	<script src="/js/approval/apExpenseAdd.js"></script>
 </body>
 </html>

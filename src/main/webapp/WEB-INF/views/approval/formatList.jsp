@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
@@ -20,6 +20,7 @@
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
+			<sec:authentication property="Principal" var="user"/>
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page">
@@ -33,6 +34,7 @@
 	                    <div class="card shadow mb-4">
 	                        <div class="card-body">
 	                            <div class="table-responsive">
+	                            	
 	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
 	                                    <thead>
 	                                        <tr>
@@ -42,23 +44,23 @@
 	                                    </thead>
 	                                    <tbody>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd">품의서</a></td>
+	                                            <td><a href="/approval/add/poomAdd">품의서</a></td>
 	                                            <td>품의서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">지출결의서</a></td>
+	                                            <td><a href="/approval/add/expenseAdd">지출결의서</a></td>
 	                                            <td>지출결의서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴가신청서</a></td>
+	                                            <td><a href="/approval/add/dayoffAdd">휴가신청서</a></td>
 	                                            <td>휴가신청서 작성페이지입니다.</td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">휴직신청서</a></td>
+	                                            <td><a href="/approval/add/vacationAdd">휴직신청서</a></td>
 	                                            <td>휴직신청서 작성페이지입니다.</td>
 	                                        </tr>  
 	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">퇴직신청서</a></td>
+	                                            <td><a href="/approval/add/retireAdd">퇴직신청서</a></td>
 	                                            <td>퇴직신청서 작성페이지입니다.</td>
 	                                        </tr>  
 	                                    </tbody>

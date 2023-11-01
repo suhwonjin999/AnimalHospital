@@ -1,4 +1,4 @@
-let empNo = document.getElementById("empNo").value;				// 사번
+let username = document.getElementById("username").value;				// 사번
 
 let search = document.getElementById("search");		// 전자결재 양식 내용
 

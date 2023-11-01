@@ -29,7 +29,7 @@
 
 	<c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 	<meta charset="UTF-8">
-	<title>품의서 작성</title>
+	<title>휴직신청서 작성</title>
 
 </head>
 
@@ -51,7 +51,7 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 						<div class="row">
-				    		<form action="poomAdd" id="addFrm" method="post">
+				    		<form action="vacationAdd" id="addFrm" method="post">
 				    		
 				    			<div class="mb-3">
 								  <label for="username" class="form-label"></label>

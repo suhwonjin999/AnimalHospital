@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -21,6 +22,9 @@
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page">
+			
+			<sec:authentication property="Principal" var="user"/>
+			
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">				
@@ -47,12 +51,13 @@
 	                                    	<c:forEach items="${list}" var="ap" varStatus="i">
 	                                    	
 	                                    		<input type="hidden" name="apNo" id="apNo" value="${ap.apNo}">
+	                                    		<input type="hidden" name="username" id="username" value="${user.username}">
 	                                    		
 		                                        <tr>
 		                                        	<td>${i.index + 1}</td>
 		                                        	<td>${ap.apKind}</td>
 		                                            <td><a href="/approval/detail?apNo=${ap.apNo}">${ap.apTitle}</a></td>
-		                                            <td>${ap.name}</td>
+		                                            <td>${ap.empName}</td>
 		                                            <td>${ap.deptName}</td>
 		                                            <td>${ap.apCDate}</td>
 		                                            <td>${ap.apState}</td>
