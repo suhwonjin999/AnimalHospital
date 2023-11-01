@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -241,6 +242,7 @@
             </li>
             
             <li class="menu-item">
+            <sec:authentication property="Principal" var="emp"/>
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-copy"></i>
                 <div data-i18n="Extended UI">전자결재</div>
@@ -252,7 +254,7 @@
 	              </a>
 	            </li> 
 	            <li class="menu-item">
-	              <a href="/approval/draftList/${emp.empNo}" class="menu-link">
+	              <a href="/approval/draftList?username=${emp.username}" class="menu-link">
 	                <div data-i18n="Basic">기안함</div>
 	              </a>
 	            </li>

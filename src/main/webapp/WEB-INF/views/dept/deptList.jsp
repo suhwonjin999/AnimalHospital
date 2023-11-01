@@ -45,10 +45,10 @@
 	    display: none;
 	}
   </style>
-</head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -62,9 +62,9 @@
 
 				<div class="content-wrapper">
 					<div class="container-xxl flex-grow-1 container-p-y">
-							<br><h3>조직도 / 사원 목록</h3>
+					<h3>조직도 / 사원 목록</h3>
 					<form>
-					<div class="card shadow mb-4" style="width: 20%; float: left; height: 600px;">	
+					<div class="card shadow mb-4" style="width: 20%; float: left; height: 650px;">	
 					 	<c:forEach items="${list}" var="vo">
 						 	<ul class="tree">
 						 		<li>
@@ -97,12 +97,45 @@
 						 		</li>
 						 	</ul>	
 					 	</c:forEach>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">추가</button>
 					</div>
 
-					<div class="card shadow mb-4" style="width:78%; float: right;">			
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h1 class="modal-title fs-5" id="exampleModalLabel">부서 등록</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        <form action="deptAdd" method="post">
+					          <div class="mb-3">
+					            <label for="deptName" class="col-form-label">부서명:</label>
+					            <input type="text" class="form-control" id="deptName" name="deptName">
+					          </div>
+					          <div class="mb-3">
+					            <label for="parentNo" class="col-form-label">상위부서:</label>
+					            <select class="form-control" id="parentNo" name='parentNo'>
+					            	<option value="200">인사행정부</option>
+					            	<option value="300">진료부</option>
+					            	<option value="NULL">없음</option>
+					            </select>
+					          </div>
+					          
+							      <div class="modal-footer">
+							        <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+							        <button class="btn btn-primary" id="modalSubmit">추가</button>
+							      </div>
+					        </form>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+					<div class="card shadow mb-4" style="width:78%; float: right; height: 650px;">			
 							<!-- Content -->
 							
-							<table class="table" style="text-align: center; width:auto; margin: 20px; ">
+							<table class="table" style="text-align: center; width:auto; margin: 20px;">
 								<thead style="height: 70px;">
 									<tr>
 										<th>사원번호</th>
@@ -127,11 +160,59 @@
 								</tbody>
 							
 							</table>
+						<div class="d-flex justify-content-between mb-3">
+						<div>
+							<!-- 검색 -->
+							<div class="input-group mb-3">
+								<form action="./deptList" method="get" class="d-flex align-items-center" id="frm">
+									<div class="input-group" style="width: 120px;">
+										<input type="hidden" value="${pager.page}" id="page" name="page">
+										<select name="kind" id="k" class="form-select"
+											data-kind="${pager.kind}" aria-label="Default select example" style="width: 50px;">
+											<option class="kind" value="empName">이름</option>
+											<option class="kind" value="username">사원번호</option>
+										</select>
+									</div> 
+									<input type="text" name="search" value="${pager.search}"
+										class="form-control" aria-label="Amount (to the nearest dollar)" style="width: 150px;">
+										<button type="submit" class="btn btn-primary" style="width:100px;">검색</button>
+								</form>
+							</div>
 						</div>
+    					<div>
+    						<!-- 페이징 -->
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center">
+									<c:if test="${pager.pre}">
+									<li class="page-item ${pager.pre?'':'disabled'}"><a
+										class="page-link"
+										href="./deptList?page=${pager.startNum - 1}&kind=${pager.kind}&search=${pager.search}"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+									</c:if>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
+										var="i">
+										<li class="page-item"><a class="page-link"
+											href="./deptList?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+									</c:forEach>
+									<c:if test="${pager.next}">
+										<li class="page-item"><a class="page-link"
+											href="./deptList?page=${pager.lastNum + 1}&kind=${pager.kind}&search=${pager.search}"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+									</c:if>
+								</ul>
+							</nav>
+    					</div>
+    					<div> 						
+    					</div>
+					</div>
+							
+						</div>
+						
 						</form>
 					</div>
-					<!-- / Content -->
-<%-- 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
+
 					<div class="content-backdrop fade"></div>
 				</div>
 				<!-- Content wrapper -->
@@ -144,6 +225,10 @@
 	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+
+	<script type="text/javascript">
+	
+	</script>
 
 </body>
 </html>
