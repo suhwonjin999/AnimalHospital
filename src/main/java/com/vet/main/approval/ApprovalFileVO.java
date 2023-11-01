@@ -1,7 +1,5 @@
 package com.vet.main.approval;
 
-import com.vet.main.file.FileVO;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +7,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ApprovalFileVO extends FileVO {
+public class ApprovalFileVO {
+	private Long fileNo;
 	private Long apNo;
+	private String fileName;
+	private String originalFileName;
 }

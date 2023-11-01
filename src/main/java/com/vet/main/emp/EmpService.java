@@ -4,36 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.vet.main.commons.FileManager;
-import com.vet.main.commons.Pager;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class EmpService implements UserDetailsService{
 
-	@Value("${app.upload}")
-	private String uploadPath;
-	
-	@Value("${app.emp}")
-	private String username;
-	
-	@Autowired
-	private FileManager fileManger;
-	
 	@Autowired
 	private EmpDAO empDAO;
 	
@@ -41,12 +26,12 @@ public class EmpService implements UserDetailsService{
 	PasswordEncoder passwordEncoder;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String empNo) throws UsernameNotFoundException {
 		log.info("=========로그인 시도 중==========");
 		EmpVO empVO = new EmpVO();
-		empVO.setUsername(username);
+		empVO.setEmpNo(empNo);
 		try {
-			empVO = empDAO.getLogin(username);
+			empVO = empDAO.getLogin(empNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			empVO=null;
@@ -62,26 +47,11 @@ public class EmpService implements UserDetailsService{
 	}
 	
 	//마이페이지 수정
-	public int mypageUpdate(EmpVO empVO, MultipartFile[] files)throws Exception{
+	public int mypageUpdate(EmpVO empVO)throws Exception{
+		empVO.setEmail(empVO.getEmail());
+		empVO.setPhone(empVO.getPhone());
 		
 		int result = empDAO.mypageUpdate(empVO);
-		
-		for(MultipartFile multipartFile:files) {
-			if(multipartFile.isEmpty()) {
-				continue;
-			}
-			
-			String fileName = fileManger.save(this.uploadPath+this.username, multipartFile);
-			empVO.setEmail(empVO.getEmail());
-			empVO.setPhone(empVO.getPhone());
-			empVO.setFileName(fileName);
-			empVO.setOriginalFileName(multipartFile.getOriginalFilename());
-			
-			log.info("경로 : {}",uploadPath);
-			result = empDAO.mypageUpdate(empVO);
-			
-			
-		}
 		
 		return result;
 	}
@@ -96,11 +66,8 @@ public class EmpService implements UserDetailsService{
 
 	
 	// 사원 관리(직원 목록)
-	public List<EmpVO> empList(Pager pager)throws Exception{
-		Long totalCount = empDAO.getTotal(pager);
-		pager.makeNum(totalCount);
-		pager.makeStartRow();
-		return empDAO.empList(pager);
+	public List<EmpVO> empList()throws Exception{
+		return empDAO.empList();
 	}
 	
 	// 신규직원 등록
@@ -133,7 +100,7 @@ public class EmpService implements UserDetailsService{
 		
 		return result;
 		
+		
 	}
-	
 	
 }

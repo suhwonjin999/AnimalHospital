@@ -13,5 +13,4 @@ public class ApprovalExpenseVO {
 	private Long expensePrice;
 	private String expenseBigo;
 	private Long expenseAmount;
-	private Long expenseNo;
 }

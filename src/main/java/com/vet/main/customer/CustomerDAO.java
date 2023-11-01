@@ -10,7 +10,6 @@ import com.vet.main.commons.Pager;
 @Mapper
 public interface CustomerDAO {
 	
-	//고객 총합
 	public Long getTotal(Pager pager) throws Exception;
 	
 	//고객 목록

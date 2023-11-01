@@ -9,13 +9,13 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-</head>
 <meta charset="UTF-8">
-<title>양식 선택 리스트</title>
-
+<title>공지사항 상세페이지</title>
 </head>
+
 <body>
 	<!-- Layout wrapper -->
+		<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
@@ -23,47 +23,63 @@
 			<div class="layout-page">
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
-				<div class="content-wrapper">				
+
+				<div class="content-wrapper">
 					<!-- Content -->
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<!-- DataTales Example -->
-	                    <div class="card shadow mb-4">
-	                        <div class="card-body">
-	                            <div class="table-responsive">
-	                                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-	                                    <thead>
-	                                        <tr>
-	                                            <th>양식 종류</th>
-	                                            <th>설명</th>
-	                                        </tr>
-	                                    </thead>
-	                                    <tbody>
-	                                        <tr>
-	                                            <td><a href="/approval/poomAdd?empNo=${emp.empNo}">품의서</a></td>
-	                                            <td>품의서 작성페이지입니다.</td>
-	                                        </tr>  
-	                                    </tbody>
-	                                </table>  
-				    			</div>
-	    					</div>
-	    				</div>
+					
+					<form>
+					<h3>공지사항</h3>
+						<select>
+						<option value="1">제목+내용</option>
+						<option value="2">제목</option>
+						<option value="3">내용</option>
+						</select>
+					<div class="card shadow mb-4">
+								
+							<!-- Content -->
+							
+							<table class="table" style="text-align: center; width:auto; margin: 20px; ">
+								<thead style="height: 70px;">
+									<tr>
+										<th>공지번호</th>
+										<th>작성자</th>
+										<th>제목</th>
+										<th>조회수</th>
+									</tr>
+								</thead>
+								<tbody style="height: 35px;">
+							<c:forEach items="${list}" var="vo">
+									<tr>
+										<td><a href="./boardDetail?noticeNo=${vo.noticeNo}" style="color: #697a8d;">${vo.noticeNo}</a></td>
+										<td>${vo.username}</td>
+										<td><a href="./boardDetail?title=${vo.title}" style="color: #697a8d;">${vo.title}</a></td>
+										<td>${vo.hit}</td>
+									</tr>
+							</c:forEach>
+								</tbody>
+							
+							</table>
+							<br>
+						</div>
+						<a href="/board/boardAdd" class="btn btn-secondary">작성</a>
+						</form>
 					</div>
 					<!-- / Content -->
-					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
+<%-- 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
 					<div class="content-backdrop fade"></div>
 				</div>
 				<!-- Content wrapper -->
 			</div>
 			<!-- / Layout page -->
 		</div>
-
+	</div>
 		<!-- Overlay -->
 		<div class="layout-overlay layout-menu-toggle"></div>
-	</div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-	
+
 
 </body>
 </html>

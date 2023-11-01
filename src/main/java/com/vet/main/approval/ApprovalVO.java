@@ -1,11 +1,8 @@
 package com.vet.main.approval;
 
 
-
 import java.sql.Date;
-import java.util.List;
-
-import com.vet.main.emp.EmpVO;
+import java.sql.Time;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,26 +13,22 @@ import lombok.ToString;
 @ToString
 public class ApprovalVO {
 	private Long apNo;
-	private String username;
+	private String empNo;
 	private Long apFormatNo;
 	private String apTitle;
 	private Date apCDate;
 	private Date apUDate;
-	private String dayoffStartDate;
-	private String dayoffEndDate;
+	private Date dayoffStartDate;
+	private Date dayoffEndDate;
 	private String apContents;
 	private String apState;
 	private String apRejection;
 	private String dayoffKind;
-	private String dayoffTime;
-	private Double dayoffSelectDate;
+	private Time dayoffStartTime;
+	private Time dayoffEndTime;
 	private String apKind;
 	
 	private String positionName;
 	private String deptName;
-	private String empName;
-	
-	private List<EmpVO> getApUserList;
-	private List<ApprovalFileVO> fileList;
-	private List<ApprovalExpenseVO> expenseList;
+	private String name;
 }

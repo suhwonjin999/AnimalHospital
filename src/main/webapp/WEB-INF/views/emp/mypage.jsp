@@ -10,7 +10,7 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-
+</head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -37,20 +37,15 @@
 					<div class="card shadow mb-4" style="align-items: center; width: 68%; float: left;">
 							<div>
 								<div style="width: 300px; float: left;">
-									<c:if test="${vo.originalFileName == null }">
-										<img alt="" src="/resources/images/default.jpeg" style="width: 250px; height: 250px; margin: 30px;">
-									</c:if>
-									<c:if test="${vo.originalFileName != null }">		
-										<img alt="" src="../files/emp/${vo.fileName}" style="width: 250px; height: 250px; margin: 30px;">
-									</c:if>
+									<img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin: 30px;">
 								</div>
 							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
 								
-								<table class="table" style="margin-top: 40px;">
+								<table class="table">
 
 									<tr>
 										<td>사번</td>
-										<td>${user.userName}</td>
+										<td>${user.username}</td>
 									</tr>
 									<tr>
 										<td>이름</td>
@@ -86,14 +81,12 @@
 										<td>생년월일</td>
 										<td>${user.birth}</td>
 									</tr>
-									<tr>
-										
-									</tr>
+
 								</table>
 							</div>
 							<br>
-							<a href="/emp/mypageUpdate?userName=${user.userName}" class="btn btn-danger">수정</a>
-							<a href="/emp/pwUpdate?username=${user.userName}" class="btn btn-danger">비밀번호 변경</a>
+							<a href="/emp/mypageUpdate?username=${user.username}" class="btn btn-danger">수정</a>
+							<a href="/emp/pwUpdate?username=${user.username}" class="btn btn-danger">비밀번호 변경</a>
 						</div>
 				</div>
 				<!-- Content wrapper -->

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -242,7 +241,6 @@
             </li>
             
             <li class="menu-item">
-            <sec:authentication property="Principal" var="emp"/>
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-copy"></i>
                 <div data-i18n="Extended UI">전자결재</div>
@@ -254,7 +252,7 @@
 	              </a>
 	            </li> 
 	            <li class="menu-item">
-	              <a href="/approval/draftList/${emp.username}" class="menu-link">
+	              <a href="/approval/draftList?empNo=${emp.empNo}" class="menu-link">
 	                <div data-i18n="Basic">기안함</div>
 	              </a>
 	            </li>
@@ -267,7 +265,7 @@
             </li>
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">CATEGORY</span></li>  -->           
             <li class="menu-item">
-              <a href="/medicine/list" class="menu-link">
+              <a href="cards-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">약품관리</div>
               </a>
@@ -280,7 +278,7 @@
               </a>
               <ul class="menu-sub">            
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="/board/noticelist" class="menu-link">
                 <div data-i18n="Basic">공지사항</div>
               </a>
             </li> 

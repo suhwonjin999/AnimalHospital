@@ -38,7 +38,7 @@
 						<form action="./add" method="POST" enctype="multipart/form-data">
 
 					<div style="width: 900px; float: left; margin-bottom: 30px; margin-left: 250px;">	
-						<div>
+						<div style="width: 550px; margin-top: 20px; float: left;">
 							<table class="table">
 							
 								<tr>
