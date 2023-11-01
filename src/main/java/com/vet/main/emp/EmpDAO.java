@@ -5,9 +5,14 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.vet.main.commons.Pager;
+import com.vet.main.file.FileVO;
+
 @Mapper
 public interface EmpDAO {
 
+	public Long getTotal(Pager pager) throws Exception;
+	
 	public EmpVO getEmp (EmpVO empVO)throws Exception; 
 	
 	public EmpVO getLogin(String empNo)throws Exception;
@@ -16,7 +21,7 @@ public interface EmpDAO {
 	
 	public int mypageUpdate(EmpVO empVO)throws Exception;
 	
-	public List<EmpVO> empList()throws Exception;
+	public List<EmpVO> empList(Pager pager)throws Exception;
 	
 	public int empAdd(EmpVO empVO) throws Exception;
 	
@@ -29,4 +34,5 @@ public interface EmpDAO {
 //	public void save(EmpVO empVO);
 	
 	public int empRole(Map<String, Object> map)throws Exception; //회원가입시 권한 부여하는 것
+	
 }

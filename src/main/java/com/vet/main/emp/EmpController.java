@@ -6,10 +6,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.vet.main.commons.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -81,41 +78,19 @@ public class EmpController {
 	}
 	
 	@PostMapping("mypageUpdate")
-	public String mypageUpdate(EmpVO empVO)throws Exception{
-		int result = empService.mypageUpdate(empVO);
+	public String mypageUpdate(EmpVO empVO, MultipartFile[] files)throws Exception{
+		int result = empService.mypageUpdate(empVO, files);
 		return "redirect:./login";
 		
-//		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		EmpVO empVO = (EmpVO)obj;
-//		log.info("empVO: {}",empVO);
-//		return "redirect:../";
 	}
-	
-//	@GetMapping("mypageUpdate")
-//	public ModelAndView mypageUpdate(EmpVO empVO)throws Exception{
-//		ModelAndView mv = new ModelAndView();
-//		empVO = empService.mypage(empVO);
-//		
-//		mv.addObject("empVO", empVO);
-//		mv.setViewName("emp/mypageUpdate");
-//		
-//		return mv;
-//		
-//	}
-//
-//	@PostMapping("mypageUpdate")
-//	public int mypageUpdate(ModelAndView mv, EmpVO empVO)throws Exception{
-//		int result = empService.mypageUpdate(empVO);
-//		
-//		return result;
-//	}
-	
+		
 	// 직원 목록
 	
 	@GetMapping("empList")
-	public String empList(Model model)throws Exception{
-		List<EmpVO> ar = empService.empList();
+	public String empList(Pager pager,Model model)throws Exception{
+		List<EmpVO> ar = empService.empList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return "emp/empList";
 	}
@@ -156,24 +131,17 @@ public class EmpController {
 		return "redirect:./empList";
 	}
 	
+	
+	// 비밀번호 찾기
+	@GetMapping("findPw")
+	public String findPw(EmpVO empVO, Model model) throws Exception{
+		
+		return "emp/findPw";
+	}
+	
+	
 	//메일 발송
 	
-	@PostMapping("emp/empAdd/CheckMail") // ajax와 url을 매핑
-	@ResponseBody // ajax 이후 값 리턴
-	public String SendMail(String mail, EmpVO empVO) {
-		JavaMailSender javaMailSender = null;
-		SimpleMailMessage message = new SimpleMailMessage();
-		String url = "http://localhost:82/emp/login";
-		
-		message.setTo(mail); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
-		message.setSubject("안녕하세요, 동물병원입니다.");
-		message.setText("바로가기 주소 : " + url);
-		javaMailSender.send(message);
-		
-		log.info("message : {}", message);
-		
-	return url;
-	}
 	
 	
 }
