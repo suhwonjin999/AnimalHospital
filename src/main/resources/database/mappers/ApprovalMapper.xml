@@ -22,46 +22,70 @@
 	<!-- 품의서 작성 -->
 	<insert id="setApPoomAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
-		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{userName}, 20, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{username}, 25, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 휴가신청서 작성 -->
 	<insert id="setApDayoffAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, DAYOFFSTARTDATE, DAYOFFENDDATE,
-		APCONTENTS, APSTATE, APREJECTION, DAYOFFKIND, DAYOFFSTARTTIME, DAYOFFENDTIME,
-		APKIND, NAME, POSITIONNAME, DEPTNAME)
+		APCONTENTS, APSTATE, APREJECTION, DAYOFFKIND, DAYOFFTIME, DAYOFFSELECTDATE,
+		APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{userName}, 24, #{apTitle}, NOW(), #{dayoffStartDate}, #{dayoffEndDate},
-		#{apContents}, '결재대기중', '', #{dayoffKind}, #{dayoffStartTime}, #{dayoffEndTime}
-		'휴가신청서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{username}, 27, #{apTitle}, NOW(), #{dayoffStartDate}, #{dayoffEndDate},
+		#{apContents}, '결재대기중', '', #{dayoffKind}, #{dayoffTime}, #{dayoffSelectDate},'휴가신청서',
+		#{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 휴직신청서 작성 -->
 	<insert id="setApVacationAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
-		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{userName}, 22, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '휴직신청서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{username}, 28, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '휴직신청서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 퇴직신청서 작성 -->
 	<insert id="setApRetireAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
-		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{userName}, 23, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '퇴직신청서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{username}, 29, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '퇴직신청서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 지출결의서 작성 -->
 	<insert id="setApExpenseAdd" parameterType="ApprovalVO">
 		INSERT INTO APPROVAL
-		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, NAME, POSITIONNAME, DEPTNAME)
+		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{userName}, 21, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '지출결의서', #{name}, #{positionName}, #{deptName})
+		(NULL, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
+	
+	<!-- 지출결의서 상세 -->
+	<!-- <select id="getApExpenseDetail" parameterType="ApprovalVO" resultMap="getExpenseResult">
+		SELECT A.*, AE.*
+		FROM
+				APPROVAL A LEFT OUTER JOIN APEXPENSE AE
+				ON A.APNO = AE.APNO
+		WHERE A.APNO = #{apNo}
+	</select> -->
+	
+	
+	<!-- 지출항목 추가 -->
+	<insert id="setExpenseAdd" parameterType="ApprovalExpenseVO">
+		INSERT INTO APEXPENSE
+		VALUES
+		(#{apNo}, #{expenseName}, #{expensePrice}, #{expenseBigo}, #{expenseAmount}, NULL)
+	</insert>
+	
+	<!-- 지출항목 상세 -->
+	<!-- <select id="getExpenseDetail" parameterType="ApprovalExpenseVO" resultMap="ApprovalExpenseVO">
+		SELECT * FROM APEXPENSE
+		WHERE EXPENSENO = #{expenseNo}
+	</select> -->
+	
   	
   	<select id="getApUser" parameterType="com.vet.main.emp.EmpVO" resultMap="getUserResult">
   		SELECT E.*, P.*, D.* 
@@ -69,13 +93,13 @@
 			ON E.POSITIONNO=P.POSITIONNO 
 			INNER JOIN DEPARTMENT D 
 			ON E.DEPTNO=D.DEPTNO
-		WHERE E.USERNAME=#{userName}
+		WHERE E.USERNAME=#{username}
   	</select>
   	
 	<resultMap type="com.vet.main.emp.EmpVO" id="getUserResult">
-		<id column="USERNAME" property="userName"/>
+		<id column="USERNAME" property="username"/>
 			<result column="PASSWORD" property="password"/>
-			<result column="NAME" property="name"/>
+			<result column="EMPNAME" property="empName"/>
 			<result column="EMAIL" property="email"/>
 			<result column="PHONE" property="phone"/>
 			<result column="ADDRESS" property="address"/>
@@ -91,12 +115,12 @@
 	
 	<!-- 기안함 -->
 	<select id="getDraftList" parameterType="Pager" resultType="ApprovalVO">
-		SELECT A.*, E.USERNAME, E.NAME, D.DEPTNAME
+		SELECT A.*, E.USERNAME, E.EMPNAME, D.DEPTNAME
 			FROM APPROVAL A INNER JOIN EMP E
 			ON A.USERNAME = E.USERNAME
 			INNER JOIN DEPARTMENT D
 			ON E.DEPTNO = D.DEPTNO
-		WHERE E.USERNAME = #{userName}
+		WHERE E.USERNAME = #{username}
 		  AND <include refid="forPager"></include>
 		 LIKE CONCAT('%', #{search}, '%')
 		ORDER BY A.APNO DESC
@@ -108,7 +132,7 @@
 	<select id="getTotal" parameterType="Pager" resultType="Long">
 		<bind name="pattern" value="'%' +_parameter.getSearch() + '%'"/>
 		SELECT COUNT(APNO) FROM APPROVAL
-		WHERE USERNAME = #{userName}
+		WHERE USERNAME = #{username}
 		  AND <include refid="forPager"></include>
 		 LIKE #{pattern}
 	</select>
@@ -116,7 +140,7 @@
 	
 	<resultMap type="ApprovalVO" id="getApDetailResult">
 		<id column="APNO" property="apNo"/>
-			<result column="USERNAME" property="userName"/>
+			<result column="USERNAME" property="username"/>
 			<result column="APFORMATNO" property="apFormatNo"/>
 			<result column="APTITLE" property="apTitle"/>
 			<result column="APCDATE" property="apCDate"/>
@@ -127,10 +151,10 @@
 			<result column="APSTATE" property="apState"/>
 			<result column="APREJECTION" property="apRejection"/>
 			<result column="DAYOFFKIND" property="dayoffKind"/>
-			<result column="DAYOFFSTARTTIME" property="dayoffStartTime"/>
-			<result column="DAYOFFENDTIME" property="dayoffEndTime"/>
+			<result column="DAYOFFTIME" property="dayoffTime"/>
+			<result column="DAYOFFSELECTTIME" property="dayoffSelectTime"/>
 			<result column="APKIND" property="apKind"/>
-			<result column="NAME" property="name"/>
+			<result column="EMPNAME" property="empName"/>
 			<result column="POSITIONNAME" property="positionName"/>
 			<result column="DEPTNAME" property="deptName"/>
 <!-- 		<collection property="fileList" javaType="List" ofType="ApprovalFileVO">

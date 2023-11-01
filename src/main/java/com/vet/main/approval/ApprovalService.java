@@ -96,4 +96,8 @@ public class ApprovalService {
 		return approvalDAO.getApDetail(approvalVO);
 	}
 	
+//	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception {
+//		return approvalDAO.getExpenseDetail(expenseVO);
+//	}
+	
 }
