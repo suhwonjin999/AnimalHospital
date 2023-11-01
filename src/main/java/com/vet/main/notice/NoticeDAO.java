@@ -12,5 +12,6 @@ public interface NoticeDAO {
 	
 	// 공지사항글 추가
 	public int setNoticeAdd(NoticeVO noticeVO) throws Exception;
+	
 
 }

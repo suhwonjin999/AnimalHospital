@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -33,7 +34,7 @@
 /*  	$(document).ready(function(){
 		alert("공지사항 등록");
 	})  */
-
+ 
 	$(document).ready(function(){
 		$("#addBtn").click(function(){
 			const title = $("#title").val();
@@ -53,21 +54,30 @@
 				document.form1.submit();
 			}
 		})
-	})
-	
+	}) 
+/* 	
 	$(document).ready(function(){
 		$("#cancleBtn").click(function(){
-	/* 		alert("작성 취소"); */
+	 		alert("작성 취소");
 			if(confirm("작성 취소하시겠습니까?")){
-				document.form1.action="${path}/board/noticelist"
-				document.form1.submit();
-			}
+ 				document.form1.action="${path}/board/noticelist"
+				 document.form1.method="post"
+				document.form1.submit(); */
+				
+/* 				$.ajax({
+					type : 'post'',
+					url : '/noticelist',
+					/* data : {}, */
+					/* dataType : 'json', */
+/* 					}); */
+/* 			}
 		})
-	})
+	}) */
 </script>
 
 </head>
 <body>
+	<sec:authentication property="Principal" var="user"/>
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
@@ -90,9 +100,8 @@
 							
 						<div style="width:900px; float: left; margin-bottom: 30px; ">
 						<form action="noticeAdd" name="form1" id="addForm" method="post" enctype="multipart/form-data">
-								<input type="hidden" class="form-control" name="username" id="username">
-						<!--    <input type="hidden" class="form-control" name="empNo" id="empNo">
-								<input type="hidden" class="form-control" name="password" id="password"> -->
+								<input type="hidden" class="form-control" name="username" id="username" value="${user.username}">
+								<!-- <input type="hidden" class="form-control" name="password" id="password"> -->
 
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >
 										<label for="title" class="form-label">제목</label>
@@ -101,20 +110,21 @@
 									
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >	
 										<label for="empName" class="form-label">작성자</label>
-										<input type="text" class="form-control" id="empName" name="empName">
+										<input type="text" class="form-control" id="empName" name="empName" value="${user.empName}">
 								</div>
 								
 
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >
-								  <label for="apFormatContents" class="form-label">내용</label>
-								  <textarea class="form-control" id="contents" name="apFormatContents" rows="3" placeholder="내용을 입력하세요"></textarea>
+								  <label for="contents" class="form-label">내용</label>
+								  <textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
 								</div>
 
 								<br>
 								<div class="mb-3" >	
 							  	<br>
 							  	<button type="button" class="btn btn-secondary" id="addBtn">등록</button>
-							  	<button type="button" id="cancleBtn" class="btn btn-secondary">작성취소</button>
+							  	 <button type="button" id="cancleBtn" class="btn btn-secondary" onsubmit="return false">작성취소</button>
+							  	<!-- <input type="button" id="cancleBtn" class="btn btn-secondary" value="작성취소"/> -->
 								</div>
 							</form>
 						</div> 
