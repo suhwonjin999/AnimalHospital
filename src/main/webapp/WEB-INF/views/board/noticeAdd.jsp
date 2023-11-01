@@ -35,7 +35,7 @@
 		alert("공지사항 등록");
 	})  */
  
-	$(document).ready(function(){
+/* 	$(document).ready(function(){
 		$("#addBtn").click(function(){
 			const title = $("#title").val();
 			const contents = $("#contents").val();
@@ -54,7 +54,7 @@
 				document.form1.submit();
 			}
 		})
-	}) 
+	})  */
 /* 	
 	$(document).ready(function(){
 		$("#cancleBtn").click(function(){
