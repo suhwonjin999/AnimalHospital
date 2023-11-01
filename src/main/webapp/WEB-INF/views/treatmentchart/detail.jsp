@@ -29,7 +29,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>진료차트추가페이지</title>
+<title>진료차트상세페이지</title>
 
 </head>
 <body>
@@ -46,23 +46,21 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
-							<form action="./add" method="POST">
-								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}">
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
 										<div>
 											<table class="table">
 												<tr>
-													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
+													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트상세</td>
 													<!-- <td></td> -->
 													<td>작성자</td>
-													<td><input type="text" name="username" class="form-control" id="username"></td>
+													<td>${vo.username}</td>
 												</tr>
 												<tr>
 													<!-- <td></td> -->
 													<!-- <td></td> -->
 													<td>작성일</td>
-													<td><input type="date" name="date" class="form-control" id="date"></td>
+													<td>${vo.date}</td>
 												</tr>
 											</table>
 											<div>
@@ -82,24 +80,20 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 													</tr>
 													<tr>
 														<td>병명</td>
-														<td><input type="text" name="disease" class="form-control" id="disease"></td>
+														<td>${vo.disease}</td>
 													</tr>
 												</table>
 											</div>
 
-											<div class="mb-3">
-												<label for="contents" class="form-label">내용</label>
-												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
-											</div>
-
-											<h3>약물추가</h3>
-
+											<div class="mb-3 mt-4 ms-4">
+                                                <label for="contents" class="form-label"></label>
+                                                ${vo.contents}
+                                            </div>
 
 										</div>
-										<button type="submit" class="btn btn-primary" style="float:right">진료차트등록</button>
+										<button type="submit" class="btn btn-primary" style="float:right">진료차트수정</button>
 									</div>
 								</div>
-							</form>
 						</div>	
 					</div>
 				<!-- Content wrapper -->

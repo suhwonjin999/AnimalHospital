@@ -18,4 +18,9 @@ public interface TreatmentChartDAO {
 	//진료차트추가
 	public int setAdd(TreatmentChartVO treatmentChartVO) throws Exception;
 
+	//진료차트상세
+	public TreatmentChartVO getDetail(TreatmentChartVO treatmentChartVO) throws Exception;
+	
+	//진료차트수정
+	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception;
 }

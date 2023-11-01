@@ -45,7 +45,7 @@
 								<tbody style="height: 35px;">
 									<tr>
 										<td>${vo.chartNo}</td>
-										<td>${vo.disease}</td>
+										<td><a href="./detail?customerNo=${param.customerNo}">${vo.disease}</a></td>
 										<td></td>
 										<td>${vo.date}</td>
 									</tr>

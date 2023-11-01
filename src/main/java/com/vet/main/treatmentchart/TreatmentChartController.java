@@ -36,7 +36,6 @@ public class TreatmentChartController {
 	//진료차트추가
 	@GetMapping("add")
 	public String setAdd(CustomerVO customerVO, Model model) throws Exception {
-//		CustomerVO customerVO = new CustomerVO();
 		customerVO = customerService.getDetail(customerVO);
 		model.addAttribute("vo", customerVO);
 		return "treatmentchart/add";
@@ -45,6 +44,31 @@ public class TreatmentChartController {
 	@PostMapping("add")
 	public String setAdd(TreatmentChartVO treatmentChartVO) throws Exception {
 		int result = treatmentChartService.setAdd(treatmentChartVO);
+		
+		return "redirect:./list";
+	}
+	
+	//진료차트상세
+	@GetMapping("detail")
+	public String getDetail(TreatmentChartVO treatmentChartVO, Model model) throws Exception {
+		treatmentChartVO = treatmentChartService.getDetail(treatmentChartVO);
+		model.addAttribute("vo", treatmentChartVO);
+		
+		return "treatmentchart/detail";
+	}
+	
+	//진료차트수정
+	@GetMapping("update")
+	public String setUpdate(TreatmentChartVO treatmentChartVO, Model model) throws Exception {
+		treatmentChartVO = treatmentChartService.getDetail(treatmentChartVO);
+		model.addAttribute("vo", treatmentChartVO);
+		
+		return "treatmentchart/update";
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(TreatmentChartVO treatmentChartVO) throws Exception {
+		int result = treatmentChartService.setUpdate(treatmentChartVO);
 		
 		return "redirect:./list";
 	}

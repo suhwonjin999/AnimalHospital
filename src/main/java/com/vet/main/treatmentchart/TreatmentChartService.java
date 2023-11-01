@@ -31,5 +31,15 @@ public class TreatmentChartService {
 		
 		return result;
 	}
+	
+	//진료차트상세
+	public TreatmentChartVO getDetail(TreatmentChartVO treatmentChartVO) throws Exception {
+		return treatmentChartDAO.getDetail(treatmentChartVO);
+	}
+	
+	//진료차트수정
+	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception {
+		return treatmentChartDAO.setUpdate(treatmentChartVO);
+	}
 
 }

@@ -18,7 +18,7 @@ public class TreatmentChartVO {
 	private Long step;
 	private Long depth;
 	private Long customerNo;
-	private Long userName;
+	private Long username;
 	private Long medicineNo;
 //	private Long surgeryNo;
 	

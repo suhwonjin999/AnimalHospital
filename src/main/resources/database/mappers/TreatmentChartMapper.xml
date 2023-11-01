@@ -12,6 +12,7 @@
 		<!-- 진료차트목록 -->
 		<select id="getList" parameterType="Pager" resultType="TreatmentChartVO">
 			SELECT * FROM TREATMENTCHART
+				WHERE CUSTOMERNO = #{customerNo}
 				ORDER BY CHARTNO DESC
 				LIMIT #{startRow}, #{perPage}
 		</select>
@@ -19,7 +20,20 @@
 		<!-- 진료차트추가 -->
 		<insert id="setAdd" parameterType="TreatmentChartVO">
 			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME)
-				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{userName})
+				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username})
 		</insert>
 		
+		<!-- 진료차트상세 -->
+		<select id="getDetail" parameterType="TreatmentChartVO" resultType="TreatmentChartVO">
+			SELECT * FROM TREATMENTCHART WHERE CHARTNO = #{chartNo}
+		</select>
+		
+		<!-- 진료차트수정 -->
+		<update id="setUpdate" parameterType="TreatmentChartVO">
+			UPDATE TREATMENTCHART SET
+				DISEASE = #{disease},
+				CONTENTS = #{contents},
+				DATE = #{date}
+			WHERE CHARTNO = #{chartNo}
+		</update>
 	</mapper>
