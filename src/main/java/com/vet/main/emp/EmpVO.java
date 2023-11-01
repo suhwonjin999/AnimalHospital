@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -21,14 +23,16 @@ import lombok.ToString;
 @ToString
 public class EmpVO implements UserDetails{
 
-//  emp 테이블
-//  private Long empNo을 String username 으로 변경됨
+	//emp
+	@NotBlank
 	private String username;
 //	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}", message = "확인이 필요합니다.")
 	private String password;
 	private String empName;
-	@Email
+	@Email(message = "이메일 형식으로 입력해주세요.")
+	@NotEmpty(message = "이메일은 필수 입력 값입니다.")
 	private String email;
+	@NotEmpty(message = "연락처는 필수 입력 값입니다.")
 	private String phone;
 	private Date hireDate;
 	private int randomPw;
@@ -39,7 +43,6 @@ public class EmpVO implements UserDetails{
 	private String state;
 	@Past
 	private Date birth;
-	private String empNo;
 	
 	//position
 	private String positionName;
@@ -49,6 +52,7 @@ public class EmpVO implements UserDetails{
 	private Long parentNo;
 	private Long depth;
 	
+	@NotBlank
 	private String passwordCheck;
 	
 	private Boolean enabled;

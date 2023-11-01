@@ -9,7 +9,7 @@
 	data-template="vertical-menu-template-free">
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
-</head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -36,10 +36,16 @@
 								
 							<div>
 								<div style="width: 300px; float: left;">
-									<img alt="" src="/resources/images/${vo.originalFileName}" style="width: 200px; height: 200px; margin: 30px;">
+									<c:if test="${vo.originalFileName == null }">
+										<img alt="" src="/resources/images/default.jpeg" style="width: 250px; height: 250px; margin: 30px;">
+									</c:if>
+									<c:if test="${vo.originalFileName != null }">		
+										<img alt="" src="../files/emp/${vo.fileName}" style="width: 250px; height: 250px; margin: 30px;">
+									</c:if>
 								</div>
-							<div style="width: 550px; margin-top: 20px; float: left;">
-								<table class="table">
+							<div style="width: 550px; margin-top: 20px; margin-bottom: 20px; float: left;">
+								
+								<table class="table" style="margin-top: 40px;">
 									<tr>
 										<td>사번</td>
 										<td>${vo.username}</td>
@@ -81,7 +87,10 @@
 										<td>생년월일</td>
 										<td>${vo.birth}</td>
 									</tr>
-
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
 								</table>
 							</div>
 						</div>
