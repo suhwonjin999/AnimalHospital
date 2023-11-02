@@ -31,7 +31,7 @@ public interface ApprovalDAO {
 	
 //	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
 	
-	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception;
+	public int setExpenseAdd(List<ApprovalExpenseVO> expenseVOs) throws Exception;
 	
 //	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
 	

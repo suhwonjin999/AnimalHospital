@@ -96,6 +96,10 @@ public class ApprovalService {
 		return approvalDAO.getApDetail(approvalVO);
 	}
 	
+	public int setExpenseAdd(List<ApprovalExpenseVO> expenseVOs) throws Exception {
+		return approvalDAO.setExpenseAdd(expenseVOs);
+	}
+	
 //	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception {
 //		return approvalDAO.getExpenseDetail(expenseVO);
 //	}

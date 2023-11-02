@@ -15,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
 
@@ -65,7 +67,7 @@ public class ApprovalController {
 	
 	
 	@PostMapping("add/{apKind}")
-	public String setApAdd(@PathVariable String apKind, ApprovalVO approvalVO) throws Exception {
+	public String setApAdd(@PathVariable String apKind, ApprovalVO approvalVO, @RequestBody List<ApprovalExpenseVO> expenseVOs) throws Exception {
 		
 		log.info("==================== Poom Insert ======================");
 		log.info("====== Poom : {} ======", approvalVO);
@@ -76,7 +78,10 @@ public class ApprovalController {
 			
 		} else if (apKind.equals("expenseAdd")) {
 			
+			
+			
 			int result = approvalService.setApExpenseAdd(approvalVO);
+			int result2 = approvalService.setExpenseAdd(expenseVOs);
 			
 		} else if (apKind.equals("dayoffAdd")) {
 			

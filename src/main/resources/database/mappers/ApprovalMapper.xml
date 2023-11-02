@@ -77,7 +77,7 @@
 	<insert id="setExpenseAdd" parameterType="ApprovalExpenseVO">
 		INSERT INTO APEXPENSE
 		VALUES
-		(#{apNo}, #{expenseName}, #{expensePrice}, #{expenseBigo}, #{expenseAmount}, NULL)
+            (NULL, #{apNo}, #{expenseName}, #{expenseAmount}, #{expensePrice}, #{expenseBigo})
 	</insert>
 	
 	<!-- 지출항목 상세 -->
@@ -112,7 +112,48 @@
 			<result column="DEPTNO" property="deptNo"/>
 	</resultMap>
 	
-	
+	<resultMap type="ApprovalVO" id="getExpenseResult">
+		<id column="APNO" property="apNo"/>
+			<result column="USERNAME" property="username"/>
+			<result column="APFORMATNO" property="apFormatNo"/>
+			<result column="APTITLE" property="apTitle"/>
+			<result column="APCDATE" property="apCDate"/>
+			<result column="APUDATE" property="apUDate"/>
+			<result column="APCONTENTS" property="apContents"/>
+			<result column="APSTATE" property="apState"/>
+			<result column="APREJECTION" property="apRejection"/>
+			<result column="APKIND" property="apKind"/>
+			<result column="EMPNAME" property="empName"/>
+			<result column="POSITIONNAME" property="positionName"/>
+			<result column="DEPTNAME" property="deptName"/>
+			
+			<!-- <result column="USERNAME" property="username"/>
+			<result column="APFORMATNO" property="apFormatNo"/>
+			<result column="APTITLE" property="apTitle"/>
+			<result column="APCDATE" property="apCDate"/>
+			<result column="APUDATE" property="apUDate"/>
+			<result column="DAYOFFSTARTDATE" property="dayoffStartDate"/>
+			<result column="DAYOFFENDDATE" property="dayoffEndDate"/>
+			<result column="APCONTENTS" property="apContents"/>
+			<result column="APSTATE" property="apState"/>
+			<result column="APREJECTION" property="apRejection"/>
+			<result column="DAYOFFKIND" property="dayoffKind"/>
+			<result column="DAYOFFTIME" property="dayoffTime"/>
+			<result column="DAYOFFSELECTTIME" property="dayoffSelectTime"/>
+			<result column="APKIND" property="apKind"/>
+			<result column="EMPNAME" property="empName"/>
+			<result column="POSITIONNAME" property="positionName"/>
+			<result column="DEPTNAME" property="deptName"/> -->
+		<collection property="expenseList" javaType="List" ofType="ApprovalExpenseVO">
+			<id column="EXPENSENO" property="expenseNo"/>
+				<result column="EXPENSENAME" property="expenseName"/>
+				<result column="EXPENSEPRICE" property="expensePrice"/>
+				<result column="EXPENSEBIGO" property="expenseBigo"/>
+				<result column="EXPENSEAMOUNT" property="expenseAmount"/>
+		</collection>
+	</resultMap>
+
+
 	<!-- 기안함 -->
 	<select id="getDraftList" parameterType="Pager" resultType="ApprovalVO">
 		SELECT A.*, E.USERNAME, E.EMPNAME, D.DEPTNAME
