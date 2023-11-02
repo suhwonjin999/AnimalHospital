@@ -97,10 +97,10 @@
 						 		</li>
 						 	</ul>	
 					 	</c:forEach>
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@getbootstrap">추가</button>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">추가</button>
 					</div>
 
-					<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
@@ -108,9 +108,8 @@
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <div class="modal-body">
-					      	<form action="deptAdd" method="post">
-					      	<input type="hidden" id="deptNo" name="deptNo">
-					      	<input type="hidden" id="depth" name="depth">
+
+					        <input type="hidden" id="deptNo" name="deptNo">
 					          <div class="mb-3">
 					            <label for="deptName" class="col-form-label">부서명:</label>
 					            <input type="text" class="form-control" id="deptName" name="deptName">
@@ -125,10 +124,10 @@
 					          </div>
 					          
 							      <div class="modal-footer">
-			                       <button type="button" id="closeBtn"class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			                       <button type="button" id="addBtn" class="btn btn-primary">Add</button>
+							        <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+							        <button class="btn btn-primary" id="addBtn">추가</button>
 							      </div>
-							   </form>   
+
 					      </div>
 					    </div>
 					  </div>
@@ -229,37 +228,35 @@
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 
 	<script type="text/javascript">
-	
 	$('#addBtn').on("click", function(){
-	    let deptName = $("#deptName").val();
-	    let parentNo = $("#parentNo").val();
 
-	    let data = {
-	        deptName: deptName,
-	        parentNo: parentNo
-	    };
-	    
-	    $.ajax({
+		let deptName = $("#deptName").val();
+		let parentNo = $("#parentNo").val();
+
+	
+		let data = {deptName:deptName, parentNo:parentNo};
+		
+		
+		$.ajax({
 			url:"/dept/deptList/deptAdd",
-			data:data,
-			method:"POST",	
-			contentType: "application/json",
-			success : function(data){
+            data: data,
+			method:"post",												
+			success : function(){
 				console.log(data);
 				alert("등록이 완료되었습니다!")																		
 			},
-			error : function() {
-				alert("실패..")
+			error : function(data){
+				console.log(data);
+				alert("관리자에게 문의해주세요.")
 			}
 		})
 
-	    $("#addModal").modal("hide");
-	    $("#deptName").val("");
-	    $("#parentNo").val("");
+		$("#exampleModal").modal("hide");
+		$("#deptName").val("");
+		$("#parentNo").val("");
 
-	    location.href = "/dept/deptList";
+		location.href="/dept/deptList";		
 	});
-	
 	</script>
 
 </body>

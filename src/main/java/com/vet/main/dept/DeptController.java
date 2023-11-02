@@ -40,9 +40,10 @@ public class DeptController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/deptList/deptAdd", method = RequestMethod.POST)
-	public String deptAdd( DeptVO deptVO)throws Exception{
+	public String deptAdd(DeptVO deptVO)throws Exception{
 		int result = deptService.deptAdd(deptVO);
 		return "redirect: ./deptList";
 	}
+	
 	
 }

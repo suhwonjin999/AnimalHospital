@@ -66,13 +66,17 @@
 										<td>
 											<select class="form-control" name='deptNo' id="deptNo" style="height: 35px;">
 												<option value="${vo.deptNo}" selected="selected">${vo.deptName}</option>
-												<option value="200">인사행정부</option>
+
+												<c:forEach items="${Dept}" var="dept">
+													<option><c:out value="${dept.deptName}"/></option>
+												</c:forEach>
+<!-- 												<option value="200">인사행정부</option>
 												<option value="400">내과</option>
 												<option value="500">외과</option>
 												<option value="600">영상과</option>
 												<option value="700">간호과</option>
 												<option value="100">대표원장</option>
-												<option value="999">가발령</option>
+												<option value="999">가발령</option> -->
 											</select>
 										</td>
 									</tr>

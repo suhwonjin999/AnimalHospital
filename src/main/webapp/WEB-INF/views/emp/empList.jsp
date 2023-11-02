@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<!-- Layout wrapper -->
@@ -110,13 +110,57 @@
 							</nav>
     					</div>
     					<div>
-							<a href="/emp/empAdd" class="btn btn-secondary">신규직원 등록</a>    						
+							<!-- <a href="/emp/empAdd" class="btn btn-secondary">신규직원 등록</a>   -->
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">추가</button>  						
     					</div>
 					</div>
 							
 						</div>
-						
-						</form>
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h1 class="modal-title fs-5" id="exampleModalLabel">사원 등록</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+
+					         <!-- <form action="empAdd" method="post" enctype="multipart/form-data"> -->
+								<input type="hidden" class="form-control" name="username" id="username">
+								<input type="hidden" class="form-control" name="password" id="password">
+									<table style="margin: auto;">
+										<tr>
+											<td>이름</td>
+											<td><input type="text" class="form-control" name="empName" id="empName"></td>
+										</tr>
+										<tr>
+											<td>이메일</td>
+											<td><input type="email" class="form-control mail" name="email" id="email"></td>
+										</tr>
+
+										<tr>
+											<td>연락처</td>
+											<td><input type="text" class="form-control" name="phone" id="phone"></td>
+										</tr>
+
+										<tr>
+											<td>생년월일</td>
+											<td><input type="date" class="form-control" name="birth" id="birth"></td>
+										</tr>
+										
+									</table>
+								</form>
+					          		<br>
+							      <div class="modal-footer">
+							        <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+							        <button class="btn btn-primary" id="addBtn">추가</button>
+							      </div>
+
+					      </div>
+					    </div>
+					  </div>
+					</div>
+						<!-- </form> -->
 					</div>
 					<!-- / Content -->
 <%-- 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
@@ -132,6 +176,46 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
+	<script type="text/javascript">
+	
+	$('#addBtn').on("click", function(){
 
+		let empName = $("#empName").val();
+		let email = $("#email").val();
+		let phone = $("#phone").val();
+		let birth = $("#birth").val();
+	
+		let data = {empName:empName, email:email, phone:phone, birth:birth};
+		
+		
+		$.ajax({
+			url:"/emp/empList/empAdd",
+            data: data,
+			method:"post",	
+			success : function(){
+				console.log(data);
+				alert("등록이 완료되었습니다!")																		
+			},
+			error : function(){
+				console.log(data);
+				alert("관리자에게 문의해주세요.")
+			},
+			fail : function(){
+				console.log(data),
+				alert("실패")
+			}
+		})
+
+		$("#exampleModal").modal("hide");
+		$("#empName").val("");
+		$("#email").val("");
+		$("#phone").val("");
+		$("#birth").val("");
+
+
+		location.href="/emp/empList";		
+	});
+	
+	</script>
 </body>
 </html>

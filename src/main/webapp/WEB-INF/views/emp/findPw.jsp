@@ -44,10 +44,17 @@
 													 	<td><input type="username" name="username" placeholder="사원번호를 입력해주세요."></td>
 												 	</tr>
 
+													<tr>
+														<td>이름을 입력해주세요</td>
+													 	<td>
+													 		<input type="text" name="empName" placeholder="이름을 입력해주세요.">
+													 	</td>
+												 	</tr>
+
 												 	<tr>
 														<td>이메일을 입력해주세요</td>
 													 	<td>
-													 		<input type="email" name="email" placeholder="이메일을 입력해주세요.">
+													 		<input type="email" name="email" required="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)?$/i" placeholder="이메일을 입력해주세요.">
 													 		<input type="button" id="sendMail" value="인증번호전송"> 
 													 	</td>
 												 	</tr>

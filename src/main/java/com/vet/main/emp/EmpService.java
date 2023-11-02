@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
 import com.vet.main.commons.Pager;
+import com.vet.main.dept.DeptVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -93,6 +94,13 @@ public class EmpService implements UserDetailsService{
 		
 		return result;
 	}
+	
+	// 비밀번호 일치 확인
+	public int pwdCheck(EmpVO empVO) throws Exception{
+		return empDAO.pwdCheck(empVO);
+	}
+	
+	
 
 	
 	// 사원 관리(직원 목록)
@@ -135,5 +143,12 @@ public class EmpService implements UserDetailsService{
 		
 	}
 	
+	public List<DeptVO> getPositionNo(DeptVO deptVO)throws Exception{
+		return empDAO.getPositionNo();
+	}
+	
+	public List<DeptVO> getDeptNo(DeptVO deptVO)throws Exception{
+		return empDAO.getDeptNo();
+	}
 	
 }

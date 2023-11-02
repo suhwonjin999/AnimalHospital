@@ -154,6 +154,12 @@
   		WHERE USERNAME=#{username}
   	</update>
   	
+  	<select id="pwdCheck" resultType="Integer">
+  		SELECT COUNT(*) 
+  		FROM EMP
+  		WHERE USERNAME = #{username} and EMPNAME = #{empName} and EMAIL = #{email}
+  	</select>
+  	
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP
   		SET
@@ -163,4 +169,14 @@
   		FILENAME = #{fileName}
   		WHERE USERNAME=#{username}		
   	</update>
+  	
+  	<select id="getPositionNo" parameterType="com.vet.main.emp.EmpVO">
+	
+		SELECT *
+		FROM DEPARTMENT D INNER JOIN POSITION P
+		ON D.DEPTNO = P.DEPTNO
+		WHERE D.DEPTNO = #{deptNo}
+		
+	</select>
+  	
 </mapper>

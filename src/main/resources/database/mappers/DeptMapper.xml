@@ -75,5 +75,4 @@
 		VALUES (#{deptNo}, #{deptName}, #{parentNo}, #{depth})
 	</insert>
 
-
 </mapper>
