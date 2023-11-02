@@ -51,6 +51,8 @@
 								<input type="hidden" name="positionName" value="${vo.positionName}">
 								<input type="hidden" name="hireDate" value="${vo.hireDate}">
 								<input type="hidden" name="birth" value="${vo.birth}">
+								<input type="hidden" name="fileName" value="${vo.fileName}">
+								<input type="hidden" name="originalFileName" value="${vo.originalFileName}">
 								
 								<table class="table" style="margin-top: 40px;">
 									<tr>
