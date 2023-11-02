@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vet.main.commons.Pager;
+import com.vet.main.emp.EmpVO;
+import com.vet.main.medicine.MedicineVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +42,10 @@ public class TreatmentChartService {
 	//진료차트수정
 	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception {
 		return treatmentChartDAO.setUpdate(treatmentChartVO);
+	}
+	
+	public List<MedicineVO> getMedicineList() throws Exception {
+		return treatmentChartDAO.getMedicienList();
 	}
 
 }

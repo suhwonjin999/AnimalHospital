@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.vet.main.commons.Pager;
 import com.vet.main.customer.CustomerService;
 import com.vet.main.customer.CustomerVO;
+import com.vet.main.emp.EmpService;
+import com.vet.main.emp.EmpVO;
+import com.vet.main.medicine.MedicineVO;
 
 @Controller
 @RequestMapping("/treatmentchart/*")
@@ -22,6 +25,9 @@ public class TreatmentChartController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private EmpService empService;
 	
 	//진료차트목록
 	@GetMapping("list")
@@ -35,8 +41,10 @@ public class TreatmentChartController {
 	
 	//진료차트추가
 	@GetMapping("add")
-	public String setAdd(CustomerVO customerVO, Model model) throws Exception {
+	public String setAdd(CustomerVO customerVO, EmpVO empVO, Model model) throws Exception {
 		customerVO = customerService.getDetail(customerVO);
+//		empVO = empService.empDetail(empVO);
+//		model.addAttribute("vo", empVO);
 		model.addAttribute("vo", customerVO);
 		return "treatmentchart/add";
 	}
@@ -71,6 +79,14 @@ public class TreatmentChartController {
 		int result = treatmentChartService.setUpdate(treatmentChartVO);
 		
 		return "redirect:./list";
+	}
+	
+	@GetMapping("medicineList")
+	public String getMedicineList(Model model) throws Exception {
+		List<MedicineVO> list = treatmentChartService.getMedicineList();
+		model.addAttribute("list", list);
+		
+		return "treatmentchart/empList";
 	}
 	
 }

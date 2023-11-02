@@ -47,16 +47,22 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
 							<form action="./add" method="POST">
-								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}">
+								<!-- <input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> -->
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
 										<div>
 											<table class="table">
 												<tr>
-													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
+													<td rowspan="3" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
+													<!-- <td></td> -->
+													<td>사원번호</td>
+													<td><input type="text" name="username" class="form-control" id="username"></td>
+												</tr>
+												<tr>
+													<!-- <td></td> -->
 													<!-- <td></td> -->
 													<td>작성자</td>
-													<td><input type="text" name="username" class="form-control" id="username"></td>
+													<td>의사</td>
 												</tr>
 												<tr>
 													<!-- <td></td> -->
@@ -93,6 +99,35 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 											</div>
 
 											<h3>약물추가</h3>
+											<!-- Button trigger modal -->
+											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicineAdd">
+												Launch demo modal
+											</button>
+											
+											<!-- Modal -->
+											<div class="modal fade" id="medicineAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+													<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body">
+														<input type="hidden" id="medicineNo" name="medicineNo" value="${param.medicineNo}" >
+														<form action="./medicineList" method="GET" id="frm">
+															<div>
+															약물명 : <input type="text" name="name" id="name" value="${vo.name}">                  
+															<button type="submit" id="medicineSearch" class="btn btn-primary" >검색</button>
+															</div>
+														</form>
+													</div>
+													<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+													<button type="button" class="btn btn-primary">Add</button>
+													</div>
+												</div>
+												</div>
+											</div>
 
 
 										</div>

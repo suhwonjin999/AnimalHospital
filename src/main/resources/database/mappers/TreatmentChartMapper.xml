@@ -17,10 +17,14 @@
 				LIMIT #{startRow}, #{perPage}
 		</select>
 		
+		<select id="getMedicineList" parameterType="MedicineVO">
+			SELECT * FROM MEDICINE;
+		</select>
+		
 		<!-- 진료차트추가 -->
 		<insert id="setAdd" parameterType="TreatmentChartVO">
-			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME)
-				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username})
+			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME, MEDICINENO)
+				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username}, #{medicineNo})
 		</insert>
 		
 		<!-- 진료차트상세 -->

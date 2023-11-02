@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.vet.main.commons.Pager;
+import com.vet.main.emp.EmpVO;
+import com.vet.main.medicine.MedicineDAO;
+import com.vet.main.medicine.MedicineVO;
 
 @Mapper
 public interface TreatmentChartDAO {
@@ -23,4 +26,6 @@ public interface TreatmentChartDAO {
 	
 	//진료차트수정
 	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception;
+	
+	public List<MedicineVO> getMedicienList() throws Exception;
 }

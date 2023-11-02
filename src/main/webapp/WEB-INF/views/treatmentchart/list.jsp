@@ -45,7 +45,7 @@
 								<tbody style="height: 35px;">
 									<tr>
 										<td>${vo.chartNo}</td>
-										<td><a href="./detail?customerNo=${param.customerNo}">${vo.disease}</a></td>
+										<td><a href="./detail?customerNo=${vo.customerNo}">${vo.disease}</a></td>
 										<td></td>
 										<td>${vo.date}</td>
 									</tr>
@@ -100,7 +100,7 @@
 								</nav>
 	    					</div>
 	    					<div>
-								<a href="./add?customerNo=${param.customerNo}" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
+								<a href="./add?customerNo=${param.customerNo}&username=${param.username}" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
 	    					</div>
 						</div>	
 					</div>
