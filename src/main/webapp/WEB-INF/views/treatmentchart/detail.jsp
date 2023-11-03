@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -39,6 +40,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page" style="align-items:center;">
+			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
@@ -54,7 +56,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트상세</td>
 													<!-- <td></td> -->
 													<td>작성자</td>
-													<td>${vo.username}</td>
+													<td>${emp.empName}</td>
 												</tr>
 												<tr>
 													<!-- <td></td> -->
@@ -68,15 +70,15 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												<table class="table">
 													<tr>
 														<td>이름</td>
-														<td>${vo.animalName}</td>
+														<td>${cus.animalName}</td>
 													</tr>
 													<tr>
 														<td>성별</td>
-														<td>${vo.gender}</td>
+														<td>${cus.gender}</td>
 													</tr>
 													<tr>
 														<td>나이</td>
-														<td>${vo.age}</td>
+														<td>${cus.age}</td>
 													</tr>
 													<tr>
 														<td>병명</td>

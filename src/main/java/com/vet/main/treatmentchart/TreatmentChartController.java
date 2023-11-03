@@ -31,8 +31,12 @@ public class TreatmentChartController {
 	
 	//진료차트목록
 	@GetMapping("list")
-	public String getList(Pager pager, Model model) throws Exception {
+	public String getList(Pager pager, Model model, CustomerVO customerVO, EmpVO empVO) throws Exception {
 		List<TreatmentChartVO> ar = treatmentChartService.getList(pager);
+		customerVO = customerService.getDetail(customerVO);
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("vo", customerVO);
+		model.addAttribute("emp", empVO);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
@@ -43,8 +47,8 @@ public class TreatmentChartController {
 	@GetMapping("add")
 	public String setAdd(CustomerVO customerVO, EmpVO empVO, Model model) throws Exception {
 		customerVO = customerService.getDetail(customerVO);
-//		empVO = empService.empDetail(empVO);
-//		model.addAttribute("vo", empVO);
+		empVO = empService.empDetail(empVO);
+		model.addAttribute("emp", empVO);
 		model.addAttribute("vo", customerVO);
 		return "treatmentchart/add";
 	}
@@ -58,8 +62,13 @@ public class TreatmentChartController {
 	
 	//진료차트상세
 	@GetMapping("detail")
-	public String getDetail(TreatmentChartVO treatmentChartVO, Model model) throws Exception {
+	public String getDetail(TreatmentChartVO treatmentChartVO, CustomerVO customerVO, EmpVO empVO, Model model) throws Exception {
 		treatmentChartVO = treatmentChartService.getDetail(treatmentChartVO);
+		customerVO = customerService.getDetail(customerVO);
+		empVO = empService.empDetail(empVO);
+		
+		model.addAttribute("cus", customerVO);
+		model.addAttribute("emp", empVO);
 		model.addAttribute("vo", treatmentChartVO);
 		
 		return "treatmentchart/detail";

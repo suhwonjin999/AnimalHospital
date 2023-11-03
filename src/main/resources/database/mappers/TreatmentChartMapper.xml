@@ -23,13 +23,20 @@
 		
 		<!-- 진료차트추가 -->
 		<insert id="setAdd" parameterType="TreatmentChartVO">
-			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME, MEDICINENO)
-				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username}, #{medicineNo})
+			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME)
+				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username})
 		</insert>
 		
 		<!-- 진료차트상세 -->
 		<select id="getDetail" parameterType="TreatmentChartVO" resultType="TreatmentChartVO">
-			SELECT * FROM TREATMENTCHART WHERE CHARTNO = #{chartNo}
+			<!-- SELECT * FROM TREATMENTCHART WHERE CHARTNO = #{chartNo} -->
+			SELECT TC.*, E.*, C.*
+				FROM TREATMENTCHART TC
+					INNER JOIN CUSTOMER C
+						ON C.CUSTOMERNO = TC.CUSTOMERNO
+					INNER JOIN EMP E
+						ON TC.USERNAME = E.USERNAME
+				WHERE TC.CHARTNO = #{chartNo}
 		</select>
 		
 		<!-- 진료차트수정 -->

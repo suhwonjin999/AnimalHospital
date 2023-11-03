@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -39,6 +40,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page" style="align-items:center;">
+			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
@@ -47,22 +49,23 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
 							<form action="./add" method="POST">
-								<!-- <input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> -->
+								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> 
+								<input type="hidden" id="username" name="username" value="${user.username}"> 
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
 										<div>
 											<table class="table">
-												<tr>
+												<%-- <tr>
 													<td rowspan="3" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
 													<!-- <td></td> -->
 													<td>사원번호</td>
-													<td><input type="text" name="username" class="form-control" id="username"></td>
-												</tr>
+													<td>${user.username}</td>
+												</tr> --%>
 												<tr>
-													<!-- <td></td> -->
+													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
 													<!-- <td></td> -->
 													<td>작성자</td>
-													<td>의사</td>
+													<td>${emp.empName}</td>
 												</tr>
 												<tr>
 													<!-- <td></td> -->
@@ -116,7 +119,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 														<input type="hidden" id="medicineNo" name="medicineNo" value="${param.medicineNo}" >
 														<form action="./medicineList" method="GET" id="frm">
 															<div>
-															약물명 : <input type="text" name="name" id="name" value="${vo.name}">                  
+															약물명 : <input type="text" name="name" id="name">                  
 															<button type="submit" id="medicineSearch" class="btn btn-primary" >검색</button>
 															</div>
 														</form>
