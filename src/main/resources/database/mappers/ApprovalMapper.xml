@@ -76,6 +76,7 @@
 	<!-- 지출항목 추가 -->
 	<insert id="setExpenseAdd" parameterType="ApprovalExpenseVO">
 		INSERT INTO APEXPENSE
+			(EXPENSENO, APNO, EXPENSENAME, EXPENSEAMOUNT, EXPENSEPRICE, EXPENSEBIGO)
 		VALUES
             (NULL, #{apNo}, #{expenseName}, #{expenseAmount}, #{expensePrice}, #{expenseBigo})
 	</insert>
