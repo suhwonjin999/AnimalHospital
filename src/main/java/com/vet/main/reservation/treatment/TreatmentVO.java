@@ -15,12 +15,15 @@ import lombok.ToString;
 public class TreatmentVO {
 
 	private Long treatmentNo;
-	private Date treatmentDate;
-	private LocalDateTime treatmentDatet;
-	private Time treatmentTime;
-	private Long customerNo;
-	private Long empNo;
+	private LocalDateTime treatmentDate;
+	
+	private String username;
+	private String deptNo;
+	private String empName;
+	
 	private String animalName;
-	private String name;	
+	private String name;
+	private Long customerNo;
+	private String phone;	
 	
 }

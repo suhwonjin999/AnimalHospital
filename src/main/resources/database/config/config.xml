@@ -17,6 +17,7 @@
 		<typeAlias type="com.vet.main.approval.ApprovalExpenseVO" alias="ApprovalExpenseVO"/>
 
 		<typeAlias type="com.vet.main.emp.EmpVO" alias="EmpVO" />
+		<typeAlias type="com.vet.main.dept.DeptVO" alias="DeptVO" />
 
 		<typeAlias type="com.vet.main.customer.CustomerVO" alias="CustomerVO"/>
 		<typeAlias type="com.vet.main.customer.CustomerFileVO" alias="CustomerFileVO"/>

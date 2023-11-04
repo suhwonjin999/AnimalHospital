@@ -34,18 +34,27 @@
                                 <thead>
                                   <tr>
 									<th class="text-center text-secondary opacity-7">진료의번호</th>
-                                    <th class="text-center text-secondary opacity-7">진료의이름</th>                                                               
+                                    <th class="text-center text-secondary opacity-7">진료의이름</th>
+									<th class="text-center text-secondary opacity-7">부서</th>
+									<th class="text-center text-secondary opacity-7">직급</th>                                                             
+			
                                   </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${list}" var="a" varStatus="i"> 
                                   <tr>
 									<td class="align-middle text-center text-sm">
-										<span class="text-secondary text-xs font-weight-bold">${a.empNo}</span>
+										<span class="text-secondary text-xs font-weight-bold">${a.username}</span>
 									</td>
                                     <td class="align-middle text-center text-sm">
-                                      <span class="text-secondary text-xs font-weight-bold"><a href="./schedule?empNo=${a.empNo}&name=${a.name}&customerNo=${param.customerNo}&animalName=${param.animalName}">${a.name}</a></span>
-                                    </td>                                                      
+                                      <span class="text-secondary text-xs font-weight-bold"><a href="./schedule?username=${a.username}&empName=${a.empName}&customerNo=${param.customerNo}&animalName=${param.animalName}">${a.empName}</a></span>
+                                    </td> 
+									<td class="align-middle text-center text-sm">
+										<span class="text-secondary text-xs font-weight-bold">${a.deptName}</span>
+									</td> 
+									<td class="align-middle text-center text-sm">
+										<span class="text-secondary text-xs font-weight-bold">${a.positionName}</span>
+									</td>                                                     
                                   </tr>
                                   </c:forEach>
                                 </tbody>

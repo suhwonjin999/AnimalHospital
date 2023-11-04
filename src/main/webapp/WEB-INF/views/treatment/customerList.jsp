@@ -44,7 +44,7 @@
 										<span class="text-secondary text-xs font-weight-bold">${a.customerNo}</span>
 									</td>
                                     <td class="align-middle text-center text-sm">
-                                      <span class="text-secondary text-xs font-weight-bold"><a href="./schedule?customerNo=${a.customerNo}&animalName=${a.animalName}">${a.animalName}</a></span>
+                                      <span class="text-secondary text-xs font-weight-bold"><a href="./empList?customerNo=${a.customerNo}&animalName=${a.animalName}">${a.animalName}</a></span>
                                     </td>
                                     <td class="align-middle text-center">
                                       <span class="text-secondary text-xs font-weight-bold">${a.name}</span>
