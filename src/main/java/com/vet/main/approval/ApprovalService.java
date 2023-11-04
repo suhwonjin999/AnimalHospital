@@ -1,10 +1,13 @@
 package com.vet.main.approval;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
@@ -79,8 +82,15 @@ public class ApprovalService {
 	}
 	
 	// 지출결의서 작성폼
-	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception {
-		int result = approvalDAO.setApExpenseAdd(approvalVO);
+	public int setApExpenseAdd(ApprovalVO approvalVO, ApprovalExpenseVO expenseVO) throws Exception {
+		
+		expenseVO.setApNo(approvalVO.getApNo());
+
+    	int result = approvalDAO.setApExpenseAdd(approvalVO);
+    	result = approvalDAO.setExpenseAdd(expenseVO);
+
+    	log.info("============= expenseVO : {} ==============", expenseVO);
+		
 		return result;
 	}
 	
@@ -96,9 +106,22 @@ public class ApprovalService {
 		return approvalDAO.getApDetail(approvalVO);
 	}
 	
-	public int setExpenseAdd(List<ApprovalExpenseVO> expenseVOs) throws Exception {
-		return approvalDAO.setExpenseAdd(expenseVOs);
-	}
+//	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception {
+//		
+//		for (int i = 0; i < expenseName.length; i++) {
+//			ApprovalExpenseVO expenseVO = new ApprovalExpenseVO();
+//        	expenseVO.setExpenseName(expenseName[i]);
+//        	expenseVO.setExpenseAmount(expenseAmount[i]);
+//        	expenseVO.setExpensePrice((expensePrice[i]));
+//        	expenseVO.setExpenseBigo((expenseBigo[i]));
+//        	
+//        	approvalService.setExpenseAdd(expenseVO);
+//
+//        	log.info("============= expenseVO : {} ==============", expenseVO);
+//        }
+//		
+//		return approvalDAO.setExpenseAdd(expenseVO);
+//	}
 	
 //	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception {
 //		return approvalDAO.getExpenseDetail(expenseVO);

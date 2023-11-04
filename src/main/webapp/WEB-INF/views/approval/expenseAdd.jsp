@@ -57,8 +57,8 @@
 								</div>
 								
 				    			<div class="mb-3">
-								  <label for="apCDate" class="form-label">기안일자</label>
-								  <input type="text" class="form-control" id="apCDate" name="apCDate" value="${date}" readonly>
+								  <label for="cDate" class="form-label">기안일자</label>
+								  <input type="text" class="form-control" id="cDate" name="cDate" value="${date}" disabled>
 								</div>
 				    			
 				    			<div class="mb-3">
@@ -73,14 +73,23 @@
 			        
 			                    <!-- 지출결의서 폼이 추가되는 곳 -->
 			                    <div id="addList" class="my-5">
-									<div class="expense row g-3 mb-2" id="expense0">
+									<!-- <div class="expense row g-3 mb-2" id="expense0">
+									    <input type="text" class="form-control me-2" id="expenseName0" name="expense[expenseName]" placeholder="항목" style="width:350px;">
+									    <input type="text" class="form-control me-2" id="expenseAmount0" name="expense[expenseAmount]" placeholder="수량"
+									    		style="width:100px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '');">
+									    <input type="text" class="form-control me-2" id="expensePrice0" name="expense[expensePrice]" placeholder="금액"
+									    		style="width:150px;" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '');">
+									    <input type="text" class="form-control me-2" id="expenseBigo0" name="expense[expenseBigo]" placeholder="비고" style="width:200px;">
+									</div> -->
+									
+									<div class="expense row g-3 mb-2" id="expense[0]" name="expense">
 									    <input type="text" class="form-control me-2" id="expenseName0" name="expenseName" placeholder="항목" style="width:350px;">
 									    <input type="text" class="form-control me-2" id="expenseAmount0" name="expenseAmount" placeholder="수량"
 									    		style="width:100px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '');">
 									    <input type="text" class="form-control me-2" id="expensePrice0" name="expensePrice" placeholder="금액"
-									    		style="width:150px;" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, '');">
+									    		style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, '');">
 									    <input type="text" class="form-control me-2" id="expenseBigo0" name="expenseBigo" placeholder="비고" style="width:200px;">
-									</div>			        
+									</div>     
 			                    </div>
 								
 					    		<div class="row">
@@ -109,7 +118,7 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	
-	
 	<script src="/js/approval/apExpenseAdd.js"></script>
+	
 </body>
 </html>

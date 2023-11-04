@@ -3,7 +3,10 @@ package com.vet.main.approval;
 import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
@@ -67,7 +71,7 @@ public class ApprovalController {
 	
 	
 	@PostMapping("add/{apKind}")
-	public String setApAdd(@PathVariable String apKind, ApprovalVO approvalVO, @RequestBody List<ApprovalExpenseVO> expenseVOs) throws Exception {
+	public String setApAdd(@PathVariable String apKind, ApprovalVO approvalVO) throws Exception {
 		
 		log.info("==================== Poom Insert ======================");
 		log.info("====== Poom : {} ======", approvalVO);
@@ -75,13 +79,6 @@ public class ApprovalController {
 		if(apKind.equals("poomAdd")) {			
 			
 			int result = approvalService.setApPoomAdd(approvalVO);
-			
-		} else if (apKind.equals("expenseAdd")) {
-			
-			
-			
-			int result = approvalService.setApExpenseAdd(approvalVO);
-			int result2 = approvalService.setExpenseAdd(expenseVOs);
 			
 		} else if (apKind.equals("dayoffAdd")) {
 			
@@ -97,6 +94,46 @@ public class ApprovalController {
 		}
 			
 		return "redirect:../draftList/" + approvalVO.getUsername();
+	}
+	
+	
+	@PostMapping("add/expenseAdd")
+	public String setApAdd(@RequestParam("username") String username,
+				            @RequestParam("positionName") String positionName,
+				            @RequestParam("deptName") String deptName,
+				            @RequestParam("empName") String empName,
+				            @RequestParam("apTitle") String apTitle,
+				            @RequestParam("expenseName") String[] expenseName,
+				            @RequestParam("expenseAmount") String[] expenseAmount,
+				            @RequestParam("expensePrice") String[] expensePrice,
+				            @RequestParam("expenseBigo") String[] expenseBigo) throws Exception {
+		
+		ApprovalVO approvalVO = new ApprovalVO();
+			
+		approvalVO.setUsername(username);
+		approvalVO.setPositionName(positionName);
+		approvalVO.setDeptName(deptName);
+		approvalVO.setEmpName(empName);
+		approvalVO.setApTitle(apTitle);
+		
+//		approvalService.setApExpenseAdd(approvalVO);
+		
+		log.info("============= approvalVO : {} ==============", approvalVO);
+
+		for (int i = 0; i < expenseName.length; i++) {
+			ApprovalExpenseVO expenseVO = new ApprovalExpenseVO();
+        	expenseVO.setExpenseName(expenseName[i]);
+        	expenseVO.setExpenseAmount(expenseAmount[i]);
+        	expenseVO.setExpensePrice((expensePrice[i]));
+        	expenseVO.setExpenseBigo((expenseBigo[i]));
+        	
+//        	approvalService.setExpenseAdd(expenseVO);
+
+        	log.info("============= expenseVO : {} ==============", expenseVO);
+        }
+		
+		
+		return "redirect:../draftList/" + username;
 	}
 	
 

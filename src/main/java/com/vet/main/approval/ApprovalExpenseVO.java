@@ -8,10 +8,15 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ApprovalExpenseVO {
-	private Long expenseNo;
 	private Long apNo;
 	private String expenseName;
-	private Long expenseAmount;
-	private Long expensePrice;
+	private String expenseAmount;
+	private String expensePrice;
 	private String expenseBigo;
+	
+	public void setExpenseBigo(String string) {
+		if(this.expenseBigo == null || this.expenseBigo.isEmpty()) {
+			this.expenseBigo = "";
+		}
+	}
 }

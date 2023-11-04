@@ -1,6 +1,8 @@
 package com.vet.main.approval;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,7 +33,7 @@ public interface ApprovalDAO {
 	
 //	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
 	
-	public int setExpenseAdd(List<ApprovalExpenseVO> expenseVOs) throws Exception;
+	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception;
 	
 //	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
 	

@@ -56,11 +56,11 @@
 	</insert>
 	
 	<!-- 지출결의서 작성 -->
-	<insert id="setApExpenseAdd" parameterType="ApprovalVO">
+	<insert id="setApExpenseAdd" parameterType="ApprovalVO" useGeneratedKeys="true" keyProperty="apNo">
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
+		(0, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 지출결의서 상세 -->
@@ -76,9 +76,9 @@
 	<!-- 지출항목 추가 -->
 	<insert id="setExpenseAdd" parameterType="ApprovalExpenseVO">
 		INSERT INTO APEXPENSE
-			(EXPENSENO, APNO, EXPENSENAME, EXPENSEAMOUNT, EXPENSEPRICE, EXPENSEBIGO)
+			(APNO, EXPENSENAME, EXPENSEAMOUNT, EXPENSEPRICE, EXPENSEBIGO)
 		VALUES
-            (NULL, #{apNo}, #{expenseName}, #{expenseAmount}, #{expensePrice}, #{expenseBigo})
+            (#{apNo}, #{expenseName}, #{expenseAmount}, #{expensePrice}, #{expenseBigo})
 	</insert>
 	
 	<!-- 지출항목 상세 -->
