@@ -22,8 +22,9 @@
 	<!-- 품의서 작성 -->
 	<insert id="setApPoomAdd" parameterType="ApprovalVO">
 		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
-		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+	        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
 		</selectKey>
+		
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
@@ -33,8 +34,9 @@
 	<!-- 휴가신청서 작성 -->
 	<insert id="setApDayoffAdd" parameterType="ApprovalVO">
 		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
-		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+	        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
 		</selectKey>
+		
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, DAYOFFSTARTDATE, DAYOFFENDDATE,
 		APCONTENTS, APSTATE, APREJECTION, DAYOFFKIND, DAYOFFTIME, DAYOFFSELECTDATE,
@@ -48,8 +50,9 @@
 	<!-- 휴직신청서 작성 -->
 	<insert id="setApVacationAdd" parameterType="ApprovalVO">
 		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
-		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+	        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
 		</selectKey>
+		
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
@@ -59,8 +62,9 @@
 	<!-- 퇴직신청서 작성 -->
 	<insert id="setApRetireAdd" parameterType="ApprovalVO">
 		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
-		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+	        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
 		</selectKey>
+		
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
@@ -70,24 +74,14 @@
 	<!-- 지출결의서 작성 -->
 	<insert id="setApExpenseAdd" parameterType="ApprovalVO">
 		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
-		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+	        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
 		</selectKey>
+		
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
 		(#{apNo}, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
-
-	
-	<!-- 지출결의서 상세 -->
-	<!-- <select id="getApExpenseDetail" parameterType="ApprovalVO" resultMap="getExpenseResult">
-		SELECT A.*, AE.*
-		FROM
-				APPROVAL A LEFT OUTER JOIN APEXPENSE AE
-				ON A.APNO = AE.APNO
-		WHERE A.APNO = #{apNo}
-	</select> -->
-	
 	
 	<!-- 지출항목 추가 -->
 	<insert id="setExpenseAdd" parameterType="ApprovalExpenseVO">
@@ -97,13 +91,16 @@
             (#{apNo}, #{expenseName}, #{expenseAmount}, #{expensePrice}, #{expenseBigo})
 	</insert>
 	
-	<!-- 지출항목 상세 -->
-	<!-- <select id="getExpenseDetail" parameterType="ApprovalExpenseVO" resultMap="ApprovalExpenseVO">
-		SELECT * FROM APEXPENSE
-		WHERE EXPENSENO = #{expenseNo}
-	</select> -->
-	
-  	
+	<!-- 지출결의서 상세 -->
+	<select id="getApExpenseDetail" parameterType="ApprovalVO" resultMap="getExpenseResult">
+		SELECT A.*, AE.*
+		FROM
+			APPROVAL A LEFT OUTER JOIN APEXPENSE AE
+			ON A.APNO = AE.APNO
+		WHERE A.APNO = #{apNo}
+
+	</select>
+
   	<select id="getApUser" parameterType="com.vet.main.emp.EmpVO" resultMap="getUserResult">
   		SELECT E.*, P.*, D.* 
 		FROM EMP E INNER JOIN POSITION P 
@@ -136,37 +133,17 @@
 			<result column="APTITLE" property="apTitle"/>
 			<result column="APCDATE" property="apCDate"/>
 			<result column="APUDATE" property="apUDate"/>
-			<result column="APCONTENTS" property="apContents"/>
 			<result column="APSTATE" property="apState"/>
 			<result column="APREJECTION" property="apRejection"/>
 			<result column="APKIND" property="apKind"/>
 			<result column="EMPNAME" property="empName"/>
 			<result column="POSITIONNAME" property="positionName"/>
 			<result column="DEPTNAME" property="deptName"/>
-			
-			<!-- <result column="USERNAME" property="username"/>
-			<result column="APFORMATNO" property="apFormatNo"/>
-			<result column="APTITLE" property="apTitle"/>
-			<result column="APCDATE" property="apCDate"/>
-			<result column="APUDATE" property="apUDate"/>
-			<result column="DAYOFFSTARTDATE" property="dayoffStartDate"/>
-			<result column="DAYOFFENDDATE" property="dayoffEndDate"/>
-			<result column="APCONTENTS" property="apContents"/>
-			<result column="APSTATE" property="apState"/>
-			<result column="APREJECTION" property="apRejection"/>
-			<result column="DAYOFFKIND" property="dayoffKind"/>
-			<result column="DAYOFFTIME" property="dayoffTime"/>
-			<result column="DAYOFFSELECTTIME" property="dayoffSelectTime"/>
-			<result column="APKIND" property="apKind"/>
-			<result column="EMPNAME" property="empName"/>
-			<result column="POSITIONNAME" property="positionName"/>
-			<result column="DEPTNAME" property="deptName"/> -->
 		<collection property="expenseList" javaType="List" ofType="ApprovalExpenseVO">
-			<id column="EXPENSENO" property="expenseNo"/>
-				<result column="EXPENSENAME" property="expenseName"/>
-				<result column="EXPENSEPRICE" property="expensePrice"/>
-				<result column="EXPENSEBIGO" property="expenseBigo"/>
-				<result column="EXPENSEAMOUNT" property="expenseAmount"/>
+			<result column="EXPENSENAME" property="expenseName"/>
+			<result column="EXPENSEPRICE" property="expensePrice"/>
+			<result column="EXPENSEBIGO" property="expenseBigo"/>
+			<result column="EXPENSEAMOUNT" property="expenseAmount"/>
 		</collection>
 	</resultMap>
 
@@ -185,8 +162,7 @@
 		LIMIT #{startRow}, #{perPage}
 	</select>
 	
-	
-	
+
 	<select id="getTotal" parameterType="Pager" resultType="Long">
 		<bind name="pattern" value="'%' +_parameter.getSearch() + '%'"/>
 		SELECT COUNT(APNO) FROM APPROVAL
@@ -257,7 +233,5 @@
 		SELECT * FROM APFILE
 		WHERE FILENO = #{fileNo}
 	</select>
-
 	
-
 </mapper>

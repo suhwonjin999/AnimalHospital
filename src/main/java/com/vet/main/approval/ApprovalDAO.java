@@ -31,18 +31,19 @@ public interface ApprovalDAO {
 	// 지출결의서 작성폼
 	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception;
 	
-//	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
-	
 	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception;
+
+	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception;
+
+	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
 	
-//	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
+	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
 	
 	// 기안함 리스트
 	public List<ApprovalVO> getDraftList(Pager pager) throws Exception;
 	
 	public Long getTotal(Pager pager) throws Exception;
 	
-	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception;
 	
 	// file
 	public int setApFileAdd(FileVO fileVO) throws Exception;

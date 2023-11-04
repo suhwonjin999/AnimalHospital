@@ -145,7 +145,8 @@
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 209px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.deptName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.deptName}
 													</p>
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
@@ -158,7 +159,8 @@
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 201px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.positionName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.positionName}
 													</p>
 												</td>
 											</tr>
@@ -173,7 +175,8 @@
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 209px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.empName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.empName}
 													</p>
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
@@ -183,7 +186,8 @@
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 201px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apCDate}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.apCDate}
 													</p>
 												</td>
 											</tr>
@@ -197,7 +201,8 @@
 												</td>
 												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 505px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apTitle}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.apTitle}
 													</p>
 												</td>
 											</tr>
@@ -221,7 +226,8 @@
 												</td>
 												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 380px; width: 505px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>  ${approvalVO.apContents}
+														<span style="font-family:나눔고딕">&nbsp;</span>  
+														${approvalVO.apContents}
 													</p>
 												</td>
 											</tr>

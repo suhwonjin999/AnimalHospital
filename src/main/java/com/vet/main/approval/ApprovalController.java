@@ -168,11 +168,11 @@ public class ApprovalController {
 			model.addAttribute("approvalVO", approvalVO);
 			return "approval/poomDetail";			
 		} else if(approvalVO.getApKind().equals("지출결의서")) {
-//			List<ApprovalExpenseVO> vos = approvalService.getExpenseDetail(expenseVO);
-//			model.addAttribute("vos", vos);
+			List<ApprovalExpenseVO> expenseList = approvalService.getExpenseDetail(expenseVO);
+			model.addAttribute("list", expenseList);
 			model.addAttribute("approvalVO", approvalVO);
 			
-			log.info("==================== expenseVO : {} ========================", expenseVO);
+			log.info("==================== expenseList : {} ========================", expenseList);
 			return "approval/expenseDetail";	
 		} else if(approvalVO.getApKind().equals("휴가신청서")) {
 			model.addAttribute("approvalVO", approvalVO);
