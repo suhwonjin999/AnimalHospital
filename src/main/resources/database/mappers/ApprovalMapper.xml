@@ -21,47 +21,63 @@
 
 	<!-- 품의서 작성 -->
 	<insert id="setApPoomAdd" parameterType="ApprovalVO">
+		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
+		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+		</selectKey>
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{username}, 25, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{empName}, #{positionName}, #{deptName})
+		(#{apNo}, #{username}, 25, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '품의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 휴가신청서 작성 -->
 	<insert id="setApDayoffAdd" parameterType="ApprovalVO">
+		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
+		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+		</selectKey>
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, DAYOFFSTARTDATE, DAYOFFENDDATE,
 		APCONTENTS, APSTATE, APREJECTION, DAYOFFKIND, DAYOFFTIME, DAYOFFSELECTDATE,
 		APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{username}, 27, #{apTitle}, NOW(), #{dayoffStartDate}, #{dayoffEndDate},
+		(#{apNo}, #{username}, 27, #{apTitle}, NOW(), #{dayoffStartDate}, #{dayoffEndDate},
 		#{apContents}, '결재대기중', '', #{dayoffKind}, #{dayoffTime}, #{dayoffSelectDate},'휴가신청서',
 		#{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 휴직신청서 작성 -->
 	<insert id="setApVacationAdd" parameterType="ApprovalVO">
+		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
+		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+		</selectKey>
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{username}, 28, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '휴직신청서', #{empName}, #{positionName}, #{deptName})
+		(#{apNo}, #{username}, 28, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '휴직신청서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 퇴직신청서 작성 -->
 	<insert id="setApRetireAdd" parameterType="ApprovalVO">
+		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
+		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+		</selectKey>
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APCONTENTS, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(NULL, #{username}, 29, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '퇴직신청서', #{empName}, #{positionName}, #{deptName})
+		(#{apNo}, #{username}, 29, #{apTitle}, NOW(), #{apContents}, '결재대기중', '', '퇴직신청서', #{empName}, #{positionName}, #{deptName})
 	</insert>
 	
 	<!-- 지출결의서 작성 -->
-	<insert id="setApExpenseAdd" parameterType="ApprovalVO" useGeneratedKeys="true" keyProperty="apNo">
+	<insert id="setApExpenseAdd" parameterType="ApprovalVO">
+		<selectKey keyProperty="apNo" resultType="Long" order="BEFORE">
+		        SELECT NEXTVAL(APNO_SEQ) FROM DUAL
+		</selectKey>
 		INSERT INTO APPROVAL
 		(APNO, USERNAME, APFORMATNO, APTITLE, APCDATE, APSTATE, APREJECTION, APKIND, EMPNAME, POSITIONNAME, DEPTNAME)
 		VALUES
-		(0, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
+		(#{apNo}, #{username}, 26, #{apTitle}, NOW(), '결재대기중', '', '지출결의서', #{empName}, #{positionName}, #{deptName})
 	</insert>
+
 	
 	<!-- 지출결의서 상세 -->
 	<!-- <select id="getApExpenseDetail" parameterType="ApprovalVO" resultMap="getExpenseResult">

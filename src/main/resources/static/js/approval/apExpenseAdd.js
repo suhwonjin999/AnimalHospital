@@ -61,7 +61,7 @@ $("#expensePlusBtn").click(function(){
 	let f = '<div class="expense row g-3 mb-2" id="expense['+idx+']">'
     f = f + '<input type="text" class="form-control me-2" id="expenseName'+idx+'" name="expenseName" placeholder="항목" style="width:350px;">';
 	f = f + '<input type="text" class="form-control me-2" id="expenseAmount'+idx+'" name="expenseAmount" placeholder="수량" style="width:100px;" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\');">';
-	f = f + '<input type="text" class="form-control me-2" id="expensePrice'+idx+'" name="expensePrice" placeholder="금액" style="width:150px;" onkeyup="inputNumberFormat(this)" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\');">';
+	f = f + '<input type="text" class="form-control me-2" id="expensePrice'+idx+'" name="expensePrice" placeholder="금액" style="width:150px;" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\');">';
     f = f + '<input type="text" class="form-control me-2" id="expenseBigo'+idx+'" name="expenseBigo" placeholder="비고" style="width:200px;">';
   	f = f + '<button type="button" id="expenseMinusBtn" name="expenseMinusBtn" class="btn btn-primary df" style="width:50px; height:38.94px;"> X </button>';
 	f = f + '</div>';

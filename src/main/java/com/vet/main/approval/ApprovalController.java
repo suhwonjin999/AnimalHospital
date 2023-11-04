@@ -104,30 +104,31 @@ public class ApprovalController {
 				            @RequestParam("empName") String empName,
 				            @RequestParam("apTitle") String apTitle,
 				            @RequestParam("expenseName") String[] expenseName,
-				            @RequestParam("expenseAmount") String[] expenseAmount,
-				            @RequestParam("expensePrice") String[] expensePrice,
+				            @RequestParam("expenseAmount") Long[] expenseAmount,
+				            @RequestParam("expensePrice") Long[] expensePrice,
 				            @RequestParam("expenseBigo") String[] expenseBigo) throws Exception {
 		
 		ApprovalVO approvalVO = new ApprovalVO();
-			
+		
 		approvalVO.setUsername(username);
 		approvalVO.setPositionName(positionName);
 		approvalVO.setDeptName(deptName);
 		approvalVO.setEmpName(empName);
 		approvalVO.setApTitle(apTitle);
 		
-//		approvalService.setApExpenseAdd(approvalVO);
+		approvalService.setApExpenseAdd(approvalVO);
 		
 		log.info("============= approvalVO : {} ==============", approvalVO);
 
 		for (int i = 0; i < expenseName.length; i++) {
 			ApprovalExpenseVO expenseVO = new ApprovalExpenseVO();
+			expenseVO.setApNo(approvalVO.getApNo()); 
         	expenseVO.setExpenseName(expenseName[i]);
         	expenseVO.setExpenseAmount(expenseAmount[i]);
         	expenseVO.setExpensePrice((expensePrice[i]));
         	expenseVO.setExpenseBigo((expenseBigo[i]));
         	
-//        	approvalService.setExpenseAdd(expenseVO);
+        	approvalService.setExpenseAdd(expenseVO);
 
         	log.info("============= expenseVO : {} ==============", expenseVO);
         }
