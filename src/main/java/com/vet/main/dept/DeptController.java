@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.vet.main.commons.Pager;
 
@@ -25,7 +26,9 @@ public class DeptController {
 	public String deptList(Model model, Pager pager)throws Exception{
 		List<DeptVO> ar = deptService.deptList();
 		List<DeptVO> emp = deptService.getEmpList(pager);
+		List<DeptVO> dept = deptService.selectDept();
 		
+		model.addAttribute("dept", dept);
 		model.addAttribute("emp", emp);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
@@ -33,10 +36,20 @@ public class DeptController {
 		return "dept/deptList";
 	} 
 	
-//	@GetMapping("deptList/deptAdd")
-//	public String deptAdd1(DeptVO deptVO)throws Exception{
-//		return "dept/deptAdd";
+//	@GetMapping("deptList")
+//	public ModelAndView deptList(ModelAndView mv) {
+//		mv.setViewName("dept/deptList");
+//		return mv;
 //	}
+//	
+//	@RequestMapping(value = "/dept/deptList", method = RequestMethod.POST)
+//	@ResponseBody
+//	public List<DeptVO> deptList(DeptVO deptVO, Model model)throws Exception{
+//		List<DeptVO> ar = deptService.deptList();
+//		return ar;
+//	}
+	
+	//부서 등록 (modal)
 	
 	@ResponseBody
 	@RequestMapping(value = "/deptList/deptAdd", method = RequestMethod.POST)
@@ -45,5 +58,12 @@ public class DeptController {
 		return "redirect: ./deptList";
 	}
 	
+	//부서 수정 (modal)
 	
+	@ResponseBody
+	@RequestMapping(value = "/deptList/deptUpdate", method = RequestMethod.POST)
+	public String deptUpdate(DeptVO deptVO)throws Exception{
+		int result = deptService.deptUpdate(deptVO);
+		return "redirect: ./deptList";
+	}
 }

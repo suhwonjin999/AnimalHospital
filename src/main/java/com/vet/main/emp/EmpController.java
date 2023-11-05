@@ -22,11 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vet.main.commons.Pager;
 import com.vet.main.dept.DeptVO;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/emp/*")
-@Slf4j
 public class EmpController {
 
 	@Autowired
@@ -102,7 +100,7 @@ public class EmpController {
 	
 	// 신규직원 추가 페이지
 	
-//	@GetMapping("empAdd")
+//	@GetMapping("empAdd2")
 //	public void empAdd(@ModelAttribute EmpVO empVO)throws Exception{
 //
 //	}
@@ -110,6 +108,12 @@ public class EmpController {
 	@ResponseBody
 	@RequestMapping(value = "/empList/empAdd", method = RequestMethod.POST)
 	public String empAdd(@Valid EmpVO empVO, BindingResult bindingResult) throws Exception{
+//		boolean check = empService.getEmpError(empVO, bindingResult);
+//		
+//		if(bindingResult.hasErrors() || check) {
+//			return "emp/empList";
+//		}
+//		
 		int result = empService.empAdd(empVO);
 		return "redirect:./empList";
 	}
@@ -125,8 +129,13 @@ public class EmpController {
 	
 	// 직원 수정(부서, 직급 수정)
 	@GetMapping("empUpdate")
-	public String empUpdate(EmpVO empVO, Model model) throws Exception{
+	public String empUpdate(EmpVO empVO, DeptVO deptVO, Model model) throws Exception{
+		List<DeptVO> ar = empService.getDeptNo(deptVO);
+		List<DeptVO> po = empService.getPositionNo(deptVO);
 		empVO = empService.empDetail(empVO);
+		
+		model.addAttribute("po", po);
+		model.addAttribute("dept", ar);
 		model.addAttribute("vo", empVO);
 		return "emp/empUpdate";
 	}
@@ -167,25 +176,6 @@ public class EmpController {
 //		}
 		return "redirect: ./login";
 	}
-	
-	
-//	@GetMapping("empUpdate")
-	public String getPositionNo(Model model, DeptVO deptVO)throws Exception{
-		List<DeptVO> ar = empService.getPositionNo(deptVO);
-		
-		model.addAttribute("position", ar);
-		
-		return "emp/empUpdate";
-	}
-	
-//	@GetMapping("empUpdate")
-	public String getDeptNo(Model model, DeptVO deptVO)throws Exception{
-		List<DeptVO> ar = empService.getDeptNo(deptVO);
-		
-		model.addAttribute("Dept", ar);
-		
-		return "emp/empUpdate";
-	}
-	
+
 	
 }

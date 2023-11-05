@@ -10,8 +10,11 @@
 	  		<when test="kind == 'empName'">
 	  			empName
 	  		</when>
+	  		<when test="kind == 'deptName'">
+	  			deptName
+	  		</when>
 	  		<otherwise>
-	 			username
+	 			positionName
 	  		</otherwise>
 	  	</choose>
 	  </sql>
@@ -50,7 +53,19 @@
 	    FROM DEPARTMENT d
 	    INNER JOIN DEPTLIST dh ON d.PARENTNO = dh.DEPTNO
 		)
-		SELECT * FROM DEPTLIST WHERE DEPTNO!=999 ORDER BY DEPTNO ASC
+		SELECT * FROM DEPTLIST ORDER BY DEPTNO ASC
+	
+	</select>
+	
+	<select id="selectDept" parameterType="com.vet.main.dept.DeptVO">
+		SELECT * FROM DEPARTMENT WHERE PARENTNO=0 and DEPTNO != 999 and DEPTNO != 100
+	</select>
+	
+	<select id="positionList" parameterType="com.vet.main.dept.DeptVO">
+	
+		SELECT * 
+		FROM POSITION P INNER JOIN DEPARTMENT D
+		ON P.DEPTNO = D.DEPTNO
 	
 	</select>
 	
@@ -74,5 +89,13 @@
 		INSERT INTO DEPARTMENT
 		VALUES (#{deptNo}, #{deptName}, #{parentNo}, #{depth})
 	</insert>
+
+	<update id="deptUpdate" parameterType="com.vet.main.dept.DeptVO">
+	    UPDATE DEPARTMENT
+	    SET
+	    DEPTNAME = #{deptName},
+	    PARENTNO = #{parentNo}
+	    WHERE DEPTNO = #{deptNo}
+	</update>
 
 </mapper>

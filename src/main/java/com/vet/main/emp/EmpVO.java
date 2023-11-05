@@ -24,15 +24,15 @@ import lombok.ToString;
 public class EmpVO implements UserDetails{
 
 	//emp
-	@NotBlank
 	private String username;
 //	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}", message = "확인이 필요합니다.")
 	private String password;
+	@NotBlank(message = "이름은 필수 입력 값입니다.")
 	private String empName;
 	@Email(message = "이메일 형식으로 입력해주세요.")
-	@NotEmpty(message = "이메일은 필수 입력 값입니다.")
+	@NotBlank(message = "이메일은 필수 입력 값입니다.")
 	private String email;
-	@NotEmpty(message = "연락처는 필수 입력 값입니다.")
+	@NotBlank(message = "연락처는 필수 입력 값입니다.")
 	private String phone;
 	private Date hireDate;
 	private int randomPw;
@@ -41,7 +41,6 @@ public class EmpVO implements UserDetails{
 	private Long positionNo;
 	private String deptNo;
 	private String state;
-	@Past
 	private Date birth;
 	
 	//position

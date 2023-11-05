@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
@@ -123,6 +124,28 @@ public class EmpService implements UserDetailsService{
 		
 		return result;
 	}
+	
+	public boolean getEmpError(EmpVO empVO, BindingResult bindingResult)throws Exception{
+		boolean check = false; // false면 error 없음, true면 error 있음 (검증실패)
+		
+		//password 일치여부 검증
+//		if(!empVO.getPassword().equals(empVO.getPasswordCheck())) {
+//			check = true;
+//			
+//			bindingResult.rejectValue("passwordCheck", "empVO.password.equalCheck");
+//		}
+		
+		//이메일 중복 검사
+		EmpVO checkVO = empDAO.getEmp(empVO);
+		
+		if(checkVO != null) {
+			check = true;
+			bindingResult.rejectValue("email", "empVO.email.equalCheck");
+		}
+		
+		return check;
+	}
+	
 	
 	// 직원 상세
 	public EmpVO empDetail(EmpVO empVO) throws Exception{

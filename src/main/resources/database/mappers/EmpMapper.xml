@@ -24,11 +24,15 @@
 	  </select>
 	
 	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
-		SELECT E.*,MR.*,R.*
+		SELECT E.*,MR.*,R.*,P.POSITIONNAME,D.DEPTNAME
 		FROM EMP E INNER JOIN EMP_ROLE MR
 		ON E.USERNAME = MR.USERNAME
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
+		INNER JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		INNER JOIN DEPARTMENT D
+		ON E.DEPTNO = D.DEPTNO
 		WHERE E.USERNAME=#{username}
 	</select>
 
@@ -170,13 +174,16 @@
   		WHERE USERNAME=#{username}		
   	</update>
   	
-  	<select id="getPositionNo" parameterType="com.vet.main.emp.EmpVO">
+  	<select id="getDeptNo" parameterType="com.vet.main.emp.EmpVO">
+		SELECT *
+		FROM DEPARTMENT
+		WHERE PARENTNO != 0	|| DEPTNO = 999
+	</select>
 	
+  	 <select id="getPositionNo" parameterType="com.vet.main.emp.EmpVO">
 		SELECT *
 		FROM DEPARTMENT D INNER JOIN POSITION P
 		ON D.DEPTNO = P.DEPTNO
-		WHERE D.DEPTNO = #{deptNo}
-		
+		WHERE P.DEPTNO = #{deptNo}		
 	</select>
-  	
 </mapper>
