@@ -106,8 +106,8 @@ public class ApprovalService {
 	}
 	
 	// 지출내역 데이터 가져오기
-	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception {
-		return approvalDAO.getExpenseDetail(expenseVO);
+	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception {
+		return approvalDAO.getApExpenseDetail(approvalVO);
 	}
 	
 }

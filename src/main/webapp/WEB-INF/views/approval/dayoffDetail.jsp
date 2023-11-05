@@ -4,8 +4,13 @@
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- 날짜포맷 라이브러리 -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<c:set var="dayoffStartDate" value="${approvalVO.dayoffStartDate}"/>
+<c:set var="dayoffEndDate" value="${approvalVO.dayoffEndDate}"/>
+<c:set var="dayoffKind" value="${approvalVO.dayoffKind}"/>
+
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -24,7 +29,7 @@
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page">
-				<sec:authentication property="Principal" var="user"/>
+			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">	
@@ -53,95 +58,86 @@
 					<input type="hidden" id="apKind" name="apKind" value="${approvalVO.apKind}">
 					<input type="hidden" name="username" id="username" value="${user.username}">
 					
-					<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 618px; height: 849px;" class="">
+					<p align="center" style="margin: 0px 0px 10px;line-height: 107%;font-size:10pt;font-family:맑은 고딕;text-align:center">
+						<span style="font-family:나눔고딕">&nbsp;</span>
+					</p>
+					<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 616px; height: 850px;" class="">
 						<tbody>
 							<tr style="">
 								<td style="border: 1px solid black; padding: 0px 7px; height: 849px; width: 617px; vertical-align: top;">
-									<p style="margin: 0px 0px 0px;text-align:justify;font-size:10pt;font-family:맑은 고딕;line-height: normal">
+									<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 										<span style="font-family:나눔고딕">&nbsp;</span>
 									</p>
-									<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 602px; height: 131px;" class="">
+									<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 602px; height: 132px;" class="">
 										<tbody>
 											<tr style="">
-												<td rowspan="3" style="border-top: none; border-bottom: none; border-left: none; border-image: initial; border-right: 1px solid black; padding: 0px 7px; height: 131px; width: 264px;">
+												<td rowspan="3" style="border-top: none; border-bottom: none; border-left: none; border-image: initial; border-right: 1px solid black; padding: 0px 7px; height: 132px; width: 259px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<b>
-															<span style="font-size:22.0pt;font-family:맑은 고딕; font-family:맑은 고딕;font-family:맑은 고딕;bidi-font-family: 맑은 고딕">휴 직 신 청 서</span>
+															<span style="font-size:22.0pt;font-family:맑은 고딕; font-family:맑은 고딕;font-family:맑은 고딕;bidi-font-family: 맑은 고딕">휴 가 신 청 서</span>
 														</b>
 														<b>
 															<span style="font-size:22.0pt;font-family:나눔스퀘어_ac ExtraBold"></span>
 														</b>
 													</p>
 												</td>
-												<td rowspan="3" style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 131px; width: 30px;">
+												<td rowspan="3" style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 132px; width: 20px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<b>
-															<span style="bidi-font-size:10.0pt;font-family:나눔고딕">결</span>
-														</b>
+														<span style="bidi-font-size:10.0pt;font-family:나눔고딕">결</span>
 													</p>
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<b>
-															<span style="bidi-font-size:10.0pt;font-family:나눔고딕">&nbsp;</span>
-														</b>
+														<span style="bidi-font-size:10.0pt;font-family:나눔고딕">&nbsp;</span>
 													</p>
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<b>
-															<span style="bidi-font-size:10.0pt;font-family:나눔고딕">재</span>
-														</b>
+														<span style="bidi-font-size:10.0pt;font-family:나눔고딕">재</span>
 													</p>
 												</td>
-												
-												<!-- 기안자 표시, 결재자의 직급 표시 -->
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 94px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 81px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">기 안 자</span>
 													</p>
 												</td>
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 101px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 89px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
 												</td>
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 97px;">
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
-													</p>
-												</td>
-											</tr>
-											
-											<!-- 기안자와 결재자의 도장 표시 -->
-											<tr style="">
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 80px; width: 94px;">
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
-													</p>
-												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 80px; width: 101px;">
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
-													</p>
-												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 80px; width: 97px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 25px; width: 85px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
 												</td>
 											</tr>
-											
-											<!-- 기안작성날짜와 결재날짜 표시 -->
 											<tr style="">
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 26px; width: 94px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 81px; width: 81px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕">&nbsp;</span>
+													</p>
+												</td>
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 81px; width: 89px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕">&nbsp;</span>
+													</p>
+												</td>
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 81px; width: 85px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕">&nbsp;</span>
+													</p>
+												</td>
+											</tr>
+											<tr style="">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; height: 26px; width: 81px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 														<fmt:formatDate pattern="yyyy/MM/dd" value="${approvalVO.apCDate}"/>
 													</p>
 												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 26px; width: 101px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; height: 26px; width: 89px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
 												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 26px; width: 97px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; height: 26px; width: 85px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
@@ -149,13 +145,13 @@
 											</tr>
 										</tbody>
 									</table>
-									<p style="margin: 0px 0px 0px;text-align:justify;font-size:10pt;font-family:맑은 고딕;line-height: normal">
+									<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 										<span style="font-family:나눔고딕">&nbsp;</span>
 									</p>
-									<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 601px;">
+									<table border="1" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 602px; height: 459px;" class="">
 										<tbody>
 											<tr style="">
-												<td style="border: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 95px;">
+												<td style="border: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 75px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">부 
 															<span style="spacerun:yes">&nbsp;</span>
@@ -163,12 +159,13 @@
 														</span>
 													</p>
 												</td>
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 209px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 27px; width: 194px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.deptName}
+														<span style="font-family:나눔고딕">&nbsp;</span>
+														${approvalVO.deptName}
 													</p>
 												</td>
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 88px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">직 
 															<span style="spacerun:yes">&nbsp;</span>
@@ -176,14 +173,15 @@
 														</span>
 													</p>
 												</td>
-												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 201px;">
+												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 27px; width: 198px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.positionName}
+														<span style="font-family:나눔고딕">&nbsp;</span>
+														${approvalVO.positionName}
 													</p>
 												</td>
 											</tr>
 											<tr style="">
-												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 95px;">
+												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 75px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">성 
 															<span style="spacerun:yes">&nbsp;</span>
@@ -191,111 +189,159 @@
 														</span>
 													</p>
 												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 209px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 27px; width: 194px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.empName}
+														<span style="font-family:나눔고딕">&nbsp;</span>
+														${approvalVO.empName}
 													</p>
 												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 88px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">기안일자</span>
 													</p>
 												</td>
-												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 201px;">
+												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 27px; width: 198px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apCDate}
+														<span style="font-family:나눔고딕">&nbsp;</span>
+														${approvalVO.apCDate}
 													</p>
 												</td>
 											</tr>
 											<tr style="">
-												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 95px;">
+												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 75px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">제 
 															<span style="spacerun:yes">&nbsp;&nbsp;</span>목
 														</span>
 													</p>
 												</td>
-												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 505px;">
+												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 27px; width: 496px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apTitle}
+														<span style="font-family:나눔고딕">&nbsp;</span>
+														${approvalVO.apTitle}
 													</p>
 												</td>
 											</tr>
 											<tr style="">
-												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 380px; width: 95px;">
+												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 27px; width: 75px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">품의 사유</span>
-													</p>
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
-													</p>
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">및</span>
-													</p>
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
-													</p>
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">상세 내역</span>
+														<span style="font-family:나눔고딕">구 
+															<span style="spacerun:yes">&nbsp;</span>
+															<span style="spacerun:yes">&nbsp;</span>분
+														</span>
 													</p>
 												</td>
-												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 380px; width: 505px;">
+												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 27px; width: 496px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕"></span>
+														${approvalVO.dayoffKind}
+													</p>
+												</td>
+											</tr>
+											<tr style="">
+												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 59px; width: 75px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕">일 
+															<span style="spacerun:yes">&nbsp;</span>
+															<span style="spacerun:yes">&nbsp;</span>시
+														</span>
+													</p>
+												</td>
+												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 59px; width: 496px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
-														${approvalVO.apContents}
+														<input type="hidden" id="dayoffStartDate" name="dayoffStartDate" value="${approvalVO.dayoffStartDate}">
+														<input type="hidden" id="dayoffEndDate" name="dayoffEndDate" value="${approvalVO.dayoffEndDate}">
+
+														<c:choose>
+															<c:when test="${dayoffKind eq '반차'}">
+																${approvalVO.dayoffStartDate} [${approvalVO.dayoffTime}] &nbsp;&nbsp;총 0.5일
+															</c:when>
+															
+															<c:when test="${dayoffKind eq '연차' || '병가' || '경조사' || '기타'}">
+																<c:choose>
+																	<c:when test="${dayoffEndDate eq null}">
+																		${approvalVO.dayoffStartDate}&nbsp;&nbsp;총 1일
+																	</c:when>
+	
+																	<c:when test="${dayoffEndDate ne null}">
+																		${approvalVO.dayoffStartDate} ~ ${approvalVO.dayoffEndDate}
+																		&nbsp;&nbsp;
+																		총 ${day}일
+																	</c:when>
+																</c:choose>
+															</c:when>
+														</c:choose>
+													</p>
+												</td>
+											</tr>
+											<tr style="">
+												<td style="border-right: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-image: initial; border-top: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 291px; width: 75px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<span style="font-family:나눔고딕">내 
+															<span style="spacerun:yes">&nbsp;</span>용
+														</span>
+													</p>
+												</td>
+												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 291px; width: 496px;">
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
+														<sub>
+															<span style="font-family:나눔고딕">&nbsp;</span>
+															${approvalVO.apContents}
+														</sub>
 													</p>
 												</td>
 											</tr>
 										</tbody>
 									</table>
-									<p style="margin: 0px 0px 0px;text-align:justify;font-size:10pt;font-family:맑은 고딕;line-height: normal">
+									<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 										<span style="font-family:나눔고딕">&nbsp;</span>
 									</p>
-									<p style="margin: 0px 0px 0px;text-align:justify;font-size:10pt;font-family:맑은 고딕;line-height: normal">
+									<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 										<span style="font-family:나눔고딕">&nbsp;</span>
 									</p>
-									<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 599px; height: 97px;" class="">
+									<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; border: none; width: 602px; height: 97px;" class="">
 										<tbody>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">위와 같은 사유로 휴직을 신청 하오니 허가하여 주시기 바랍니다.</span>
+														<span style="font-family:나눔고딕">위와 같은 사유로 휴가를 신청 하오니 허가하여 주시기 바랍니다.</span>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕"><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${approvalVO.apCDate}"/></span>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">기 안 자 :
-															<span style="spacerun:yes">&nbsp;&nbsp;&nbsp; ${approvalVO.empName} </span>
+															<span style="spacerun:yes">&nbsp;&nbsp;&nbsp; ${approvalVO.empName}</span>
 															<span style="spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>(인)
 														</span>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td style="padding: 0px 7px; width: 598px; height: 16px;">
+												<td style="padding: 0px 7px; width: 601px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
 														<span style="font-family:나눔고딕">&nbsp;</span>
 													</p>
@@ -307,10 +353,10 @@
 							</tr>
 						</tbody>
 					</table>
-					<p>
-						<br>
-						</p>
-						
+					<p align="center" style="margin: 0px 0px 10px;line-height: 107%;font-size:10pt;font-family:맑은 고딕;text-align:center">
+						<span style="font-family:나눔고딕">&nbsp;</span>
+					</p>
+
 					</div>
 					</div>
 					</div>
@@ -320,8 +366,7 @@
 								<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">회수</button>
 								<button type="button" class="btn btn-primary" id="listBtn">목록</button>
 							</div>
-                         </div>
-
+                           </div>
 					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
@@ -338,6 +383,7 @@
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 	<script src="/js/approval/detail.js"></script>
-
+	<script src="/js/approval/dateFormat.js"></script>
+	
 </body>
 </html>

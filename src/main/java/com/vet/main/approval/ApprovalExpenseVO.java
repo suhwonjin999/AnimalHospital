@@ -11,8 +11,8 @@ import lombok.ToString;
 public class ApprovalExpenseVO {
 	private Long apNo;
 	private String expenseName;
-	private Long expenseAmount;
 	private Long expensePrice;
+	private Long expenseAmount;
 	private String expenseBigo;
 	
 	public void setExpenseBigo(String string) {

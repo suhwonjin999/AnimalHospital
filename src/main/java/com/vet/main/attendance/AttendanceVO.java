@@ -13,4 +13,6 @@ public class AttendanceVO {
 	private String username;
 	private LocalDateTime attIn;
 	private LocalDateTime attOut;
+	private Integer attState;
+	private Double atDayoffCount;
 }

@@ -93,13 +93,21 @@
 	
 	<!-- 지출결의서 상세 -->
 	<select id="getApExpenseDetail" parameterType="ApprovalVO" resultMap="getExpenseResult">
-		SELECT A.*, AE.*
+		<!-- SELECT A.*, AE.*
 		FROM
 			APPROVAL A LEFT OUTER JOIN APEXPENSE AE
 			ON A.APNO = AE.APNO
-		WHERE A.APNO = #{apNo}
-
+		WHERE A.APNO = #{apNo} -->
+		
+		SELECT A.*, AE.*,
+				(SELECT SUM(EXPENSEPRICE) FROM APEXPENSE
+				 WHERE APNO = A.APNO) AS PRICESUM
+		FROM
+			APPROVAL A LEFT OUTER JOIN APEXPENSE AE
+			ON A.APNO = AE.APNO
+		WHERE A.APNO = #{apNo};
 	</select>
+	
 
   	<select id="getApUser" parameterType="com.vet.main.emp.EmpVO" resultMap="getUserResult">
   		SELECT E.*, P.*, D.* 
@@ -139,11 +147,12 @@
 			<result column="EMPNAME" property="empName"/>
 			<result column="POSITIONNAME" property="positionName"/>
 			<result column="DEPTNAME" property="deptName"/>
+			<result column="PRICESUM" property="priceSum"/>
 		<collection property="expenseList" javaType="List" ofType="ApprovalExpenseVO">
 			<result column="EXPENSENAME" property="expenseName"/>
 			<result column="EXPENSEPRICE" property="expensePrice"/>
-			<result column="EXPENSEBIGO" property="expenseBigo"/>
 			<result column="EXPENSEAMOUNT" property="expenseAmount"/>
+			<result column="EXPENSEBIGO" property="expenseBigo"/>
 		</collection>
 	</resultMap>
 
@@ -200,11 +209,6 @@
 	
 	
 	<select id="getApDetail" parameterType="ApprovalVO" resultMap="getApDetailResult">
-		<!-- SELECT A.*, AF.*
-		FROM APPROVAL A
-		INNER JOIN APFILE AF
-		WHERE A.APNO = #{apNo} -->
-		
 		SELECT *
 		FROM APPROVAL
 		WHERE APNO = #{apNo}

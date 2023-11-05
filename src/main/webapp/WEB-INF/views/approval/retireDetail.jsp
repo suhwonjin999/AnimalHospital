@@ -4,7 +4,7 @@
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!-- 날짜포맷 라이브러리 -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
@@ -39,7 +39,7 @@
 	
 				    <tr>
 				        <th class="text-center" style="width: 100px;">제목</th>
-				        <td>${approvalVO.apTitle}</td>
+				        <td>${approvalVO.apFormatTitle}</td>
 				    </tr>
 	
 				    <tr>
@@ -64,9 +64,7 @@
 										<tbody>
 											<tr style="">
 												<td rowspan="3" style="border-top: none; border-bottom: none; border-left: none; border-image: initial; border-right: 1px solid black; padding: 0px 7px; height: 131px; width: 264px;">
-													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<b>
-															<span style="font-size:22.0pt;font-family:맑은 고딕; font-family:맑은 고딕;font-family:맑은 고딕;bidi-font-family: 맑은 고딕">휴 직 신 청 서</span>
+													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal"><b><span style="font-size:22.0pt;font-family:맑은 고딕; font-family:맑은 고딕;font-family:맑은 고딕;bidi-font-family: 맑은 고딕">퇴 직 신 청 서</span>
 														</b>
 														<b>
 															<span style="font-size:22.0pt;font-family:나눔스퀘어_ac ExtraBold"></span>
@@ -165,7 +163,8 @@
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 209px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.deptName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.deptName}
 													</p>
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
@@ -178,7 +177,8 @@
 												</td>
 												<td style="border-top: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; border-image: initial; border-left: none; padding: 0px 7px; height: 29px; width: 201px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.positionName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.positionName}
 													</p>
 												</td>
 											</tr>
@@ -193,7 +193,8 @@
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 209px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.empName}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.empName}
 													</p>
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; background: rgb(208, 206, 206); padding: 0px 7px; height: 29px; width: 96px;">
@@ -203,7 +204,8 @@
 												</td>
 												<td style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 201px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apCDate}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.apCDate}
 													</p>
 												</td>
 											</tr>
@@ -217,7 +219,8 @@
 												</td>
 												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 29px; width: 505px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span> ${approvalVO.apTitle}
+														<span style="font-family:나눔고딕">&nbsp;</span> 
+														${approvalVO.apTitle}
 													</p>
 												</td>
 											</tr>
@@ -241,7 +244,7 @@
 												</td>
 												<td colspan="3" style="border-top: none; border-left: none; border-bottom: 1px solid black; border-right: 1px solid black; padding: 0px 7px; height: 380px; width: 505px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">&nbsp;</span>
+														<span style="font-family:나눔고딕">&nbsp;</span>  
 														${approvalVO.apContents}
 													</p>
 												</td>
@@ -259,7 +262,7 @@
 											<tr>
 												<td style="padding: 0px 7px; width: 598px; height: 16px;">
 													<p align="center" style="margin: 0px 0px 0px;font-size:10pt;font-family:맑은 고딕;text-align:center;line-height: normal">
-														<span style="font-family:나눔고딕">위와 같은 사유로 휴직을 신청 하오니 허가하여 주시기 바랍니다.</span>
+														<span style="font-family:나눔고딕">위와 같은 사유로 퇴직을 신청 하오니 허가하여 주시기 바랍니다.</span>
 													</p>
 												</td>
 											</tr>
@@ -310,18 +313,10 @@
 					<p>
 						<br>
 						</p>
-						
-					</div>
-					</div>
-					</div>
-						<div class="row" style="float:right;">
-							<div class="demo-inline-spacing">
-								<button type="button" class="btn btn-primary submitBtn" id="updateBtn" data-url="update">수정</button>
-								<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">회수</button>
-								<button type="button" class="btn btn-primary" id="listBtn">목록</button>
-							</div>
-                         </div>
 
+					</div>
+					</div>
+					</div>
 					</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>

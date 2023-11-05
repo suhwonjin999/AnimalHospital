@@ -1,9 +1,11 @@
 package com.vet.main.approval;
 
 import java.net.http.HttpRequest;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +71,7 @@ public class ApprovalController {
 		return null;
 	}
 	
-	
+	// 기안 작성 데이터 전송 (지출결의서 제외)
 	@PostMapping("add/{apKind}")
 	public String setApAdd(@PathVariable String apKind, ApprovalVO approvalVO) throws Exception {
 		
@@ -96,7 +98,7 @@ public class ApprovalController {
 		return "redirect:../draftList/" + approvalVO.getUsername();
 	}
 	
-	
+	// 기안(지출결의서) 작성 데이터 전송
 	@PostMapping("add/expenseAdd")
 	public String setApAdd(@RequestParam("username") String username,
 				            @RequestParam("positionName") String positionName,
@@ -158,7 +160,7 @@ public class ApprovalController {
 	}
 	
 	@GetMapping("detail")
-	public String getApDetail(ApprovalVO approvalVO, Model model, ApprovalExpenseVO expenseVO) throws Exception {
+	public String getApDetail(ApprovalVO approvalVO, Model model) throws Exception {
 
 		approvalVO = approvalService.getApDetail(approvalVO);
 		
@@ -168,13 +170,29 @@ public class ApprovalController {
 			model.addAttribute("approvalVO", approvalVO);
 			return "approval/poomDetail";			
 		} else if(approvalVO.getApKind().equals("지출결의서")) {
-			List<ApprovalExpenseVO> expenseList = approvalService.getExpenseDetail(expenseVO);
-			model.addAttribute("list", expenseList);
-			model.addAttribute("approvalVO", approvalVO);
+			ApprovalVO approvalVOs = new ApprovalVO();
+			approvalVOs = approvalService.getApExpenseDetail(approvalVO);
+			model.addAttribute("approvalVO", approvalVOs);
 			
-			log.info("==================== expenseList : {} ========================", expenseList);
+			log.info("==================== expenseList : {} ========================", approvalVOs);
 			return "approval/expenseDetail";	
 		} else if(approvalVO.getApKind().equals("휴가신청서")) {
+			
+			if(approvalVO.getDayoffEndDate() != null) {
+				String date1 = approvalVO.getDayoffEndDate();
+				String date2 = approvalVO.getDayoffStartDate();
+				
+				Date format1 = new SimpleDateFormat("yyyy/MM/dd").parse(date1);
+				Date format2 = new SimpleDateFormat("yyyy/MM/dd").parse(date2);
+				
+				long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+				long diffMin = (format1.getTime() - format2.getTime()) / 60000; //분 차이
+				long diffHor = (format1.getTime() - format2.getTime()) / 3600000; //시 차이
+				long diffDays = diffSec / (24*60*60); //일자수 차이				
+
+				model.addAttribute("day", diffDays);
+			}
+	        
 			model.addAttribute("approvalVO", approvalVO);
 			return "approval/dayoffDetail";	
 		} else if(approvalVO.getApKind().equals("휴직신청서")) {
@@ -187,5 +205,5 @@ public class ApprovalController {
 		
 		return null;	
 	}
-	
+		
 }

@@ -31,6 +31,7 @@ public class ApprovalVO {
 	private String dayoffTime;
 	private Double dayoffSelectDate;
 	private String apKind;
+	private Long priceSum;
 	
 	private String positionName;
 	private String deptName;
