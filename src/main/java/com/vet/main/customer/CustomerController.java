@@ -2,6 +2,8 @@ package com.vet.main.customer;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,8 +67,8 @@ public class CustomerController {
 	}
 	
 	@PostMapping("update")
-	public String setUpdate(CustomerVO customerVO, MultipartFile[] files) throws Exception {
-		int result = customerService.setUpdate(customerVO, files);
+	public String setUpdate(CustomerVO customerVO, MultipartFile[] files, HttpSession session, Model model) throws Exception {
+		int result = customerService.setUpdate(customerVO, files, session);
 		
 		return "redirect:./list";
 	}
@@ -79,4 +81,13 @@ public class CustomerController {
 		return "redirect:./list";
 	}
 
+	//파일삭제
+	@GetMapping("fileDelete")
+	public String setFileDelete(CustomerFileVO customerFileVO, Model model, HttpSession session) throws Exception {
+		int result = customerService.setFileDelete(customerFileVO, session);
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+	}
+	
 }

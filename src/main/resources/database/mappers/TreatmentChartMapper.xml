@@ -43,8 +43,7 @@
 		<update id="setUpdate" parameterType="TreatmentChartVO">
 			UPDATE TREATMENTCHART SET
 				DISEASE = #{disease},
-				CONTENTS = #{contents},
-				DATE = #{date}
+				CONTENTS = #{contents}
 			WHERE CHARTNO = #{chartNo}
 		</update>
 	</mapper>

@@ -88,4 +88,13 @@
 			DELETE FROM CUSTOMER WHERE CUSTOMERNO = #{customerNo}
 		</delete>
 		
+		<!-- 사진삭제 -->
+		<delete id="setFileDelete" parameterType="CustomerFileVO">
+			DELETE FROM CUSTOMERFILE WHERE FILENO = #{fileNo}
+		</delete>
+		
+		<select id="getFileDetail" parameterType="CustomerFileVO" resultType="CustomerFileVO">
+			SELECT FILENO, FILENAME FROM CUSTOMERFILE WHERE FILENO = #{fileNo}
+		</select>
+		
 	</mapper>

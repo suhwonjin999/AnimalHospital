@@ -57,7 +57,7 @@ public class TreatmentChartController {
 	public String setAdd(TreatmentChartVO treatmentChartVO) throws Exception {
 		int result = treatmentChartService.setAdd(treatmentChartVO);
 		
-		return "redirect:./list";
+		return "redirect:./list?customerNo="+treatmentChartVO.getCustomerNo();
 	}
 	
 	//진료차트상세
@@ -76,8 +76,13 @@ public class TreatmentChartController {
 	
 	//진료차트수정
 	@GetMapping("update")
-	public String setUpdate(TreatmentChartVO treatmentChartVO, Model model) throws Exception {
+	public String setUpdate(TreatmentChartVO treatmentChartVO, CustomerVO customerVO, EmpVO empVO, Model model) throws Exception {
 		treatmentChartVO = treatmentChartService.getDetail(treatmentChartVO);
+		customerVO = customerService.getDetail(customerVO);
+		empVO = empService.empDetail(empVO);
+		
+		model.addAttribute("cus", customerVO);
+		model.addAttribute("emp", empVO);
 		model.addAttribute("vo", treatmentChartVO);
 		
 		return "treatmentchart/update";
@@ -87,7 +92,7 @@ public class TreatmentChartController {
 	public String setUpdate(TreatmentChartVO treatmentChartVO) throws Exception {
 		int result = treatmentChartService.setUpdate(treatmentChartVO);
 		
-		return "redirect:./list";
+		return "redirect:./list?customerNo="+treatmentChartVO.getCustomerNo();
 	}
 	
 	@GetMapping("medicineList")

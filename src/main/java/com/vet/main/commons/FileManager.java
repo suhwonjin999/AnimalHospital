@@ -3,9 +3,12 @@ package com.vet.main.commons;
 import java.io.File;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.vet.main.file.FileVO;
 
 @Component
 public class FileManager {
@@ -32,5 +35,15 @@ public class FileManager {
 		multipartFile.transferTo(file);
 		
 		return fileName;
+	}
+	
+	public boolean fileDelete(FileVO fileVO, String path, HttpSession session) throws Exception {
+		
+		//1.삭제할 폴더의 실제 경로
+		path = session.getServletContext().getRealPath(path);
+		
+		File file = new File(path, fileVO.getFileName());
+		
+		return file.delete();
 	}
 }

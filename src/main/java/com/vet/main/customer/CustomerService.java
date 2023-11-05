@@ -2,6 +2,8 @@ package com.vet.main.customer;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -66,7 +68,7 @@ public class CustomerService {
 	}
 	
 	//고객수정
-	public int setUpdate(CustomerVO customerVO, MultipartFile[] files) throws Exception {
+	public int setUpdate(CustomerVO customerVO, MultipartFile[] files, HttpSession session) throws Exception {
 		int result = customerDAO.setUpdate(customerVO);
 		
 		for(MultipartFile multipartFile:files) {
@@ -88,6 +90,22 @@ public class CustomerService {
 	//고객삭제
 	public int setDelete(CustomerVO customerVO) throws Exception {
 		return customerDAO.setDelete(customerVO);
+	}
+	
+	//파일삭제
+	public int setFileDelete(CustomerFileVO customerFileVO, HttpSession session) throws Exception {
+		//int result = customerDAO.setFileDelete(customerFileVO);
+		
+		//폴더파일삭제
+		customerFileVO = customerDAO.getFileDetail(customerFileVO);
+		boolean flag = fileManger.fileDelete(customerFileVO, uploadPath, session);
+		
+		if(flag) {
+			//DB삭제
+			return customerDAO.setFileDelete(customerFileVO);
+		}
+		
+		return 0;
 	}
 	
 }

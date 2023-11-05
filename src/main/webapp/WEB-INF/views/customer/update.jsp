@@ -35,10 +35,10 @@
 								<div>	
 									<div style="width: 550px; margin-top: 20px; float: left;">
 										<table class="table">
-											<tr>
+											<!-- <tr>
 												<td>사진</td>
 											  	<td><input type="file" class="form-control" name="files"></td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td>이름</td>
 												<td>${vo.animalName}</td>
@@ -97,6 +97,28 @@
 										        </div>
 												</td>
 											</tr>
+											<tr>
+												<td>사진</td>
+												<td>
+													<c:if test="${empty vo.fileVO}">
+														<div class="mb-3">
+															<input type="file" class="form-control" name="files">
+														</div>
+													</c:if>
+													<c:if test="${!empty vo.fileVO}">
+														<div id="fileList" class="my-5">
+											                <c:forEach items="${vo.fileVO}" var="f">
+											                    <div class="file-item mb-2">
+											                        <span class="alert alert-primary me-2" role="alert" id="${f.originalFileName}">
+											                            첨부파일: ${f.originalFileName}
+											                        </span>
+											                        <%-- <span class="delets btn btn-danger" data-delete-num="${f.fileNo}">삭제</span> --%>
+											                    </div>
+											                </c:forEach>
+											            </div>
+										            </c:if>
+												</td>
+											</tr>
 										</table>
 										<button class="btn btn-primary" style="float:right">수정</button>
 									</div>
@@ -118,6 +140,7 @@
 	<!-- 카카오주소api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/customer/add.js"></script>
+    <script type="/js/customer/file.js"></script>
     
 </body>
 </html>
