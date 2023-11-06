@@ -60,16 +60,16 @@
 										
 									
 										</div>
-										<div class="row" style="float:right;">
-											<div class="demo-inline-spacing">
-												<button type="button" class="btn btn-primary submitBtn" id="updateBtn" data-url="update">수정</button>
-												<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">삭제</button>
-												<button type="button" class="btn btn-primary" id="listBtn">목록</button>
-											</div>
-			                            </div>
 					    			</div>
 		    					</div>
 		    				</div>
+								<div class="row" style="float:right;">
+									<div class="demo-inline-spacing">
+										<button type="button" class="btn btn-primary submitBtn" id="updateBtn" data-url="update">수정</button>
+										<button type="button" class="btn btn-danger submitBtn" id="deleteBtn" data-url="delete">삭제</button>
+										<button type="button" class="btn btn-primary" id="listBtn">목록</button>
+									</div>
+	                            </div>
 						</div>
 					<!-- / Content -->
 					<c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
