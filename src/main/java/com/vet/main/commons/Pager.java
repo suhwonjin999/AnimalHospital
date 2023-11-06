@@ -26,6 +26,7 @@ public class Pager {
 	private String search; //검색어
 	
 	private String username;
+	private Long customerNo;
 	
 	//시작 index 번호를 계산하는 메서드
 	public void makeStartRow() {

@@ -1,25 +1,25 @@
 package com.vet.main.treatmentchart;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class TreatmentChartVO {
 	
 	private Long chartNo;
-	private String title;
 	private String contents;
 	private String disease;
 	private Date date;
-	private Long ref;
-	private Long step;
-	private Long depth;
 	private Long customerNo;
-	private Long userName;
+	private Long username;
 	private Long medicineNo;
-//	private Long surgeryNo;
+	
+	private List<TreatmentChartFileVO> fileVO;
 	
 }

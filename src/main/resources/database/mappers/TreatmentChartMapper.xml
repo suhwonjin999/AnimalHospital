@@ -12,14 +12,77 @@
 		<!-- 진료차트목록 -->
 		<select id="getList" parameterType="Pager" resultType="TreatmentChartVO">
 			SELECT * FROM TREATMENTCHART
+				WHERE CUSTOMERNO = #{customerNo}
 				ORDER BY CHARTNO DESC
 				LIMIT #{startRow}, #{perPage}
 		</select>
 		
+		<select id="getMedicineList" parameterType="MedicineVO">
+			SELECT * FROM MEDICINE;
+		</select>
+		
 		<!-- 진료차트추가 -->
-		<insert id="setAdd" parameterType="TreatmentChartVO">
-			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME)
-				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{userName})
+		<insert id="setAdd" parameterType="TreatmentChartVO"  useGeneratedKeys="true" keyProperty="chartNo">
+			INSERT INTO TREATMENTCHART (CHARTNO, CONTENTS, DISEASE, DATE, CUSTOMERNO, USERNAME, MEDICINENO)
+				VALUES (NULL, #{contents}, #{disease}, #{date}, #{customerNo}, #{username}, 1)
 		</insert>
+		
+		<!-- 사진첨부 -->
+		<insert id="setFileAdd" parameterType="TreatmentChartFileVO">
+			INSERT INTO TREATMENTCHARTFILE (FILENO, FILENAME, ORIGINALFILENAME, CHARTNO)
+				VALUES (#{fileNo}, #{fileName}, #{originalFileName}, #{chartNo})
+		</insert>
+		
+		<!-- 진료차트상세 -->
+		<select id="getDetail" parameterType="TreatmentChartVO" resultMap="getDetailResult">
+			<!-- SELECT TC.*, E.*, C.*
+				FROM TREATMENTCHART TC
+					INNER JOIN CUSTOMER C
+						ON C.CUSTOMERNO = TC.CUSTOMERNO
+					INNER JOIN EMP E
+						ON TC.USERNAME = E.USERNAME
+				WHERE TC.CHARTNO = #{chartNo} -->
+				SELECT TC.*, E.*, C.*, TCF.*
+				FROM TREATMENTCHART TC
+					INNER JOIN CUSTOMER C
+						ON C.CUSTOMERNO = TC.CUSTOMERNO
+					INNER JOIN EMP E
+						ON TC.USERNAME = E.USERNAME
+					LEFT OUTER JOIN TREATMENTCHARTFILE TCF
+						ON TC.CHARTNO = TCF.CHARTNO
+				WHERE TC.CHARTNO = #{chartNo}
+		</select>
+		
+		<resultMap type="TreatmentChartVO" id="getDetailResult">
+			<id column="CHARTNO" property="chartNo"/>
+			<result column="CONTENTS" property="contents"/>
+			<result column="DISEASE" property="disease"/>
+			<result column="DATE" property="date"/>
+			<result column="COUSTOMERNO" property="customerNo"/>
+			<result column="USERNAME" property="username"/>
+			<result column="MEDICINENO" property="medicineNo"/>
+			<collection property="fileVO" javaType="java.util.List" ofType="TreatmentChartFileVO">
+				<id column="FILENO" property="fileNo"/>
+				<result column="FILENAME" property="fileName"/>
+				<result column="ORIGINALFILENAME" property="originalFileName"/>
+			</collection>
+		</resultMap>
+		
+		<!-- 진료차트수정 -->
+		<update id="setUpdate" parameterType="TreatmentChartVO">
+			UPDATE TREATMENTCHART SET
+				DISEASE = #{disease},
+				CONTENTS = #{contents}
+			WHERE CHARTNO = #{chartNo}
+		</update>
+		
+		<!-- 사진삭제 -->
+		<delete id="setFileDelete" parameterType="TreatmentChartFileVO">
+			DELETE FROM TREATMENTCHARTFILE WHERE FILENO = #{fileNo}
+		</delete>
+		
+		<select id="getFileDetail" parameterType="TreatmentChartFileVO" resultType="TreatmentChartFileVO">
+			SELECT FILENO, FILENAME FROM TREATMENTCHARTFILE WHERE FILENO = #{fileNo}
+		</select>
 		
 	</mapper>

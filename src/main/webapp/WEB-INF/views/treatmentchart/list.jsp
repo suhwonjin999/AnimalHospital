@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- jsp에서 properties 메세지를 사용할 수 있도록 하는 API -->
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
 	data-theme="theme-default" data-assets-path="/assets/"
@@ -21,6 +22,7 @@
 			<c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
 			<!-- Layout container -->
 			<div class="layout-page" style="align-items:center;">
+			<sec:authentication property="Principal" var="user"/>
 				<c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
@@ -45,7 +47,7 @@
 								<tbody style="height: 35px;">
 									<tr>
 										<td>${vo.chartNo}</td>
-										<td>${vo.disease}</td>
+										<td><a href="./detail?chartNo=${vo.chartNo}&customerNo=${vo.customerNo}&username=${user.username}">${vo.disease}</a></td>
 										<td></td>
 										<td>${vo.date}</td>
 									</tr>
@@ -100,7 +102,7 @@
 								</nav>
 	    					</div>
 	    					<div>
-								<a href="./add?customerNo=${param.customerNo}" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
+								<a href="./add?customerNo=${vo.customerNo}&username=${user.username}" class="btn btn-primary" style="width: 150px; height: 40px; color: white;">진료차트작성</a>
 	    					</div>
 						</div>	
 					</div>

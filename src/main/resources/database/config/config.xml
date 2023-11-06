@@ -24,6 +24,7 @@
 		
 		<typeAlias type="com.vet.main.medicine.MedicineVO" alias="MedicineVO"/>
 		<typeAlias type="com.vet.main.treatmentchart.TreatmentChartVO" alias="TreatmentChartVO"/>
+		<typeAlias type="com.vet.main.treatmentchart.TreatmentChartFileVO" alias="TreatmentChartFileVO"/>
 		
 		<typeAlias type="com.vet.main.reservation.treatment.TreatmentVO" alias="TreatmentVO"/>
 		<typeAlias type="java.util.Map" alias="Map"/>

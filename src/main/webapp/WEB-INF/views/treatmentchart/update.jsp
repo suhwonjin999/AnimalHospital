@@ -30,7 +30,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
 <meta charset="UTF-8">
-<title>진료차트추가페이지</title>
+<title>진료차트수정페이지</title>
 
 </head>
 <body>
@@ -48,21 +48,15 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
-							<form action="./add" method="POST" enctype="multipart/form-data">
-								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> 
-								<input type="hidden" id="username" name="username" value="${user.username}"> 
+							<form action="./update" method="POST" enctype="multipart/form-data">
+								<input type="hidden" name="customerNo" value="${cus.customerNo}">
+								<input type="hidden" name="chartNo" value="${vo.chartNo}">
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
 										<div>
 											<table class="table">
-												<%-- <tr>
-													<td rowspan="3" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
-													<!-- <td></td> -->
-													<td>사원번호</td>
-													<td>${user.username}</td>
-												</tr> --%>
 												<tr>
-													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트작성</td>
+													<td rowspan="2" style="font-size: xx-large; font-weight: bolder;">진료차트수정</td>
 													<!-- <td></td> -->
 													<td>작성자</td>
 													<td>${emp.empName}</td>
@@ -71,7 +65,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 													<!-- <td></td> -->
 													<!-- <td></td> -->
 													<td>작성일</td>
-													<td><input type="date" name="date" class="form-control" id="date"></td>
+													<td>${vo.date}</td>
 												</tr>
 											</table>
 											<div>
@@ -79,72 +73,47 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												<table class="table">
 													<tr>
 														<td>이름</td>
-														<td>${vo.animalName}</td>
+														<td>${cus.animalName}</td>
 													</tr>
 													<tr>
 														<td>성별</td>
-														<td>${vo.gender}</td>
+														<td>${cus.gender}</td>
 													</tr>
 													<tr>
 														<td>나이</td>
-														<td>${vo.age}</td>
+														<td>${cus.age}</td>
 													</tr>
 													<tr>
 														<td>병명</td>
-														<td><input type="text" name="disease" class="form-control" id="disease"></td>
+														<td><input type="text" name="disease" class="form-control" id="disease" value="${vo.disease}"></td>
 													</tr>
 												</table>
 											</div>
 
 											<div class="mb-3">
 												<label for="contents" class="form-label">내용</label>
-												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
+												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요">${vo.contents}</textarea>
 											</div>
 											
-											<div class="mb-3">
-											  <label for="pic" class="form-label">사진첨부 (최대 5개)</label>
-											  <div id="fileUploadContainer">
-											    <!-- 동적으로 추가될 파일 업로드 필드와 삭제 버튼이 들어갈 곳입니다. -->
-											  <br>
-											  </div>
-											  <br>
-											  <button class="btn btn-primary" type="button" id="addFileField">파일 추가</button>
+											<%-- <div class="mb-3">
+												<button type="button" class="btn btn-primary" id="add">사진추가</button>
 											</div>
-
-											<%-- <h3>약물추가</h3>
-											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicineAdd">
-												Launch demo modal
-											</button>
-											
-											<!-- Modal -->
-											<div class="modal fade" id="medicineAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-												<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-													<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								
+											<div id="fileList" class="mb-3">
+								
+											</div>
+								
+											<div>
+												<c:forEach items="${vo.fileVO}" var="f">
+													<div class="alert alert-warning">
+														${f.originalFileName}
 													</div>
-													<div class="modal-body">
-														<input type="hidden" id="medicineNo" name="medicineNo" value="${param.medicineNo}" >
-														<form action="./medicineList" method="GET" id="frm">
-															<div>
-															약물명 : <input type="text" name="name" id="name">                  
-															<button type="submit" id="medicineSearch" class="btn btn-primary" >검색</button>
-															</div>
-														</form>
-													</div>
-													<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-													<button type="button" class="btn btn-primary">Add</button>
-													</div>
-												</div>
-												</div>
-											</div> --%>
-
-
+													<button class="deletes btn btn-danger" data-delete-num="${f.fileNo}">삭제</button>
+												</c:forEach>													
+											</div>
+ --%>
 										</div>
-										<button type="submit" class="btn btn-primary" style="float:right">진료차트등록</button>
+										<button class="btn btn-primary" style="float:right">진료차트수정</button>
 									</div>
 								</div>
 							</form>
@@ -187,45 +156,6 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 	});
 	
 	$("#contents").summernote('code'); 
-	</script>
-	
-	<script>
-	document.addEventListener("DOMContentLoaded", function () {
-        const fileUploadContainer = document.getElementById("fileUploadContainer");
-        const addFileFieldButton = document.getElementById("addFileField");
-        const maxFileFields = 5;
-        let fileFieldCount = 0;
-
-        // 파일 필드를 동적으로 추가하는 함수
-        function addFileField() {
-          if (fileFieldCount < maxFileFields) {
-            const fileField = document.createElement("input");
-            fileField.type = "file";
-            fileField.name = "files"; // 필요한 이름을 지정하세요.
-            fileField.className = "form-control mb-2";
-
-            const deleteButton = document.createElement("button");
-            deleteButton.innerHTML = "삭제";
-            deleteButton.className = "btn btn-danger mb-2";
-            deleteButton.addEventListener("click", function () {
-              // 파일 필드 삭제 버튼을 눌렀을 때 해당 필드를 제거합니다.
-              fileUploadContainer.removeChild(fileField);
-              fileUploadContainer.removeChild(deleteButton);
-              fileFieldCount--;
-            });
-
-            fileUploadContainer.appendChild(fileField);
-            fileUploadContainer.appendChild(deleteButton);
-            fileFieldCount++;
-          } else {
-            // 최대 파일 개수에 도달한 경우 알림을 표시합니다.
-            alert("더 이상 파일을 추가할 수 없습니다 (최대 5개).");
-          }
-        }
-
-        // "파일 추가" 버튼 클릭 시 파일 필드를 추가합니다.
-        addFileFieldButton.addEventListener("click", addFileField);
-      });
 	</script>
 
 </body>

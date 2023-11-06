@@ -31,4 +31,9 @@ public interface CustomerDAO {
 	//고객 삭제
 	public int setDelete(CustomerVO customerVO) throws Exception;
 	
+	//파일 삭제
+	public int setFileDelete(CustomerFileVO customerFileVO) throws Exception;
+	
+	//파일 상세
+	public CustomerFileVO getFileDetail(CustomerFileVO customerFileVO) throws Exception;
 }
