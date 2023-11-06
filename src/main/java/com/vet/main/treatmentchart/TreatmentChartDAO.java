@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.vet.main.commons.Pager;
 import com.vet.main.emp.EmpVO;
+import com.vet.main.file.FileVO;
 import com.vet.main.medicine.MedicineDAO;
 import com.vet.main.medicine.MedicineVO;
 
@@ -26,6 +27,15 @@ public interface TreatmentChartDAO {
 	
 	//진료차트수정
 	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception;
+	
+	//사진첨부
+	public int setFileAdd(FileVO fileVO) throws Exception;
+	
+	//파일상세
+	public TreatmentChartFileVO setFileDetail(TreatmentChartFileVO treatmentChartFileVO) throws Exception;
+	
+	//파일삭제
+	public int setFileDelete(TreatmentChartFileVO treatmentChartFileVO) throws Exception;
 	
 	public List<MedicineVO> getMedicienList() throws Exception;
 }

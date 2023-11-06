@@ -48,8 +48,8 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
-							<form action="./update" method="POST">
-								<input type="hidden" name="customerNo" value="${vo.customerNo}">
+							<form action="./update" method="POST" enctype="multipart/form-data">
+								<input type="hidden" name="customerNo" value="${cus.customerNo}">
 								<input type="hidden" name="chartNo" value="${vo.chartNo}">
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
@@ -94,7 +94,24 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												<label for="contents" class="form-label">내용</label>
 												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요">${vo.contents}</textarea>
 											</div>
-
+											
+											<%-- <div class="mb-3">
+												<button type="button" class="btn btn-primary" id="add">사진추가</button>
+											</div>
+								
+											<div id="fileList" class="mb-3">
+								
+											</div>
+								
+											<div>
+												<c:forEach items="${vo.fileVO}" var="f">
+													<div class="alert alert-warning">
+														${f.originalFileName}
+													</div>
+													<button class="deletes btn btn-danger" data-delete-num="${f.fileNo}">삭제</button>
+												</c:forEach>													
+											</div>
+ --%>
 										</div>
 										<button class="btn btn-primary" style="float:right">진료차트수정</button>
 									</div>

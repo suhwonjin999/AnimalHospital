@@ -91,6 +91,13 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
                                                 <label for="contents" class="form-label"></label>
                                                 ${vo.contents}
                                             </div>
+                                            
+                                            <div>
+												<c:forEach items="${vo.fileVO}" var="f">
+													<img alt="" src="../files/${treatmentchart}/${f.fileName}"
+													style="width: 200px; height: 200px; margin: 30px;">
+												</c:forEach>
+											</div>
 
 										</div>
 										<a href="./update?chartNo=${vo.chartNo}&customerNo=${cus.customerNo}&username=${user.username}" class="btn btn-primary" style="float:right">진료차트수정</a>

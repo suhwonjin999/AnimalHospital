@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
 import com.vet.main.commons.Pager;
+import com.vet.main.customer.CustomerFileVO;
 import com.vet.main.emp.EmpVO;
 import com.vet.main.medicine.MedicineVO;
 
@@ -26,11 +27,11 @@ public class TreatmentChartService {
 	@Autowired 
 	private FileManager fileManager;
 	
-//	@Value("${app.upload}")
-//	private String uploadPath;
-//		
-//	@Value("${app.treatmentchart}")
-//	private String contents;
+	@Value("${app.upload}")
+	private String uploadPath;
+		
+	@Value("${app.treatmentchart}")
+	private String chartNo;
 	
 	//진료차트목록
 	public List<TreatmentChartVO> getList(Pager pager) throws Exception {
@@ -42,8 +43,21 @@ public class TreatmentChartService {
 	}
 	
 	//진료차트추가
-	public int setAdd(TreatmentChartVO treatmentChartVO) throws Exception {
+	public int setAdd(TreatmentChartVO treatmentChartVO, MultipartFile[] files) throws Exception {
 		int result = treatmentChartDAO.setAdd(treatmentChartVO);
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
+			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			fileVO.setChartNo(treatmentChartVO.getChartNo());
+			fileVO.setFileName(fileName);
+			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
+			result = treatmentChartDAO.setFileAdd(fileVO);
+		}
 		
 		return result;
 	}
@@ -54,12 +68,42 @@ public class TreatmentChartService {
 	}
 	
 	//진료차트수정
-	public int setUpdate(TreatmentChartVO treatmentChartVO) throws Exception {
-		return treatmentChartDAO.setUpdate(treatmentChartVO);
+	public int setUpdate(TreatmentChartVO treatmentChartVO, MultipartFile[] files, HttpSession session) throws Exception {
+		int result =  treatmentChartDAO.setUpdate(treatmentChartVO);
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
+			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			fileVO.setChartNo(treatmentChartVO.getChartNo());
+			fileVO.setFileName(fileName);
+			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
+			result = treatmentChartDAO.setFileAdd(fileVO);
+		}
+		
+		return result;
 	}
 	
 	public List<MedicineVO> getMedicineList() throws Exception {
 		return treatmentChartDAO.getMedicienList();
+	}
+	
+	//파일삭제
+	public int setFileDelete(TreatmentChartFileVO treatmentChartFileVO, HttpSession session) throws Exception {
+		
+		//폴더파일삭제
+		treatmentChartFileVO = treatmentChartDAO.setFileDetail(treatmentChartFileVO);
+		boolean flag = fileManager.fileDelete(treatmentChartFileVO, uploadPath, session);
+		
+		if(flag) {
+			//DB삭제
+			return treatmentChartDAO.setFileDelete(treatmentChartFileVO);
+		}
+		
+		return 0;
 	}
 	
 //	//썸머노트 사진등록

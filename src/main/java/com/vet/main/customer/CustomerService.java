@@ -32,7 +32,7 @@ public class CustomerService {
 	private String uploadPath;
 		
 	@Value("${app.customer}")
-	private String customerName;
+	private String customerNo;
 	
 	//고객목록
 	public List<CustomerVO> getList(Pager pager) throws Exception {
@@ -52,7 +52,7 @@ public class CustomerService {
 			}
 			
 			CustomerFileVO fileVO = new CustomerFileVO();
-			String fileName = fileManger.save(this.uploadPath + this.customerName, multipartFile);
+			String fileName = fileManger.save(this.uploadPath + this.customerNo, multipartFile);
 			fileVO.setCustomerNo(customerVO.getCustomerNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -77,7 +77,7 @@ public class CustomerService {
 			}
 			
 			CustomerFileVO fileVO = new CustomerFileVO();
-			String fileName = fileManger.save(this.uploadPath + this.customerName, multipartFile);
+			String fileName = fileManger.save(this.uploadPath + this.customerNo, multipartFile);
 			fileVO.setCustomerNo(customerVO.getCustomerNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());

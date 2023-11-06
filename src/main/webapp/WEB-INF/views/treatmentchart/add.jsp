@@ -48,7 +48,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<div class="card shadow mb-4" style="align-items: center;">
-							<form action="./add" method="POST">
+							<form action="./add" method="POST" enctype="multipart/form-data">
 								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> 
 								<input type="hidden" id="username" name="username" value="${user.username}"> 
 								<div>
@@ -100,8 +100,18 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												<label for="contents" class="form-label">내용</label>
 												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
 											</div>
+											
+											<div class="mb-3">
+											  <label for="pic" class="form-label">사진첨부 (최대 5개)</label>
+											  <div id="fileUploadContainer">
+											    <!-- 동적으로 추가될 파일 업로드 필드와 삭제 버튼이 들어갈 곳입니다. -->
+											  <br>
+											  </div>
+											  <br>
+											  <button class="btn btn-primary" type="button" id="addFileField">파일 추가</button>
+											</div>
 
-											<h3>약물추가</h3>
+											<%-- <h3>약물추가</h3>
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicineAdd">
 												Launch demo modal
@@ -130,7 +140,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 													</div>
 												</div>
 												</div>
-											</div>
+											</div> --%>
 
 
 										</div>
@@ -177,6 +187,45 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 	});
 	
 	$("#contents").summernote('code'); 
+	</script>
+	
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+        const fileUploadContainer = document.getElementById("fileUploadContainer");
+        const addFileFieldButton = document.getElementById("addFileField");
+        const maxFileFields = 5;
+        let fileFieldCount = 0;
+
+        // 파일 필드를 동적으로 추가하는 함수
+        function addFileField() {
+          if (fileFieldCount < maxFileFields) {
+            const fileField = document.createElement("input");
+            fileField.type = "file";
+            fileField.name = "files"; // 필요한 이름을 지정하세요.
+            fileField.className = "form-control mb-2";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "삭제";
+            deleteButton.className = "btn btn-danger mb-2";
+            deleteButton.addEventListener("click", function () {
+              // 파일 필드 삭제 버튼을 눌렀을 때 해당 필드를 제거합니다.
+              fileUploadContainer.removeChild(fileField);
+              fileUploadContainer.removeChild(deleteButton);
+              fileFieldCount--;
+            });
+
+            fileUploadContainer.appendChild(fileField);
+            fileUploadContainer.appendChild(deleteButton);
+            fileFieldCount++;
+          } else {
+            // 최대 파일 개수에 도달한 경우 알림을 표시합니다.
+            alert("더 이상 파일을 추가할 수 없습니다 (최대 5개).");
+          }
+        }
+
+        // "파일 추가" 버튼 클릭 시 파일 필드를 추가합니다.
+        addFileFieldButton.addEventListener("click", addFileField);
+      });
 	</script>
 
 </body>
