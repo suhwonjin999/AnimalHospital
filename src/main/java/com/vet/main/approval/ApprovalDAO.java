@@ -1,6 +1,8 @@
 package com.vet.main.approval;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,18 +31,20 @@ public interface ApprovalDAO {
 	// 지출결의서 작성폼
 	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception;
 	
-//	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
-	
+	// 지출항목 추가
 	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception;
 	
-//	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
+	// 기안서 상세
+	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception;
+	
+	// 기안서(지출결의서) 상세
+	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
 	
 	// 기안함 리스트
 	public List<ApprovalVO> getDraftList(Pager pager) throws Exception;
 	
 	public Long getTotal(Pager pager) throws Exception;
 	
-	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception;
 	
 	// file
 	public int setApFileAdd(FileVO fileVO) throws Exception;
