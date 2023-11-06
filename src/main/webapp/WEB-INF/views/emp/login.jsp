@@ -60,13 +60,107 @@
 							        		
 										</div>
 
-						
-						              <p class="text-center">
-						                <span>비밀번호를 잊어버리셨나요?</span>
-						                <a href="./empAdd">
+									 <p class="text-center">
+						                <a style="color: blue;" data-bs-toggle="modal" data-bs-target="#findUsername">
+						                  <span>사원번호 /</span>
+						                </a>
+						                <a style="color: blue;" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						                  <span>비밀번호 찾기</span>
 						                </a>
 						              </p>
+										
+						              
+						             <!-- 사원번호 찾기 modal -->
+						              <div class="modal fade" id="findUsername" tabindex="-1" aria-labelledby="findUsernameLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h1 class="modal-title fs-5" id="findUsernameLabel">사원번호 찾기</h1>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      <div class="modal-body" style="margin: auto;">
+					
+										        <table>
+
+													<tr>
+														<td>이름</td>
+													 	<td>
+													 		<input type="text" class="form-control" name="empName" placeholder="이름을 입력해주세요.">
+													 	</td>
+												 	</tr>
+
+												 	<tr>
+														<td>이메일</td>
+													 	<td>
+													 		<input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요.">
+													 	</td>
+												 	</tr>
+
+											 	</table>
+											 	<div id="searchUser">
+
+											 	</div>
+										          <br><br>
+										          
+												 <div class="modal-footer">
+												   <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+												   <button class="btn btn-primary" id="searchBtn">검색</button>
+												 </div>
+					
+										      </div>
+										    </div>
+										  </div>
+										</div>
+										
+										
+						              <!-- 비밀번호 찾기 modal -->
+						              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 찾기</h1>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      <div class="modal-body" style="margin: auto;">
+					
+										        <table>
+													<tr>
+														<td>사원번호</td>
+													 	<td><input type="text" class="form-control" name="username" placeholder="사원번호를 입력해주세요."></td>
+												 	</tr>
+
+													<tr>
+														<td>이름</td>
+													 	<td>
+													 		<input type="text" class="form-control" name="empName" placeholder="이름을 입력해주세요.">
+													 	</td>
+												 	</tr>
+
+												 	<tr>
+														<td>이메일</td>
+													 	<td>
+													 		<input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요.">
+													 		<!-- <input type="button" class="form-control" id="sendMail" value="인증번호전송">  -->
+													 	</td>
+												 	</tr>
+
+												 	<tr>
+														<td>인증번호</td>
+													 	<td><input type="text" class="form-control" name="randnum" placeholder="인증번호를 입력해주세요."></td>
+												 	</tr>
+											 	</table>
+										          <br><br>
+										          
+												 <div class="modal-footer">
+												   <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+												   <button class="btn btn-primary" id="addBtn">추가</button>
+												 </div>
+					
+										      </div>
+										    </div>
+										  </div>
+										</div>
+						              
 						            </div>
 						          </div>
 						          <!-- /Register -->
@@ -80,7 +174,50 @@
 	    		</div>	    		
 	    		<%-- <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
 	    	</div>
-	    </div>  
+	    </div> 
+	    
+	<script type="text/javascript">
+	
+	$('#searchBtn').on("click", function(){
+		let empName = $("#empName").val();
+		let email = $("#email").val();
+		
+		let data = {empName:empName, email:email};
+		
+		if(empName == ""){
+	        alert("이름은 필수입력사항입니다.");
+	        empName.focus();
+	        return;
+	    }
+	    if(email == ""){
+	        alert("이메일은 필수입력사항입니다.");
+	        email.focus();
+	        return;
+	    }
+	    
+	    $.ajax({
+			url:"/emp/empList/findUsername",
+			method:"post",	
+            data: data,
+            dataType : "text",
+			success : function(text){
+				if(text != null){
+					$(#searchUser).html("사원번호는 "+ text +"입니다.")
+				}else{
+					$(#searchUser).html("일치하는 정보가 없습니다.")
+				}
+				console.log(data);
+				
+			},
+			error : function(xhr){
+				alert("에러코드 = " + xhr.status);
+			}
+		});
+	 
+		
+	});
+	</script>
+	     
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 </body>
 </html>

@@ -10,6 +10,9 @@
 	  		<when test="kind == 'empName'">
 	  			empName
 	  		</when>
+	  		<when test="kind == 'state'">
+	  			state
+	  		</when>
 	  		<otherwise>
 	 			username
 	  		</otherwise>
@@ -24,11 +27,15 @@
 	  </select>
 	
 	<select id="getEmp" parameterType="String" resultMap="getLoginResult">
-		SELECT E.*,MR.*,R.*
+		SELECT E.*,MR.*,R.*,P.POSITIONNAME,D.DEPTNAME
 		FROM EMP E INNER JOIN EMP_ROLE MR
 		ON E.USERNAME = MR.USERNAME
 		INNER JOIN ROLE R 
 		ON MR.ROLENUM = R.ROLENUM
+		INNER JOIN POSITION P
+		ON E.POSITIONNO = P.POSITIONNO
+		INNER JOIN DEPARTMENT D
+		ON E.DEPTNO = D.DEPTNO
 		WHERE E.USERNAME=#{username}
 	</select>
 
@@ -145,7 +152,9 @@
   		E.STATE = #{state}
   		WHERE E.USERNAME=#{username}	
   	</update>
-  	
+  	<select id="searchId" parameterType="com.vet.main.emp.EmpVO" resultType="String">
+  		SELECT USERNAME FROM EMP WHERE EMPNAME = #{empName} AND EMAIL = #{email}
+  	</select>
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP 
   		SET
@@ -153,6 +162,12 @@
   		RANDOMPW = 1	
   		WHERE USERNAME=#{username}
   	</update>
+  	
+  	<select id="pwdCheck" resultType="Integer">
+  		SELECT COUNT(*) 
+  		FROM EMP
+  		WHERE USERNAME = #{username} and EMPNAME = #{empName} and EMAIL = #{email}
+  	</select>
   	
   	  <update id="mypageUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP
@@ -163,4 +178,16 @@
   		FILENAME = #{fileName}
   		WHERE USERNAME=#{username}		
   	</update>
+  	
+  	<select id="getDeptNo" parameterType="com.vet.main.emp.EmpVO">
+		SELECT *
+		FROM DEPARTMENT
+		WHERE PARENTNO != 0	|| DEPTNO = 999
+	</select>
+	
+  	 <select id="getPositionNo" parameterType="com.vet.main.emp.EmpVO">
+		SELECT *
+		FROM DEPARTMENT D INNER JOIN POSITION P
+		ON D.DEPTNO = P.DEPTNO	
+	</select>
 </mapper>

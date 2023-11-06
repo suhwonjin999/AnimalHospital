@@ -51,7 +51,7 @@
 								<table class="table" style="">
 									<tr>
 										<td>사번</td>
-										<td>
+										<td id="username">
 											${vo.username}
 										</td>
 									</tr>
@@ -65,14 +65,10 @@
 										<td>부서</td>
 										<td>
 											<select class="form-control" name='deptNo' id="deptNo" style="height: 35px;">
-												<option value="${vo.deptNo}" selected="selected">${vo.deptName}</option>
-												<option value="200">인사행정부</option>
-												<option value="400">내과</option>
-												<option value="500">외과</option>
-												<option value="600">영상과</option>
-												<option value="700">간호과</option>
-												<option value="100">대표원장</option>
-												<option value="999">가발령</option>
+												<option value="${vo.deptNo}" selected="selected">${vo.deptName}</option>										
+													<c:forEach items="${dept}" var="dept">
+														<option value="${dept.deptNo}">${dept.deptName}</option>
+													</c:forEach>
 											</select>
 										</td>
 									</tr>
@@ -80,28 +76,10 @@
 										<td>직급</td>
 										<td>
 											<select class="form-control" name='positionNo' id="positionNo" style="height: 35px;">
-												<option value="${vo.positionNo}" selected="selected">${vo.positionName}</option>
-												<%-- <c:if test="${deptNo == 100}"> --%>
-													<option value="2">대표원장</option>
-												<%-- </c:if>
-												<c:if test="${vo.deptNo == 200}"> --%>
-													<option value="7">사무장</option>
-													<option value="8">대리</option>
-													<option value="9">사원</option>
-												<%-- </c:if>
-												<c:if test="${vo.deptNo == 300}"> --%>
-													<option value="3">원장</option>
-													<option value="4">과장</option>
-													<option value="5">팀장</option>
-													<option value="6">수의사</option>
-												<%-- </c:if>
-												<c:if test="${vo.deptNo == 700}"> --%>
-													<option value="10">간호실장</option>
-													<option value="11">수의테크니션</option>
-												<%-- </c:if>
-												<c:if test="${vo.deptNo == 999}"> --%>
-													<option value="12">가발령</option>
-												<%-- </c:if> --%>
+												<option value="${vo.positionNo}">${vo.positionName}</option>										
+													<c:forEach items="${po}" var="po">
+														<option value="${po.positionNo}">${po.positionName}</option>
+													</c:forEach>
 											</select>
 										</td>
 									</tr>
@@ -166,13 +144,36 @@
 		<div class="layout-overlay layout-menu-toggle"></div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
+
 	$(function(){
-		$('#deptNo').change(function(){
-			let temp = $(this).val();
-			$('#positionNo').attr();
-		}).change();
-	})
-</script>
+	    $('#deptNo').change(function(){
+	        let selectedDeptNo = $(this).val();
+	        let username = $('#username').text();
+	        
+	        $.ajax({
+	            url: '/empUpdate?username=' + username, 
+	            method: 'GET',
+	            data: { deptNo: selectedDeptNo },
+	            success: function(data) {
+	                $('#positionNo').empty();
+	                
+	                for (let i = 0; i < data.length; i++) {
+	                    $('#positionNo').append($('<option>', {
+	                        value: data[i].positionNo,
+	                        text: data[i].positionName
+	                    }));
+	                }
+	                
+	                $('#positionNo').prop('selectedIndex', 0);
+	            },
+	            error: function() {
+	                console.log(username);
+	                console.log(selectedDeptNo);
+	            }
+	        });
+	    });
+	});
+</script> -->
 </body>
 </html>

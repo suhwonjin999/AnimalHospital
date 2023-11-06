@@ -14,10 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
 import com.vet.main.commons.Pager;
+import com.vet.main.dept.DeptVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -93,6 +95,16 @@ public class EmpService implements UserDetailsService{
 		
 		return result;
 	}
+	
+	// 비밀번호 일치 확인
+	public int pwdCheck(EmpVO empVO) throws Exception{
+		return empDAO.pwdCheck(empVO);
+	}
+	
+	// 사원번호 찾기
+	public EmpVO findUsername(EmpVO empVO)throws Exception{
+		return empDAO.findUsername();
+	}
 
 	
 	// 사원 관리(직원 목록)
@@ -116,6 +128,28 @@ public class EmpService implements UserDetailsService{
 		return result;
 	}
 	
+	public boolean getEmpError(EmpVO empVO, BindingResult bindingResult)throws Exception{
+		boolean check = false; // false면 error 없음, true면 error 있음 (검증실패)
+		
+		//password 일치여부 검증
+//		if(!empVO.getPassword().equals(empVO.getPasswordCheck())) {
+//			check = true;
+//			
+//			bindingResult.rejectValue("passwordCheck", "empVO.password.equalCheck");
+//		}
+		
+		//이메일 중복 검사
+		EmpVO checkVO = empDAO.getEmp(empVO);
+		
+		if(checkVO != null) {
+			check = true;
+			bindingResult.rejectValue("email", "empVO.email.equalCheck");
+		}
+		
+		return check;
+	}
+	
+	
 	// 직원 상세
 	public EmpVO empDetail(EmpVO empVO) throws Exception{
 		
@@ -135,5 +169,17 @@ public class EmpService implements UserDetailsService{
 		
 	}
 	
+	public List<DeptVO> getPositionNo(DeptVO deptVO)throws Exception{
+		return empDAO.getPositionNo();
+	}
+	
+	public List<DeptVO> getDeptNo(DeptVO deptVO)throws Exception{
+		return empDAO.getDeptNo();
+	}
+
+	public Object findUsername(String empName, String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

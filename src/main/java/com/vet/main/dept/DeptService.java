@@ -26,6 +26,10 @@ public class DeptService {
 		return deptDAO.deptList();
 	}
 	
+	public List<DeptVO> selectDept()throws Exception{
+		return deptDAO.selectDept();
+	}
+	
 	public int deptAdd(DeptVO deptVO)throws Exception{
 		
 		int result = deptDAO.deptAdd(deptVO);
@@ -33,4 +37,14 @@ public class DeptService {
 		return result;
 	}
 	
+	public int deptUpdate(DeptVO deptVO)throws Exception{
+		int result = deptDAO.deptUpdate(deptVO);
+		return result;
+	}
+	
+	public int deptDelete(DeptVO deptVO)throws Exception{
+		int result = deptDAO.deptDelete(deptVO);
+		
+		return result;
+	}
 }

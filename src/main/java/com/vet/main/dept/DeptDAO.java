@@ -15,7 +15,11 @@ public interface DeptDAO {
 	
 	public List<DeptVO> deptList()throws Exception;
 	
+	public List<DeptVO> selectDept()throws Exception;
+	
 	public int deptAdd(DeptVO deptVO)throws Exception;
 	
+	public int deptUpdate(DeptVO deptVO)throws Exception;
 	
+	public int deptDelete(DeptVO deptVO)throws Exception;
 }

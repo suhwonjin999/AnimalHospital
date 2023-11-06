@@ -2,6 +2,7 @@ package com.vet.main.emp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -13,15 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.Pager;
+import com.vet.main.dept.DeptVO;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/emp/*")
-@Slf4j
 public class EmpController {
 
 	@Autowired
@@ -55,6 +58,15 @@ public class EmpController {
 	@PostMapping("pwUpdate")
 	public String pwUpdate(EmpVO empVO) throws Exception{
 		int result = empService.pwUpdate(empVO);
+		return "emp/login";
+	}
+	
+	// 사원번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/login/findUsername", method = RequestMethod.POST)
+	public String findUsername(HttpServletRequest request, EmpVO empVO, Model model)throws Exception{
+		empVO = empService.findUsername(empVO);
+		
 		return "emp/login";
 	}
 	
@@ -97,13 +109,20 @@ public class EmpController {
 	
 	// 신규직원 추가 페이지
 	
-	@GetMapping("empAdd")
-	public void empAdd(@ModelAttribute EmpVO empVO)throws Exception{
-
-	}
+//	@GetMapping("empAdd2")
+//	public void empAdd(@ModelAttribute EmpVO empVO)throws Exception{
+//
+//	}
 	
-	@PostMapping("empAdd")
+	@ResponseBody
+	@RequestMapping(value = "/empList/empAdd", method = RequestMethod.POST)
 	public String empAdd(@Valid EmpVO empVO, BindingResult bindingResult) throws Exception{
+//		boolean check = empService.getEmpError(empVO, bindingResult);
+//		
+//		if(bindingResult.hasErrors() || check) {
+//			return "emp/empList";
+//		}
+//		
 		int result = empService.empAdd(empVO);
 		return "redirect:./empList";
 	}
@@ -119,8 +138,13 @@ public class EmpController {
 	
 	// 직원 수정(부서, 직급 수정)
 	@GetMapping("empUpdate")
-	public String empUpdate(EmpVO empVO, Model model) throws Exception{
+	public String empUpdate(EmpVO empVO, DeptVO deptVO, Model model) throws Exception{
+		List<DeptVO> ar = empService.getDeptNo(deptVO);
+		List<DeptVO> po = empService.getPositionNo(deptVO);
 		empVO = empService.empDetail(empVO);
+		
+		model.addAttribute("po", po);
+		model.addAttribute("dept", ar);
 		model.addAttribute("vo", empVO);
 		return "emp/empUpdate";
 	}
@@ -133,15 +157,34 @@ public class EmpController {
 	
 	
 	// 비밀번호 찾기
-	@GetMapping("findPw")
-	public String findPw(EmpVO empVO, Model model) throws Exception{
-		
-		return "emp/findPw";
+//	@GetMapping("findPassword")
+//	public String findPw(EmpVO empVO, Model model) throws Exception{
+//		
+//		return "emp/findPassword";
+//	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/emp/login/findPassword", method = RequestMethod.POST)
+	public String findPw(HttpServletRequest request, Model model, @RequestParam String username, 
+			@RequestParam String empName, @RequestParam String email, EmpVO empVO) throws Exception {
+//		try {
+//			empVO.setUsername(username);
+//			empVO.setEmpName(empName);
+//			empVO.setEmail(email);
+//			
+//			int search = empService.pwdCheck(empVO);
+//			
+//			if(search == 0) {
+//				model.addAttribute("msg", "기입된 정보가 잘못되었습니다. 다시 입력해주세요.")
+//			}
+//			
+//			String newPw = Randoms
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+		return "redirect: ./login";
 	}
-	
-	
-	//메일 발송
-	
-	
+
 	
 }

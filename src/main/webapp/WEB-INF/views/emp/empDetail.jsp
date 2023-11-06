@@ -97,8 +97,8 @@
 				</div>
 				
 				<!-- Content wrapper -->
-							<a href="/emp/empUpdate?username=${vo.username}" class="btn btn-danger">수정</a>
-					</form>
+					<a href="/emp/empUpdate?username=${vo.username}" class="btn btn-danger">수정</a>
+				</form>
 			</div>
 			<!-- / Layout page -->
 		</div>
