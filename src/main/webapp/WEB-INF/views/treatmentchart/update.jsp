@@ -95,8 +95,8 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												<textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요">${vo.contents}</textarea>
 											</div>
 											
-											<%-- <div class="mb-3">
-												<button type="button" class="btn btn-primary" id="add">사진추가</button>
+											<div class="mb-3">
+												<button type="button" class="btn btn-primary" id="fileAdd">사진추가</button>
 											</div>
 								
 											<div id="fileList" class="mb-3">
@@ -104,14 +104,14 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 											</div>
 								
 											<div>
-												<c:forEach items="${vo.fileVO}" var="f">
+												<c:forEach items="${vo.fileVOs}" var="f">
 													<div class="alert alert-warning">
 														${f.originalFileName}
 													</div>
 													<button class="deletes btn btn-danger" data-delete-num="${f.fileNo}">삭제</button>
 												</c:forEach>													
 											</div>
- --%>
+
 										</div>
 										<button class="btn btn-primary" style="float:right">진료차트수정</button>
 									</div>
@@ -156,6 +156,66 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 	});
 	
 	$("#contents").summernote('code'); 
+	</script>
+	
+	<script>
+	const fileList = document.getElementById("fileList");
+	const fileAdd = document.getElementById("fileAdd");
+	const deletes = document.getElementsByClassName("deletes");
+
+	for(del of deletes){
+	    del.addEventListener("click", function(){
+	        let num = this.getAttribute("data-delete-num");
+	        let check = confirm("삭제시 복구가 불가능합니다.");
+	        if(check){
+	            fetch("./fileDelete?fileNo="+num, {method:"GET"})
+	                .then((result)=>{return result.text()})
+	                .then((r)=>{
+	                    if(r.trim() == '1'){
+	                        this.previousSibling.previousSibling.remove();
+	                        this.remove();
+	                        count--;
+	                    }
+	                })
+	        }
+	    });
+	}
+
+	let max = 5;
+	let count = 0;
+
+	if(deletes != null) {
+	    count = deletes.length;
+	    alert(count);
+	}
+
+	let idx = 0;
+
+	$("#fileList").on("click", ".df", function(){
+	    // let deleteId=$(this).attr("data-id")
+	    // $("#"+deleteId).remove();
+	    $(this).parent().remove();
+	    count--;
+	})
+
+	//jquery로 변경
+	$("#fileAdd").click(function(){
+	    if(count>=max){
+	        alert("최대 5개만 가능");
+	        return;
+	    }
+	    count++;
+
+	    let r = '<div class="input-group mb-3" id="file'+idx+'">'
+	    r = r+'<input type="file" class="form-control" id="files" name="files">'
+	    r = r+ '<span class="df" data-id="file'+idx+'">X</span>'
+	    r= r+"</div>";
+	    idx++;
+
+	    $("#fileList").append(r);
+
+	});
+	
 	</script>
 
 </body>

@@ -31,7 +31,7 @@ public class TreatmentChartService {
 	private String uploadPath;
 		
 	@Value("${app.treatmentchart}")
-	private String chartNo;
+	private String contents;
 	
 	//진료차트목록
 	public List<TreatmentChartVO> getList(Pager pager) throws Exception {
@@ -52,7 +52,7 @@ public class TreatmentChartService {
 			}
 			
 			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
-			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			String fileName = fileManager.save(this.uploadPath + this.contents, multipartFile);
 			fileVO.setChartNo(treatmentChartVO.getChartNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -77,7 +77,7 @@ public class TreatmentChartService {
 			}
 			
 			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
-			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			String fileName = fileManager.save(this.uploadPath + this.contents, multipartFile);
 			fileVO.setChartNo(treatmentChartVO.getChartNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());

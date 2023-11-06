@@ -61,7 +61,7 @@
 			<result column="COUSTOMERNO" property="customerNo"/>
 			<result column="USERNAME" property="username"/>
 			<result column="MEDICINENO" property="medicineNo"/>
-			<collection property="fileVO" javaType="java.util.List" ofType="TreatmentChartFileVO">
+			<collection property="fileVOs" javaType="java.util.List" ofType="TreatmentChartFileVO">
 				<id column="FILENO" property="fileNo"/>
 				<result column="FILENAME" property="fileName"/>
 				<result column="ORIGINALFILENAME" property="originalFileName"/>
