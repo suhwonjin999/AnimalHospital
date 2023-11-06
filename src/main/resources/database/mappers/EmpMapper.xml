@@ -10,6 +10,9 @@
 	  		<when test="kind == 'empName'">
 	  			empName
 	  		</when>
+	  		<when test="kind == 'state'">
+	  			state
+	  		</when>
 	  		<otherwise>
 	 			username
 	  		</otherwise>
@@ -149,7 +152,9 @@
   		E.STATE = #{state}
   		WHERE E.USERNAME=#{username}	
   	</update>
-  	
+  	<select id="searchId" parameterType="com.vet.main.emp.EmpVO" resultType="String">
+  		SELECT USERNAME FROM EMP WHERE EMPNAME = #{empName} AND EMAIL = #{email}
+  	</select>
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
   		UPDATE EMP 
   		SET
@@ -183,7 +188,6 @@
   	 <select id="getPositionNo" parameterType="com.vet.main.emp.EmpVO">
 		SELECT *
 		FROM DEPARTMENT D INNER JOIN POSITION P
-		ON D.DEPTNO = P.DEPTNO
-		WHERE P.DEPTNO = #{deptNo}		
+		ON D.DEPTNO = P.DEPTNO	
 	</select>
 </mapper>

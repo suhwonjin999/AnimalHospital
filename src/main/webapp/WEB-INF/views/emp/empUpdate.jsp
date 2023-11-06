@@ -76,12 +76,10 @@
 										<td>직급</td>
 										<td>
 											<select class="form-control" name='positionNo' id="positionNo" style="height: 35px;">
-												<option value="${vo.positionNo}">${vo.positionName}</option>
-												<c:if test="${vo.deptNo}">												
+												<option value="${vo.positionNo}">${vo.positionName}</option>										
 													<c:forEach items="${po}" var="po">
 														<option value="${po.positionNo}">${po.positionName}</option>
 													</c:forEach>
-												</c:if>
 											</select>
 										</td>
 									</tr>
@@ -146,7 +144,7 @@
 		<div class="layout-overlay layout-menu-toggle"></div>
 	<!-- / Layout wrapper -->
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	$(function(){
 	    $('#deptNo').change(function(){
@@ -176,6 +174,6 @@
 	        });
 	    });
 	});
-</script>
+</script> -->
 </body>
 </html>

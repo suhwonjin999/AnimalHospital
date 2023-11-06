@@ -41,4 +41,10 @@ public class DeptService {
 		int result = deptDAO.deptUpdate(deptVO);
 		return result;
 	}
+	
+	public int deptDelete(DeptVO deptVO)throws Exception{
+		int result = deptDAO.deptDelete(deptVO);
+		
+		return result;
+	}
 }

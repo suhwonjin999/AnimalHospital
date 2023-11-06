@@ -98,4 +98,9 @@
 	    WHERE DEPTNO = #{deptNo}
 	</update>
 
+	<delete id="deptDelete" parameterType="com.vet.main.dept.DeptVO">
+		DELETE FROM DEPARTMENT
+		WHERE DEPTNO = #{deptNo}
+	</delete>
+
 </mapper>

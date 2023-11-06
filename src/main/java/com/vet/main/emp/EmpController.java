@@ -61,6 +61,18 @@ public class EmpController {
 		return "emp/login";
 	}
 	
+	// 사원번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/empList/findUsername", method = RequestMethod.POST)
+	public String findUsername(@RequestParam("empName") String empName,@RequestParam("email") String email)throws Exception{
+		if(empService.findUsername(empName, email)==null) {
+			return null; 
+		}else {
+			return empService.findUsername(empName, email).getEmail();
+		}
+		
+	}
+	
 	// 마이페이지
 	
 	@GetMapping("mypage")

@@ -21,5 +21,5 @@ public interface DeptDAO {
 	
 	public int deptUpdate(DeptVO deptVO)throws Exception;
 	
-	
+	public int deptDelete(DeptVO deptVO)throws Exception;
 }

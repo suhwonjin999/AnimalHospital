@@ -77,6 +77,7 @@
 											data-kind="${pager.kind}" aria-label="Default select example" style="width: 50px;">
 											<option class="kind" value="empName">이름</option>
 											<option class="kind" value="username">사원번호</option>
+											<option class="kind" value="state">상태</option>
 										</select>
 									</div> 
 									<input type="text" name="search" value="${pager.search}"

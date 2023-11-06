@@ -101,7 +101,10 @@ public class EmpService implements UserDetailsService{
 		return empDAO.pwdCheck(empVO);
 	}
 	
-	
+	// 사원번호 찾기
+	public EmpVO findUsername(EmpVO empVO)throws Exception{
+		return empDAO.findUsername();
+	}
 
 	
 	// 사원 관리(직원 목록)
@@ -172,6 +175,11 @@ public class EmpService implements UserDetailsService{
 	
 	public List<DeptVO> getDeptNo(DeptVO deptVO)throws Exception{
 		return empDAO.getDeptNo();
+	}
+
+	public Object findUsername(String empName, String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

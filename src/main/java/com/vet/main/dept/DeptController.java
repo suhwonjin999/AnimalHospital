@@ -66,4 +66,13 @@ public class DeptController {
 		int result = deptService.deptUpdate(deptVO);
 		return "redirect: ./deptList";
 	}
+	
+	// 부서 삭제
+	
+	@ResponseBody
+	@RequestMapping(value = "/deptList/deptDelete", method = RequestMethod.GET)
+	public String deptDelete(DeptVO deptVO)throws Exception{
+		int result = deptService.deptDelete(deptVO);
+		return "redirect: ./deptList";
+	}
 }

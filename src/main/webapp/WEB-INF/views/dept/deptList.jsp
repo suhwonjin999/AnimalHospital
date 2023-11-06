@@ -132,23 +132,23 @@
 					                        <c:forEach items="${list}" var="vo">
 					                            <c:if test="${vo.deptNo == 0}">
 					                                <li id="rootNode${vo.deptNo}">
-					                                    <input type="text" id="deptNo${vo.deptNo}" value="${vo.deptNo}" style="border: none; width: 30px;"/>
-					                                    <input type="text" id="parentNo0" value="${vo.parentNo}" style="border: none; width: 30px;"/>
-					                                    <input type="text" id="deptName0" value="${vo.deptName}" style="border: none; width: 100px;"/>
+					                                    <input type="text" id="deptNo" value="${vo.deptNo}" style="border: none; width: 30px;"/>
+					                                    <input type="text" id="parentNo" value="${vo.parentNo}" style="border: none; width: 30px;"/>
+					                                    <input type="text" id="deptName" value="${vo.deptName}" style="border: none; width: 100px;"/>
 					                                    <ul>
 					                                        <c:forEach items="${list}" var="childVo">
 					                                            <c:if test="${childVo.parentNo == vo.deptNo}">
 					                                                <li id="childNode${childVo.deptNo}">
-					                                                    <input type="text" id="deptNo1" value="${childVo.deptNo}" style="border: none; width: 35px;"/>
-					                                                    <input type="text" id="parentNo1" value="${childVo.parentNo}" style="border: none; width: 35px;"/>
-					                                                    <input type="text" id="deptName1" value="${childVo.deptName}" style="border: none; width: 100px;"/>
+					                                                    <input type="text" id="deptNo" value="${childVo.deptNo}" style="border: none; width: 35px;"/>
+					                                                    <input type="text" id="parentNo" value="${childVo.parentNo}" style="border: none; width: 35px;"/>
+					                                                    <input type="text" id="deptName" value="${childVo.deptName}" style="border: none; width: 100px;"/>
 					                                                    <ul>
 					                                                        <c:forEach items="${list}" var="child2">
 					                                                            <c:if test="${child2.parentNo == childVo.deptNo}">
 					                                                                <li id="child2Node${child2.deptNo}">
-					                                                                    <input type="text" id="deptNo2" value="${child2.deptNo}" style="border: none; width: 50px;"/>
-					                                                                    <input type="text" id="parentNo2" value="${child2.parentNo}" style="border: none; width: 50px;"/>
-					                                                                    <input type="text" id="deptName2" value="${child2.deptName}" style="border: none; width: 100px;"/>
+					                                                                    <input type="text" id="deptNo" value="${child2.deptNo}" style="border: none; width: 50px;"/>
+					                                                                    <input type="text" id="parentNo" value="${child2.parentNo}" style="border: none; width: 50px;"/>
+					                                                                    <input type="text" id="deptName" value="${child2.deptName}" style="border: none; width: 100px;"/>
 					                                                                </li>
 					                                                            </c:if>
 					                                                        </c:forEach>
@@ -166,6 +166,7 @@
 					                <div class="modal-footer">
 					                    <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 					                    <button class="btn btn-primary" id="updateBtn">수정</button>
+					                    <button class="btn btn-primary" id="delBtn">삭제</button>
 					                </div>
 					            </div>
 					        </div>
@@ -355,10 +356,31 @@
 	        });
 	    });
 	</script>	
-	
+		<script type="text/javascript">
+	    $(document).ready(function () {
+	        $('#delBtn').on("click", function () {
+	        	$("#jstree").jstree().delete_node( $("#"+ nodeId) );
+	        	let data = $("#deptNo").val();
+	    		$.ajax({
+	    			url:"/dept/deptList/deptDelete",
+	                data: data,
+	    			method:"post",												
+	    			success : function(){
+	    				console.log(data);
+	    				alert("삭제 완료");
+	    				location.href="/dept/deptList";		
+	    			},
+	    			error : function(data){
+	    				console.log(data);
+	    				alert("관리자에게 문의해주세요.");
+	    			}
+	    		})
+	        });
+	    });
+	</script>
     <script>
         $(document).ready(function () {
-            $('#jstree').jstree();
+            $('#jstree').jstree();       
             $("#jstree").jstree("open_all");
             $('#jstree').on("changed.jstree", function (e, data) {
                 console.log(data.selected);
@@ -366,9 +388,19 @@
             
         });
     </script>
+
     <script>
         $(document).ready(function () {
-            $('#jstree2').jstree();
+            $('#jstree2').jstree({
+            	'core':{
+            		'check_callback': true
+            	},
+	                'checkbox' : {
+	                	'keep_selected_Style' : false,
+	                	'three_state': false
+	                },
+	                'plugins' : ['checkbox']
+            });
             $("#jstree2").jstree("open_all");
             $('#jstree2').on("changed.jstree2", function (e, data) {
             	

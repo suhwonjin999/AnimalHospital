@@ -93,16 +93,24 @@
 														<td>이메일</td>
 													 	<td>
 													 		<input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요.">
-													 		<!-- <input type="button" class="form-control" id="sendMail" value="인증번호전송">  -->
 													 	</td>
 												 	</tr>
 
 											 	</table>
+											 	<div>
+											 		<!-- 조회되는 정보 없을 경우 -->
+											 		<c:if test="${check == 1}">
+														<label>일치하는 사용자가 없습니다.</label>
+											 		</c:if>
+											 		<c:if test="${check == 0}">
+											 			<label>사원번호는  입니다.</label>
+											 		</c:if>
+											 	</div>
 										          <br><br>
 										          
 												 <div class="modal-footer">
 												   <button class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-												   <button class="btn btn-primary" id="addBtn">추가</button>
+												   <button class="btn btn-primary" id="searchBtn">검색</button>
 												 </div>
 					
 										      </div>
@@ -172,7 +180,50 @@
 	    		</div>	    		
 	    		<%-- <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import> --%>
 	    	</div>
-	    </div>  
+	    </div> 
+	    
+	<script type="text/javascript">
+	
+	$('#searchBtn').on("click", function(){
+		let empName = $("#empName").val();
+		let email = $("#email").val();
+		
+		let data = {empName:empName, email:email};
+		
+		if(empName == ""){
+	        alert("이름은 필수입력사항입니다.");
+	        empName.focus();
+	        return;
+	    }
+	    if(email == ""){
+	        alert("이메일은 필수입력사항입니다.");
+	        email.focus();
+	        return;
+	    }
+	    
+	    $.ajax({
+			url:"/emp/empList/searchId",
+			method:"post",	
+            data: data,
+            dataType : "text",
+			success : function(text){
+				if(text != null){
+					$(#searchUser).html("사원번호는 "+ text +"입니다.")
+				}else{
+					$(#searchUser).html("일치하는 정보가 없습니다.")
+				}
+				console.log(data);
+				
+			},
+			error : function(xhr){
+				alert("에러코드 = " + xhr.status);
+			}
+		});
+	 
+		
+	});
+	</script>
+	     
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
 </body>
 </html>
