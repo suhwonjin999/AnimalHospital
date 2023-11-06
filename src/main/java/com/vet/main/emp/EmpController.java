@@ -63,11 +63,11 @@ public class EmpController {
 	
 	// 사원번호 찾기
 	@ResponseBody
-	@RequestMapping(value = "/empList/findUsername", method = RequestMethod.POST)
-	public void findUsername(EmpVO empVO, Model model)throws Exception{
+	@RequestMapping(value = "/login/findUsername", method = RequestMethod.POST)
+	public String findUsername(HttpServletRequest request, EmpVO empVO, Model model)throws Exception{
 		empVO = empService.findUsername(empVO);
 		
-
+		return "emp/login";
 	}
 	
 	// 마이페이지

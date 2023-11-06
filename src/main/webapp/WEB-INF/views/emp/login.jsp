@@ -97,14 +97,8 @@
 												 	</tr>
 
 											 	</table>
-											 	<div>
-											 		<!-- 조회되는 정보 없을 경우 -->
-											 		<c:if test="${check == 1}">
-														<label>일치하는 사용자가 없습니다.</label>
-											 		</c:if>
-											 		<c:if test="${check == 0}">
-											 			<label>사원번호는  입니다.</label>
-											 		</c:if>
+											 	<div id="searchUser">
+
 											 	</div>
 										          <br><br>
 										          
@@ -202,7 +196,7 @@
 	    }
 	    
 	    $.ajax({
-			url:"/emp/empList/searchId",
+			url:"/emp/empList/findUsername",
 			method:"post",	
             data: data,
             dataType : "text",
