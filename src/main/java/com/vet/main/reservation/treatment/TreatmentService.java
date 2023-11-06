@@ -38,7 +38,7 @@ public class TreatmentService {
 
 	
 	//예약문자
-	@Scheduled(cron = "0 0 8 * * 6-7")
+	@Scheduled(cron = "0 0 8 * * 1-6")
 	public void sendMessage() {
 		LocalDate date1 = LocalDate.now();		
 		List<TreatmentVO> list =  treatmentDAO.getTreatment();
@@ -77,15 +77,20 @@ public class TreatmentService {
 	};
 	
 	public List<TreatmentVO> getDeptScheduleList(TreatmentVO treatmentVO) throws Exception{
-		return treatmentDAO.getDeptScheduleList(treatmentVO);		
+		log.info("파라미터 treatmentVO:{}",treatmentVO);
+		if(treatmentVO.getDeptNo().equals("300")) {
+			return treatmentDAO.getScheduleList();
+		}else {		
+			return treatmentDAO.getDeptScheduleList(treatmentVO);
+		}
 	};
 	
 	public int setTreatmentAdd(TreatmentVO treatmentVO) throws Exception{
 		return treatmentDAO.setTreatmentAdd(treatmentVO);
 	}
 	
-	public List<CustomerVO> getCustomerList(String animalName) throws Exception{
-		return treatmentDAO.getCustomerList(animalName);
+	public List<CustomerVO> getCustomerList(CustomerVO customerVO) throws Exception{
+		return treatmentDAO.getCustomerList(customerVO);
 	}
 	
 	public List<EmpVO> getEmpList() throws Exception{

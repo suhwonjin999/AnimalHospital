@@ -41,12 +41,15 @@ public class TreatmentController {
 	public String getScheduleList1(Model model, EmpVO empVO)throws Exception{
 		List<EmpVO> emplist = treatmentService.getEmpList();
 		List<DeptVO> deptlist = treatmentService.getDeptList();
+
 		model.addAttribute("emplist", emplist);
 		model.addAttribute("deptlist", deptlist);
+		
 		
 		return "/treatment/schedule";
 	}	
 
+	//전체 예약스케줄
 	@PostMapping("schedule")
 	@ResponseBody
 	public List<Map<String,Object>> getScheduleList()throws Exception{
@@ -70,6 +73,7 @@ public class TreatmentController {
 		return jsonArr;		
 	}
 	
+	//부서별스케줄
 	@PostMapping("scheduledept")
 	@ResponseBody
 	public List<Map<String,Object>> getDeptScheduleList(@RequestBody TreatmentVO treatmentVO)throws Exception{
@@ -93,9 +97,7 @@ public class TreatmentController {
 		return jsonArr;		
 	}
 	
-	
-	
-	
+	//예약추가
 	@PostMapping("scheduleAdd")
 	public String setTreatmentAdd(@RequestBody TreatmentVO treatmentVO)throws Exception{
 		
@@ -104,17 +106,18 @@ public class TreatmentController {
 		return "redirect:./schedule";
 	}
 	
-	
+	//고객리스트조회
 	@GetMapping("customerList")	
-	public String getCustomerList(Model model, String animalName)throws Exception{
-		List<CustomerVO> list = treatmentService.getCustomerList(animalName);
+	public List<CustomerVO> getCustomerList(Model model, CustomerVO customerVO)throws Exception{
+		List<CustomerVO> list = treatmentService.getCustomerList(customerVO);
 		model.addAttribute("list", list);	
 		
 		log.info("customerlist:{}", list );
 		
-		return "treatment/customerList";	
+		return list;	
 	}
 	
+	//직원조회
 	@GetMapping("empList")
 	public String getEmpList(Model model)throws Exception{
 		List<EmpVO> list = treatmentService.getEmpList();
@@ -123,11 +126,12 @@ public class TreatmentController {
 		return "treatment/empList";	
 	}
 	
-	@GetMapping("scheduleDetail")	
-	public String getDetail()throws Exception{
-		return "treatment/scheduleDetail";
-	}
+	/*
+	 * @GetMapping("scheduleDetail") public String getDetail()throws Exception{
+	 * return "treatment/scheduleDetail"; }
+	 */
 	
+	//예약상세
 	@PostMapping("scheduleDetail")
 	@ResponseBody
 	public TreatmentVO getDetail(Model model, @RequestBody TreatmentVO treatmentVO)throws Exception{
@@ -141,6 +145,7 @@ public class TreatmentController {
 		return treatmentVO;
 	}
 
+	//예약삭제
 	@PostMapping("scheduleDelete")
 	public String setDelete(@RequestBody TreatmentVO treatmentVO)throws Exception{
 		treatmentService.setDelete(treatmentVO);
@@ -148,12 +153,14 @@ public class TreatmentController {
 		return "redirect:./schedule";
 	}
 	
+	//예약수정
 	@GetMapping("scheduleUpdate")
 	public String setUpdate()throws Exception{
 	
 		return "/treatment/schedule";
-	}	
+	}
 	
+	//예약수정
 	@PostMapping("scheduleUpdate")
 	public String setUpdate(Model model, @RequestBody TreatmentVO treatmentVO)throws Exception{	
 				

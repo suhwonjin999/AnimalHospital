@@ -11,7 +11,9 @@
 					INNER JOIN CUSTOMER C
 	  						ON T.CUSTOMERNO=C.CUSTOMERNO
 	  				INNER JOIN EMP E 
-	  						ON T.USERNAME=E.USERNAME				
+	  						ON T.USERNAME=E.USERNAME
+	  				INNER JOIN DEPARTMENT D
+	  						ON E.DEPTNO = D.DEPTNO	  					
 	</select>
 	
 	<select id="getDeptScheduleList" parameterType="TreatmentVO" resultType="TreatmentVO">
@@ -30,7 +32,7 @@
 		INSERT INTO TREATMENT VALUES(NULL, #{treatmentDate}, #{customerNo}, #{username})		
 	</insert>
 	
-	<select id="getCustomerList" parameterType="String" resultType="CustomerVO">
+	<select id="getCustomerList" parameterType="CustomerVO" resultType="CustomerVO">
 		SELECT CUSTOMERNO, ANIMALNAME, NAME
 		  FROM CUSTOMER
 		 WHERE ANIMALNAME=#{animalName}

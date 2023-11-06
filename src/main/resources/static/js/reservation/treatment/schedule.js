@@ -1,23 +1,22 @@
 
 
 $(function(){
-		var request = $.ajax({				
+			
+		/*var request = $.ajax({				
 		url:"/treatment/schedule",
 	    method:"POST",			
 		dataType:"json"
-		});
+		});*/		
 		
-		$("#dept").on("change",function(){
+		
+		$("#deptNo").on("change",function(){
 			var deptNo=this.value;
 			console.log(deptNo)			
 		    var param = {"deptNo":deptNo}
-		    console.log(param)		
-		});
-		var deptNo = $("#dept").val();
-		console.log(deptNo)
-		
-		/*if(deptNo==400||500||600){
-				var req = $.ajax({
+		    console.log(param)
+		    
+		   
+				var request = $.ajax({
 				   url:"/treatment/scheduledept",
 				   data:JSON.stringify(param),
 				   method:"POST",
@@ -25,9 +24,9 @@ $(function(){
 				   contentType: "application/json"				 																									
 			   			   
 			    })
-		  	}*/
-		
-		console.log(request)	
+		 
+		console.log(request)
+			
 	request.done(function(data){
 	
 		
@@ -55,7 +54,25 @@ $(function(){
 						
 						var animalName=$("#animalName").val();
 						console.log(animalName);
-												
+						
+						/*$("#customerSearch").on("click", function(){
+							var animalName=$("#animalName").val();
+							var param={"animalName":animalName}
+							
+							$.ajax({
+								url:"/treatment/customerList",
+								data:JSON.stringify(param),
+								method:"POST",												
+								contentType: "application/json",
+								success : function(data){
+									$("#listModal").modal("show");
+									console.log(data);
+									console.log("고객검색해!!!!")
+									var arr = data;
+																						
+								}
+							})						
+						})*/
 					
 						//등록버튼클릭시
 						$('#addBtn').on("click", function(){
@@ -104,22 +121,26 @@ $(function(){
 			events: data,
 			navLinks: true,
 			navLinkDayClick:function(date,jsEvent){
-				console.log('day',date.format());
+				console.log(date);
+				$("#addModal").modal("show");
 				console.log('coords',jsEvent.pageX,jsEvent.pageY);
 			},
 			editable: true,
 			selectable: true,
 			locale: 'ko',
-
-			//이벤트 클릭했을시
+			dateClick: function() {
+   				 alert('a day has been clicked!');
+ 			},
+			
+			
+			//이벤트 클릭했을시 detail
 			eventClick:function(info){		
 				 console.log(info);
-				 var animalName=info.event.title;
+			
 				 var treatmentNo=info.event.id;
 				 console.log(treatmentNo);
 				 var param={"treatmentNo":treatmentNo}				
 
-			
 				$.ajax({
 					url:"/treatment/scheduleDetail",
 					data: JSON.stringify(param),
@@ -137,7 +158,19 @@ $(function(){
 						$("#getcustomerName").val(detail.name);
 						$("#getempname").val(detail.empName);
 						$("#getcustomerNo").val(detail.customerNo);
-						$("#getdate").val(detail.treatmentDate);					
+						$("#getdate").val(detail.treatmentDate);
+						
+						 //수정버튼클릭시
+				 		$("#modifyBtn").on("click", function(){				
+							$("#detailModal").modal("hide");
+							$("#updateModal").modal("show");
+							
+							$("#updateName").val(detail.animalName);
+							$("#updateusername").val(detail.username);
+							$("#modifyDate").val(detail.treatmentDate);
+							var usernameval = $("#updateusername");
+							console.log(usernameval);
+					   })					
 											            													
 					}
 				 })
@@ -160,18 +193,15 @@ $(function(){
 							})
 				 })	
 				 
-				 //수정버튼클릭시
-				 $("#modifyBtn").on("click", function(){				
-							$("#detailModal").modal("hide");
-							$("#updateModal").modal("show");
-							var animal = $("#getanimalName").val()			
-					 		alert(animal)
-				})
+				
 				 
 				 
 				 
 				 //수정등록버튼클릭시
 				 $("#updateBtn").on("click",function(){
+					 	   
+					 	    var updateName = $("updateName").val();
+					 	    console.log(updateName);
 					 		var treatmentNo = $("#treatmentNo").val();				 
 							var customerNo = $("#getcustomerNo").val();
 																		
@@ -191,13 +221,9 @@ $(function(){
 											console.log("update성공")					
 											location.href="/treatment/schedule";
 										}							 
-						 	})
-						 	
-				
-				 })
-				 
-						
-			
+						 	})				
+				 })				
+
 			},
 
 		eventAdd:function(obj){
@@ -212,5 +238,6 @@ $(function(){
 	request.fail(function(jqXHR, textStatus){
 		alert("Request failed: " + textStatus);
 
+	});
 	});
 });

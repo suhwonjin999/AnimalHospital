@@ -14,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link href='/fullcalendar/main.css' rel='stylesheet'/>
 <script src='/fullcalendar/main.js'></script>
-<script src="/js/reservation/treatment/schedule.js"></script>
+<script src="/js/reservation/surgery/schedule.js"></script>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -34,14 +34,7 @@
                
                <!-- 내용부분-->               
                <div class="container-xxl flex-grow-1 container-p-y">
-               <select name='deptNo' id="deptNo" class="form-select form-select-sm" aria-label="Small select example"> 
-               	   <option selected>선택해주세요</option>
-               	   <option value="300">전체</option>
-	               <option value="400">내과</option>
-	               <option value="500">외과</option>
-	               <option value="600">영상과</option>       
-	           </select>     
- 
+           
                <div id="calendar"></div>                           
                
                
@@ -50,25 +43,34 @@
                  <div class="modal-dialog">
                    <div class="modal-content">
                      <div class="modal-header">
-                       <h1 class="modal-title fs-5" id="exampleModalLabel">진료예약</h1>
+                       <h1 class="modal-title fs-5" id="exampleModalLabel">수술실 예약</h1>
                        <button type="button" id="closeBtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
                      <div class="modal-body">               
                      <input type="hidden" id="customerNo" name="customerNo" value="${param.customerNo}" >
                      	<form action="./customerList" method="get">
                         <div>
-                     	고객 : <input type="text" name="animalName" id="animalName" value="${param.animalName}">                  
+                     	    이름 : <input type="text" name="animalName" id="animalName" value="${param.animalName}">                  
                         <button type="submit" id="customerSearch" class="btn btn-primary" >검색</button>
                         </div>
                         </form>
                         <input type="hidden" id="username" value="${param.username}">                  
                         
                         <div>                    
-                     	진료의 : <input type="text" readonly class="form-control-plaintext" id="empName" name="empName" value="${param.empName}">                     
+                     	  수술의사    : <input type="text" readonly class="plaintext" id="empName" name="empName" value="${param.empName}">                     
+                        </div>
+                        <div> 수술실  :  <select name='surgeryRoom' id="surgeryRoom" class="form-select form-select-sm" aria-label="Small select example"> 
+                                                <option value="1">수술실1</option>
+                                                <option value="2">수술실2</option>
+                                          </select> 
+				              </div>
+                        <div> 수술명 : <input type="text" id="surgeryName"></div>
+                        <div>
+                     	    수술 시작시간 : <input type="datetime-local" id="surgeryStart">
                         </div>
                         <div>
-                     	진료시간 : <input type="datetime-local" id="treatmentDate">
-                        </div>
+                            수술 예상끝시간 : <input type="datetime-local" id="surgeryEnd">
+                         </div>              
                      </div>
                      <div class="modal-footer">
                        <button type="button" id="closeBtn"class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -84,55 +86,91 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">진료예약상세</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">수술예약상세</h1>
                         <button type="button" id="closeBtn" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                       
-                      <input type="hidden" id="treatmentNo" name="treatmentNo">
+                      <input type="hidden" id="surgeryNo" name="surgeryNo">
                       <table class="table align-items-center mb-0">								
                       	<tbody>
                       
-                        <tr>
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">이름: </span>
-							</td>
-	                        <td class="align-middle text-center text-sm">
-	                            <span class="text-secondary text-xs font-weight-bold">
-	                            	<input type="text" readonly class="form-control-plaintext" id="getanimalName" value="">
-	                            </span>
-	                        </td> 
-                        </tr>
-                        <tr>
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">보호자 이름: </span>
-							</td> 
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">
-								<input type="text" readonly class="form-control-plaintext" id="getcustomerName" value="">
-								</span>
-							</td>                                                     
-                        </tr>
-                        <tr>
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">진료의 : </span>
-							</td> 
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">
-								<input type="text" readonly class="form-control-plaintext" id="getempname" value=""></div>
-								</span>
-							</td>                                                     
-	                    </tr>
-	                    <tr>
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">진료일시 : </span>
-							</td> 
-							<td class="align-middle text-center text-sm">
-								<span class="text-secondary text-xs font-weight-bold">
-								<input type="datetime-local" readonly class="form-control-plaintext" id="getdate" value="">
-								</span>
-							</td>                                                     
-						</tr>                  
+                          <tr>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">이름: </span>
+                            </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                              <input type="text" readonly class="form-control-plaintext" id="getanimalName" value="">
+                                            </span>
+                                        </td> 
+                                      </tr>
+                                      <tr>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">보호자 이름: </span>
+                            </td> 
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">
+                              <input type="text" readonly class="form-control-plaintext" id="getcustomerName" value="">
+                              </span>
+                            </td>                                                     
+                             </tr>
+
+                             <tr>
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">수술실 : </span>
+                              </td> 
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                <input type="text" readonly class="form-control-plaintext" id="getsurno" value=""></div>
+                                </span>
+                              </td>                                                     
+                             </tr>
+
+                             <tr>
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">수술명 : </span>
+                              </td> 
+                              <td class="align-middle text-center text-sm">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                <input type="text" readonly class="form-control-plaintext" id="getsurname" value=""></div>
+                                </span>
+                              </td>                                                     
+                              </tr>                            
+
+                             <tr>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">수술의사 : </span>
+                            </td> 
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">
+                              <input type="text" readonly class="form-control-plaintext" id="getempname" value=""></div>
+                              </span>
+                            </td>                                                     
+                            </tr>
+
+                            <tr>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">수술 시작시간 : </span>
+                            </td> 
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">
+                              <input type="datetime-local" readonly class="form-control-plaintext" id="getstartdate" value="">
+                              </span>
+                            </td>                                                     
+                          </tr>
+                          
+                          <tr>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">수술 예상끝시간 : </span>
+                            </td> 
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-secondary text-xs font-weight-bold">
+                              <input type="datetime-local" readonly class="form-control-plaintext" id="getenddate" value="">
+                              </span>
+                            </td>                                                     
+                          </tr> 
+
                       </tbody>
                     </table>           
                     </div>                     
@@ -202,8 +240,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                
+                </div>                
 
                </div>
                <!-- / Content -->

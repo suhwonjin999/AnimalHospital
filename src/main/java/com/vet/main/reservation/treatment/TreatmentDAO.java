@@ -17,7 +17,7 @@ public interface TreatmentDAO {
 	public List<TreatmentVO> getScheduleList();
 	public List<TreatmentVO> getDeptScheduleList(TreatmentVO treatmentVO);
 	public int setTreatmentAdd(TreatmentVO treatmentVO);
-	public List<CustomerVO> getCustomerList(String animalName);
+	public List<CustomerVO> getCustomerList(CustomerVO customerVO);
 	public List<EmpVO> getEmpList();
 	public List<DeptVO> getDeptList();
 	public TreatmentVO getDetail(TreatmentVO treatmentVO);
