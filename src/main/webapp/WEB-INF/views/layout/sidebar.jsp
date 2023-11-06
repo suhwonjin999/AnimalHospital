@@ -214,7 +214,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="extended-ui-text-divider.html" class="menu-link">
+                  <a href="/work/workList" class="menu-link">
                     <div data-i18n="Text Divider">인사행정</div>
                   </a>
                 </li>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.vet.main.emp.EmpVO;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,6 +31,7 @@ public class ApprovalVO {
 	private String dayoffTime;
 	private Double dayoffSelectDate;
 	private String apKind;
+	private Long priceSum;
 	
 	private String positionName;
 	private String deptName;

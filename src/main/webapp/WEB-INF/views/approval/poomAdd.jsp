@@ -57,6 +57,11 @@
 								  <label for="username" class="form-label"></label>
 								  <input type="hidden" class="form-control" id="username" name="username" value="${user.username}">
 								</div>
+								
+								<div>
+								  <label for="apLineSelect01" class="form-label"></label>
+								  <button type="button" class="btn btn-primary" id="apLineSelect01" name="apLineSelect01">결재선 설정</button>
+								</div>
 				    						    			
 				    			<div class="mb-3">
 								  <label for="positionName" class="form-label">부서</label>

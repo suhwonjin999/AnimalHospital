@@ -1,10 +1,13 @@
 package com.vet.main.approval;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vet.main.commons.FileManager;
@@ -80,10 +83,15 @@ public class ApprovalService {
 	
 	// 지출결의서 작성폼
 	public int setApExpenseAdd(ApprovalVO approvalVO) throws Exception {
-		int result = approvalDAO.setApExpenseAdd(approvalVO);
+    	int result = approvalDAO.setApExpenseAdd(approvalVO);		
 		return result;
 	}
 	
+	// 지출결의서에서 지출내역 추가
+	public int setExpenseAdd(ApprovalExpenseVO expenseVO) throws Exception {	
+		return approvalDAO.setExpenseAdd(expenseVO);
+	}
+
 	// 기안함 리스트
 	public List<ApprovalVO> getDraftList(Pager pager) throws Exception {
 		Long totalCount = approvalDAO.getTotal(pager);
@@ -92,12 +100,14 @@ public class ApprovalService {
 		return approvalDAO.getDraftList(pager);
 	}
 	
+	// 기안 내용 상세
 	public ApprovalVO getApDetail(ApprovalVO approvalVO) throws Exception {
 		return approvalDAO.getApDetail(approvalVO);
 	}
 	
-//	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception {
-//		return approvalDAO.getExpenseDetail(expenseVO);
-//	}
+	// 지출내역 데이터 가져오기
+	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception {
+		return approvalDAO.getApExpenseDetail(approvalVO);
+	}
 	
 }
