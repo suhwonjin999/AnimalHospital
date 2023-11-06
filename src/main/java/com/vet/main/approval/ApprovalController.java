@@ -198,7 +198,7 @@ public class ApprovalController {
 		} else if(approvalVO.getApKind().equals("휴직신청서")) {
 			model.addAttribute("approvalVO", approvalVO);
 			return "approval/vacationDetail";	
-		} else if(approvalVO.getApKind().equals("퇴직결의서")) {
+		} else if(approvalVO.getApKind().equals("퇴직신청서")) {
 			model.addAttribute("approvalVO", approvalVO);
 			return "approval/retireDetail";	
 		}

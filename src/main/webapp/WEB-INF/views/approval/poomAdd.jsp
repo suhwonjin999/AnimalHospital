@@ -60,7 +60,7 @@
 								
 								<div>
 								  <label for="apLineSelect01" class="form-label"></label>
-								  <input type="button" class="btn btn-primary" id="apLineSelect01" name="apLineSelect01">
+								  <button type="button" class="btn btn-primary" id="apLineSelect01" name="apLineSelect01">결재선 설정</button>
 								</div>
 				    						    			
 				    			<div class="mb-3">

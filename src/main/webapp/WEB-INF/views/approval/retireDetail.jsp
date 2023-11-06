@@ -39,7 +39,7 @@
 	
 				    <tr>
 				        <th class="text-center" style="width: 100px;">제목</th>
-				        <td>${approvalVO.apFormatTitle}</td>
+				        <td>${approvalVO.apTitle}</td>
 				    </tr>
 	
 				    <tr>

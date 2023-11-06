@@ -40,8 +40,6 @@ public interface ApprovalDAO {
 	// 기안서(지출결의서) 상세
 	public ApprovalVO getApExpenseDetail(ApprovalVO approvalVO) throws Exception;
 	
-//	public List<ApprovalExpenseVO> getExpenseDetail(ApprovalExpenseVO expenseVO) throws Exception;
-	
 	// 기안함 리스트
 	public List<ApprovalVO> getDraftList(Pager pager) throws Exception;
 	
