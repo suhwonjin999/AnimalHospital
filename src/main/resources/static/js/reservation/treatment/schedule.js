@@ -1,25 +1,48 @@
 
-$(function(){
-	var request = $.ajax({
-		url:"/treatment/schedule",
-		method:"POST",			
-		dataType:"json"
-	});
 
-	request.done(function(data){    
+$(function(){
+			
+		/*var request = $.ajax({				
+		url:"/treatment/schedule",
+	    method:"POST",			
+		dataType:"json"
+		});*/		
+		
+		
+		$("#deptNo").on("change",function(){
+			var deptNo=this.value;
+			console.log(deptNo)			
+		    var param = {"deptNo":deptNo}
+		    console.log(param)
+		    
+		   
+				var request = $.ajax({
+				   url:"/treatment/scheduledept",
+				   data:JSON.stringify(param),
+				   method:"POST",
+				   async:true,												
+				   contentType: "application/json"				 																									
+			   			   
+			    })
+		 
+		console.log(request)
+			
+	request.done(function(data){
+	
+		
 		console.log(data);
-		console.log(data.start);
-		console.log(data.treatmentNo);
+	
 		var calendarEl = document.getElementById('calendar');
 		
 		$('#closeBtn').on("click",function(){
 							$("#customerNo").val("");
 							$("#animalName").val("");
-							$("#empNo").val("");
+							$("#username").val("");
 							$("#name").val("");    
-							$("#treatmentDatet").val("");
+							$("#treatmentDate").val("");
 		});
-
+		
+		
 		var calendar= new FullCalendar.Calendar(calendarEl, {
 			height:'600px',
 			expandRows:true,
@@ -32,36 +55,35 @@ $(function(){
 						var animalName=$("#animalName").val();
 						console.log(animalName);
 						
-						/*$("#customerSearch").on("click",function(){
-							if(animalName==""){
-								alert("이름을 입력해주세요!");
-								return false;
-							}						
+						/*$("#customerSearch").on("click", function(){
+							var animalName=$("#animalName").val();
+							var param={"animalName":animalName}
+							
+							$.ajax({
+								url:"/treatment/customerList",
+								data:JSON.stringify(param),
+								method:"POST",												
+								contentType: "application/json",
+								success : function(data){
+									$("#listModal").modal("show");
+									console.log(data);
+									console.log("고객검색해!!!!")
+									var arr = data;
+																						
+								}
+							})						
 						})*/
-
-						// $("#customerSearch").on("click", function(){
-						// 	var animalName = $("#animalName").val();
-
-						// 	$.ajax({
-						// 		url:"/treatment/customerList",
-						// 		data: animalName,
-						// 		method:"GET",
-						// 		success:function(data){
-						// 			console.log(data);									
-						// 			location.href="/treatment/customerList?animalName=" + data;
-						// 			console.log("데이터전송성공");
-						// 		}
-						// 	})
-						// })
-
+					
+						//등록버튼클릭시
 						$('#addBtn').on("click", function(){
 
 							var customerNo = $("#customerNo").val();
-							var empNo = $("#empNo").val();
-							var treatmentDatet = $("#treatmentDatet").val();
+							var username = $("#username").val();
+							var treatmentDate = $("#treatmentDate").val();
 							
-						
-							var param = {"customerNo":customerNo, "empNo":empNo, "treatmentDatet":treatmentDatet};
+							console.log(treatmentDate);
+			
+							var param = {"customerNo":customerNo, "username":username, "treatmentDate":treatmentDate};
 							
 							
 							$.ajax({
@@ -78,9 +100,9 @@ $(function(){
 							$("#addModal").modal("hide");
 							$("#customerNo").val("");
 							$("#animalName").val("");
-							$("#empNo").val("");
+							$("#username").val("");
 							$("#name").val("");    
-							$("#treatmentDatet").val("");
+							$("#treatmentDate").val("");
 
 							location.href="/treatment/schedule";		
 						});
@@ -99,65 +121,63 @@ $(function(){
 			events: data,
 			navLinks: true,
 			navLinkDayClick:function(date,jsEvent){
-				console.log('day',date.format());
+				console.log(date);
+				$("#addModal").modal("show");
 				console.log('coords',jsEvent.pageX,jsEvent.pageY);
 			},
 			editable: true,
 			selectable: true,
 			locale: 'ko',
-
-			//이벤트 클릭했을시
+			dateClick: function() {
+   				 alert('a day has been clicked!');
+ 			},
+			
+			
+			//이벤트 클릭했을시 detail
 			eventClick:function(info){		
-				
-				 var animalName=info.event.title;
+				 console.log(info);
+			
 				 var treatmentNo=info.event.id;
 				 console.log(treatmentNo);
-				 var param={"treatmentNo":treatmentNo}
-				//  var treatmentDatet=info.event.start;
-				
-				//  var animalName=info.event.treatmentNo;
-				//  var param={"animalName":animalName, "treatmentDatet":treatmentDatet};
-				//  console.log(param);
-				//  alert(treatmentNo);
-				//  alert(animalName);
-				//  alert(treatmentDatet);
-				//파라미터로 가져올때 시간이 이상하게 변환됨 -9되서 
-				// var param={"animalName":animalName};
+				 var param={"treatmentNo":treatmentNo}				
 
-			
 				$.ajax({
 					url:"/treatment/scheduleDetail",
 					data: JSON.stringify(param),
 					method:"POST",
 					contentType: "application/json",
-					success : function(data){
+					success : function(detail){
 						
 						console.log("detail 전송성공");
-						console.log(data);
-						console.log(data.animalName);
+						console.log(detail);
+						console.log(detail.animalName);
 						
 						$("#detailModal").modal("show");
-						$("#treatmentNo").val(data.treatmentNo);
-						$("#getanimalName").val(data.animalName);
-						$("#getcustomerName").val(data.name);
-						$("#getempNo").val(data.empNo);
-						$("#getdate").val(data.treatmentDatet);							
-																	            													
+						$("#treatmentNo").val(detail.treatmentNo);
+						$("#getanimalName").val(detail.animalName);
+						$("#getcustomerName").val(detail.name);
+						$("#getempname").val(detail.empName);
+						$("#getcustomerNo").val(detail.customerNo);
+						$("#getdate").val(detail.treatmentDate);
+						
+						 //수정버튼클릭시
+				 		$("#modifyBtn").on("click", function(){				
+							$("#detailModal").modal("hide");
+							$("#updateModal").modal("show");
+							
+							$("#updateName").val(detail.animalName);
+							$("#updateusername").val(detail.username);
+							$("#modifyDate").val(detail.treatmentDate);
+							var usernameval = $("#updateusername");
+							console.log(usernameval);
+					   })					
+											            													
 					}
 				 })
 				 
-				 $("#modifyBtn").on("click", function(){
-					 $("#detailModal").modal("hide");
-					 $("#updateModal").modal("show");
-					 
-				 })
-				 
-				 
-				 
-				 
-				 //삭제버튼클릭시
+				 	 //삭제버튼클릭시
 				 $("#deleteBtn").on("click",function(){
-							
+							console.log(param);
 							$.ajax({
 								url:"/treatment/scheduleDelete",
 								data:JSON.stringify(param),
@@ -165,68 +185,59 @@ $(function(){
 								contentType: "application/json",
 								success : function(data){
 									console.log("delete");
-									alert("정말로 삭제하시겠습니까?");
+									
 									$("#detailModal").modal("hide");
 									
 									location.href="/treatment/schedule";
 								}								 
 							})
-				 })				
+				 })	
+				 
 				
-				// location.href="/treatment/scheduleDetail";	
-				// var animalName=info.event.title;
-				// var treatmentDatet=info.event.start;
-				// var param={"treatmentDatet":treatmentDatet};
-
-				// $.ajax({
-				// 	url:"/treatment/scheduleDelete",
-				// 	data: JSON.stringify(param),
-				// 	method:"POST",												
-				// 	dataType: "json",
-				// 	success : function(data){
-				// 		console.log("delete");																		
-				// 	}
-				// })
-
-				// var events = new Array();
-				// var obj = new Object();
-				// obj.animalName = info.event.title;
-				// obj.treatmentDatet = info.event.start;			
-				// events.push(obj);
-
-				// console.log(events);
-				// $.ajax({
-				// 	url:"/treatment/scheduleDetail",
-				// 	data:JSON.stringify(events),
-				// 	method:"POST",												
-				// 	contentType: "application/json",
-				// 	success : function(data){
-				// 		console.log("detail 전송성공");
-				// 	}
-				// });
-
-				// $(function deleteData(){
-				// 	$.ajax({
-				// 		url:"treatment/scheduleDelete",
-				// 		method:"DELETE",
-				// 		dataType: "json",  
-				// 		data: JSON.stringify(events),
-				// 		contentType: 'application/json'
-				// 	})
-				// })
+				 
+				 
+				 
+				 //수정등록버튼클릭시
+				 $("#updateBtn").on("click",function(){
+					 	   
+					 	    var updateName = $("updateName").val();
+					 	    console.log(updateName);
+					 		var treatmentNo = $("#treatmentNo").val();				 
+							var customerNo = $("#getcustomerNo").val();
+																		
+							var username= $("#updateusername").val();
+							
+							var treatmentDate = $("#modifyDate").val();
+							
+							var param = {"treatmentNo":treatmentNo, "customerNo":customerNo, "username":username, "treatmentDate":treatmentDate}
+							
+							console.log(param);
+							$.ajax({
+										url:"/treatment/scheduleUpdate",
+										data:JSON.stringify(param),
+										method:"POST",
+										contentType: "application/json",
+										success : function(data){
+											console.log("update성공")					
+											location.href="/treatment/schedule";
+										}							 
+						 	})				
+				 })				
 
 			},
 
 		eventAdd:function(obj){
 			console.log(obj)
 		},
+		
 
 		});
 		calendar.render();
-	});
+		});
 	
 	request.fail(function(jqXHR, textStatus){
 		alert("Request failed: " + textStatus);
 
+	});
 	});
 });

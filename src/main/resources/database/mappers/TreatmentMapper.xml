@@ -6,44 +6,76 @@
 <mapper namespace="com.vet.main.reservation.treatment.TreatmentDAO">
 	
 	<select id="getScheduleList" resultType="TreatmentVO">
-			SELECT T.TREATMENTDATE , T.TREATMENTTIME, T.TREATMENTDATET, T.TREATMENTNO, C.ANIMALNAME, E.NAME 
+			SELECT T.TREATMENTDATE, T.TREATMENTNO, C.ANIMALNAME, E.EMPNAME 
 	  		  FROM TREATMENT T 
 					INNER JOIN CUSTOMER C
 	  						ON T.CUSTOMERNO=C.CUSTOMERNO
 	  				INNER JOIN EMP E 
-	  						ON T.EMPNO=E.EMPNO				
+	  						ON T.USERNAME=E.USERNAME
+	  				INNER JOIN DEPARTMENT D
+	  						ON E.DEPTNO = D.DEPTNO	  					
 	</select>
 	
+	<select id="getDeptScheduleList" parameterType="TreatmentVO" resultType="TreatmentVO">
+			SELECT T.TREATMENTDATE, T.TREATMENTNO, C.ANIMALNAME, E.EMPNAME 
+	  		  FROM TREATMENT T 
+					INNER JOIN CUSTOMER C
+	  						ON T.CUSTOMERNO=C.CUSTOMERNO
+	  				INNER JOIN EMP E 
+	  						ON T.USERNAME=E.USERNAME
+	  				INNER JOIN DEPARTMENT D
+	  						ON E.DEPTNO = D.DEPTNO
+	  		 WHERE D.DEPTNO=#{deptNo}			
+	</select>	
+
 	<insert id="setTreatmentAdd" parameterType="TreatmentVO">
-		INSERT INTO TREATMENT VALUES(NULL, NULL, NULL, #{customerNo}, #{empNo}, #{treatmentDatet})		
+		INSERT INTO TREATMENT VALUES(NULL, #{treatmentDate}, #{customerNo}, #{username})		
 	</insert>
 	
-	<select id="getCustomerList" parameterType="String" resultType="CustomerVO">
+	<select id="getCustomerList" parameterType="CustomerVO" resultType="CustomerVO">
 		SELECT CUSTOMERNO, ANIMALNAME, NAME
 		  FROM CUSTOMER
 		 WHERE ANIMALNAME=#{animalName}
 	</select>	
 	
 	<select id="getEmpList"  resultType="EmpVO">
-		SELECT *
-		  FROM EMP		 	
+		SELECT E.USERNAME, E.EMPNAME, E.DEPTNO, D.DEPTNAME , P.POSITIONNAME 
+		  FROM EMP E
+				 INNER JOIN DEPARTMENT D 
+				         ON E.DEPTNO = D.DEPTNO 
+				 INNER JOIN POSITION P 
+				 		 ON E.POSITIONNO = P.POSITIONNO
+					  WHERE P.POSITIONNO BETWEEN 2 AND 6		       	
 	</select>
 	
+	<select id="getDeptList" resultType="DeptVO">
+		SELECT DEPTNO, DEPTNAME
+		  FROM DEPARTMENT	
+	</select>
+
+	
 	<select id="getDetail" resultType="TreatmentVO" parameterType="TreatmentVO">
-		SELECT T.TREATMENTNO,T.TREATMENTDATET, C.ANIMALNAME, C.NAME, E.EMPNO
+		SELECT T.TREATMENTNO,T.TREATMENTDATE, T.CUSTOMERNO, C.ANIMALNAME, C.NAME, E.USERNAME, E.EMPNAME
 	  	  FROM TREATMENT T 
 	 		   INNER JOIN CUSTOMER C
-	  						ON T.CUSTOMERNO=C.CUSTOMERNO
-	  				INNER JOIN EMP E 
-	  						ON T.EMPNO=E.EMPNO	
+	  				   ON T.CUSTOMERNO=C.CUSTOMERNO
+	  		   INNER JOIN EMP E 
+	  			       ON T.USERNAME=E.USERNAME	
 	  	 WHERE TREATMENTNO=#{treatmentNo} 		
+	</select>
+	
+	<select id="getTreatment" resultType="TreatmentVO">
+		SELECT T.*, C.NAME, C.ANIMALNAME, C.PHONE
+		  FROM TREATMENT T
+		  	   INNER JOIN CUSTOMER C
+		  	   		   ON T.CUSTOMERNO=C.CUSTOMERNO
 	</select>
 	
 	<update id="setUpdate" parameterType="TreatmentVO">
 		UPDATE TREATMENT 
 		   SET CUSTOMERNO=#{customerNo},
-		       TREATMENTDATET=#{treatmentDatet},
-		       EMPNO=#{empNo}
+		   	   TREATMENTDATE=#{treatmentDate},
+		       USERNAME=#{username}
 	     WHERE TREATMENTNO=#{treatmentNo}
 	</update>
 	

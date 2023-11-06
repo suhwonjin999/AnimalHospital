@@ -142,7 +142,7 @@
   		E.EMPNAME = #{empName},
   		E.DEPTNO = #{deptNo},
   		E.POSITIONNO = #{positionNo},
-  		E.STATE = #{state},
+  		E.STATE = #{state}
   		WHERE E.USERNAME=#{username}	
   	</update>
   	
