@@ -103,7 +103,8 @@ public class EmpService implements UserDetailsService{
 	
 	// 사원번호 찾기
 	public EmpVO findUsername(EmpVO empVO)throws Exception{
-		return empDAO.findUsername();
+	
+		return empDAO.findUsername(empVO);
 	}
 
 	
@@ -177,9 +178,4 @@ public class EmpService implements UserDetailsService{
 		return empDAO.getDeptNo();
 	}
 
-	public Object findUsername(String empName, String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }

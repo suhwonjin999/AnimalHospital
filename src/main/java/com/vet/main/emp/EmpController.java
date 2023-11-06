@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vet.main.commons.Pager;
 import com.vet.main.dept.DeptVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Controller
 @RequestMapping("/emp/*")
@@ -61,13 +63,26 @@ public class EmpController {
 		return "emp/login";
 	}
 	
+	@GetMapping("findUsername")
+	public String findUsername(EmpVO empVO)throws Exception{
+		return "emp/findUsername";
+	}
+	
 	// 사원번호 찾기
-	@ResponseBody
-	@RequestMapping(value = "/login/findUsername", method = RequestMethod.POST)
-	public String findUsername(HttpServletRequest request, EmpVO empVO, Model model)throws Exception{
-		empVO = empService.findUsername(empVO);
+	@RequestMapping(value = "/findUsername", method = RequestMethod.POST)
+	public String findUsername(EmpVO empVO, Model model)throws Exception{
+		EmpVO user = empService.findUsername(empVO);
 		
-		return "emp/login";
+		if(user == null) {
+			model.addAttribute("check", 1);
+
+		}else {
+			model.addAttribute("check", 0);
+			model.addAttribute("username", user.getUsername());
+
+		}
+		
+		return "redirect:/emp/findUsername";
 	}
 	
 	// 마이페이지

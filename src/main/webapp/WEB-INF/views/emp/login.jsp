@@ -59,7 +59,7 @@
 							        		</form:form>	
 							        		
 										</div>
-
+										<a href="/emp/findUsername">사원번호 찾기</a>
 									 <p class="text-center">
 						                <a style="color: blue;" data-bs-toggle="modal" data-bs-target="#findUsername">
 						                  <span>사원번호 /</span>
@@ -79,27 +79,23 @@
 										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										      </div>
 										      <div class="modal-body" style="margin: auto;">
-					
-										        <table>
-
-													<tr>
-														<td>이름</td>
-													 	<td>
-													 		<input type="text" class="form-control" name="empName" placeholder="이름을 입력해주세요.">
-													 	</td>
-												 	</tr>
-
-												 	<tr>
-														<td>이메일</td>
-													 	<td>
-													 		<input type="email" class="form-control" name="email" placeholder="이메일을 입력해주세요.">
-													 	</td>
-												 	</tr>
-
-											 	</table>
-											 	<div id="searchUser">
-
-											 	</div>
+						                        <form method="post" class="form-signin" action="findUsername" name="findform">
+						
+						                            <input type="text" class="form-control" id="empName" name="empName" placeholder="이름을 입력해주세요.">
+						                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.">
+						 
+						                            <input class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" value="check">
+						
+						                            <!-- 이름과 비밀번호가 일치하지 않을 때 -->
+						                            <c:if test="${check == 1}">                        
+						                                <label>일치하는 정보가 존재하지 않습니다.</label>
+						                            </c:if>
+						                            
+						                            <c:if test="${check == 0}">
+						                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
+						                            </c:if>
+						
+						                        </form>
 										          <br><br>
 										          
 												 <div class="modal-footer">
@@ -196,7 +192,7 @@
 	    }
 	    
 	    $.ajax({
-			url:"/emp/empList/findUsername",
+			url:"/emp/login/findUsername",
 			method:"post",	
             data: data,
             dataType : "text",
