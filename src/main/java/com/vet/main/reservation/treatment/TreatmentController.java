@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Locale; 
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
@@ -76,25 +76,29 @@ public class TreatmentController {
 	//부서별스케줄
 	@PostMapping("scheduledept")
 	@ResponseBody
-	public List<Map<String,Object>> getDeptScheduleList(@RequestBody TreatmentVO treatmentVO)throws Exception{
+	public List<TreatmentVO> getDeptScheduleList(@RequestBody TreatmentVO treatmentVO)throws Exception{
+		
 		List<TreatmentVO> list = treatmentService.getDeptScheduleList(treatmentVO);
 		
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArr = new JSONArray();
-		HashMap<String, Object> hash = new HashMap<>();
-		
-		for(int i=0; i < list.size(); i++) {
-			hash.put("title", list.get(i).getAnimalName());		
-			hash.put("start", list.get(i).getTreatmentDate());			
-			hash.put("id", list.get(i).getTreatmentNo());
-		
-			jsonObj = new JSONObject(hash); 
-			jsonArr.add(jsonObj);		
-		}
-		
-		log.info("jsonArrCheck:{}", jsonArr);
-		
-		return jsonArr;		
+//	public List<Map<String,Object>> getDeptScheduleList(@RequestBody TreatmentVO treatmentVO)throws Exception{
+		/*
+		 * List<TreatmentVO> list = treatmentService.getDeptScheduleList(treatmentVO);
+		 * 
+		 * JSONObject jsonObj = new JSONObject(); JSONArray jsonArr = new JSONArray();
+		 * HashMap<String, Object> hash = new HashMap<>();
+		 * 
+		 * for(int i=0; i < list.size(); i++) { hash.put("title",
+		 * list.get(i).getAnimalName()); hash.put("start",
+		 * list.get(i).getTreatmentDate()); hash.put("id",
+		 * list.get(i).getTreatmentNo());
+		 * 
+		 * jsonObj = new JSONObject(hash); jsonArr.add(jsonObj); }
+		 * 
+		 * log.info("jsonArrCheck:{}", jsonArr);
+		 * 
+		 * return jsonArr;
+		 */
+		return list;
 	}
 	
 	//예약추가

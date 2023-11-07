@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,25 +40,24 @@ public class SurgeryController {
 	//전체 수술 예약일정
 	@PostMapping("schedule")
 	@ResponseBody
-	public List<Map<String,Object>> getScheduleList()throws Exception{
+	public List<SurgeryVO> getScheduleList()throws Exception{
 		List<SurgeryVO> list = surgeryService.getScheduleList();
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArr = new JSONArray();
-		HashMap<String, Object> hash = new HashMap<>();
-			
-		for(int i=0; i<list.size(); i++) {
-			hash.put("title", list.get(i).getSurgeryRoom());
-			hash.put("start", list.get(i).getSurgeryStart());
-			hash.put("end", list.get(i).getSurgeryEnd());
-			hash.put("id", list.get(i).getSurgeryNo());
-				
-			jsonObj = new JSONObject(hash);
-			jsonArr.add(jsonObj);
-		}
-		
-		log.info("#####surgery jsonArrCheck#######:{}", jsonArr);
-		
-		return jsonArr;
+		/*
+		 * JSONObject jsonObj = new JSONObject(); JSONArray jsonArr = new JSONArray();
+		 * HashMap<String, Object> hash = new HashMap<>();
+		 * 
+		 * for(int i=0; i<list.size(); i++) { hash.put("title",
+		 * list.get(i).getSurgeryRoom()); hash.put("start",
+		 * list.get(i).getSurgeryStart()); hash.put("end", list.get(i).getSurgeryEnd());
+		 * hash.put("id", list.get(i).getSurgeryNo());
+		 * 
+		 * jsonObj = new JSONObject(hash); jsonArr.add(jsonObj); }
+		 * 
+		 * log.info("#####surgery jsonArrCheck#######:{}", jsonArr);
+		 * 
+		 * return jsonArr;
+		 */
+		return list;
 	}
 	
 	//예약추가
