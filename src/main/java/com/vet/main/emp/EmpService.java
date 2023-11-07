@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,9 +38,13 @@ public class EmpService implements UserDetailsService{
 	
 	@Autowired
 	private EmpDAO empDAO;
+
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -103,7 +107,8 @@ public class EmpService implements UserDetailsService{
 	
 	// 사원번호 찾기
 	public EmpVO findUsername(EmpVO empVO)throws Exception{
-		return empDAO.findUsername();
+	
+		return empDAO.findUsername(empVO);
 	}
 
 	
@@ -177,9 +182,5 @@ public class EmpService implements UserDetailsService{
 		return empDAO.getDeptNo();
 	}
 
-	public Object findUsername(String empName, String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

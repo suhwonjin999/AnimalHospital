@@ -152,7 +152,7 @@
   		E.STATE = #{state}
   		WHERE E.USERNAME=#{username}	
   	</update>
-  	<select id="searchId" parameterType="com.vet.main.emp.EmpVO" resultType="String">
+  	<select id="findUsername" parameterType="com.vet.main.emp.EmpVO" resultMap="getDetailResult">
   		SELECT USERNAME FROM EMP WHERE EMPNAME = #{empName} AND EMAIL = #{email}
   	</select>
   	<update id="pwUpdate" parameterType="com.vet.main.emp.EmpVO">
