@@ -19,8 +19,11 @@ import com.vet.main.emp.EmpService;
 import com.vet.main.emp.EmpVO;
 import com.vet.main.medicine.MedicineVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/treatmentchart/*")
+@Slf4j
 public class TreatmentChartController {
 	
 	@Autowired
@@ -100,9 +103,11 @@ public class TreatmentChartController {
 	
 	//파일삭제
 	@GetMapping("fileDelete")
-	public String setFileDelete(TreatmentChartFileVO treatmentChartFileVO, HttpSession session, Model model) throws Exception {
-		int result = treatmentChartService.setFileDelete(treatmentChartFileVO, session);
+	public String setFileDelete(TreatmentChartFileVO treatmentChartFileVO, Model model) throws Exception {
+		int result = treatmentChartService.setFileDelete(treatmentChartFileVO);
 		model.addAttribute("result", result);
+		
+		//log.info("#######treatmentChartFileVO : {} ######### ", treatmentChartFileVO);
 		
 		return "commons/ajaxResult";
 	}

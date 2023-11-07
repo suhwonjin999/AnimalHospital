@@ -38,7 +38,7 @@
 								<tr>
 									<th>No</th>
 							        <th>병명</th>
-							        <th>수술예약번호</th>
+							        <!-- <th>수술예약번호</th> -->
 							        <th>진료날짜</th>
 								</tr>
 							</thead>
@@ -48,7 +48,7 @@
 									<tr>
 										<td>${vo.chartNo}</td>
 										<td><a href="./detail?chartNo=${vo.chartNo}&customerNo=${vo.customerNo}&username=${user.username}">${vo.disease}</a></td>
-										<td></td>
+										<!-- <td></td> -->
 										<td>${vo.date}</td>
 									</tr>
 								</tbody>

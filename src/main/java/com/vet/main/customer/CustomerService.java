@@ -68,7 +68,7 @@ public class CustomerService {
 	}
 	
 	//고객수정
-	public int setUpdate(CustomerVO customerVO, MultipartFile[] files, HttpSession session) throws Exception {
+	public int setUpdate(CustomerVO customerVO, MultipartFile[] files) throws Exception {
 		int result = customerDAO.setUpdate(customerVO);
 		
 		for(MultipartFile multipartFile:files) {
@@ -93,12 +93,12 @@ public class CustomerService {
 	}
 	
 	//파일삭제
-	public int setFileDelete(CustomerFileVO customerFileVO, HttpSession session) throws Exception {
+	public int setFileDelete(CustomerFileVO customerFileVO) throws Exception {
 		//int result = customerDAO.setFileDelete(customerFileVO);
 		
 		//폴더파일삭제
 		customerFileVO = customerDAO.getFileDetail(customerFileVO);
-		boolean flag = fileManger.fileDelete(customerFileVO, uploadPath, session);
+		boolean flag = fileManger.fileDelete(customerFileVO, uploadPath);
 		
 		if(flag) {
 			//DB삭제

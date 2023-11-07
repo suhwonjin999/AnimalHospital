@@ -31,7 +31,7 @@ public class TreatmentChartService {
 	private String uploadPath;
 		
 	@Value("${app.treatmentchart}")
-	private String chartNo;
+	private String contents;
 	
 	//진료차트목록
 	public List<TreatmentChartVO> getList(Pager pager) throws Exception {
@@ -52,7 +52,7 @@ public class TreatmentChartService {
 			}
 			
 			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
-			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			String fileName = fileManager.save(this.uploadPath + this.contents, multipartFile);
 			fileVO.setChartNo(treatmentChartVO.getChartNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -77,7 +77,7 @@ public class TreatmentChartService {
 			}
 			
 			TreatmentChartFileVO fileVO = new TreatmentChartFileVO();
-			String fileName = fileManager.save(this.uploadPath + this.chartNo, multipartFile);
+			String fileName = fileManager.save(this.uploadPath + this.contents, multipartFile);
 			fileVO.setChartNo(treatmentChartVO.getChartNo());
 			fileVO.setFileName(fileName);
 			fileVO.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -92,11 +92,10 @@ public class TreatmentChartService {
 	}
 	
 	//파일삭제
-	public int setFileDelete(TreatmentChartFileVO treatmentChartFileVO, HttpSession session) throws Exception {
-		
+	public int setFileDelete(TreatmentChartFileVO treatmentChartFileVO) throws Exception {	
 		//폴더파일삭제
-		treatmentChartFileVO = treatmentChartDAO.setFileDetail(treatmentChartFileVO);
-		boolean flag = fileManager.fileDelete(treatmentChartFileVO, uploadPath, session);
+		treatmentChartFileVO = treatmentChartDAO.getFileDetail(treatmentChartFileVO);
+		boolean flag = fileManager.fileDelete(treatmentChartFileVO, uploadPath);
 		
 		if(flag) {
 			//DB삭제

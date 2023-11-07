@@ -100,12 +100,12 @@
 											<tr>
 												<td>사진</td>
 												<td>
-													<c:if test="${empty vo.fileVO}">
+													<%-- <c:if test="${empty vo.fileVO}"> --%>
 														<div class="mb-3">
 															<input type="file" class="form-control" name="files">
 														</div>
-													</c:if>
-													<c:if test="${!empty vo.fileVO}">
+													<%-- </c:if> --%>
+													<%-- <c:if test="${!empty vo.fileVO}"> --%>
 														<div id="fileList" class="my-5">
 											                <c:forEach items="${vo.fileVO}" var="f">
 											                    <div class="file-item mb-2">
@@ -116,7 +116,7 @@
 											                    </div>
 											                </c:forEach>
 											            </div>
-										            </c:if>
+										            <%-- </c:if> --%>
 												</td>
 											</tr>
 										</table>

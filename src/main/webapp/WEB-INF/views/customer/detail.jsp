@@ -33,7 +33,7 @@
 								<c:if test="${!empty vo.fileVO}">
 									<div style="width: 300px; float: left;">
 										<c:forEach items="${vo.fileVO}" var="f">
-											<img alt="" src="../files/${customer}/${f.fileName}"
+											<img alt="" src="../files/customer/${f.fileName}"
 											style="width: 200px; height: 200px; margin: 30px;">
 										</c:forEach>
 									</div>

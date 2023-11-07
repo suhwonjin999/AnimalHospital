@@ -37,10 +37,10 @@ public class FileManager {
 		return fileName;
 	}
 	
-	public boolean fileDelete(FileVO fileVO, String path, HttpSession session) throws Exception {
+	public boolean fileDelete(FileVO fileVO, String path) throws Exception {
 		
 		//1.삭제할 폴더의 실제 경로
-		path = session.getServletContext().getRealPath(path);
+		//path = session.getServletContext().getRealPath(path);
 		
 		File file = new File(path, fileVO.getFileName());
 		

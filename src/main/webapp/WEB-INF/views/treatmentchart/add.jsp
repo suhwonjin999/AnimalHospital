@@ -50,7 +50,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 						<div class="card shadow mb-4" style="align-items: center;">
 							<form action="./add" method="POST" enctype="multipart/form-data">
 								<input type="hidden" id="customerNo" name="customerNo" value="${vo.customerNo}"> 
-								<input type="hidden" id="username" name="username" value="${user.username}"> 
+								<input type="hidden" id="username" name="username" value="${emp.username}">
 								<div>
 									<div style="width: 700px; margin-top: 20px;">
 										<div>
@@ -104,17 +104,17 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 											<div class="mb-3">
 											  <label for="pic" class="form-label">사진첨부 (최대 5개)</label>
 											  <div id="fileUploadContainer">
-											    <!-- 동적으로 추가될 파일 업로드 필드와 삭제 버튼이 들어갈 곳입니다. -->
+											    동적으로 추가될 파일 업로드 필드와 삭제 버튼이 들어갈 곳입니다.
 											  <br>
 											  </div>
 											  <br>
 											  <button class="btn btn-primary" type="button" id="addFileField">파일 추가</button>
 											</div>
 
-											<%-- <h3>약물추가</h3>
+											<!-- <h3>약물추가</h3> -->
 											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicineAdd">
-												Launch demo modal
+											<%-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#medicineAdd">
+												약물추가
 											</button>
 											
 											<!-- Modal -->
@@ -141,7 +141,9 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 												</div>
 												</div>
 											</div> --%>
-
+											
+											<!-- 약물추가 -->
+											<h3>약물추가</h3>
 
 										</div>
 										<button type="submit" class="btn btn-primary" style="float:right">진료차트등록</button>
