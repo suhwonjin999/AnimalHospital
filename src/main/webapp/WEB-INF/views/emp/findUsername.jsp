@@ -106,7 +106,7 @@
 													 		<input type="email" class="form-control" id="email" name="email" placeholder="ex) animal@hospital.com">
 													 	</td>
 													 	<td>
-													 		<a href="./sendMail" class="btn">이메일 전송</a>
+													 		<button class="btn" id="sendMail">이메일 전송</button>
 													 	</td>
 												 	</tr>
 											 	</table>
@@ -171,6 +171,12 @@
 			}
 		}
     </script>
+
+	<script type="text/javascript">
+		$('#sendMail').on("click", function(){
+			alret("이메일 발송이 완료되었습니다.");
+		});
+	</script>
 
 </body>
 </html>
