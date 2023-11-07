@@ -28,7 +28,7 @@
 	
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 <meta charset="UTF-8">
-<title>공지사항글 등록</title>
+<title>익명게시판글 등록</title>
 
 <script>
 /*   	$(document).ready(function(){
@@ -50,7 +50,7 @@
 				return;
 			}
 			if(confirm("등록하시겠습니까?")){
-				document.addForm.action="${path}/board/noticeAdd"
+				document.addForm.action="${path}/board/boardAdd"
 				document.addForm.submit();
 			}
 		})
@@ -85,7 +85,7 @@
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 
-							<br><h3>공지사항</h3>
+							<br><h3>익명게시판</h3>
 					<div class="card shadow mb-4">									
 						<div style="width: 300px; float: left; margin-top: 20px; margin-bottom: 20px;">
 								<!-- <img alt="" src="/resources/images/default.jpeg" style="width: 200px; height: 200px; margin-left: 80px;"> -->
@@ -117,7 +117,7 @@
 								<div class="mb-3" >	
 							  	<br>
 							  	<button type="button" class="btn btn-secondary" id="addBtn">등록</button>
-							  	<button type="button" id="cancleBtn" class="btn btn-secondary">작성취소</button>
+							  	 <button type="button" id="cancleBtn" class="btn btn-secondary">작성취소</button>
 							  	<!-- <input type="button" id="cancleBtn" class="btn btn-secondary" value="작성취소" onsubmit="return false"/> -->
 								</div>
 							</form>
@@ -167,6 +167,6 @@
 	$("#contents").summernote('code'); 
 	</script>
 
-	<script src="/resources/js/board/noticeAdd.js"></script>
+	<script src="/resources/js/board/boardAdd.js"></script>
 </body>
 </html>

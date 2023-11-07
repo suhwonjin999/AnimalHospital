@@ -38,7 +38,7 @@
   		<id column="NOTICENO" property="noticeNo"/>
   		<result column="USERNAME" property="username"/>
   		<result column="TITLE" property="title"/>
-  		<result column="CREATDATE" property="createDate"/>
+  		<result column="CREATEDATE" property="createDate"/>
   		<result column="CONTENTS" property="contents"/>
   		<result column="HIT" property="hit"/>
   		<result column="MODIFYDATE" property="modifyDate"/>
@@ -54,11 +54,34 @@
   	<!-- 공지사항글 등록 -->
   	<insert id="setNoticeAdd" parameterType="NoticeVO">
 		INSERT INTO NOTICE
-		(NOTICENO, USERNAME, TITLE, CREATDATE, MODIFYDATE, CONTENTS, HIT, IMPORTANT)
+		(NOTICENO, USERNAME, TITLE, CREATEDATE, MODIFYDATE, CONTENTS, HIT, IMPORTANT)
 		VALUES
 		(NULL, #{username}, #{title},NOW(), NULL, #{contents},0,0)
 	</insert>
-
+	
+	<!-- 공지사항 상세 -->
+	<select id="getNoticeDetail" parameterType="NoticeVO" resultMap="getDetailResult">
+		SELECT N.*, E.EMPNAME FROM NOTICE N
+		INNER JOIN EMP E
+		ON E.USERNAME = N.USERNAME 
+		WHERE N.NOTICENO = #{noticeNo}
+	</select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="setUpdate" parameterType="NoticeVO">
+		UPDATE NOTICE SET
+		TITLE = #{title},
+		MODIFYDATE = NOW(),
+		CONTENTS = #{contents}
+		WHERE NOTICENO = #{noticeNo}
+	</update>
+	
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="setDelete" parameterType="NoticeVO">
+		DELETE FROM NOTICE WHERE NOTICENO = #{noticeNo}
+	</delete>
+	
 	
 	
 

@@ -10,7 +10,7 @@
 <head>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>익명게시판</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
 					<form>
-					<h3>공지사항</h3>
+					<h3>익명게시판</h3>
 						<select>
 						<option value="1">제목+내용</option>
 						<option value="2">제목</option>
@@ -46,8 +46,6 @@
 										<th>공지번호</th>
 										<th>작성자</th>
 										<th>제목</th>
-										<th>작성일자</th>
-										<!-- <th>수정일자</th> -->
 										<th>조회수</th>
 									</tr>
 								</thead>
@@ -56,9 +54,7 @@
 									<tr>
 										<td><a href="./noticeDetail?noticeNo=${vo.noticeNo}" style="color: #697a8d;">${vo.noticeNo}</a></td>
 										<td>${vo.empName}</td>
-										<td><a href="./noticeDetail?noticeNo=${vo.noticeNo}">${vo.title}</a></td>
-										<td>${vo.createDate}</td>
-										<%-- <td>${vo.modifyDate}</td> --%>
+										<td><a href="./noticeDetail?title=${vo.title}">${vo.title}</a></td>
 										<td>${vo.hit}</td>
 									</tr>
 							</c:forEach>
@@ -66,7 +62,7 @@
 							</table>
 							<br>
 						</div>
-						<a href="/board/noticeAdd" class="btn btn-secondary">작성</a>
+						<a href="/board/boardAdd" class="btn btn-secondary">작성</a>
 						</form>
 					</div>
 					<!-- / Content -->

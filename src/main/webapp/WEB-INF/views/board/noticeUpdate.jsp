@@ -28,7 +28,7 @@
 	
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 <meta charset="UTF-8">
-<title>공지사항글 등록</title>
+<title>공지사항글 수정</title>
 
 <script>
 /*   	$(document).ready(function(){
@@ -50,7 +50,7 @@
 				return;
 			}
 			if(confirm("등록하시겠습니까?")){
-				document.addForm.action="${path}/board/noticeAdd"
+				document.addForm.action="${path}/board/noticeUpdate"
 				document.addForm.submit();
 			}
 		})
@@ -99,7 +99,7 @@
 
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >
 										<label for="title" class="form-label">제목</label>
-										<input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+										<input type="text" class="form-control" id="title" name="title" value="${vo.title}">
 								</div>
 									
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >	
@@ -110,14 +110,14 @@
 
 								<div class="mb-3" style=" padding: 5px; top : 0; height: auto; min-height: 100%; overflow: auto;" >
 								  <label for="contents" class="form-label">내용</label>
-								  <textarea class="form-control" id="contents" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
+								  <textarea class="form-control" id="contents" name="contents" rows="3">${vo.contents}</textarea>
 								</div>
 
 								<br>
 								<div class="mb-3" >	
 							  	<br>
-							  	<button type="button" class="btn btn-secondary" id="addBtn">등록</button>
-							  	<button type="button" id="cancleBtn" class="btn btn-secondary">작성취소</button>
+							  	<button type="button" class="btn btn-secondary" id="addBtn">수정</button>
+							  	 <button type="button" id="cancleBtn" class="btn btn-secondary">작성취소</button>
 							  	<!-- <input type="button" id="cancleBtn" class="btn btn-secondary" value="작성취소" onsubmit="return false"/> -->
 								</div>
 							</form>
@@ -125,7 +125,7 @@
 					</div>
 
 					<div>
-						<a href="/board/noticelist" class="btn btn-secondary" >뒤로가기</a>
+						<a href="/board/noticeDetail" class="btn btn-secondary" >뒤로가기</a>
 					</div>
 				<!-- Content wrapper -->
 			</div>
@@ -167,6 +167,6 @@
 	$("#contents").summernote('code'); 
 	</script>
 
-	<script src="/resources/js/board/noticeAdd.js"></script>
+	<script src="/resources/js/board/noticeUpdate.js"></script>
 </body>
 </html>

@@ -20,5 +20,4 @@ public class BoardVO {
 	// 내용
 	private String contents;
 
-
 }

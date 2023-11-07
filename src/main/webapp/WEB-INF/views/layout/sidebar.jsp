@@ -283,7 +283,7 @@
               </a>
             </li> 
             <li class="menu-item">
-              <a href="cards-basic.html" class="menu-link">
+              <a href="/board/boardlist" class="menu-link">
                 <div data-i18n="Basic">익명게시판</div>
               </a>
             </li>
