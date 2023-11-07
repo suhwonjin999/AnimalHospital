@@ -1,7 +1,6 @@
 package com.vet.main.notice;
 
-import com.vet.main.util.FileVO;
-
+import com.vet.main.file.FileVO;
 import lombok.Getter;
 import lombok.Setter;
 
