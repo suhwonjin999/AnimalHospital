@@ -94,8 +94,8 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
                                             
                                             <div>
 												<c:forEach items="${vo.fileVOs}" var="f">
-													<img alt="" src="../files/${treatmentchart}/${f.fileName}"
-													style="width: 200px; height: 200px; margin: 30px;">
+													<img alt="" src="../files/treatmentchart/${f.fileName}"
+													style="width: 300px; height: 300px; margin: 30px;">
 												</c:forEach>
 											</div>
 

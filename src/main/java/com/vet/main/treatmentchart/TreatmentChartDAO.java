@@ -32,7 +32,7 @@ public interface TreatmentChartDAO {
 	public int setFileAdd(FileVO fileVO) throws Exception;
 	
 	//파일상세
-	public TreatmentChartFileVO setFileDetail(TreatmentChartFileVO treatmentChartFileVO) throws Exception;
+	public TreatmentChartFileVO getFileDetail(TreatmentChartFileVO treatmentChartFileVO) throws Exception;
 	
 	//파일삭제
 	public int setFileDelete(TreatmentChartFileVO treatmentChartFileVO) throws Exception;

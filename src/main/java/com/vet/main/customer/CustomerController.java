@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.vet.main.commons.Pager;
 
@@ -57,6 +58,16 @@ public class CustomerController {
 		return "customer/detail";
 	}
 	
+//	@GetMapping("detail")  
+//	public ModelAndView getDetail(CustomerVO customerVO, ModelAndView mv) throws Exception {
+//		customerVO = customerService.getDetail(customerVO);
+//		mv.addObject("vo", customerVO);
+//		mv.addObject("customer", );
+//		mv.setViewName("customer/detail");
+//		
+//		return mv;
+//	}
+	
 	//고객수정
 	@GetMapping("update")
 	public String setUpdate(CustomerVO customerVO, Model model) throws Exception {
@@ -68,7 +79,7 @@ public class CustomerController {
 	
 	@PostMapping("update")
 	public String setUpdate(CustomerVO customerVO, MultipartFile[] files, HttpSession session, Model model) throws Exception {
-		int result = customerService.setUpdate(customerVO, files, session);
+		int result = customerService.setUpdate(customerVO, files);
 		
 		return "redirect:./list";
 	}
@@ -83,8 +94,8 @@ public class CustomerController {
 
 	//파일삭제
 	@GetMapping("fileDelete")
-	public String setFileDelete(CustomerFileVO customerFileVO, Model model, HttpSession session) throws Exception {
-		int result = customerService.setFileDelete(customerFileVO, session);
+	public String setFileDelete(CustomerFileVO customerFileVO, Model model) throws Exception {
+		int result = customerService.setFileDelete(customerFileVO);
 		model.addAttribute("result", result);
 		
 		return "commons/ajaxResult";

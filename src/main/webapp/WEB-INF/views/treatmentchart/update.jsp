@@ -108,7 +108,9 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 													<div class="alert alert-warning">
 														${f.originalFileName}
 													</div>
+													<div>
 													<button class="deletes btn btn-danger" data-delete-num="${f.fileNo}">삭제</button>
+													</div>
 												</c:forEach>													
 											</div>
 
@@ -163,23 +165,23 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 	const fileAdd = document.getElementById("fileAdd");
 	const deletes = document.getElementsByClassName("deletes");
 
-	for(del of deletes){
-	    del.addEventListener("click", function(){
-	        let num = this.getAttribute("data-delete-num");
-	        let check = confirm("삭제시 복구가 불가능합니다.");
-	        if(check){
-	            fetch("./fileDelete?fileNo="+num, {method:"GET"})
-	                .then((result)=>{return result.text()})
-	                .then((r)=>{
-	                    if(r.trim() == '1'){
-	                        this.previousSibling.previousSibling.remove();
-	                        this.remove();
+	$('.deletes').click(function(){
+	    let num = $(this).attr("data-delete-num");
+	    let check = confirm("삭제시 복구 불가");
+	   
+	     if(check){
+	     $.ajax({
+	          type:'GET',
+	           url:'./fileDelete?fileNo='+num,
+	           success:function(r){
+	                if(r.trim()=='1'){
+	                   $(this).remove();
 	                        count--;
 	                    }
-	                })
-	        }
-	    });
-	}
+	           }
+	     })
+	     }
+	})
 
 	let max = 5;
 	let count = 0;
@@ -208,7 +210,7 @@ integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="ano
 
 	    let r = '<div class="input-group mb-3" id="file'+idx+'">'
 	    r = r+'<input type="file" class="form-control" id="files" name="files">'
-	    r = r+ '<span class="df" data-id="file'+idx+'">X</span>'
+	    r = r+ '<button class="df" data-id="file'+idx+'">삭제</button>'
 	    r= r+"</div>";
 	    idx++;
 
