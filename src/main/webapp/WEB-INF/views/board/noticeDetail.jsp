@@ -52,7 +52,7 @@ div {
 					<!-- 내용부분-->
 					<div class="container-xxl flex-grow-1 container-p-y">
 					
-					<form>
+					<form name="boardInfo" id="boardInfo">
 					<!-- <form action="noticeDetail" name="frm" id="frm" method="get"> -->
 					<!-- Content wrapper -->
 					<h3><%-- ${user.empName}&nbsp; --%>${vo.noticeNo}번 공지사항</h3>
