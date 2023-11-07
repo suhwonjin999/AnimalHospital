@@ -33,40 +33,42 @@
 						                </a>
 						              </div>
 						              <!-- /Logo -->
-						              <h4 class="mb-2">비밀번호 찾기.🔐</h4>
-						              <p class="mb-4">Please change your password!</p>
+						              <h4 class="mb-2">아이디 찾기.🔐</h4>
+
 										<div>
-											<form action="pwUpdate" method="post">
+											<form method="post" class="form-signin" action="findUsername" name="findform">
 
 											 	<table>
 													<tr>
-														<td>사원번호</td>
-													 	<td><input type="username" name="username" placeholder="사원번호를 입력해주세요."></td>
-												 	</tr>
-
-													<tr>
 														<td>이름을 입력해주세요</td>
 													 	<td>
-													 		<input type="text" name="empName" placeholder="이름을 입력해주세요.">
+													 		<input type="text" class="form-control" id="empName" name="empName" placeholder="이름을 입력해주세요.">
 													 	</td>
 												 	</tr>
 
 												 	<tr>
 														<td>이메일을 입력해주세요</td>
 													 	<td>
-													 		<input type="email" name="email" required="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)?$/i" placeholder="이메일을 입력해주세요.">
-													 		<input type="button" id="sendMail" value="인증번호전송"> 
+													 		<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.">
 													 	</td>
-												 	</tr>
-
-												 	<tr>
-														<td>인증번호를 입력해주세요.</td>
-													 	<td><input type="text" name="randnum" placeholder="인증번호를 입력해주세요."></td>
 												 	</tr>
 											 	</table>
 
 											  <br><br>			  			  				  				          													  	  				  			  				  				          		
-											  <button type="submit" class="btn btn-primary" style="margin-top: 30px;">확인</button>
+											  <input class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" value="check">
+							        		
+								                            <!-- 이름과 비밀번호가 일치하지 않을 때 -->
+					                            <c:if test="${check == 1}">
+													<!-- <script>
+														opener.document.findform.empName.value = "";
+														opener.document.findform.email.value = "";
+													</script>  -->                           
+					                                <label>일치하는 정보가 존재하지 않습니다.</label>
+					                            </c:if>
+					                            
+					                            <c:if test="${check == 0}">
+					                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
+					                            </c:if>				        		
 							        		</form>
 										</div>
 						
@@ -85,27 +87,22 @@
 	    	</div>
 	    </div>  
 	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
-<!-- 	<script type="text/javascript">
-		window.onload=function(){
-			
-		let emailconfirm=document.getElementById('email');
-		
-		emailconfirm.addEventListener('keyup',function(){
-			let xhr,url='emp/emailconfirm',data='email='+emailconfirm.value;
-			xhr=doajax(url,data);
-			xhr.onload = function(){
-				let color,text;
-					if(xhr.response=='true'){
-						color='red',text='존재하지 않는 이메일';
-					}else{
-						color='blue',text='존재하는 이메일';
-					}
-					document.geetElementById("emailCheck").innerHTML=text;
-					emailconfirm.style.backgroundColor=color;
-			}
-		})
-	}
-	
-	</script> -->
+    <script type="text/javascript">
+        $('#searchBtn').on("click", function () {
+            let empName = $("#empName").val();
+            let email = $("#email").val();
+
+            if (empName === "") {
+                alert("이름은 필수입력사항입니다.");
+                $("#empName").focus();
+                return;
+            }
+            if (email === "") {
+                alert("이메일은 필수입력사항입니다.");
+                $("#email").focus();
+                return;
+            }
+            
+    </script>
 </body>
 </html>

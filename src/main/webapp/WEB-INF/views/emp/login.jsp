@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
-<body id="page-top">
+<body id="">
 	    <!-- Page Wrapper -->
 	    <div id="wrapper">
 	    	<!-- sidebar -->
@@ -29,7 +29,7 @@
 						      <div class="authentication-wrapper authentication-basic container-p-y">
 						        <div class="authentication-inner">
 						          <!-- Register -->
-						          <div class="card">
+						          <div class="card" style="width: 800px; align-items: center; margin: auto; margin-top: 60px;">
 						            <div class="card-body">
 						              <!-- Logo -->
 						              <div class="app-brand justify-content-center">
@@ -59,14 +59,9 @@
 							        		</form:form>	
 							        		
 										</div>
-										<a href="/emp/findUsername">사원번호 찾기</a>
+										<br>
 									 <p class="text-center">
-						                <a style="color: blue;" data-bs-toggle="modal" data-bs-target="#findUsername">
-						                  <span>사원번호 /</span>
-						                </a>
-						                <a style="color: blue;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						                  <span>비밀번호 찾기</span>
-						                </a>
+										<a href="/emp/findUsername">사원번호 / 비밀번호 찾기</a>								
 						              </p>
 										
 						              
@@ -79,23 +74,40 @@
 										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										      </div>
 										      <div class="modal-body" style="margin: auto;">
-						                        <form method="post" class="form-signin" action="findUsername" name="findform">
-						
-						                            <input type="text" class="form-control" id="empName" name="empName" placeholder="이름을 입력해주세요.">
-						                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.">
-						 
-						                            <input class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" value="check">
-						
-						                            <!-- 이름과 비밀번호가 일치하지 않을 때 -->
-						                            <c:if test="${check == 1}">                        
-						                                <label>일치하는 정보가 존재하지 않습니다.</label>
-						                            </c:if>
-						                            
-						                            <c:if test="${check == 0}">
-						                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
-						                            </c:if>
-						
-						                        </form>
+											<form method="post" class="form-signin" action="findUsername" name="findform">
+
+											 	<table>
+													<tr>
+														<td>이름을 입력해주세요</td>
+													 	<td>
+													 		<input type="text" class="form-control" id="empName" name="empName" placeholder="이름을 입력해주세요.">
+													 	</td>
+												 	</tr>
+
+												 	<tr>
+														<td>이메일을 입력해주세요</td>
+													 	<td>
+													 		<input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.">
+													 	</td>
+												 	</tr>
+											 	</table>
+
+											  <br><br>			  			  				  				          													  	  				  			  				  				          		
+											  <input class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" value="check">
+							        		
+								                            <!-- 이름과 비밀번호가 일치하지 않을 때 -->
+					                            <c:if test="${check == 1}">
+													<!-- <script>
+														opener.document.findform.empName.value = "";
+														opener.document.findform.email.value = "";
+													</script>  -->                           
+					                                <label>일치하는 정보가 존재하지 않습니다.</label>
+					                            </c:if>
+					                            
+					                            <c:if test="${check == 0}">
+					                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
+					                            </c:if>				        		
+							        		</form>
 										          <br><br>
 										          
 												 <div class="modal-footer">

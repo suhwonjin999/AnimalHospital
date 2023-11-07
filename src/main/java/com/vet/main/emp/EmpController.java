@@ -31,7 +31,8 @@ public class EmpController {
 
 	@Autowired
 	private EmpService empService;
-	
+
+
 	// 로그인 페이지
 	
 	@GetMapping("login")
@@ -63,13 +64,19 @@ public class EmpController {
 		return "emp/login";
 	}
 	
+	@GetMapping("/sendMail")
+	public String sendMail(EmpVO empVO)throws Exception{
+		return "emp/sendMail";
+	}
+	
+	
 	@GetMapping("findUsername")
 	public String findUsername(EmpVO empVO)throws Exception{
 		return "emp/findUsername";
 	}
 	
 	// 사원번호 찾기
-	@RequestMapping(value = "/findUsername", method = RequestMethod.POST)
+	@PostMapping("findUsername")
 	public String findUsername(EmpVO empVO, Model model)throws Exception{
 		EmpVO user = empService.findUsername(empVO);
 		
@@ -82,7 +89,7 @@ public class EmpController {
 
 		}
 		
-		return "redirect:/emp/findUsername";
+		return "emp/findUsername";
 	}
 	
 	// 마이페이지
@@ -172,11 +179,11 @@ public class EmpController {
 	
 	
 	// 비밀번호 찾기
-//	@GetMapping("findPassword")
-//	public String findPw(EmpVO empVO, Model model) throws Exception{
-//		
-//		return "emp/findPassword";
-//	}
+	@GetMapping("findPw")
+	public String findPw(EmpVO empVO, Model model) throws Exception{
+		
+		return "emp/findPw";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/emp/login/findPassword", method = RequestMethod.POST)
@@ -201,5 +208,5 @@ public class EmpController {
 		return "redirect: ./login";
 	}
 
-	
+
 }

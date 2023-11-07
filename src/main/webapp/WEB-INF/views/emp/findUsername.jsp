@@ -13,56 +13,135 @@
     <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
     <c:import url="/WEB-INF/views/layout/headCSS.jsp"></c:import>
 </head>
-<body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
-            <c:import url="/WEB-INF/views/layout/sidebar.jsp"></c:import>
-            <!-- Layout container -->
-            <div class="layout-page">
-                <c:import url="/WEB-INF/views/layout/topbar.jsp"></c:import>
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    <!-- 내용부분 -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
+<body id="page-top">
+	    <!-- Page Wrapper -->
+	    <div id="wrapper">
+	    	<div id="content-wrapper" class="d-flex flex-column">
+	    		<div id="content">	    		
+		    		<div class="container-fluid" style="margin-top: 50px;">
+						<sec:authentication property="Principal" var="user"/>
+						    <div class="container-xxl">
+						      <div class="authentication-wrapper authentication-basic container-p-y">
+						        <div class="authentication-inner">
+						          <!-- Register -->
+						          <div class="card" style="width: 800px; align-items: center; margin: auto; margin-top: 10px;">
+						            <div class="card-body">
+						              <!-- Logo -->
+						              <div class="app-brand justify-content-center">
+						                <a href="#" class="app-brand-link gap-2">
+						                  <img alt="" src="/resources/images/jisun3.png" style="width: 40px;" height="40px;">
+						                  <span class="app-brand-text demo text-body fw-bolder">Animal Hospital</span>
+						                </a>
+						              </div>
+						              
+						              <br><br>
+									<div >
+										<input type="radio" class="" id="search_username" name="search_total" onclick="search_check(1)" checked="checked">
+										<label class=""	for="search_username">사원번호 찾기</label>
+										&nbsp;&nbsp;
+										<input type="radio" class="custom-control-input" id="search_password" name="search_total" onclick="search_check(2)"> 
+										<label class="" for="search_password">비밀번호 찾기</label>
+									</div>
+						              <br>
+						              <!-- /Logo -->
 
-                        <form method="post" class="form-signin" action="findUsername" name="findform">
+										<div id="searchI">
+							              <h4 class="mb-2">사원번호 찾기🔐</h4><br>
+											<form method="post" class="form-signin" action="findUsername" name="findform">
 
-                            <input type="text" class="form-control" id="empName" name="empName" placeholder="이름을 입력해주세요.">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.">
- 
-                            <input class="btn btn-lg btn-secondary btn-block text-uppercase" type="submit" value="check">
+											 	<table>
+													<tr>
+														<td>이름</td>
+													 	<td>
+													 		<input type="text" class="form-control" id="empName" name="empName" placeholder="ex) 홍길동">
+													 	</td>
+												 	</tr>
 
-                            <!-- 이름과 비밀번호가 일치하지 않을 때 -->
-                            <c:if test="${check == 1}">
-								<!-- <script>
-									opener.document.findform.empName.value = "";
-									opener.document.findform.email.value = "";
-								</script>  -->                           
-                                <label>일치하는 정보가 존재하지 않습니다.</label>
-                            </c:if>
-                            
-                            <c:if test="${check == 0}">
-                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
-                            </c:if>
+												 	<tr>
+														<td>이메일</td>
+													 	<td>
+													 		<input type="email" class="form-control" id="email" name="email" placeholder="ex) animal@hospital.com">
+													 	</td>
+												 	</tr>
+											 	</table>
+											  <br>	
+												  <input class="btn btn-secondary btn-block text-uppercase" type="submit" onclick="idSearch_click()" value="확인">
+												  <button class="btn btn-secondary btn-block text-uppercase"> <a href="./login" style="color: white;">로그인</a> </button>
+											  <br><br>			  			  				  				          													  	  				  			  				  				          		
 
-                        </form>
-                    </div>
-                    <!-- / Content -->
-                    <c:import url="/WEB-INF/views/layout/footer.jsp"></c:import>
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+								                 <!-- 이름과 비밀번호가 일치하지 않을 때 -->
+					                            <c:if test="${check == 1}">                        
+					                                <label>일치하는 정보가 존재하지 않습니다.</label>
+					                            </c:if>
+					                            
+					                            <c:if test="${check == 0}">
+					                                <label>찾으시는 사원번호는 '${username}' 입니다.</label>
+					                                <br>
+					                                <a href="./findPw">비밀번호 찾기</a>
+					                            </c:if>				        		
+							        		</form>
+										</div>
+						
+										<div id="searchP" style="display: none;">
+										<h4 class="mb-2">비밀번호 찾기🔐</h4><br>
+											<form method="post" class="form-signin" action="findUsername" name="findform">
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
-    </div>
-    <!-- / Layout wrapper -->
-    <c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
+											 	<table>
+													<tr>
+														<td>사원번호</td>
+													 	<td>
+													 		<input type="text" class="form-control" id="empName" name="empName" placeholder="ex) 2023000">
+													 	</td>
+												 	</tr>											 	
+													<tr>
+														<td>이름</td>
+													 	<td>
+													 		<input type="text" class="form-control" id="empName" name="empName" placeholder="ex) 홍길동">
+													 	</td>
+												 	</tr>
+
+												 	<tr>
+														<td>이메일</td>
+													 	<td>
+													 		<input type="email" class="form-control" id="email" name="email" placeholder="ex) animal@hospital.com">
+													 	</td>
+													 	<td>
+													 		<a href="./sendMail" class="btn">이메일 전송</a>
+													 	</td>
+												 	</tr>
+											 	</table>
+											  <br>	
+												  <input class="btn btn-secondary btn-block text-uppercase" type="submit" value="확인">
+												  <button class="btn btn-secondary btn-block text-uppercase"> <a href="./login" style="color: white;">로그인</a> </button>
+											  <br><br>			  			  				  				          													  	  				  			  				  				          		
+
+								                 <!-- 이름과 비밀번호가 일치하지 않을 때 -->
+					                            <c:if test="${check == 1}">                        
+					                                <label>일치하는 정보가 존재하지 않습니다.</label>
+					                            </c:if>
+					                            
+					                            <c:if test="${check == 0}">
+					                                <label>찾으시는 아이디는 '${username}' 입니다.</label>
+					                                <br>
+					                                <a href="./findPw">비밀번호 찾기</a>
+					                            </c:if>				        		
+							        		</form>
+										</div>
+						            </div>
+						          </div>
+						          <!-- /Register -->
+						        </div>
+						      </div>
+						    </div>
+						
+						    <!-- / Content -->
+		    		</div>   		
+	    		
+	    		</div>	    		
+
+	    	</div>
+	    </div>  
+	<c:import url="/WEB-INF/views/layout/footjs.jsp"></c:import>
     <script type="text/javascript">
         $('#searchBtn').on("click", function () {
             let empName = $("#empName").val();
@@ -78,7 +157,20 @@
                 $("#email").focus();
                 return;
             }
-            
+        });
     </script>
+    
+    <script type="text/javascript">
+		function search_check(num) {
+			if (num == '1') {
+				document.getElementById("searchP").style.display = "none";
+				document.getElementById("searchI").style.display = "";	
+			} else {
+				document.getElementById("searchI").style.display = "none";
+				document.getElementById("searchP").style.display = "";
+			}
+		}
+    </script>
+
 </body>
 </html>
