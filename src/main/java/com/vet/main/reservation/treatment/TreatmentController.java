@@ -52,25 +52,26 @@ public class TreatmentController {
 	//전체 예약스케줄
 	@PostMapping("schedule")
 	@ResponseBody
-	public List<Map<String,Object>> getScheduleList()throws Exception{
+	public List<TreatmentVO> getScheduleList()throws Exception{
 		List<TreatmentVO> list = treatmentService.getScheduleList();
 		
-		JSONObject jsonObj = new JSONObject();
-		JSONArray jsonArr = new JSONArray();
-		HashMap<String, Object> hash = new HashMap<>();
-		
-		for(int i=0; i < list.size(); i++) {
-			hash.put("title", list.get(i).getAnimalName());		
-			hash.put("start", list.get(i).getTreatmentDate());			
-			hash.put("id", list.get(i).getTreatmentNo());
-		
-			jsonObj = new JSONObject(hash); 
-			jsonArr.add(jsonObj);		
-		}
-		
-		log.info("jsonArrCheck:{}", jsonArr);
-		
-		return jsonArr;		
+//		JSONObject jsonObj = new JSONObject();
+//		JSONArray jsonArr = new JSONArray();
+//		HashMap<String, Object> hash = new HashMap<>();
+//		
+//		for(int i=0; i < list.size(); i++) {
+//			hash.put("title", list.get(i).getAnimalName());		
+//			hash.put("start", list.get(i).getTreatmentDate());			
+//			hash.put("id", list.get(i).getTreatmentNo());
+//		
+//			jsonObj = new JSONObject(hash); 
+//			jsonArr.add(jsonObj);		
+//		}
+//		
+//		log.info("jsonArrCheck:{}", jsonArr);
+//		
+//		return jsonArr;	
+		return list;
 	}
 	
 	//부서별스케줄
