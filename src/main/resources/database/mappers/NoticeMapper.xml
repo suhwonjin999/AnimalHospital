@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vet.main.notice.NoticeDAO">
+	<sql id="forPager">
+		<choose>
+			<when test="kind == 'title'">
+				TITLE
+			</when>
+<!-- 		<when test="kind == 'contents'">
+				CONTENTS
+			</when> -->
+			<otherwise>
+				CONTENTS
+				<!-- 검색란에 작성자 검색도 하고싶은데 어떻게 하나? -->
+				<!-- AND USERNAME LIKE '%'||#{search}||'%' -->
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- 공지사항 총 컬럼수 -->
+	<select id="getNoticeTotal" parameterType="Pager" resultType="Long">
+	<!-- mybatis에서 제공하는 동적 쿼리를 이용하는 방식 _parameter는 parameter로 접근하는 예약어-->
+		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/>
+		SELECT COUNT(NOTICENO) FROM NOTICE
+		WHERE <include refid="forPager"></include>
+		LIKE #{pattern}
+	</select>
+
+
+	<!-- 공지사항 목록 -->
+	<select id="getNoticeList" parameterType="Pager" resultType="NoticeVO">
+		SELECT N.*, E.EMPNAME FROM NOTICE N
+		INNER JOIN EMP E
+		ON E.USERNAME = N.USERNAME
+		WHERE
+		<include refid="forPager"></include>
+		LIKE CONCAT('%', #{search}, '%')
+		ORDER BY NOTICENO DESC
+		LIMIT #{startRow}, #{perPage}
+	</select>
+	
+	<!-- 공지사항글 등록 -->
+
+
+</mapper>
